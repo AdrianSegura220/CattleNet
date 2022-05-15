@@ -60,7 +60,7 @@ def train():
     counter = []
     iteration_number = 0
     for epoch in range(1,num_epochs):
-        for imgs, labels in data_loader:
+        for data in data_loader:
             #### do something with images ...
             optimizer.zero_grad()
             # out1,out2 = model(img1,img2)

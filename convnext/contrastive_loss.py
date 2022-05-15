@@ -1,3 +1,5 @@
+import torch
+
 class ContrastiveLoss(nn.Module):
     def __init__(self,margin=1.0) -> None:
         super(ContrastiveLoss,self).__init__()

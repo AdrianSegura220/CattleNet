@@ -1,5 +1,6 @@
 import os
 import pandas as pd
+from soupsieve import select
 from torchvision.io import read_image
 import torch
 from torch.utils.data import Dataset
@@ -47,17 +48,27 @@ class CustomImageDataset(Dataset):
     """
     def __getitem__(self, idx):
         # path to image being picked
+        im1name = ''
+        im2name = ''
         img_path = os.path.join(self.img_dir, self.img_labels.iloc[idx, 1])
         same_class = random.randint(0,1) 
+        
         if same_class:
             for i in range(0,self.__len__()):
                 if self.img_labels.iloc[i,2] == self.img_labels.iloc[idx, 2]:
-                    selectedImage = random.randint(0,self.counts[self.img_labels.iloc[idx, 2]]-1) # select one of the pictures randomly
-                    image2 = read_image(os.path.join(self.img_dir, self.img_labels.iloc[idx+selectedImage, 1])).float() # selected image should be of same cow
-                    label2 = self.img_labels.iloc[idx+selectedImage, 2]
+                    if self.counts[self.img_labels.iloc[idx, 2]] > 1:
+                        selectedImage = random.randint(0,(self.counts[self.img_labels.iloc[idx, 2]]-1)) # select one of the pictures randomly
+                        im2name = self.img_labels.iloc[i+selectedImage, 1]
+                    else:
+                        selectedImage = 0
+                    image2 = read_image(os.path.join(self.img_dir, self.img_labels.iloc[i+selectedImage, 1])).float() # selected image should be of same cow
+                    label2 = self.img_labels.iloc[i+selectedImage, 2]
+                    im2name = self.img_labels.iloc[i+selectedImage, 1]
+                    break
         else:
-            image2 = read_image(os.path.join(self.img_dir, self.img_labels.iloc[random.randint(0,self.__len__()), 1])).float() # choose a random image
-            label2 = self.img_labels.iloc[idx+selectedImage, 2]
+            rand_idx = random.randint(0,self.__len__()-1)
+            image2 = read_image(os.path.join(self.img_dir, self.img_labels.iloc[rand_idx, 1])).float() # choose a random image
+            label2 = self.img_labels.iloc[rand_idx, 2]
         # read the RGB image (i.e. load it to a 3x240x320 tensor)
         image = read_image(img_path).float()
 
@@ -71,5 +82,9 @@ class CustomImageDataset(Dataset):
         if self.target_transform:
             label = self.target_transform(label)
 
+        print('label1: ',label)
+        print('im1 path: ', img_path)
+        print('label2: ',label2)
+        print('im1 path: ', im2name)
         return image,image2,label,label2
 
