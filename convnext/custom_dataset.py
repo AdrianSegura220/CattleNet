@@ -82,9 +82,9 @@ class CustomImageDataset(Dataset):
         if self.target_transform:
             label = self.target_transform(label)
 
-        print('label1: ',label)
-        print('im1 path: ', img_path)
-        print('label2: ',label2)
-        print('im1 path: ', im2name)
+        # print('label1: ',label)
+        # print('im1 path: ', img_path)
+        # print('label2: ',label2)
+        # print('im1 path: ', im2name)
         return image,image2,label,label2
 
