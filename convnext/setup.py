@@ -17,6 +17,7 @@ import copy
 from custom_dataset import CustomImageDataset
 from torch.utils.data import DataLoader
 from cattleNetTest import CattleNet
+from tqdm import tqdm
 
 # model
 
@@ -60,16 +61,22 @@ def train():
     counter = []
     iteration_number = 0
     for epoch in range(1,num_epochs):
-        for data in data_loader:
+        loop = tqdm(data_loader,leave=False,total=len(data_loader))
+        for data in loop:
             label = 0
             #### do something with images ...
             optimizer.zero_grad()
+            print('entering model')
             out1,out2 = model(data[0],data[1])
+            print('exit model')
             # print('d2: ',data[2],'; d3: ',data[3])
             label = (data[2] == data[3]).float()
             loss_contrastive = criterion(out1,out2,label)
             loss_contrastive.backward()
             optimizer.step()
+            loop.set_description(f"Epoch [{epoch}/{num_epochs}]")
+            loop.set_postfix(loss=loss_contrastive.item())
+
         print("Epoch {}\n Current loss {}\n".format(epoch,loss_contrastive.item()))
         iteration_number += 10
         counter.append(iteration_number)
