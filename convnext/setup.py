@@ -1,7 +1,7 @@
 from __future__ import print_function
 from __future__ import division
 from turtle import forward
-from torchvision import datasets, models, transforms
+from torchvision import datasets, models, transforms 
 from torchvision import datasets, transforms as T
 from contrastive_loss import ContrastiveLoss
 import torchvision.models as models
@@ -21,7 +21,7 @@ from tqdm import tqdm
 
 # model
 
-# device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 
 
@@ -41,11 +41,13 @@ from tqdm import tqdm
 
 #hyperparams
 in_channel = 3
-batch_size = 64
-num_epochs = 4
+batch_size = 8
+num_epochs = 25
 
 # instantiate SNN
-model = CattleNet().cpu()
+model = CattleNet().to(device)
+# print(model)
+# exit()
 
 # loss function
 criterion = ContrastiveLoss()
@@ -66,11 +68,13 @@ def train():
             label = 0
             #### do something with images ...
             optimizer.zero_grad()
-            print('entering model')
-            out1,out2 = model(data[0],data[1])
-            print('exit model')
+            imgs1 = data[0].to(device)
+            imgs2 = data[1].to(device)
+            labels1 = data[2].to(device)
+            labels2 = data[3].to(device)
+            out1,out2 = model(imgs1,imgs2)
             # print('d2: ',data[2],'; d3: ',data[3])
-            label = (data[2] == data[3]).float()
+            label = (labels1 != labels2).float()
             loss_contrastive = criterion(out1,out2,label)
             loss_contrastive.backward()
             optimizer.step()
