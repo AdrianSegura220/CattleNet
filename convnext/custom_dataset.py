@@ -21,6 +21,7 @@ class CustomImageDataset(Dataset):
     def __init__(self, dataset_folder, img_dir, transform=None, target_transform=None) -> None:
         # super().__init__() no superconstructor
         generate_annotations(dataset_folder)
+        # self.train_size = train_size
         self.img_labels = pd.read_csv('annotations.csv')
         self.img_dir = img_dir
         self.transform = transform
@@ -51,21 +52,21 @@ class CustomImageDataset(Dataset):
         im1name = ''
         im2name = ''
         img_path = os.path.join(self.img_dir, self.img_labels.iloc[idx, 1])
-        same_class = random.randint(0,1) 
+        # same_class = random.randint(0,1) 
+        same_class = random.choice([0,1]) # used to approximately select around 50% of samples to be equal and 50% to be different
         
         if same_class:
             for i in range(0,self.__len__()):
                 if self.img_labels.iloc[i,2] == self.img_labels.iloc[idx, 2]:
                     if self.counts[self.img_labels.iloc[idx, 2]] > 1:
                         selectedImage = random.randint(0,(self.counts[self.img_labels.iloc[idx, 2]]-1)) # select one of the pictures randomly
-                        im2name = self.img_labels.iloc[i+selectedImage, 1]
                     else:
                         selectedImage = 0
                     image2 = read_image(os.path.join(self.img_dir, self.img_labels.iloc[i+selectedImage, 1])).float() # selected image should be of same cow
                     label2 = self.img_labels.iloc[i+selectedImage, 2]
-                    im2name = self.img_labels.iloc[i+selectedImage, 1]
                     break
         else:
+            # total_to_use = self.__len__() if self.train_size == -1 else self.train_size # set max num used for training purposes
             rand_idx = random.randint(0,self.__len__()-1)
             image2 = read_image(os.path.join(self.img_dir, self.img_labels.iloc[rand_idx, 1])).float() # choose a random image
             label2 = self.img_labels.iloc[rand_idx, 2]

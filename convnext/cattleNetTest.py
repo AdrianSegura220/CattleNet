@@ -20,14 +20,10 @@ class CattleNet(nn.Module):
     def __init__(self,freezeLayers=False) -> None:
         super(CattleNet,self).__init__()
         self.convnext_tiny = models.convnext_tiny(pretrained=True)
-        # self.convnext_tiny.classifier[1] = 
         self.convnext_tiny.classifier[2] = nn.Linear(768,4096,bias=True)
         self.classifier_layer = nn.Sigmoid()
-        # self.convnext_tiny.classifier[2] = nn.Sequential(nn.Linear(768,4096,bias=True),nn.Sigmoid())
-        if freezeLayers:
-            self.freeze_layers()
-        # for param in self.convnext_tiny.classifier.parameters():
-        #     param.requires_grad = True
+        # if freezeLayers:
+        #     self.freeze_layers()
 
     """
         Used to freeze pre-trained layers if indicated.

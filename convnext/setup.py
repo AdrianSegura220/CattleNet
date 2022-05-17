@@ -42,10 +42,10 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 #hyperparams
 in_channel = 3
 batch_size = 8
-num_epochs = 25
+num_epochs = 60
 
 # instantiate SNN
-model = CattleNet().to(device)
+model = CattleNet(freezeLayers=True).to(device)
 # print(model)
 # exit()
 
@@ -53,17 +53,30 @@ model = CattleNet().to(device)
 criterion = ContrastiveLoss()
 
 # setup optimizer (use Adam technique to optimize parameters (GD with momentum and RMS prop))
-optimizer = optim.Adam(model.parameters()) # by default: learning rate = 0.001, betas=(0.9, 0.999), eps=1e-08, weight_decay=0
-
+# optimizer = optim.Adam(model.parameters()) # by default: learning rate = 0.001, betas=(0.9, 0.999), eps=1e-08, weight_decay=0
+params = list(model.convnext_tiny.classifier.parameters())+list(model.classifier_layer.parameters())
+optimizer = optim.Adam(params) 
 dataset = CustomImageDataset(dataset_folder='../../dataset/Raw/RGB (320 x 240)/',img_dir='../../dataset/Raw/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225])]))
-data_loader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
+
+# setup training and testing sets
+train_size = int(0.8 * len(dataset))
+test_size = len(dataset) - train_size
+train_dataset, test_dataset = torch.utils.data.random_split(dataset, [train_size, test_size])
+len(dataset)
+
+data_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
+
 
 def train():
     loss = []
     counter = []
     iteration_number = 0
+    epoch_loss = 0.0
+    iterations_loop = 0
     for epoch in range(1,num_epochs):
         loop = tqdm(data_loader,leave=False,total=len(data_loader))
+        epoch_loss = 0.0
+        iterations_loop = 0
         for data in loop:
             label = 0
             #### do something with images ...
@@ -80,16 +93,21 @@ def train():
             optimizer.step()
             loop.set_description(f"Epoch [{epoch}/{num_epochs}]")
             loop.set_postfix(loss=loss_contrastive.item())
-
-        print("Epoch {}\n Current loss {}\n".format(epoch,loss_contrastive.item()))
+            epoch_loss += loss_contrastive.item()
+            iterations_loop += 1
+        epoch_loss /= iterations_loop
+        print("Epoch {}\n Current loss {}\n".format(epoch,epoch_loss))
         iteration_number += 10
         counter.append(iteration_number)
-        loss.append(loss_contrastive.item())
+        loss.append(epoch_loss)
+        # loss.append(loss_contrastive.item())
     plt.plot(counter,loss)
     plt.show()
     return model
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+model.train()
+print("Starting training")
 model = train()
-torch.save(model.state_dict(), "model.pt")
+torch.save(model.state_dict(), "model2_003lr.pt")
 print("Model Saved Successfully") 
