@@ -15,6 +15,8 @@ if __name__ == "__main__":
     equal = 0
     total = 64
     for data in data_loader:
+        print(data[0][0][0])
+        exit()
         for j in range(0,data[3].size(dim=0)):
             if data[3][j] == data[2][j]:
                 equal += 1

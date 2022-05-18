@@ -62,16 +62,16 @@ class CustomImageDataset(Dataset):
                         selectedImage = random.randint(0,(self.counts[self.img_labels.iloc[idx, 2]]-1)) # select one of the pictures randomly
                     else:
                         selectedImage = 0
-                    image2 = read_image(os.path.join(self.img_dir, self.img_labels.iloc[i+selectedImage, 1])).float() # selected image should be of same cow
+                    image2 = (read_image(os.path.join(self.img_dir, self.img_labels.iloc[i+selectedImage, 1])).float())/255.0 # selected image should be of same cow
                     label2 = self.img_labels.iloc[i+selectedImage, 2]
                     break
         else:
             # total_to_use = self.__len__() if self.train_size == -1 else self.train_size # set max num used for training purposes
             rand_idx = random.randint(0,self.__len__()-1)
-            image2 = read_image(os.path.join(self.img_dir, self.img_labels.iloc[rand_idx, 1])).float() # choose a random image
+            image2 = (read_image(os.path.join(self.img_dir, self.img_labels.iloc[rand_idx, 1])).float())/255.0 # choose a random image
             label2 = self.img_labels.iloc[rand_idx, 2]
         # read the RGB image (i.e. load it to a 3x240x320 tensor)
-        image = read_image(img_path).float()
+        image = (read_image(img_path).float())/255.0
 
         # read label of the image (i.e. which cow it is)
         label = self.img_labels.iloc[idx, 2]

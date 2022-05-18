@@ -45,9 +45,9 @@ batch_size = 8
 num_epochs = 60
 
 # instantiate SNN
-model = CattleNet(freezeLayers=True)
+model = models.convnext_tiny(pretrained=True)
+model.classifier = nn.Sequential(nn.LayerNorm2d((768,),eps=0.000001,elementwise_affine=True),nn.Flatten(start_dim=1,end_dim=-1),nn.Linear(768,4096,bias=True),nn.Sigmoid())
 model.to(device)
-print(model)
 # print(model)
 
 # loss function
@@ -86,7 +86,8 @@ def train():
             imgs2 = data[1].to(device)
             labels1 = data[2].to(device)
             labels2 = data[3].to(device)
-            out1,out2 = model(imgs1,imgs2)
+            out1 = model(imgs1)
+            print(out1.size())
             # print('d2: ',data[2],'; d3: ',data[3])
             label = (labels1 != labels2).float()
             loss_contrastive = criterion(out1,out2,label)
@@ -101,9 +102,6 @@ def train():
         iteration_number += 10
         counter.append(iteration_number)
         loss.append(epoch_loss)
-        torch.save(model.state_dict(), "model_bs{}_epoch{}_adam_lr1em3_frozen.pt".format(batch_size,epoch))
-        plt.plot(counter,loss)
-        plt.savefig("model_bs{}_epoch{}_adam_lr1em3_frozen.png".format(batch_size,epoch))
         # loss.append(loss_contrastive.item())
     plt.plot(counter,loss)
     plt.show()
@@ -113,5 +111,5 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 model.train()
 print("Starting training")
 model = train()
-# torch.save(model.state_dict(), "model_sequential_isGoodMaybe2_{}.pt".format())
+torch.save(model.state_dict(), "model2_001lr_normalizedimgs.pt")
 print("Model Saved Successfully") 
