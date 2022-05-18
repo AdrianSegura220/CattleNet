@@ -4,6 +4,7 @@ from turtle import forward
 from torchvision import datasets, models, transforms 
 from torchvision import datasets, transforms as T
 from contrastive_loss import ContrastiveLoss
+from torch.optim.lr_scheduler import StepLR
 import torchvision.models as models
 import torch
 import torch.nn as nn
@@ -12,6 +13,7 @@ import numpy as np
 import torchvision
 import matplotlib.pyplot as plt
 import time
+import datetime
 import os
 import copy
 from custom_dataset import CustomImageDataset
@@ -37,9 +39,14 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     TO TRY NEXT:
      - Try weight decay in optimizer: weight_decay=0.0005
 """
-                                 
+
+# results folders
+path_to_results = '../../BachelorsProject/Trainings/'   
 
 #hyperparams
+lrDecay = 1
+step_lr = 10
+lr=1e-3
 in_channel = 3
 batch_size = 8
 num_epochs = 60
@@ -59,6 +66,9 @@ params = model.parameters()
 optimizer = optim.Adam(params) 
 dataset = CustomImageDataset(dataset_folder='../../dataset/Raw/RGB (320 x 240)/',img_dir='../../dataset/Raw/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225])]))
 
+# setup learning rate scheduler
+scheduler = StepLR(optimizer, step_size=step_lr, gamma=0.1)
+
 # setup training and testing sets
 train_size = int(0.8 * len(dataset))
 test_size = len(dataset) - train_size
@@ -74,6 +84,10 @@ def train():
     iteration_number = 0
     epoch_loss = 0.0
     iterations_loop = 0
+    # create directory for current training results
+    final_path = os.path.join(path_to_results,'model_InitialLR{}_lrDecay{}wStep{}_trainSize{}_testSize{}_datetime{}-{}H{}M{}'.format(lr,lrDecay,step_lr,train_size,test_size,datetime.datetime.today().day,datetime.datetime.today().month,datetime.datetime.today().hour,datetime.datetime.today().minute))
+    os.mkdir(final_path)
+
     for epoch in range(1,num_epochs):
         loop = tqdm(data_loader,leave=False,total=len(data_loader))
         epoch_loss = 0.0
@@ -96,18 +110,30 @@ def train():
             loop.set_postfix(loss=loss_contrastive.item())
             epoch_loss += loss_contrastive.item()
             iterations_loop += 1
+        scheduler.step()
         epoch_loss /= iterations_loop
+        curr_lr = optimizer.state_dict()['param_groups'][0]['lr']
+
+        #print details of elapsed epoch
+        print("lr {}".format(curr_lr))
         print("Epoch {}\n Current loss {}\n".format(epoch,epoch_loss))
+
+        # maintain epochs in scales of 10
         iteration_number += 10
         counter.append(iteration_number)
         loss.append(epoch_loss)
-        torch.save(model.state_dict(), "model_bs{}_epoch{}_adam_lr1em3_frozen.pt".format(batch_size,epoch))
-        plt.plot(counter,loss)
-        plt.savefig("model_bs{}_epoch{}_adam_lr1em3_frozen.png".format(batch_size,epoch))
-        # loss.append(loss_contrastive.item())
-    plt.plot(counter,loss)
-    plt.show()
+        save_figures(iteration_number,counter,loss,final_path,epoch,epoch_loss,curr_lr)
+
+        #save model state up to this epoch
+        torch.save(model.state_dict(), os.path.join(final_path,"epoch{}_loss{}_lr{}.pt".format(epoch,epoch_loss,curr_lr)))
+
     return model
+
+def save_figures(iteration_number,counter,loss,final_path,epoch,epoch_loss,curr_lr):
+    plt.plot(counter,loss)
+    plt.xlabel('Epoch (10:1 scale)')
+    plt.ylabel('Loss')
+    plt.savefig(os.path.join(final_path,"epoch{}_loss{}_lr{}.png".format(epoch,epoch_loss,curr_lr)))
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 model.train()

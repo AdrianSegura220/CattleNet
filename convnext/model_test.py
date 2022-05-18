@@ -19,6 +19,14 @@ from torch.utils.data import DataLoader
 from cattleNetTest import CattleNet
 from tqdm import tqdm
 
+"""
+    Go through each image, do forward pass through CNN to generate feature vectors
+    and pair them with their labels in a dict.
+    For each label, revise whether own images have the smallest euclidean distance
+    compared to other images
+"""
+def test(feature_vector: torch.Tensor):
+    
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 #../../BachelorsProject/Trainings/bs8_adam_lrem3_05_17/
