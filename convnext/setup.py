@@ -16,10 +16,16 @@ import time
 import datetime
 import os
 import copy
+import wandb
 from custom_dataset import CustomImageDataset
 from torch.utils.data import DataLoader
 from cattleNetTest import CattleNet
 from tqdm import tqdm
+
+
+# wandb setup (logging progress to online platform)
+wandb.init(project="cattleNet-arch1", entity="adriansegura220")
+
 
 # model
 
@@ -45,11 +51,18 @@ path_to_results = '../../BachelorsProject/Trainings/'
 
 #hyperparams
 lrDecay = 1
-step_lr = 10
+step_lr = 5
 lr=1e-3
 in_channel = 3
 batch_size = 8
-num_epochs = 60
+num_epochs = 20
+
+
+wandb.config = {
+  "learning_rate": lr,
+  "epochs": num_epochs,
+  "batch_size": batch_size
+}
 
 # instantiate SNN
 model = CattleNet(freezeLayers=True)
@@ -79,6 +92,7 @@ data_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
 
 
 def train():
+    min_loss = float('inf')
     loss = []
     counter = []
     iteration_number = 0
@@ -117,16 +131,20 @@ def train():
         #print details of elapsed epoch
         print("lr {}".format(curr_lr))
         print("Epoch {}\n Current loss {}\n".format(epoch,epoch_loss))
+        wandb.log({"loss": epoch_loss})
 
         # maintain epochs in scales of 10
         iteration_number += 10
         counter.append(iteration_number)
         loss.append(epoch_loss)
-        save_figures(iteration_number,counter,loss,final_path,epoch,epoch_loss,curr_lr)
-
-        #save model state up to this epoch
-        torch.save(model.state_dict(), os.path.join(final_path,"epoch{}_loss{}_lr{}.pt".format(epoch,epoch_loss,curr_lr)))
-
+                    
+        # save model and result every 10 epochs
+        if epoch % 10 == 0:
+            save_figures(iteration_number,counter,loss,final_path,epoch,epoch_loss,curr_lr)
+            #save model state up to this epoch
+            if epoch_loss < min_loss:
+                min_loss = epoch_loss
+                torch.save(model.state_dict(), os.path.join(final_path,"epoch{}_loss{}_lr{}.pt".format(epoch,epoch_loss,curr_lr)))
     return model
 
 def save_figures(iteration_number,counter,loss,final_path,epoch,epoch_loss,curr_lr):

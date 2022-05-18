@@ -1,0 +1,818 @@
+CattleNet(
+  (convnext_tiny): Sequential(
+    (0): ConvNeXt(
+      (features): Sequential(
+        (0): ConvNormActivation(
+          (0): Conv2d(3, 96, kernel_size=(4, 4), stride=(4, 4))
+          (1): LayerNorm2d((96,), eps=1e-06, elementwise_affine=True)
+        )
+        (1): Sequential(
+          (0): CNBlock(
+            (block): Sequential(
+              (0): Conv2d(96, 96, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), groups=96)
+              (1): Permute()
+              (2): LayerNorm((96,), eps=1e-06, elementwise_affine=True)
+              (3): Linear(in_features=96, out_features=384, bias=True)
+              (4): GELU()
+              (5): Linear(in_features=384, out_features=96, bias=True)
+              (6): Permute()
+            )
+            (stochastic_depth): StochasticDepth(p=0.0, mode=row)
+          )
+          (1): CNBlock(
+            (block): Sequential(
+              (0): Conv2d(96, 96, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), groups=96)
+              (1): Permute()
+              (2): LayerNorm((96,), eps=1e-06, elementwise_affine=True)
+              (3): Linear(in_features=96, out_features=384, bias=True)
+              (4): GELU()
+              (5): Linear(in_features=384, out_features=96, bias=True)
+              (6): Permute()
+            )
+            (stochastic_depth): StochasticDepth(p=0.0058823529411764705, mode=row)
+          )
+          (2): CNBlock(
+            (block): Sequential(
+              (0): Conv2d(96, 96, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), groups=96)
+              (1): Permute()
+              (2): LayerNorm((96,), eps=1e-06, elementwise_affine=True)
+              (3): Linear(in_features=96, out_features=384, bias=True)
+              (4): GELU()
+              (5): Linear(in_features=384, out_features=96, bias=True)
+              (6): Permute()
+            )
+            (stochastic_depth): StochasticDepth(p=0.011764705882352941, mode=row)
+          )
+        )
+        (2): Sequential(
+          (0): LayerNorm2d((96,), eps=1e-06, elementwise_affine=True)
+          (1): Conv2d(96, 192, kernel_size=(2, 2), stride=(2, 2))
+        )
+        (3): Sequential(
+          (0): CNBlock(
+            (block): Sequential(
+              (0): Conv2d(192, 192, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), groups=192)
+              (1): Permute()
+              (2): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+              (3): Linear(in_features=192, out_features=768, bias=True)
+              (4): GELU()
+              (5): Linear(in_features=768, out_features=192, bias=True)
+              (6): Permute()
+            )
+            (stochastic_depth): StochasticDepth(p=0.017647058823529415, mode=row)
+          )
+          (1): CNBlock(
+            (block): Sequential(
+              (0): Conv2d(192, 192, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), groups=192)
+              (1): Permute()
+              (2): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+              (3): Linear(in_features=192, out_features=768, bias=True)
+              (4): GELU()
+              (5): Linear(in_features=768, out_features=192, bias=True)
+              (6): Permute()
+            )
+            (stochastic_depth): StochasticDepth(p=0.023529411764705882, mode=row)
+          )
+          (2): CNBlock(
+            (block): Sequential(
+              (0): Conv2d(192, 192, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), groups=192)
+              (1): Permute()
+              (2): LayerNorm((192,), eps=1e-06, elementwise_affine=True)
+              (3): Linear(in_features=192, out_features=768, bias=True)
+              (4): GELU()
+              (5): Linear(in_features=768, out_features=192, bias=True)
+              (6): Permute()
+            )
+            (stochastic_depth): StochasticDepth(p=0.029411764705882353, mode=row)
+          )
+        )
+        (4): Sequential(
+          (0): LayerNorm2d((192,), eps=1e-06, elementwise_affine=True)
+          (1): Conv2d(192, 384, kernel_size=(2, 2), stride=(2, 2))
+        )
+        (5): Sequential(
+          (0): CNBlock(
+            (block): Sequential(
+              (0): Conv2d(384, 384, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), groups=384)
+              (1): Permute()
+              (2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+              (3): Linear(in_features=384, out_features=1536, bias=True)
+              (4): GELU()
+              (5): Linear(in_features=1536, out_features=384, bias=True)
+              (6): Permute()
+            )
+            (stochastic_depth): StochasticDepth(p=0.03529411764705883, mode=row)
+          )
+          (1): CNBlock(
+            (block): Sequential(
+              (0): Conv2d(384, 384, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), groups=384)
+              (1): Permute()
+              (2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+              (3): Linear(in_features=384, out_features=1536, bias=True)
+              (4): GELU()
+              (5): Linear(in_features=1536, out_features=384, bias=True)
+              (6): Permute()
+            )
+            (stochastic_depth): StochasticDepth(p=0.0411764705882353, mode=row)
+          )
+          (2): CNBlock(
+            (block): Sequential(
+              (0): Conv2d(384, 384, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), groups=384)
+              (1): Permute()
+              (2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+              (3): Linear(in_features=384, out_features=1536, bias=True)
+              (4): GELU()
+              (5): Linear(in_features=1536, out_features=384, bias=True)
+              (6): Permute()
+            )
+            (stochastic_depth): StochasticDepth(p=0.047058823529411764, mode=row)
+          )
+          (3): CNBlock(
+            (block): Sequential(
+              (0): Conv2d(384, 384, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), groups=384)
+              (1): Permute()
+              (2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+              (3): Linear(in_features=384, out_features=1536, bias=True)
+              (4): GELU()
+              (5): Linear(in_features=1536, out_features=384, bias=True)
+              (6): Permute()
+            )
+            (stochastic_depth): StochasticDepth(p=0.052941176470588235, mode=row)
+          )
+          (4): CNBlock(
+            (block): Sequential(
+              (0): Conv2d(384, 384, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), groups=384)
+              (1): Permute()
+              (2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+              (3): Linear(in_features=384, out_features=1536, bias=True)
+              (4): GELU()
+              (5): Linear(in_features=1536, out_features=384, bias=True)
+              (6): Permute()
+            )
+            (stochastic_depth): StochasticDepth(p=0.058823529411764705, mode=row)
+          )
+          (5): CNBlock(
+            (block): Sequential(
+              (0): Conv2d(384, 384, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), groups=384)
+              (1): Permute()
+              (2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+              (3): Linear(in_features=384, out_features=1536, bias=True)
+              (4): GELU()
+              (5): Linear(in_features=1536, out_features=384, bias=True)
+              (6): Permute()
+            )
+            (stochastic_depth): StochasticDepth(p=0.06470588235294118, mode=row)
+          )
+          (6): CNBlock(
+            (block): Sequential(
+              (0): Conv2d(384, 384, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), groups=384)
+              (1): Permute()
+              (2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+              (3): Linear(in_features=384, out_features=1536, bias=True)
+              (4): GELU()
+              (5): Linear(in_features=1536, out_features=384, bias=True)
+              (6): Permute()
+            )
+            (stochastic_depth): StochasticDepth(p=0.07058823529411766, mode=row)
+          )
+          (7): CNBlock(
+            (block): Sequential(
+              (0): Conv2d(384, 384, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), groups=384)
+              (1): Permute()
+              (2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+              (3): Linear(in_features=384, out_features=1536, bias=True)
+              (4): GELU()
+              (5): Linear(in_features=1536, out_features=384, bias=True)
+              (6): Permute()
+            )
+            (stochastic_depth): StochasticDepth(p=0.07647058823529412, mode=row)
+          )
+          (8): CNBlock(
+            (block): Sequential(
+              (0): Conv2d(384, 384, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), groups=384)
+              (1): Permute()
+              (2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+              (3): Linear(in_features=384, out_features=1536, bias=True)
+              (4): GELU()
+              (5): Linear(in_features=1536, out_features=384, bias=True)
+              (6): Permute()
+            )
+            (stochastic_depth): StochasticDepth(p=0.0823529411764706, mode=row)
+          )
+        )
+        (6): Sequential(
+          (0): LayerNorm2d((384,), eps=1e-06, elementwise_affine=True)
+          (1): Conv2d(384, 768, kernel_size=(2, 2), stride=(2, 2))
+        )
+        (7): Sequential(
+          (0): CNBlock(
+            (block): Sequential(
+              (0): Conv2d(768, 768, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), groups=768)
+              (1): Permute()
+              (2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+              (3): Linear(in_features=768, out_features=3072, bias=True)
+              (4): GELU()
+              (5): Linear(in_features=3072, out_features=768, bias=True)
+              (6): Permute()
+            )
+            (stochastic_depth): StochasticDepth(p=0.08823529411764706, mode=row)
+          )
+          (1): CNBlock(
+            (block): Sequential(
+              (0): Conv2d(768, 768, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), groups=768)
+              (1): Permute()
+              (2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+              (3): Linear(in_features=768, out_features=3072, bias=True)
+              (4): GELU()
+              (5): Linear(in_features=3072, out_features=768, bias=True)
+              (6): Permute()
+            )
+            (stochastic_depth): StochasticDepth(p=0.09411764705882353, mode=row)
+          )
+          (2): CNBlock(
+            (block): Sequential(
+              (0): Conv2d(768, 768, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), groups=768)
+              (1): Permute()
+              (2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+              (3): Linear(in_features=768, out_features=3072, bias=True)
+              (4): GELU()
+              (5): Linear(in_features=3072, out_features=768, bias=True)
+              (6): Permute()
+            )
+            (stochastic_depth): StochasticDepth(p=0.1, mode=row)
+          )
+        )
+      )
+      (avgpool): AdaptiveAvgPool2d(output_size=1)
+      (classifier): Sequential(
+        (0): LayerNorm2d((768,), eps=1e-06, elementwise_affine=True)
+        (1): Flatten(start_dim=1, end_dim=-1)
+        (2): Linear(in_features=768, out_features=4096, bias=True)
+      )
+    )
+    (1): Sigmoid()
+  )
+)
+Starting training
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [1/20]:  97%|████████████████████████████▏| 130/134 [00:53<00:01,  2.49it/s, loss=0.405]
+lr 0.001
+Epoch 1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [2/20]:  98%|████████████████████████████▎| 131/134 [00:53<00:01,  2.44it/s, loss=0.336]
+lr 0.001
+Epoch 2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [3/20]:  98%|████████████████████████████▎| 131/134 [00:53<00:01,  2.50it/s, loss=0.236]
+lr 0.001
+Epoch 3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [4/20]:  96%|███████████████████████████▉ | 129/134 [00:51<00:02,  2.49it/s, loss=0.316]
+lr 0.001
+Epoch 4
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [5/20]:  98%|████████████████████████████▎| 131/134 [00:52<00:01,  2.48it/s, loss=0.293]
+lr 0.0001
+Epoch 5
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [6/20]:  96%|███████████████████████████▋ | 128/134 [00:50<00:02,  2.65it/s, loss=0.262]
+lr 0.0001
+Epoch 6
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [7/20]:  99%|█████████████████████████████▌| 132/134 [00:52<00:00,  2.46it/s, loss=0.26]
+lr 0.0001
+Epoch 7
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [8/20]:  97%|█████████████████████████████ | 130/134 [00:52<00:01,  2.42it/s, loss=0.27]
+lr 0.0001
+Epoch 8
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [9/20]:  99%|████████████████████████████▌| 132/134 [00:53<00:00,  2.56it/s, loss=0.267]
+lr 0.0001
+Epoch 9
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [10/20]:  96%|████████████████████████████▉ | 129/134 [00:51<00:01,  2.54it/s, loss=0.3]
+lr 1e-05
+Epoch 10
+
+ Current loss 0.264760519697595
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [11/20]:  99%|███████████████████████████▌| 132/134 [00:52<00:00,  2.62it/s, loss=0.255]
+lr 1e-05
+Epoch 11
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [12/20]:  96%|███████████████████████████▉ | 129/134 [00:51<00:01,  2.54it/s, loss=0.25]
+lr 1e-05
+Epoch 12
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [13/20]:  96%|██████████████████████████▉ | 129/134 [00:51<00:01,  2.52it/s, loss=0.303]
+lr 1e-05
+Epoch 13
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  0%|                                                                 | 0/134 [00:00<?, ?it/s]
+lr 1e-05
+Epoch 14
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [15/20]:  98%|███████████████████████████▎| 131/134 [00:51<00:01,  2.60it/s, loss=0.231]
+lr 1.0000000000000002e-06
+Epoch 15
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [16/20]:  97%|███████████████████████████▏| 130/134 [00:51<00:01,  2.49it/s, loss=0.274]
+lr 1.0000000000000002e-06
+Epoch 16
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [17/20]:  99%|███████████████████████████▊| 133/134 [00:53<00:00,  2.52it/s, loss=0.257]
+lr 1.0000000000000002e-06
+Epoch 17
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [18/20]:  98%|███████████████████████████▎| 131/134 [00:51<00:01,  2.53it/s, loss=0.289]
+lr 1.0000000000000002e-06
+Epoch 18
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [19/20]:  96%|██████████████████████████▉ | 129/134 [00:51<00:02,  2.46it/s, loss=0.292]
+lr 1.0000000000000002e-06
+Epoch 19
+ Current loss 0.26300489691211215
+
+Model Saved Successfully
