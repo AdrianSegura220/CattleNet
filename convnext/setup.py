@@ -25,6 +25,8 @@ from tqdm import tqdm
 
 # wandb setup (logging progress to online platform)
 wandb.init(project="cattleNet-arch1", entity="adriansegura220")
+#HELLO BORA YILMAZ
+
 
 
 # model
