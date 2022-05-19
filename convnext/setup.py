@@ -21,6 +21,7 @@ from custom_dataset import CustomImageDataset
 from torch.utils.data import DataLoader
 from cattleNetTest import CattleNet
 from tqdm import tqdm
+from model_test import test
 
 
 # wandb setup (logging progress to online platform)
@@ -124,6 +125,9 @@ def train():
                     
         # save model and result every 10 epochs
         if epoch % 10 == 0:
+            acc = test(test_dataset,model=model,is_load_model=False)
+            print('Accuracy: {}'.format(acc))
+            wandb.log({"accuracy": acc})
             save_figures(iteration_number,counter,loss,final_path,epoch,epoch_loss,curr_lr)
             #save model state up to this epoch
             if epoch_loss < min_loss:

@@ -31,20 +31,26 @@ from tqdm import tqdm
         model_directory: directory containing the saved models from training
         model_version: name of the specific model to be tested (and loaded) 
 """
-def encode_dataset(test_dataset: CustomImageDataset, model_directory: str, model_version: str):
-    folder_plus_modelV = os.path.join(model_directory,model_version)
+def encode_dataset(test_dataset: CustomImageDataset, model_directory: str, model_version: str, model=None,is_load_model=True):
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    model = CattleNet()
-    model.load_state_dict(torch.load(folder_plus_modelV)) # load model that is to be tested
-    model.to(device)
-    model.eval()
+    if is_load_model:
+        folder_plus_modelV = os.path.join(model_directory,model_version)
+        model = CattleNet()
+        model.eval()
+        model.load_state_dict(torch.load(folder_plus_modelV)) # load model that is to be tested
+        model.to(device)
+    else:
+        model.eval()
+
     data_dict = {}
-    imgs1 = data[0].to(device)
-    imgs2 = data[1].to(device)
-    labels1 = data[2].to(device)
-    labels2 = data[3].to(device)
-    out1,out2 = model(imgs1,imgs2)
+
     for data in test_dataset:
+        imgs1 = data[0].to(device)
+        imgs2 = data[1].to(device)
+        labels1 = data[2].to(device)
+        labels2 = data[3].to(device)
+        out1,out2 = model(imgs1,imgs2)
+
         if labels1 not in data_dict:
             data_dict[labels1] = []
         
@@ -69,11 +75,16 @@ TO TRY:
         compared to other images
         This method is quite inefficient, considering to do vector quantization
 """
-def test(test_dataset: CustomImageDataset, model_directory: str, model_version: str,feature_vector: torch.Tensor):
+def test(test_dataset: CustomImageDataset, model_directory: str = '', model_version: str = '',model: CattleNet = None,is_load_model = True):
     correct = 0
     wrong = 0
     euclidean = torch.nn.PairwiseDistance(2) # setup pairwise distance with parameter 2, to specify (sum of squares)^(1/n) => (sum of squares)^(1/2)
-    data_dict = encode_dataset(test_dataset, model_directory, model_version)
+    if is_load_model:
+        data_dict = encode_dataset(test_dataset, model_directory, model_version)
+    else:
+        data_dict = encode_dataset(test_dataset, model_directory, model_version,model,is_load_model)
+    
+
     results = {}
 
     """
