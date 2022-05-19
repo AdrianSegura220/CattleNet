@@ -27,26 +27,8 @@ from tqdm import tqdm
 wandb.init(project="cattleNet-arch1", entity="adriansegura220")
 #HELLO BORA YILMAZ
 
-
-
-# model
-
+# setup device type
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-
-
-
-# convnext_tiny = models.convnext_tiny(pretrained=True)
-# convnext_tiny.classifier[2] = nn.Sequential(
-#     nn.Linear(768,4096,bias=True),
-#     nn.Sigmoid()
-# )   
-
-# convnext_tiny.to(device) # load NN to cuda or cpu
-
-"""
-    TO TRY NEXT:
-     - Try weight decay in optimizer: weight_decay=0.0005
-"""
 
 # results folders
 path_to_results = '../../BachelorsProject/Trainings/'   
