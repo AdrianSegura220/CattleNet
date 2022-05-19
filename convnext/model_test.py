@@ -44,7 +44,8 @@ def encode_dataset(test_dataset: CustomImageDataset, model_directory: str, model
 
     data_dict = {}
 
-    for data in test_dataset:
+    data_loader = DataLoader(test_dataset, batch_size=1, shuffle=True)
+    for data in data_loader:
         imgs1 = data[0].to(device)
         imgs2 = data[1].to(device)
         labels1 = data[2].to(device)
