@@ -24,7 +24,3 @@ def generate_annotations(directory: str) -> None:
         labels = labels + [dname for lb in os.listdir(directory+'/'+dname+'/')]
     df = pd.DataFrame({'Path': indices,'Label': labels})
     df.to_csv('annotations.csv')
-
-    """
-        GOTTA MOVE ALL IMAGES TO ONE FOLDER
-    """
