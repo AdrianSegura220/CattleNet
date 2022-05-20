@@ -25,6 +25,11 @@ class CattleNet(nn.Module):
         self.convnext_tiny.classifier[2] = nn.Linear(768,4096,bias=True)
         self.convnext_tiny = nn.Sequential(self.convnext_tiny,nn.Sigmoid())
 
+
+
+    def unfreeze_layers(self):
+        for param in self.convnext_tiny.parameters():
+            param.requires_grad = True
     """
         Used to freeze pre-trained layers if indicated.
         Otherwise default is false (i.e. they are also

@@ -36,11 +36,9 @@ def encode_dataset(test_dataset: CustomImageDataset, model_directory: str, model
     if is_load_model:
         folder_plus_modelV = os.path.join(model_directory,model_version)
         model = CattleNet()
-        model.eval()
         model.load_state_dict(torch.load(folder_plus_modelV)) # load model that is to be tested
-        model.to(device)
-    else:
         model.eval()
+        model.to(device)
 
     data_dict = {}
 
@@ -53,13 +51,14 @@ def encode_dataset(test_dataset: CustomImageDataset, model_directory: str, model
         out1,out2 = model(imgs1,imgs2)
 
         if labels1 not in data_dict:
-            data_dict[labels1] = []
+            data_dict[str(labels1.item())] = []
         
         if labels2 not in data_dict:
-            data_dict[labels2] = []
+            data_dict[str(labels2.item())] = []
         
-        data_dict[labels1].append(out1)
-        data_dict[labels2].append(out2)
+        data_dict[str(labels1.item())].append(out1)
+        data_dict[str(labels2.item())].append(out2)
+        # print(str(labels1.item()))
 
     return data_dict
 
@@ -86,6 +85,8 @@ def test(test_dataset: CustomImageDataset, model_directory: str = '', model_vers
         data_dict = encode_dataset(test_dataset, model_directory, model_version,model,is_load_model)
     
 
+    # print(data_dict)
+
     results = {}
 
     """
@@ -96,13 +97,14 @@ def test(test_dataset: CustomImageDataset, model_directory: str = '', model_vers
     for key in data_dict.keys(): # for each label (cow)
         results[key] = []
         for embedding in data_dict[key]:
-            results[key].append((float('inf'),'dummy_label'))
+            results[key].append([9999999999999.0,'dummy_label'])
             for key2 in data_dict.keys():
                 if key != key2:
                     for embedding2 in data_dict[key2]:
                         pwdistance = euclidean(embedding,embedding2)
-                        if pwdistance < results[key][-1]: # if current embedding of different cow (embedding2) has a smaller distance, set to new min
-                            results[key][-1][0] = (pwdistance,key2)
+                        if pwdistance < results[key][-1][0]: # if current embedding of different cow (embedding2) has a smaller distance, set to new min
+                            results[key][-1][0] = pwdistance
+                            results[key][-1][1] = key2
                         
     for key in data_dict.keys(): # for each label (cow)
         for i,embedding in enumerate(data_dict[key]):
@@ -111,8 +113,10 @@ def test(test_dataset: CustomImageDataset, model_directory: str = '', model_vers
                     pwdistance = euclidean(embedding,embedding2)
                     if pwdistance < results[key][i][0]:
                         correct += 1
+                        break
                     else:
                         wrong += 1
+                        break
     
     # return accuracy
     return correct/(correct+wrong)

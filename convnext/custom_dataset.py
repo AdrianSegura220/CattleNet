@@ -33,8 +33,6 @@ class CustomImageDataset(Dataset):
         Have count of how many images exist per label
     """
     def countPerSample(self):
-        curr = 0
-        prev = 0
         for i in range(0,self.__len__()):
             if self.img_labels.iloc[i,2] in self.counts:
                 self.counts[self.img_labels.iloc[i,2]] += 1
@@ -83,9 +81,5 @@ class CustomImageDataset(Dataset):
         if self.target_transform:
             label = self.target_transform(label)
 
-        # print('label1: ',label)
-        # print('im1 path: ', img_path)
-        # print('label2: ',label2)
-        # print('im1 path: ', im2name)
         return image,image2,label,label2
 

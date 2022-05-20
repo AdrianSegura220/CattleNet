@@ -25,8 +25,11 @@ from model_test import test
 
 
 # wandb setup (logging progress to online platform)
-wandb.init(project="cattleNet-arch1", entity="adriansegura220")
-#HELLO BORA YILMAZ
+# wandb.init(project="cattleNet-arch1", entity="adriansegura220")
+
+
+# load and test a model version (no training)
+loadtest = True
 
 # setup device type
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -36,11 +39,11 @@ path_to_results = '../../BachelorsProject/Trainings/'
 
 #hyperparams
 lrDecay = 1
-step_lr = 5
+step_lr = 10
 lr=1e-3
 in_channel = 3
-batch_size = 8
-num_epochs = 20
+batch_size = 2
+num_epochs = 40
 
 
 wandb.config = {
@@ -49,23 +52,23 @@ wandb.config = {
   "batch_size": batch_size
 }
 
-# instantiate SNN
-model = CattleNet(freezeLayers=True)
-model.to(device)
-print(model)
-# print(model)
+if not loadtest:
+    # instantiate SNN
+    model = CattleNet(freezeLayers=True)
+    model.to(device)
 
-# loss function
-criterion = ContrastiveLoss()
+    # loss function
+    criterion = ContrastiveLoss()
 
-# setup optimizer (use Adam technique to optimize parameters (GD with momentum and RMS prop))
-# optimizer = optim.Adam(model.parameters()) # by default: learning rate = 0.001, betas=(0.9, 0.999), eps=1e-08, weight_decay=0
-params = model.parameters()
-optimizer = optim.Adam(params) 
+    # setup optimizer (use Adam technique to optimize parameters (GD with momentum and RMS prop))
+    # optimizer = optim.Adam(model.parameters()) # by default: learning rate = 0.001, betas=(0.9, 0.999), eps=1e-08, weight_decay=0
+    params = model.parameters()
+    optimizer = optim.Adam(params) 
+    scheduler = StepLR(optimizer, step_size=step_lr, gamma=0.1)
+
 dataset = CustomImageDataset(dataset_folder='../../dataset/Raw/RGB (320 x 240)/',img_dir='../../dataset/Raw/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225])]))
 
 # setup learning rate scheduler
-scheduler = StepLR(optimizer, step_size=step_lr, gamma=0.1)
 
 # setup training and testing sets
 train_size = int(0.8 * len(dataset))
@@ -76,8 +79,19 @@ len(dataset)
 data_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
 
 
+def load_and_test(fname):
+    print('here')
+    model = CattleNet()
+    model.load_state_dict(torch.load(fname)) # load model that is to be tested
+    model.eval()
+    model.to(device)
+    model.eval()
+    acc = test(test_dataset,model=model,is_load_model=False)
+    print(acc)
+
+
 def train():
-    min_loss = float('inf')
+    min_loss = 99999999999999.0
     loss = []
     counter = []
     iteration_number = 0
@@ -113,26 +127,35 @@ def train():
         epoch_loss /= iterations_loop
         curr_lr = optimizer.state_dict()['param_groups'][0]['lr']
 
+        if epoch == 14:
+            torch.cuda.empty_cache()
+            model.unfreeze_layers()
+
         #print details of elapsed epoch
         print("lr {}".format(curr_lr))
         print("Epoch {}\n Current loss {}\n".format(epoch,epoch_loss))
-        wandb.log({"loss": epoch_loss})
+        # wandb.log({"loss": epoch_loss})
 
         # maintain epochs in scales of 10
         iteration_number += 10
         counter.append(iteration_number)
         loss.append(epoch_loss)
-                    
+
         # save model and result every 10 epochs
         if epoch % 10 == 0:
-            acc = test(test_dataset,model=model,is_load_model=False)
-            print('Accuracy: {}'.format(acc))
-            wandb.log({"accuracy": acc})
             save_figures(iteration_number,counter,loss,final_path,epoch,epoch_loss,curr_lr)
             #save model state up to this epoch
             if epoch_loss < min_loss:
                 min_loss = epoch_loss
                 torch.save(model.state_dict(), os.path.join(final_path,"epoch{}_loss{}_lr{}.pt".format(epoch,epoch_loss,curr_lr)))
+    
+    # set model to eval mode
+    model.eval()
+
+    acc = test(test_dataset,model=model,is_load_model=False)
+    print('Accuracy: {}'.format(acc))
+    # wandb.log({"accuracy": acc})
+    
     return model
 
 def save_figures(iteration_number,counter,loss,final_path,epoch,epoch_loss,curr_lr):
@@ -141,9 +164,12 @@ def save_figures(iteration_number,counter,loss,final_path,epoch,epoch_loss,curr_
     plt.ylabel('Loss')
     plt.savefig(os.path.join(final_path,"epoch{}_loss{}_lr{}.png".format(epoch,epoch_loss,curr_lr)))
 
-device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-model.train()
-print("Starting training")
-model = train()
-# torch.save(model.state_dict(), "model_sequential_isGoodMaybe2_{}.pt".format())
-print("Model Saved Successfully") 
+if loadtest:
+    load_and_test('../../BachelorsProject/Trainings/model_InitialLR0.001_lrDecay1wStep10_trainSize1066_testSize267_datetime20-5H2M11/epoch30_loss0.2583860134455695_lr1.0000000000000002e-06.pt')
+else:
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    model.train()
+    print("Starting training")
+    model = train()
+    # torch.save(model.state_dict(), "model_sequential_isGoodMaybe2_{}.pt".format())
+    print("Model Saved Successfully") 
