@@ -20,7 +20,7 @@ def generate_annotations(directory: str) -> None:
     indices = []
     labels = []
     for dname in dirnames:
-        indices = indices + os.listdir(directory+'/'+dname+'/')
-        labels = labels + [dname for lb in os.listdir(directory+'/'+dname+'/')]
-    df = pd.DataFrame({'Path': indices,'Label': labels})
+        indices = indices + os.listdir(directory+'/'+dname+'/') # list all file names inside directory dname (where dname is the label of each cow. e.g. 0089)
+        labels = labels + [dname for lb in os.listdir(directory+'/'+dname+'/')] # for each image in each directory append label
+    df = pd.DataFrame({'Path': indices,'Label': labels}) # generate data frame having as columns the path to an image and labels for each of such images
     df.to_csv('annotations.csv')
