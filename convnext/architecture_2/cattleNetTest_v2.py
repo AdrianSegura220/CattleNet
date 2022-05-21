@@ -16,14 +16,41 @@ import copy
 import custom_dataset
 from torch.utils.data import DataLoader
 
-class CattleNet(nn.Module):
+class CattleNetV2(nn.Module):
     def __init__(self,freezeLayers=False) -> None:
-        super(CattleNet,self).__init__()
-        self.convnext_tiny = models.convnext_tiny(pretrained=True)
-        if freezeLayers:
-            self.freeze_layers()
-        self.convnext_tiny.classifier[2] = nn.Linear(768,4096,bias=True)
-        self.convnext_tiny = nn.Sequential(self.convnext_tiny,nn.Sigmoid())
+        super(CattleNetV2,self).__init__()
+        self.block1 = nn.Sequential(
+            nn.Conv2d(3,32,(15,15)),
+            nn.ReLU(),
+            nn.MaxPool2d(2,2) # 112 x 112 x 32
+        )
+        self.block2 = nn.Sequential(
+            nn.Conv2d(32,64,(10,10)),
+            nn.ReLU(),
+            nn.MaxPool2d(2,2) # 51 x 51 x 64
+        )
+        self.block3 = nn.Sequential(
+            nn.Conv2d(64,128,(7,7)),
+            nn.ReLU(),
+            nn.MaxPool2d(2,2) # 22 x 22 x 128
+        )
+        self.block4 = nn.Sequential(
+            nn.Conv2d(128,128,(4,4)),
+            nn.ReLU(),
+            nn.MaxPool2d(2,2) # 9 x 9 x 128
+        )
+        self.block5 = nn.Sequential( #check all net
+            nn.Conv2d(128,256,(4,4)),
+            nn.Sigmoid(),
+            nn.Linear(9144,4096,bias=True),
+            nn.Sigmoid()
+        )
+
+        # self.convnext_tiny = models.convnext_tiny(pretrained=True)
+        # if freezeLayers:
+        #     self.freeze_layers()
+        # self.convnext_tiny.classifier[2] = nn.Linear(768,4096,bias=True)
+        # self.convnext_tiny = nn.Sequential(self.convnext_tiny,nn.Sigmoid())
 
 
 
