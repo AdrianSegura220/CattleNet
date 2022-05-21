@@ -60,9 +60,9 @@ if not loadtest:
     # loss function
     criterion = ContrastiveLoss()
 
-    # setup optimizer (use Adam technique to optimize parameters (GD with momentum and RMS prop))
-    # optimizer = optim.Adam(model.parameters()) # by default: learning rate = 0.001, betas=(0.9, 0.999), eps=1e-08, weight_decay=0
     params = model.parameters()
+    # setup optimizer (use Adam technique to optimize parameters (GD with momentum and RMS prop))
+    # by default: learning rate = 0.001, betas=(0.9, 0.999), eps=1e-08, weight_decay=0
     optimizer = optim.Adam(params) 
     scheduler = StepLR(optimizer, step_size=step_lr, gamma=0.1)
 
