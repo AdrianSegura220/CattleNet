@@ -1,5 +1,6 @@
 from __future__ import print_function
 from __future__ import division
+import itertools
 from turtle import forward
 from torchvision import datasets, models, transforms  
 from torchvision import datasets, transforms as T
@@ -44,7 +45,7 @@ lrDecay = 1
 step_lr = 1
 lr=1e-3
 in_channel = 3
-batch_size = 32
+batch_size = 4
 num_epochs = 11
 
 
@@ -69,7 +70,7 @@ if not loadtest:
     optimizer = optim.Adam(params) 
     scheduler = StepLR(optimizer, step_size=step_lr, gamma=0.99)
     print()
-    dataset = CustomImageDatasetV2(dataset_folder='../../dataset/Raw/RGB (320 x 240)/',img_dir='../../dataset/Raw/Combined/',transform=transforms.Compose([transforms.Resize((240,240))]))
+    dataset = CustomImageDataset(dataset_folder='../../dataset/Raw/RGB (320 x 240)/',img_dir='../../dataset/Raw/Combined/',transform=transforms.Compose([transforms.Resize((240,240))]))
 
 # setup learning rate scheduler
 
@@ -102,7 +103,7 @@ def train():
     epoch_loss = 0.0
     iterations_loop = 0
     # create directory for current training results
-    final_path = os.path.join(path_to_results,'CNV2_lr{}wStep{}_datetime{}-{}H{}M{}'.format(lr,step_lr,datetime.datetime.today().day,datetime.datetime.today().month,datetime.datetime.today().hour,datetime.datetime.today().minute))
+    final_path = os.path.join(path_to_results,'CNV2Comb_lr{}'.format(lr))
     os.mkdir(final_path)
 
     for epoch in range(1,num_epochs):
@@ -117,13 +118,30 @@ def train():
             imgs2 = data[1].to(device)
             labels1 = data[2].to(device)
             labels2 = data[3].to(device)
-            # print(imgs1.size())
+            print(labels1)
+            print(labels2)
+
             out1,out2 = model(imgs1,imgs2)
-            # print(out1)
-            # print(out2)
-            # print('d2: ',data[2],'; d3: ',data[3])
-            label = (labels1 != labels2).float()
-            loss_contrastive = criterion(out1,out2,label)
+            # out1 and out2 contain the embeddings for all image pairs
+
+            listimgs = [(img,labels1[i]) for i,img in enumerate(out1)]
+            listimgs = listimgs + [(img,labels2[i]) for i,img in enumerate(out2)]
+
+            combinations = list(itertools.combinations(listimgs,2)) # generate all combinations of embedding pairs 
+            images_combinations = torch.Tensor(len(combinations),2,out1.size()[1]) # create new tensor with dimensions of output vectors to store all combinations of embeddings
+            are_equal = torch.Tensor(len(combinations))
+            
+            # generate tensor labels for all combinations
+            # basically generate a tensor of shape: (#Combinations of two elements,2,# embedding length)
+            # e.g. given 8 images: (28,2,4096)
+            for i,combination in enumerate(combinations):
+                are_equal[i] = (combination[0][1] != combination[1][1]).float()
+                images_combinations[i][0] = combination[0][0] # set left image to left image of combination
+                images_combinations[i][1] = combination[1][0] # set right image to right image of combination
+
+            # basically images_combinations[:,0] contains all left images of pairs and images_combinations[:,1] contains all right images of pairs
+            # then are_equal contains whether each of those pairs are of the same label or not
+            loss_contrastive = criterion(images_combinations[:,0],images_combinations[:,1],are_equal)
             loss_contrastive.backward()
             optimizer.step()
             loop.set_description(f"Epoch [{epoch}/{num_epochs}]")
@@ -169,9 +187,9 @@ else:
     fmodel = train()
     torch.save(fmodel.state_dict(), "CNV2_final.pt")
     # set model to eval mode
-    model.eval()
-    test_dataset = CustomImageDatasetV2(dataset_folder='../../dataset/Raw/RGB (320 x 240)/',img_dir='../../dataset/Raw/Combined/',transform=transforms.Compose([transforms.Resize((240,240))]),testing=True)
-    acc = test(test_dataset,model=model,is_load_model=False)
-    print('Accuracy: {}'.format(acc))
+    # model.eval()
+    # test_dataset = CustomImageDatasetV2(dataset_folder='../../dataset/Raw/RGB (320 x 240)/',img_dir='../../dataset/Raw/Combined/',transform=transforms.Compose([transforms.Resize((240,240))]),testing=True)
+    # acc = test(test_dataset,model=model,is_load_model=False)
+    # print('Accuracy: {}'.format(acc))
     # wandb.log({"accuracy": acc})
     print("Model Saved Successfully") 
