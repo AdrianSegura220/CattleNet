@@ -41,8 +41,9 @@ class CattleNetV2(nn.Module):
         )
         self.block5 = nn.Sequential( #check all net
             nn.Conv2d(128,256,(4,4)),
-            nn.Sigmoid(),
-            nn.Linear(9144,4096,bias=True),
+            nn.ReLU(),
+            nn.Flatten(),
+            nn.Linear(12544,4096,bias=True),
             nn.Sigmoid()
         )
 
@@ -51,26 +52,22 @@ class CattleNetV2(nn.Module):
         #     self.freeze_layers()
         # self.convnext_tiny.classifier[2] = nn.Linear(768,4096,bias=True)
         # self.convnext_tiny = nn.Sequential(self.convnext_tiny,nn.Sigmoid())
-
-
-
-    def unfreeze_layers(self):
-        for param in self.convnext_tiny.parameters():
-            param.requires_grad = True
-    """
-        Used to freeze pre-trained layers if indicated.
-        Otherwise default is false (i.e. they are also
-        tuned during training)
-    """
-    def freeze_layers(self):
-        for param in self.convnext_tiny.parameters():
-            param.requires_grad = False
         
 
     def forward_once(self,input):
-        x = self.convnext_tiny(input)
+        # print('input:',input.size())
+        b1 = self.block1(input)
+        # print('b1: ',b1)
+        b2 = self.block2(b1)
+        # print('b2: ',b2)
+        b3 = self.block3(b2)
+        # print('b3: ',b3)
+        b4 = self.block4(b3)
+        # print('b4: ',b4)
+        # exit()
+        feature_vect = self.block5(b4)
         # x = x = x.flatten(start_dim=1)
-        return x
+        return feature_vect
         # return self.convnext_tiny.features(input)
 
     def forward(self,input1,input2):

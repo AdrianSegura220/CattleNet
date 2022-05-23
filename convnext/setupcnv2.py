@@ -1,7 +1,7 @@
 from __future__ import print_function
 from __future__ import division
 from turtle import forward
-from torchvision import datasets, models, transforms 
+from torchvision import datasets, models, transforms  
 from torchvision import datasets, transforms as T
 from contrastive_loss import ContrastiveLoss
 from torch.optim.lr_scheduler import StepLR
@@ -18,10 +18,12 @@ import os
 import copy
 import wandb
 from custom_dataset import CustomImageDataset
+from custom_dataset_v2 import CustomImageDatasetV2
 from torch.utils.data import DataLoader
-from cattleNetTest import CattleNet
+from cattleNetTest_v2 import CattleNetV2
 from tqdm import tqdm
 from model_test import test
+
 
 
 # wandb setup (logging progress to online platform)
@@ -35,26 +37,27 @@ loadtest = False
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 # results folders
-path_to_results = '../../BachelorsProject/Trainings/'   
+path_to_results = '../../BachelorsProject/Trainings/'
 
 #hyperparams
 lrDecay = 1
-step_lr = 10
+step_lr = 1
 lr=1e-3
 in_channel = 3
-batch_size = 8
-num_epochs = 40
+batch_size = 32
+num_epochs = 11
 
 
-wandb.config = {
-  "learning_rate": lr,
-  "epochs": num_epochs,
-  "batch_size": batch_size
-}
+# wandb.config = {
+#   "learning_rate": lr,
+#   "epochs": num_epochs,
+#   "batch_size": batch_size
+# }
 
 if not loadtest:
     # instantiate SNN
-    model = CattleNet(freezeLayers=True)
+    model = CattleNetV2()
+    model.train()
     model.to(device)
 
     # loss function
@@ -64,31 +67,32 @@ if not loadtest:
     # setup optimizer (use Adam technique to optimize parameters (GD with momentum and RMS prop))
     # by default: learning rate = 0.001, betas=(0.9, 0.999), eps=1e-08, weight_decay=0
     optimizer = optim.Adam(params) 
-    scheduler = StepLR(optimizer, step_size=step_lr, gamma=0.1)
-
-dataset = CustomImageDataset(dataset_folder='../../dataset/Raw/RGB (320 x 240)/',img_dir='../../dataset/Raw/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225])]))
+    scheduler = StepLR(optimizer, step_size=step_lr, gamma=0.99)
+    print()
+    dataset = CustomImageDatasetV2(dataset_folder='../../dataset/Raw/RGB (320 x 240)/',img_dir='../../dataset/Raw/Combined/',transform=transforms.Compose([transforms.Resize((240,240))]))
 
 # setup learning rate scheduler
 
 # setup training and testing sets
-train_size = int(0.8 * len(dataset))
-test_size = len(dataset) - train_size
-train_dataset, test_dataset = torch.utils.data.random_split(dataset, [train_size, test_size])
-len(dataset)
+# train_size = int(0.8 * len(dataset))
+# test_size = len(dataset) - train_size
+# train_dataset = torch.utils.data.random_split(dataset, [train_size, test_size])
+    len(dataset)
 
-data_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
+    data_loader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
 
 
 def load_and_test(fname):
     print('here')
-    model = CattleNet()
+    model = CattleNetV2()
     model.load_state_dict(torch.load(fname)) # load model that is to be tested
     model.eval()
     model.to(device)
-    model.eval()
-    acc = test(test_dataset,model=model,is_load_model=False)
-    print(acc)
-
+    test_dataset = CustomImageDatasetV2(dataset_folder='../../dataset/Raw/RGB (320 x 240)/',img_dir='../../dataset/Raw/Combined/',transform=transforms.Compose([transforms.Resize((240,240))]),testing=True)
+    # model.eval()
+    with torch.no_grad():
+        acc = test(test_dataset,model=model,is_load_model=False)
+    print('Accuracy: ', acc)
 
 def train():
     min_loss = 99999999999999.0
@@ -98,7 +102,7 @@ def train():
     epoch_loss = 0.0
     iterations_loop = 0
     # create directory for current training results
-    final_path = os.path.join(path_to_results,'model_InitialLR{}_lrDecay{}wStep{}_trainSize{}_testSize{}_datetime{}-{}H{}M{}'.format(lr,lrDecay,step_lr,train_size,test_size,datetime.datetime.today().day,datetime.datetime.today().month,datetime.datetime.today().hour,datetime.datetime.today().minute))
+    final_path = os.path.join(path_to_results,'CNV2_lr{}wStep{}_datetime{}-{}H{}M{}'.format(lr,step_lr,datetime.datetime.today().day,datetime.datetime.today().month,datetime.datetime.today().hour,datetime.datetime.today().minute))
     os.mkdir(final_path)
 
     for epoch in range(1,num_epochs):
@@ -113,7 +117,10 @@ def train():
             imgs2 = data[1].to(device)
             labels1 = data[2].to(device)
             labels2 = data[3].to(device)
+            # print(imgs1.size())
             out1,out2 = model(imgs1,imgs2)
+            # print(out1)
+            # print(out2)
             # print('d2: ',data[2],'; d3: ',data[3])
             label = (labels1 != labels2).float()
             loss_contrastive = criterion(out1,out2,label)
@@ -126,10 +133,6 @@ def train():
         scheduler.step()
         epoch_loss /= iterations_loop
         curr_lr = optimizer.state_dict()['param_groups'][0]['lr']
-
-        if epoch == 14:
-            torch.cuda.empty_cache()
-            model.unfreeze_layers()
 
         #print details of elapsed epoch
         print("lr {}".format(curr_lr))
@@ -149,13 +152,6 @@ def train():
                 min_loss = epoch_loss
                 torch.save(model.state_dict(), os.path.join(final_path,"epoch{}_loss{}_lr{}.pt".format(epoch,epoch_loss,curr_lr)))
     
-    # set model to eval mode
-    model.eval()
-
-    acc = test(test_dataset,model=model,is_load_model=False)
-    print('Accuracy: {}'.format(acc))
-    # wandb.log({"accuracy": acc})
-    
     return model
 
 def save_figures(iteration_number,counter,loss,final_path,epoch,epoch_loss,curr_lr):
@@ -165,11 +161,17 @@ def save_figures(iteration_number,counter,loss,final_path,epoch,epoch_loss,curr_
     plt.savefig(os.path.join(final_path,"epoch{}_loss{}_lr{}.png".format(epoch,epoch_loss,curr_lr)))
 
 if loadtest:
-    load_and_test('../../BachelorsProject/Trainings/model_InitialLR0.001_lrDecay1wStep10_trainSize1066_testSize267_datetime20-5H2M11/epoch30_loss0.2583860134455695_lr1.0000000000000002e-06.pt')
+    load_and_test('../../BachelorsProject/Trainings/CNV2_InitialLR0.001_lrDecay1wStep1_trainSize1066_testSize267_datetime22-5H16M39/epoch170_loss0.2700439827407108_lr0.0001811269531259702.pt')
 else:
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    model.train()
+    # device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    
     print("Starting training")
-    model = train()
-    # torch.save(model.state_dict(), "model_sequential_isGoodMaybe2_{}.pt".format())
+    fmodel = train()
+    torch.save(fmodel.state_dict(), "CNV2_final.pt")
+    # set model to eval mode
+    model.eval()
+    test_dataset = CustomImageDatasetV2(dataset_folder='../../dataset/Raw/RGB (320 x 240)/',img_dir='../../dataset/Raw/Combined/',transform=transforms.Compose([transforms.Resize((240,240))]),testing=True)
+    acc = test(test_dataset,model=model,is_load_model=False)
+    print('Accuracy: {}'.format(acc))
+    # wandb.log({"accuracy": acc})
     print("Model Saved Successfully") 

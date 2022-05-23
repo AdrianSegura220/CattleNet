@@ -76,10 +76,14 @@ class CustomImageDataset(Dataset):
 
         # if transformation was given when instantiating dataset, apply it (same for label transform (target_transform))
         if self.transform:
+            # print("transforming")
             image = self.transform(image)
             image2 = self.transform(image2)
+            # print('IMG1 size: ', image.size())
+            # print('IMG2 size: ', image2.size())
         if self.target_transform:
             label = self.target_transform(label)
+
 
         return image,image2,label,label2
 
