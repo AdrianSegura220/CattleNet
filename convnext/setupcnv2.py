@@ -45,8 +45,8 @@ lrDecay = 1
 step_lr = 1
 lr=1e-3
 in_channel = 3
-batch_size = 32
-num_epochs = 11
+batch_size = 8
+num_epochs = 40
 
 
 # wandb.config = {
@@ -71,6 +71,7 @@ if not loadtest:
     scheduler = StepLR(optimizer, step_size=step_lr, gamma=0.99)
     print()
     dataset = CustomImageDataset(dataset_folder='../../dataset/Raw/RGB (320 x 240)/',img_dir='../../dataset/Raw/Combined/',transform=transforms.Compose([transforms.Resize((240,240))]))
+    test_dataset = CustomImageDataset(dataset_folder='../../dataset/Raw/RGB (320 x 240)/',img_dir='../../dataset/Raw/Combined/',transform=transforms.Compose([transforms.Resize((240,240))]))
 
 # setup learning rate scheduler
 
@@ -89,7 +90,7 @@ def load_and_test(fname):
     model.load_state_dict(torch.load(fname)) # load model that is to be tested
     model.eval()
     model.to(device)
-    test_dataset = CustomImageDatasetV2(dataset_folder='../../dataset/Raw/RGB (320 x 240)/',img_dir='../../dataset/Raw/Combined/',transform=transforms.Compose([transforms.Resize((240,240))]),testing=True)
+    test_dataset = CustomImageDataset(dataset_folder='../../dataset/Raw/RGB (320 x 240)/',img_dir='../../dataset/Raw/Combined/',transform=transforms.Compose([transforms.Resize((240,240))]))
     # model.eval()
     with torch.no_grad():
         acc = test(test_dataset,model=model,is_load_model=False)
@@ -102,10 +103,11 @@ def train():
     iteration_number = 0
     epoch_loss = 0.0
     iterations_loop = 0
+    plot_pairs = False
     # create directory for current training results
     final_path = os.path.join(path_to_results,'CNV2Comb_lr{}'.format(lr))
-    os.mkdir(final_path)
-
+    # os.mkdir(final_path)
+    figures = []
     for epoch in range(1,num_epochs):
         loop = tqdm(data_loader,leave=False,total=len(data_loader))
         epoch_loss = 0.0
@@ -118,26 +120,43 @@ def train():
             imgs2 = data[1].to(device)
             labels1 = data[2].to(device)
             labels2 = data[3].to(device)
-            print(labels1)
-            print(labels2)
 
             out1,out2 = model(imgs1,imgs2)
             # out1 and out2 contain the embeddings for all image pairs
 
-            listimgs = [(img,labels1[i]) for i,img in enumerate(out1)]
-            listimgs = listimgs + [(img,labels2[i]) for i,img in enumerate(out2)]
+            if plot_pairs:
+                listimgs = [(img,labels1[i],imgs1[i].to('cpu')) for i,img in enumerate(out1)]
+                listimgs = listimgs + [(img,labels2[i],imgs2[i].to('cpu')) for i,img in enumerate(out2)]
+            else:
+                listimgs = [(img,labels1[i]) for i,img in enumerate(out1)]
+                listimgs = listimgs + [(img,labels2[i]) for i,img in enumerate(out2)]
 
             combinations = list(itertools.combinations(listimgs,2)) # generate all combinations of embedding pairs 
             images_combinations = torch.Tensor(len(combinations),2,out1.size()[1]) # create new tensor with dimensions of output vectors to store all combinations of embeddings
             are_equal = torch.Tensor(len(combinations))
+
             
+                  
             # generate tensor labels for all combinations
             # basically generate a tensor of shape: (#Combinations of two elements,2,# embedding length)
             # e.g. given 8 images: (28,2,4096)
             for i,combination in enumerate(combinations):
-                are_equal[i] = (combination[0][1] != combination[1][1]).float()
+                if plot_pairs:
+                    figures.append(plt.figure(figsize=(10, 7)))
+                    figures[i].add_subplot(2, 2, 1)
+                    plt.imshow(combination[0][2].permute(1,2,0))
+                    plt.axis('off')
+                    plt.title("{}".format(combination[0][1]))
+                    figures[i].add_subplot(2, 2, 2)
+                    plt.imshow(combination[1][2].permute(1,2,0))
+                    plt.title("{}".format(combination[1][1]))
+                are_equal[i] = (combination[0][1] == combination[1][1]).float()
                 images_combinations[i][0] = combination[0][0] # set left image to left image of combination
                 images_combinations[i][1] = combination[1][0] # set right image to right image of combination
+            
+            # print(are_equal)
+            # plt.show()
+            # exit()
 
             # basically images_combinations[:,0] contains all left images of pairs and images_combinations[:,1] contains all right images of pairs
             # then are_equal contains whether each of those pairs are of the same label or not
@@ -148,6 +167,13 @@ def train():
             loop.set_postfix(loss=loss_contrastive.item())
             epoch_loss += loss_contrastive.item()
             iterations_loop += 1
+        
+        
+        model.eval()
+        with torch.no_grad():
+            acc = test(test_dataset,model=model,is_load_model=False)
+        model.train()
+        print('Accuracy: ', acc)
         scheduler.step()
         epoch_loss /= iterations_loop
         curr_lr = optimizer.state_dict()['param_groups'][0]['lr']
@@ -179,7 +205,7 @@ def save_figures(iteration_number,counter,loss,final_path,epoch,epoch_loss,curr_
     plt.savefig(os.path.join(final_path,"epoch{}_loss{}_lr{}.png".format(epoch,epoch_loss,curr_lr)))
 
 if loadtest:
-    load_and_test('../../BachelorsProject/Trainings/CNV2_InitialLR0.001_lrDecay1wStep1_trainSize1066_testSize267_datetime22-5H16M39/epoch170_loss0.2700439827407108_lr0.0001811269531259702.pt')
+    load_and_test('../../BachelorsProject/Trainings/CNV2Comb_lr0.001/epoch50_loss0.4793714602550347_lr0.0006050060671375363.pt')
 else:
     # device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     
