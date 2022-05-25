@@ -99,7 +99,7 @@ def train():
     epoch_loss = 0.0
     iterations_loop = 0
     # create directory for current training results
-    final_path = os.path.join(path_to_results,'model_InitialLR{}_lrDecay{}wStep{}_trainSize{}_testSize{}_datetime{}-{}H{}M{}'.format(lr,lrDecay,step_lr,train_size,test_size,datetime.datetime.today().day,datetime.datetime.today().month,datetime.datetime.today().hour,datetime.datetime.today().minute))
+    final_path = os.path.join(path_to_results,'CattleNetV3_lr{}_BCE_datetime{}-{}H{}M{}S{}'.format(lr,datetime.datetime.today().day,datetime.datetime.today().month,datetime.datetime.today().hour,datetime.datetime.today().minute,datetime.datetime.today().second))
     # os.mkdir(final_path)
 
     for epoch in range(1,num_epochs):
@@ -110,8 +110,10 @@ def train():
             optimizer.zero_grad()
             imgs1 = data[0].to(device)
             imgs2 = data[1].to(device)
-            labels = data[2].to(device)
+            labels = torch.reshape(data[2],(batch_size,1)).float().to(device)
             res = model(imgs1,imgs2)
+            # print('YHAT: ',res)
+            # print('Y: ', labels)
             loss_contrastive = criterion(res,labels)
             loss_contrastive.backward()
             optimizer.step()
@@ -122,10 +124,6 @@ def train():
         scheduler.step()
         epoch_loss /= iterations_loop
         curr_lr = optimizer.state_dict()['param_groups'][0]['lr']
-
-        if epoch == 14:
-            torch.cuda.empty_cache()
-            model.unfreeze_layers()
 
         #print details of elapsed epoch
         print("lr {}".format(curr_lr))

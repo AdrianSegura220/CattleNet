@@ -84,6 +84,6 @@ class CustomImageDatasetBCE(Dataset):
         if self.target_transform:
             label = self.target_transform(label)
 
-
-        return image,image2,label==label2
+        
+        return image,image2, 1.0 if label == label2 else 0.0 
 
