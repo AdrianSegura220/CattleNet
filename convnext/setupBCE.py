@@ -17,9 +17,9 @@ import datetime
 import os
 import copy
 import wandb
-from custom_dataset import CustomImageDataset
+from custom_dataset_bce import CustomImageDatasetBCE
 from torch.utils.data import DataLoader
-from cattleNetTest import CattleNet
+from cattleNetTest_v3 import CattleNetV3
 from tqdm import tqdm
 from model_test import test
 
@@ -54,19 +54,20 @@ wandb.config = {
 
 if not loadtest:
     # instantiate SNN
-    model = CattleNet(freezeLayers=False)
+    model = CattleNetV3(freezeLayers=False)
     model.to(device)
 
     # loss function
-    criterion = ContrastiveLoss()
+    # criterion = ContrastiveLoss()
+    criterion = nn.BCELoss()
 
     params = model.parameters()
     # setup optimizer (use Adam technique to optimize parameters (GD with momentum and RMS prop))
     # by default: learning rate = 0.001, betas=(0.9, 0.999), eps=1e-08, weight_decay=0
     optimizer = optim.Adam(params) 
-    scheduler = StepLR(optimizer, step_size=step_lr, gamma=0.1)
+    scheduler = StepLR(optimizer, step_size=step_lr, gamma=0.99) # reduce lr by 1% every epoch
 
-dataset = CustomImageDataset(dataset_folder='../../dataset/Raw/RGB (320 x 240)/',img_dir='../../dataset/Raw/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225]),transforms.Resize((240,240))]))
+dataset = CustomImageDatasetBCE(dataset_folder='../../dataset/Raw/RGB (320 x 240)/',img_dir='../../dataset/Raw/Combined/',transform=transforms.Compose([transforms.Resize((240,240))]))
 
 # setup learning rate scheduler
 
@@ -81,7 +82,7 @@ data_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
 
 def load_and_test(fname):
     print('here')
-    model = CattleNet()
+    model = CattleNetV3()
     model.load_state_dict(torch.load(fname)) # load model that is to be tested
     model.eval()
     model.to(device)
@@ -106,17 +107,12 @@ def train():
         epoch_loss = 0.0
         iterations_loop = 0
         for data in loop:
-            label = 0
-            #### do something with images ...
             optimizer.zero_grad()
             imgs1 = data[0].to(device)
             imgs2 = data[1].to(device)
-            labels1 = data[2].to(device)
-            labels2 = data[3].to(device)
-            out1,out2 = model(imgs1,imgs2)
-            # print('d2: ',data[2],'; d3: ',data[3])
-            label = (labels1 != labels2).float()
-            loss_contrastive = criterion(out1,out2,label)
+            labels = data[2].to(device)
+            res = model(imgs1,imgs2)
+            loss_contrastive = criterion(res,labels)
             loss_contrastive.backward()
             optimizer.step()
             loop.set_description(f"Epoch [{epoch}/{num_epochs}]")

@@ -122,6 +122,7 @@ def train():
             labels2 = data[3].to(device)
 
             out1,out2 = model(imgs1,imgs2)
+            print(out2.requires_grad)
             # out1 and out2 contain the embeddings for all image pairs
 
             if plot_pairs:
@@ -131,6 +132,7 @@ def train():
                 listimgs = [(img,labels1[i]) for i,img in enumerate(out1)]
                 listimgs = listimgs + [(img,labels2[i]) for i,img in enumerate(out2)]
 
+            print(listimgs[0][0].requires_grad)
             combinations = list(itertools.combinations(listimgs,2)) # generate all combinations of embedding pairs 
             images_combinations = torch.Tensor(len(combinations),2,out1.size()[1]) # create new tensor with dimensions of output vectors to store all combinations of embeddings
             are_equal = torch.Tensor(len(combinations))
