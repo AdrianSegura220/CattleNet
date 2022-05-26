@@ -67,7 +67,7 @@ if not loadtest:
     optimizer = optim.Adam(params,lr=lr) 
     scheduler = StepLR(optimizer, step_size=step_lr, gamma=0.99) # anneal lr by 1% of previous lr each epoch
 train_dataset = CustomImageDatasetBCE(img_dir='../../dataset/Raw/Combined/',transform=transforms.Compose([transforms.Resize((240,240))]))
-test_dataset = CustomImageDataset_Validation(img_dir='../../dataset/Raw/Combined/',n=8,transform=transforms.Compose([transforms.Resize((240,240))]))
+test_dataset = CustomImageDataset_Validation(img_dir='../../dataset/Raw/Combined/',n=15,transform=transforms.Compose([transforms.Resize((240,240))]))
 # train_dataset = CustomImageDatasetBCE(img_dir='../../dataset/Raw/TrainingDivided/Training/',transform=transforms.Compose([transforms.Resize((240,240))]))
 # test_dataset = CustomImageDataset_Validation(img_dir='../../dataset/Raw/TrainingDivided/Validation/',n=8,transform=transforms.Compose([transforms.Resize((240,240))]))
 
@@ -89,6 +89,7 @@ def train():
     min_loss = 99999999999999.0
     loss = []
     accuracy = []
+    epoch_acc = 0.0
     counter = []
     iteration_number = 0
     epoch_loss = 0.0
@@ -149,6 +150,7 @@ def train():
         last_epoch = epoch
     
     torch.save(model.state_dict(), os.path.join(final_path,"CNV3_FinalModel_epoch{}.pt".format(last_epoch)))
+    save_figures(iteration_number,counter,loss,final_path,last_epoch,epoch_loss,curr_lr,accuracy,epoch_acc)
     print("Model Saved Successfully") 
     # set model to eval mode
     # model.eval()

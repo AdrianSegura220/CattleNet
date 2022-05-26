@@ -183,7 +183,6 @@ class CustomImageDataset_Validation(Dataset):
                 # figures[i].add_subplot(2, 2, 1)
                 # plt.imshow(anchor.permute(1,2,0))
                 # plt.axis('off')
-                # figures.append(['anchor','positive' if labels[i] == 1.0 else 'negative'])
                 # figures[i].add_subplot(2, 2, 2)
                 # plt.imshow(transform.permute(1,2,0))
                 # plt.axis('off')
