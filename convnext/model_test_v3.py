@@ -47,9 +47,12 @@ def test(test_dataset: CustomImageDataset_Validation,n, model_directory: str = '
             # forward pass using anchor and images
             res = model(anchor,images)
             
+            
             correct_idx = torch.argmax(data[2])
             max_elem = torch.argmax(res)
             if max_elem == correct_idx:
+                print('results :',res)
+                print('reference: ', data[2])
                 correct += 1
             total += 1
     
