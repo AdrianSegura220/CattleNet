@@ -172,16 +172,17 @@ class CustomImageDataset_Validation(Dataset):
             for i in range(0,self.n_size):
                 transform = self.transform(images[i])
                 final_images[i] = transform
-                figures.append(plt.figure(figsize=(10, 7)))
-                figures[i].add_subplot(2, 2, 1)
-                plt.imshow(anchor.permute(1,2,0))
-                plt.axis('off')
-                figures[i].add_subplot(2, 2, 2)
-                plt.imshow(transform.permute(1,2,0))
-                plt.axis('off')
+                # figures.append(plt.figure(figsize=(10, 7)))
+                # figures[i].add_subplot(2, 2, 1)
+                # plt.imshow(anchor.permute(1,2,0))
+                # plt.axis('off')
+                # plt.title('anchor')
+                # figures[i].add_subplot(2, 2, 2)
+                # plt.imshow(transform.permute(1,2,0))
+                # plt.axis('off')
+                # plt.title('positive' if labels[i] == 1 else 'negative')
 
-        plt.show()
-        exit()
+        # plt.show()
 
 
         return anchor,final_images,labels
