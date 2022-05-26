@@ -124,12 +124,10 @@ class CustomImageDataset_Validation(Dataset):
     def __getitem__(self, idx):        
         anchor = (read_image(os.path.join(self.img_dir, self.img_labels.iloc[idx, 1])).float())/255.0
         anchor_label = self.img_labels.iloc[idx, 2]
-        
+        selected_image = 0
         # select second image from same class
         if self.counts[self.img_labels.iloc[idx, 2]] > 1:
-            selectedImage = random.randint(0,(self.counts[self.img_labels.iloc[idx, 2]]-1)) # select one of the pictures randomly
-        else:
-            selectedImage = 0
+            selected_image = random.randint(0,(self.counts[self.img_labels.iloc[idx, 2]]-1)) # select one of the pictures randomly
         
         print('idx: ', idx)
         print('selected image: ', selected_image+idx)
@@ -141,7 +139,7 @@ class CustomImageDataset_Validation(Dataset):
         labels = torch.zeros(self.n_size,1)
 
         # put positive example in first slot and set label to positive one for same slot
-        images[0] = (read_image(os.path.join(self.img_dir, self.img_labels.iloc[idx+selectedImage, 1])).float())/255.0 # selected image should be of same cow
+        images[0] = (read_image(os.path.join(self.img_dir, self.img_labels.iloc[idx+selected_image, 1])).float())/255.0 # selected image should be of same cow
         labels[0] = 1.0
 
         # selected starts from 1 as 1 image (the positive example) has been selected already
