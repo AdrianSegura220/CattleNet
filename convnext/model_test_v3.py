@@ -51,8 +51,8 @@ def test(test_dataset: CustomImageDataset_Validation,n, model_directory: str = '
             correct_idx = torch.argmax(data[2])
             max_elem = torch.argmax(res)
             if max_elem == correct_idx:
-                print('results :',res)
-                print('reference: ', data[2])
+                # print('results :',res)
+                # print('reference: ', data[2])
                 correct += 1
             total += 1
     

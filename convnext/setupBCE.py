@@ -94,8 +94,8 @@ def train():
     epoch_loss = 0.0
     iterations_loop = 0
     # create directory for current training results
-    final_path = os.path.join(path_to_results,'CattleNetV3_WValidation_lr{}_BCE_datetime{}-{}H{}M{}S{}'.format(lr,datetime.datetime.today().day,datetime.datetime.today().month,datetime.datetime.today().hour,datetime.datetime.today().minute,datetime.datetime.today().second))
-    # os.mkdir(final_path)
+    final_path = os.path.join(path_to_results,'CattleNetV3_WValidationWorking_lr{}_BCE_datetime{}-{}H{}M{}S{}'.format(lr,datetime.datetime.today().day,datetime.datetime.today().month,datetime.datetime.today().hour,datetime.datetime.today().minute,datetime.datetime.today().second))
+    os.mkdir(final_path)
     last_epoch = 0
     for epoch in range(1,num_epochs):
         loop = tqdm(data_loader,leave=False,total=len(data_loader))
