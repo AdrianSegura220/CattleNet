@@ -158,7 +158,7 @@ class CustomImageDataset_Validation(Dataset):
         
         # generate list of shuffled indices to shuffle images and labels in a pair-wise fashion
         shuffled_indices = torch.randperm(self.n_size).to(torch.int64)
-	print(shuffled_indices)        
+        print(shuffled_indices)        
         # permute elements from imgs and labels in same order
         for i in range(0,self.n_size):
             temp_img = images[i]
