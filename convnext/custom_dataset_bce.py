@@ -8,7 +8,7 @@ import random
 from torchvision import datasets
 from torchvision.transforms import ToTensor
 import matplotlib.pyplot as plt
-from preprocess import generate_annotations
+from preprocess import generate_annotations,generate_annotations_direct
 
 """
     Custom dataset to use with CattleNet.
@@ -18,11 +18,11 @@ from preprocess import generate_annotations
     target_transform: a transformation to apply to label of each image when extracting using __getitem__()
 """
 class CustomImageDatasetBCE(Dataset):
-    def __init__(self, dataset_folder, img_dir, transform=None, target_transform=None) -> None:
+    def __init__(self, img_dir, transform=None, target_transform=None) -> None:
         # super().__init__() no superconstructor
-        generate_annotations(dataset_folder)
+        generate_annotations_direct(img_dir,'training_annotations')
         # self.train_size = train_size
-        self.img_labels = pd.read_csv('annotations.csv')
+        self.img_labels = pd.read_csv('training_annotations.csv')
         self.img_dir = img_dir
         self.transform = transform
         self.counts = {}
@@ -40,7 +40,7 @@ class CustomImageDatasetBCE(Dataset):
                 self.counts[self.img_labels.iloc[i,2]] = 0
 
     def __len__(self):
-        return len(self.img_labels)
+        return len(self.img_labels)-3
 
     """
         Return image as float tensor
@@ -87,3 +87,91 @@ class CustomImageDatasetBCE(Dataset):
         
         return image,image2, 1.0 if label == label2 else 0.0 
 
+
+
+
+# generate csv for training and for validation
+# complete selection of negative elements
+# send email
+
+class CustomImageDataset_Validation(Dataset):
+    def __init__(self, img_dir, n, transform=None, target_transform=None) -> None:
+        # super().__init__() no superconstructor
+        generate_annotations_direct(img_dir,'validation_annotations')
+        # self.train_size = train_size
+        self.img_labels = pd.read_csv('validation_annotations.csv')
+        self.img_dir = img_dir
+        self.transform = transform
+        self.n_size = n if n >= 2 else 2 # minimum is 2 (one positive for anchor and a negative)
+        self.counts = {}
+        self.countPerSample()
+        self.target_transform = target_transform
+
+    """
+        Have count of how many images exist per label
+    """
+    def countPerSample(self):
+        for i in range(0,self.__len__()):
+            if self.img_labels.iloc[i,2] in self.counts:
+                self.counts[self.img_labels.iloc[i,2]] += 1
+            else:
+                self.counts[self.img_labels.iloc[i,2]] = 0
+
+    def __len__(self):
+        return len(self.img_labels)-3
+
+    """
+        Get one image and n for comparison
+    """
+    def __getitem__(self, idx):
+        anchor = (read_image(os.path.join(self.img_dir, self.img_labels.iloc[idx, 1])).float())/255.0
+        anchor_label = self.img_labels.iloc[idx, 2]
+        
+        # select second image from same class
+        if self.counts[self.img_labels.iloc[idx, 2]] > 1:
+            selectedImage = random.randint(0,(self.counts[self.img_labels.iloc[idx, 2]]-1)) # select one of the pictures randomly
+        else:
+            selectedImage = 0
+        
+        # create tensor of (n, 3, dimension 1 of imgs, dimension 2 of imgs) dimensions to store all images of certain size (e.g. (8,3,240,240)) .
+        images = torch.Tensor(self.n_size,3,anchor.size()[1],anchor.size()[2])
+        final_images = torch.Tensor(self.n_size,3,anchor.size()[1],anchor.size()[1])
+        # create tensor for labels (n,1) i.e. a column vector
+        labels = torch.zeros(self.n_size,1)
+
+        # put positive example in first slot and set label to positive one for same slot
+        images[0] = (read_image(os.path.join(self.img_dir, self.img_labels.iloc[idx+selectedImage, 1])).float())/255.0 # selected image should be of same cow
+        labels[0] = 1.0
+
+        # selected starts from 1 as 1 image (the positive example) has been selected already
+        selected = 1
+
+        # select n-1 negative example images for verification purposes
+        while selected < self.n_size:
+            random_idx = random.randint(0,self.__len__()-1) # select a random index
+            
+            # check if the chosen image's index belongs to a different cow
+            if anchor_label != self.img_labels.iloc[random_idx, 2]:
+                images[selected] = (read_image(os.path.join(self.img_dir,self.img_labels.iloc[random_idx, 1])).float())/255.0
+                selected += 1
+        
+        # generate list of shuffled indices to shuffle images and labels in a pair-wise fashion
+        shuffled_indices = torch.randperm(self.n_size).to(torch.int64)
+        
+        # permute elements from imgs and labels in same order
+        for i in range(0,self.n_size):
+            temp_img = images[i]
+            temp_label = labels[i]
+            images[i] = images[shuffled_indices[i]]
+            images[shuffled_indices[i]] = temp_img
+            labels[i] = labels[shuffled_indices[i]]
+            labels[shuffled_indices[i]] = temp_label
+
+        # if transformation was given when instantiating dataset, apply it
+        if self.transform:
+            anchor = self.transform(anchor)
+            for i in range(0,self.n_size):
+                transform = self.transform(images[i])
+                final_images[i] = transform
+
+        return anchor,final_images,labels
