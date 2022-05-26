@@ -66,9 +66,10 @@ if not loadtest:
     # by default: betas=(0.9, 0.999), eps=1e-08, weight_decay=0
     optimizer = optim.Adam(params,lr=lr) 
     scheduler = StepLR(optimizer, step_size=step_lr, gamma=0.99) # anneal lr by 1% of previous lr each epoch
-
-train_dataset = CustomImageDatasetBCE(img_dir='../../dataset/Raw/TrainingDivided/Training/',transform=transforms.Compose([transforms.Resize((240,240))]))
-test_dataset = CustomImageDataset_Validation(img_dir='../../dataset/Raw/TrainingDivided/Validation/',n=8,transform=transforms.Compose([transforms.Resize((240,240))]))
+train_dataset = CustomImageDatasetBCE(img_dir='../../dataset/Raw/Combined/',transform=transforms.Compose([transforms.Resize((240,240))]))
+test_dataset = CustomImageDataset_Validation(img_dir='../../dataset/Raw/Combined/',n=8,transform=transforms.Compose([transforms.Resize((240,240))]))
+# train_dataset = CustomImageDatasetBCE(img_dir='../../dataset/Raw/TrainingDivided/Training/',transform=transforms.Compose([transforms.Resize((240,240))]))
+# test_dataset = CustomImageDataset_Validation(img_dir='../../dataset/Raw/TrainingDivided/Validation/',n=8,transform=transforms.Compose([transforms.Resize((240,240))]))
 
 data_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
 
@@ -94,7 +95,7 @@ def train():
     iterations_loop = 0
     # create directory for current training results
     final_path = os.path.join(path_to_results,'CattleNetV3_WValidation_lr{}_BCE_datetime{}-{}H{}M{}S{}'.format(lr,datetime.datetime.today().day,datetime.datetime.today().month,datetime.datetime.today().hour,datetime.datetime.today().minute,datetime.datetime.today().second))
-    os.mkdir(final_path)
+    # os.mkdir(final_path)
     last_epoch = 0
     for epoch in range(1,num_epochs):
         loop = tqdm(data_loader,leave=False,total=len(data_loader))

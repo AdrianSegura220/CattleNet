@@ -1,5 +1,6 @@
 import os
 import pandas as pd
+from sklearn.utils import shuffle
 from soupsieve import select
 from torchvision.io import read_image
 import torch
@@ -20,7 +21,7 @@ from preprocess import generate_annotations,generate_annotations_direct
 class CustomImageDatasetBCE(Dataset):
     def __init__(self, img_dir, transform=None, target_transform=None) -> None:
         # super().__init__() no superconstructor
-        generate_annotations_direct(img_dir,'training_annotations')
+        # generate_annotations_direct(img_dir,'training_annotations')
         # self.train_size = train_size
         self.img_labels = pd.read_csv('training_annotations.csv')
         self.img_dir = img_dir
@@ -35,20 +36,18 @@ class CustomImageDatasetBCE(Dataset):
     def countPerSample(self):
         for i in range(0,self.__len__()):
             if self.img_labels.iloc[i,2] in self.counts:
-                self.counts[self.img_labels.iloc[i,2]] += 1
+                self.counts[self.img_labels.iloc[i,2]][0] += 1
             else:
-                self.counts[self.img_labels.iloc[i,2]] = 0
+                self.counts[self.img_labels.iloc[i,2]] = [0,i]
 
     def __len__(self):
-        return len(self.img_labels)-3
+        return len(self.img_labels)-1
 
     """
         Return image as float tensor
     """
     def __getitem__(self, idx):
         # path to image being picked
-        im1name = ''
-        im2name = ''
         img_path = os.path.join(self.img_dir, self.img_labels.iloc[idx, 1])
         # same_class = random.randint(0,1) 
         same_class = random.choice([0,1]) # used to approximately select around 50% of samples to be equal and 50% to be different
@@ -56,8 +55,8 @@ class CustomImageDatasetBCE(Dataset):
         if same_class:
             for i in range(0,self.__len__()):
                 if self.img_labels.iloc[i,2] == self.img_labels.iloc[idx, 2]:
-                    if self.counts[self.img_labels.iloc[idx, 2]] > 1:
-                        selectedImage = random.randint(0,(self.counts[self.img_labels.iloc[idx, 2]]-1)) # select one of the pictures randomly
+                    if self.counts[self.img_labels.iloc[idx, 2]][0] > 1:
+                        selectedImage = random.randint(0,(self.counts[self.img_labels.iloc[idx, 2]][0]-1)) # select one of the pictures randomly
                     else:
                         selectedImage = 0
                     image2 = (read_image(os.path.join(self.img_dir, self.img_labels.iloc[i+selectedImage, 1])).float())/255.0 # selected image should be of same cow
@@ -95,7 +94,7 @@ class CustomImageDatasetBCE(Dataset):
 class CustomImageDataset_Validation(Dataset):
     def __init__(self, img_dir, n, transform=None, target_transform=None) -> None:
         # super().__init__() no superconstructor
-        generate_annotations_direct(img_dir,'validation_annotations')
+        # generate_annotations_direct(img_dir,'validation_annotations')
         # self.train_size = train_size
         self.img_labels = pd.read_csv('validation_annotations.csv')
         self.img_dir = img_dir
@@ -111,9 +110,9 @@ class CustomImageDataset_Validation(Dataset):
     def countPerSample(self):
         for i in range(0,self.__len__()):
             if self.img_labels.iloc[i,2] in self.counts:
-                self.counts[self.img_labels.iloc[i,2]] += 1
+                self.counts[self.img_labels.iloc[i,2]][0] += 1
             else:
-                self.counts[self.img_labels.iloc[i,2]] = 0
+                self.counts[self.img_labels.iloc[i,2]] = [0,i] # add a list of two elements (first element saying count of elements and second saying starting index of such label)
 
     def __len__(self):
         return len(self.img_labels)-1
@@ -126,11 +125,12 @@ class CustomImageDataset_Validation(Dataset):
         anchor_label = self.img_labels.iloc[idx, 2]
         selected_image = 0
         # select second image from same class
-        if self.counts[self.img_labels.iloc[idx, 2]] > 1:
-            selected_image = random.randint(0,(self.counts[self.img_labels.iloc[idx, 2]]-1)) # select one of the pictures randomly
+        if self.counts[self.img_labels.iloc[idx, 2]][0] > 1:
+            diff = idx - self.counts[self.img_labels.iloc[idx, 2]][1] # where the index is at with respect to current label
+            selected_image = random.randint(0,(self.counts[self.img_labels.iloc[idx, 2]][0])-diff) # select one of the pictures randomly
         
-        print('idx: ', idx)
-        print('selected image: ', selected_image+idx)
+        # print('idx: ', idx)
+        # print('selected image: ', selected_image+idx)
 
         # create tensor of (n, 3, dimension 1 of imgs, dimension 2 of imgs) dimensions to store all images of certain size (e.g. (8,3,240,240)) .
         images = torch.Tensor(self.n_size,3,anchor.size()[1],anchor.size()[2])
@@ -139,6 +139,8 @@ class CustomImageDataset_Validation(Dataset):
         labels = torch.zeros(self.n_size,1)
 
         # put positive example in first slot and set label to positive one for same slot
+        # print('raw label: ',self.img_labels.iloc[idx, 1])
+        # print('selected image file: ',os.path.join(self.img_dir, self.img_labels.iloc[idx+selected_image, 1]))
         images[0] = (read_image(os.path.join(self.img_dir, self.img_labels.iloc[idx+selected_image, 1])).float())/255.0 # selected image should be of same cow
         labels[0] = 1.0
 
@@ -156,16 +158,20 @@ class CustomImageDataset_Validation(Dataset):
         
         # generate list of shuffled indices to shuffle images and labels in a pair-wise fashion
         shuffled_indices = torch.randperm(self.n_size).to(torch.int64)
-        print(shuffled_indices)        
+        # print('before ', labels)
+        # print('shuffled indices: ', shuffled_indices)
         # permute elements from imgs and labels in same order
         for i in range(0,self.n_size):
-            temp_img = images[i]
-            temp_label = labels[i]
-            images[i] = images[shuffled_indices[i]]
+            temp_img = images[i].clone().detach()
+            temp_label = labels[i].clone().detach()
+            # print('temp label: ', temp_label)
+            images[i] = images[shuffled_indices[i]].clone().detach()
             images[shuffled_indices[i]] = temp_img
-            labels[i] = labels[shuffled_indices[i]]
-            labels[shuffled_indices[i]] = temp_label
+            labels[i] = labels[shuffled_indices[i]].clone().detach()
+            # print('temp label: ', temp_label)
+            labels[shuffled_indices[i]] = temp_label.clone().detach()
 
+        # print('after: ', labels)
         figures = []
         # if transformation was given when instantiating dataset, apply it
         if self.transform:
@@ -177,12 +183,13 @@ class CustomImageDataset_Validation(Dataset):
                 # figures[i].add_subplot(2, 2, 1)
                 # plt.imshow(anchor.permute(1,2,0))
                 # plt.axis('off')
-                # plt.title('anchor')
+                # figures.append(['anchor','positive' if labels[i] == 1.0 else 'negative'])
                 # figures[i].add_subplot(2, 2, 2)
                 # plt.imshow(transform.permute(1,2,0))
                 # plt.axis('off')
                 # plt.title('positive' if labels[i] == 1 else 'negative')
 
+        # print(figures)
         # plt.show()
 
 

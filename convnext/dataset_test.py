@@ -1,5 +1,5 @@
 from matplotlib import transforms
-from custom_dataset import CustomImageDataset
+from custom_dataset_bce import CustomImageDataset_Validation
 from torch.utils.data import DataLoader
 import torch
 from torchvision import datasets, transforms
@@ -10,21 +10,10 @@ from torchvision import datasets, transforms
     the DataLoader class from pytorch appropriately.
 """
 if __name__ == "__main__":
-    dataset = CustomImageDataset(dataset_folder='../../dataset/Raw/RGB (320 x 240)/',img_dir='../../dataset/Raw/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225])]))
-    data_loader = DataLoader(dataset, batch_size=64, shuffle=True)
+    # dataset = CustomImageDataset(dataset_folder='../../dataset/Raw/RGB (320 x 240)/',img_dir='../../dataset/Raw/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225])]))
+    test_dataset = CustomImageDataset_Validation(img_dir='../../dataset/Raw/Combined/',n=8,transform=transforms.Compose([transforms.Resize((240,240))]))
+    data_loader = DataLoader(test_dataset, batch_size=1, shuffle=True)
     equal = 0
     total = 64
     for data in data_loader:
-        print(data[0][0][0])
-        exit()
-        for j in range(0,data[3].size(dim=0)):
-            if data[3][j] == data[2][j]:
-                equal += 1
-        print(equal/total)
-        # if data[2] == data[3]:
-        #     print('True')
-        # else:
-        #     print('False')
-        exit()
-        # print("Batch of images has shape: ",imgs.shape)
-        # print("Batch of labels has shape: ", labels.shape)
+        pass
