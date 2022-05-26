@@ -122,6 +122,8 @@ class CustomImageDataset_Validation(Dataset):
         Get one image and n for comparison
     """
     def __getitem__(self, idx):
+        print(self.__len__())
+        exit()
         anchor = (read_image(os.path.join(self.img_dir, self.img_labels.iloc[idx, 1])).float())/255.0
         anchor_label = self.img_labels.iloc[idx, 2]
         
