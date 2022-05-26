@@ -79,8 +79,6 @@ class CustomImageDatasetBCE(Dataset):
             # print("transforming")
             image = self.transform(image)
             image2 = self.transform(image2)
-            # print('IMG1 size: ', image.size())
-            # print('IMG2 size: ', image2.size())
         if self.target_transform:
             label = self.target_transform(label)
 
@@ -167,11 +165,23 @@ class CustomImageDataset_Validation(Dataset):
             labels[i] = labels[shuffled_indices[i]]
             labels[shuffled_indices[i]] = temp_label
 
+        figures = []
         # if transformation was given when instantiating dataset, apply it
         if self.transform:
             anchor = self.transform(anchor)
             for i in range(0,self.n_size):
                 transform = self.transform(images[i])
                 final_images[i] = transform
+                figures.append(plt.figure(figsize=(10, 7)))
+                figures[i].add_subplot(2, 2, 1)
+                plt.imshow(anchor.permute(1,2,0))
+                plt.axis('off')
+                figures[i].add_subplot(2, 2, 2)
+                plt.imshow(transform.permute(1,2,0))
+                plt.axis('off')
+
+        plt.show()
+        exit()
+
 
         return anchor,final_images,labels
