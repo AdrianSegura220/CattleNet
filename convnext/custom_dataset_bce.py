@@ -116,14 +116,12 @@ class CustomImageDataset_Validation(Dataset):
                 self.counts[self.img_labels.iloc[i,2]] = 0
 
     def __len__(self):
-        return len(self.img_labels)-3
+        return len(self.img_labels)-1
 
     """
         Get one image and n for comparison
     """
-    def __getitem__(self, idx):
-        print(self.__len__())
-        exit()
+    def __getitem__(self, idx):        
         anchor = (read_image(os.path.join(self.img_dir, self.img_labels.iloc[idx, 1])).float())/255.0
         anchor_label = self.img_labels.iloc[idx, 2]
         
@@ -133,6 +131,9 @@ class CustomImageDataset_Validation(Dataset):
         else:
             selectedImage = 0
         
+        print('idx: ', idx)
+        print('selected image: ', selected_image+idx)
+
         # create tensor of (n, 3, dimension 1 of imgs, dimension 2 of imgs) dimensions to store all images of certain size (e.g. (8,3,240,240)) .
         images = torch.Tensor(self.n_size,3,anchor.size()[1],anchor.size()[2])
         final_images = torch.Tensor(self.n_size,3,anchor.size()[1],anchor.size()[1])
@@ -157,7 +158,7 @@ class CustomImageDataset_Validation(Dataset):
         
         # generate list of shuffled indices to shuffle images and labels in a pair-wise fashion
         shuffled_indices = torch.randperm(self.n_size).to(torch.int64)
-        
+	print(shuffled_indices)        
         # permute elements from imgs and labels in same order
         for i in range(0,self.n_size):
             temp_img = images[i]
