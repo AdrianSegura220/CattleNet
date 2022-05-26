@@ -44,6 +44,7 @@ lr=6e-3
 in_channel = 3
 batch_size = 32
 num_epochs = 20
+n_shot = 15
 
 
 wandb.config = {
@@ -67,7 +68,7 @@ if not loadtest:
     optimizer = optim.Adam(params,lr=lr) 
     scheduler = StepLR(optimizer, step_size=step_lr, gamma=0.99) # anneal lr by 1% of previous lr each epoch
 train_dataset = CustomImageDatasetBCE(img_dir='../../dataset/Raw/Combined/',transform=transforms.Compose([transforms.Resize((240,240))]))
-test_dataset = CustomImageDataset_Validation(img_dir='../../dataset/Raw/Combined/',n=15,transform=transforms.Compose([transforms.Resize((240,240))]))
+test_dataset = CustomImageDataset_Validation(img_dir='../../dataset/Raw/Combined/',n=n_shot,transform=transforms.Compose([transforms.Resize((240,240))]))
 # train_dataset = CustomImageDatasetBCE(img_dir='../../dataset/Raw/TrainingDivided/Training/',transform=transforms.Compose([transforms.Resize((240,240))]))
 # test_dataset = CustomImageDataset_Validation(img_dir='../../dataset/Raw/TrainingDivided/Validation/',n=8,transform=transforms.Compose([transforms.Resize((240,240))]))
 
@@ -81,7 +82,7 @@ def load_and_test(fname):
     model.eval()
     model.to(device)
     model.eval()
-    acc = test(test_dataset,model=model,is_load_model=False)
+    acc = test(test_dataset,model=model,n=n_shot,is_load_model=False)
     print(acc)
 
 
@@ -126,7 +127,7 @@ def train():
         # validation:
         model.eval()
         with torch.no_grad():
-            epoch_acc = test(test_dataset,8,model=model,is_load_model=False)
+            epoch_acc = test(test_dataset,n=n_shot,model=model,is_load_model=False)
         model.train()
 
         #print details of elapsed epoch
@@ -149,15 +150,10 @@ def train():
                 torch.save(model.state_dict(), os.path.join(final_path,"epoch{}_loss{}_lr{}.pt".format(epoch,epoch_loss,curr_lr)))
         last_epoch = epoch
     
+    # save all details of last epoch
     torch.save(model.state_dict(), os.path.join(final_path,"CNV3_FinalModel_epoch{}.pt".format(last_epoch)))
     save_figures(iteration_number,counter,loss,final_path,last_epoch,epoch_loss,curr_lr,accuracy,epoch_acc)
     print("Model Saved Successfully") 
-    # set model to eval mode
-    # model.eval()
-    # with torch.no_grad():
-    #     acc = test(test_dataset,model=model,is_load_model=False)
-    #     print('Accuracy: {}'.format(acc))
-    # wandb.log({"accuracy": acc})
     
     return model
 
