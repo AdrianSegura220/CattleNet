@@ -40,9 +40,9 @@ path_to_results = '../../BachelorsProject/Trainings/'
 #hyperparams
 lrDecay = 1
 step_lr = 1
-lr=25e-4
+lr=4e-3
 in_channel = 3
-batch_size = 32
+batch_size = 64
 num_epochs = 100
 n_shot = 10
 
