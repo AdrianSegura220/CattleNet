@@ -43,7 +43,7 @@ step_lr = 1
 lr=6e-3
 in_channel = 3
 batch_size = 32
-num_epochs = 20
+num_epochs = 100
 n_shot = 15
 
 
