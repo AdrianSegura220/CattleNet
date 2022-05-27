@@ -45,7 +45,7 @@ def test(test_dataset: CustomImageDataset_Validation,n, model_directory: str = '
             labels = data[2][0]
 
             # forward pass using anchor and images
-            res = model(anchor,images)  
+            res = model(anchor,images)
             
             correct_idx = torch.argmax(data[2])
             max_elem = torch.argmax(res)

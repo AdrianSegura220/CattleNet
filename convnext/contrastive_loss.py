@@ -21,12 +21,9 @@ class ContrastiveLoss(nn.Module):
         # print(op_res)
         # print(torch.mean(op_res))
         
-
         loss_contrastive = torch.mean( (label)* (0.5)*torch.pow(euclidean_distance, 2) +
                                      (1-label)* (0.5)*torch.pow(torch.clamp(self.margin - euclidean_distance, min=0.0), 2))
 
-        print(loss_contrastive.grad_fn)
-        exit()
         # print(loss_contrastive)
         return loss_contrastive
         # # Calculate the euclidean distance and calculate the contrastive loss

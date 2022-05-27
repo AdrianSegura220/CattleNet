@@ -16,6 +16,7 @@ import time
 import datetime
 import os
 import copy
+from custom_dataset_bce import CustomImageDataset_Validation, CustomImageDatasetBCE
 import wandb
 from custom_dataset import CustomImageDataset
 from torch.utils.data import DataLoader
@@ -44,6 +45,7 @@ lr=1e-3
 in_channel = 3
 batch_size = 8
 num_epochs = 40
+n_shot = 15
 
 
 
@@ -64,30 +66,29 @@ if not loadtest:
     params = model.parameters()
     # setup optimizer (use Adam technique to optimize parameters (GD with momentum and RMS prop))
     # by default: learning rate = 0.001, betas=(0.9, 0.999), eps=1e-08, weight_decay=0
-    optimizer = optim.Adam(params) 
+    optimizer = optim.Adam(params,lr=lr) 
     scheduler = StepLR(optimizer, step_size=step_lr, gamma=0.1)
 
-dataset = CustomImageDataset(dataset_folder='../../dataset/Raw/RGB (320 x 240)/',img_dir='../../dataset/Raw/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225])]))
-
+dataset = CustomImageDatasetBCE(img_dir='../../dataset/Raw/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225])]))
+validation = CustomImageDataset_Validation(n=n_shot,img_dir='../../dataset/Raw/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225])]))
 # setup learning rate scheduler
 
-# setup training and testing sets
-train_size = int(0.8 * len(dataset))
-test_size = len(dataset) - train_size
-train_dataset, test_dataset = torch.utils.data.random_split(dataset, [train_size, test_size])
-len(dataset)
+# # setup training and testing sets
+# train_size = int(0.8 * len(dataset))
+# test_size = len(dataset) - train_size
+# train_dataset, test_dataset = torch.utils.data.random_split(dataset, [train_size, test_size])
+# len(dataset)
 
-data_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
+data_loader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
 
 
 def load_and_test(fname):
-    print('here')
     model = CattleNet()
     model.load_state_dict(torch.load(fname)) # load model that is to be tested
     model.eval()
     model.to(device)
     model.eval()
-    acc = test(test_dataset,model=model,is_load_model=False)
+    acc = test(validation,model=model,is_load_model=False)
     print(acc)
 
 
@@ -99,7 +100,7 @@ def train():
     epoch_loss = 0.0
     iterations_loop = 0
     # create directory for current training results
-    final_path = os.path.join(path_to_results,'model_InitialLR{}_lrDecay{}wStep{}_trainSize{}_testSize{}_datetime{}-{}H{}M{}'.format(lr,lrDecay,step_lr,train_size,test_size,datetime.datetime.today().day,datetime.datetime.today().month,datetime.datetime.today().hour,datetime.datetime.today().minute))
+    final_path = os.path.join(path_to_results,'CattleNetContrastive_lr{}_BCE_datetime{}-{}H{}M{}S{}'.format(lr,datetime.datetime.today().day,datetime.datetime.today().month,datetime.datetime.today().hour,datetime.datetime.today().minute,datetime.datetime.today().second))
     # os.mkdir(final_path)
 
     for epoch in range(1,num_epochs):
@@ -112,12 +113,9 @@ def train():
             optimizer.zero_grad()
             imgs1 = data[0].to(device)
             imgs2 = data[1].to(device)
-            labels1 = data[2].to(device)
-            labels2 = data[3].to(device)
+            labels = data[2].to(device)
             out1,out2 = model(imgs1,imgs2)
-            # print('d2: ',data[2],'; d3: ',data[3])
-            label = (labels1 != labels2).float()
-            loss_contrastive = criterion(out1,out2,label)
+            loss_contrastive = criterion(out1,out2,labels)
             loss_contrastive.backward()
             optimizer.step()
             loop.set_description(f"Epoch [{epoch}/{num_epochs}]")
@@ -128,9 +126,9 @@ def train():
         epoch_loss /= iterations_loop
         curr_lr = optimizer.state_dict()['param_groups'][0]['lr']
 
-        if epoch == 14:
-            torch.cuda.empty_cache()
-            model.unfreeze_layers()
+        # if epoch == 14:
+        #     torch.cuda.empty_cache()
+        #     model.unfreeze_layers()
 
         #print details of elapsed epoch
         print("lr {}".format(curr_lr))
@@ -150,12 +148,13 @@ def train():
                 min_loss = epoch_loss
                 torch.save(model.state_dict(), os.path.join(final_path,"epoch{}_loss{}_lr{}.pt".format(epoch,epoch_loss,curr_lr)))
     
-    # set model to eval mode
-    model.eval()
-
-    acc = test(test_dataset,model=model,is_load_model=False)
-    print('Accuracy: {}'.format(acc))
-    # wandb.log({"accuracy": acc})
+        # set model to eval mode
+        # validation:
+        model.eval()
+        with torch.no_grad():
+            epoch_acc = test(validation,n=n_shot,model=model,is_load_model=False)
+        model.train()
+        print('Epoch Accuracy: {}'.format(epoch_acc))
     
     return model
 
