@@ -46,6 +46,7 @@ batch_size = 8
 num_epochs = 40
 
 
+
 wandb.config = {
   "learning_rate": lr,
   "epochs": num_epochs,

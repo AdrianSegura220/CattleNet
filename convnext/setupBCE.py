@@ -48,6 +48,7 @@ in_channel = 3
 batch_size = 64
 num_epochs = 100
 n_shot = 15
+weight_decay = 1e-5
 
 
 wandb.config = {
