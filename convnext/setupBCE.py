@@ -65,7 +65,7 @@ if not loadtest:
     params = model.parameters()
     # setup optimizer (use Adam technique to optimize parameters (GD with momentum and RMS prop))
     # by default: betas=(0.9, 0.999), eps=1e-08, weight_decay=0
-    optimizer = optim.Adam(params,lr=lr) 
+    optimizer = optim.Adam(params,lr=lr,weight_decay=6e-4)
     scheduler = StepLR(optimizer, step_size=step_lr, gamma=0.99) # anneal lr by 1% of previous lr each epoch
 train_dataset = CustomImageDatasetBCE(img_dir='../../dataset/Raw/Combined/',transform=transforms.Compose([transforms.Resize((240,240))]))
 test_dataset = CustomImageDataset_Validation(img_dir='../../dataset/Raw/Combined/',n=n_shot,transform=transforms.Compose([transforms.Resize((240,240))]))
