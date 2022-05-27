@@ -56,4 +56,5 @@ def test(test_dataset: CustomImageDataset_Validation,n, model_directory: str = '
             total += 1
     
     # return accuracy
+    print('correct: {}/{}'.format(correct,total))
     return correct/total

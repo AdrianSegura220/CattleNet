@@ -23,7 +23,7 @@ class CustomImageDatasetBCE(Dataset):
         # super().__init__() no superconstructor
         # generate_annotations_direct(img_dir,'training_annotations')
         # self.train_size = train_size
-        self.img_labels = pd.read_csv('training_annotations.csv')
+        self.img_labels = pd.read_csv('overfit.csv')
         self.img_dir = img_dir
         self.transform = transform
         self.counts = {}
@@ -96,7 +96,7 @@ class CustomImageDataset_Validation(Dataset):
         # super().__init__() no superconstructor
         # generate_annotations_direct(img_dir,'validation_annotations')
         # self.train_size = train_size
-        self.img_labels = pd.read_csv('validation_annotations.csv')
+        self.img_labels = pd.read_csv('overfit.csv')
         self.img_dir = img_dir
         self.transform = transform
         self.n_size = n if n >= 2 else 2 # minimum is 2 (one positive for anchor and a negative)
