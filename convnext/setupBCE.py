@@ -42,7 +42,7 @@ lrDecay = 1
 step_lr = 1
 lr=1e-3
 in_channel = 3
-batch_size = 8
+batch_size = 32
 num_epochs = 100
 n_shot = 10
 
