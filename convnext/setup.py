@@ -69,8 +69,8 @@ if not loadtest:
     optimizer = optim.Adam(params,lr=lr) 
     scheduler = StepLR(optimizer, step_size=step_lr, gamma=0.1)
 
-dataset = CustomImageDatasetBCE(img_dir='../../dataset/Raw/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225])]))
-validation = CustomImageDataset_Validation(n=n_shot,img_dir='../../dataset/Raw/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225])]))
+dataset = CustomImageDatasetBCE(img_dir='../../dataset/Raw/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225]),transforms.Resize((240,240))]))
+validation = CustomImageDataset_Validation(n=n_shot,img_dir='../../dataset/Raw/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225]),transforms.Resize((240,240))]))
 # setup learning rate scheduler
 
 # # setup training and testing sets
