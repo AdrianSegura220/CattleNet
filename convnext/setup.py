@@ -95,6 +95,8 @@ def load_and_test(fname):
 def train():
     min_loss = 99999999999999.0
     loss = []
+    accuracy = []
+    epoch_acc = 0.0
     counter = []
     iteration_number = 0
     epoch_loss = 0.0
@@ -140,29 +142,34 @@ def train():
         counter.append(iteration_number)
         loss.append(epoch_loss)
 
-        # save model and result every 10 epochs
-        if epoch % 10 == 0:
-            save_figures(iteration_number,counter,loss,final_path,epoch,epoch_loss,curr_lr)
-            #save model state up to this epoch
-            if epoch_loss < min_loss:
-                min_loss = epoch_loss
-                torch.save(model.state_dict(), os.path.join(final_path,"epoch{}_loss{}_lr{}.pt".format(epoch,epoch_loss,curr_lr)))
-    
-        # set model to eval mode
         # validation:
         model.eval()
         with torch.no_grad():
             epoch_acc = test(validation,n=n_shot,model=model,is_load_model=False)
         model.train()
         print('Epoch Accuracy: {}'.format(epoch_acc))
+        accuracy.append(epoch_acc)
+
+        # save model and result every 10 epochs
+        if epoch % 10 == 0:
+            save_figures(iteration_number,counter,loss,final_path,epoch,epoch_loss,curr_lr,accuracy,epoch_acc)
+            #save model state up to this epoch
+            if epoch_loss < min_loss:
+                min_loss = epoch_loss
+                torch.save(model.state_dict(), os.path.join(final_path,"epoch{}_loss{}_lr{}.pt".format(epoch,epoch_loss,curr_lr)))
+    
     
     return model
 
-def save_figures(iteration_number,counter,loss,final_path,epoch,epoch_loss,curr_lr):
+def save_figures(iteration_number,counter,loss,final_path,epoch,epoch_loss,curr_lr,accuracy,epoch_acc):
     plt.plot(counter,loss)
     plt.xlabel('Epoch (10:1 scale)')
     plt.ylabel('Loss')
-    plt.savefig(os.path.join(final_path,"epoch{}_loss{}_lr{}.png".format(epoch,epoch_loss,curr_lr)))
+    plt.savefig(os.path.join(final_path,"LOSS{}_epoch{}_lr{}.png".format(epoch_loss,epoch,curr_lr)))
+    plt.plot(counter,accuracy)
+    plt.xlabel('Epoch (10:1 scale)')
+    plt.ylabel('Accuracy')
+    plt.savefig(os.path.join(final_path,"ACC{}_epoch{}_lr{}.png".format(epoch_acc,epoch_loss,curr_lr)))
 
 if loadtest:
     load_and_test('../../BachelorsProject/Trainings/model_InitialLR0.001_lrDecay1wStep10_trainSize1066_testSize267_datetime20-5H2M11/epoch30_loss0.2583860134455695_lr1.0000000000000002e-06.pt')
