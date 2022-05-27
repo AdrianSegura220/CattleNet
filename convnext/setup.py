@@ -22,7 +22,7 @@ from custom_dataset import CustomImageDataset
 from torch.utils.data import DataLoader
 from cattleNetTest import CattleNet
 from tqdm import tqdm
-from model_test_v3 import test
+from model_test_original import test
 
 
 # wandb setup (logging progress to online platform)
