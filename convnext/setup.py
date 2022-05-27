@@ -57,7 +57,7 @@ wandb.config = {
 
 if not loadtest:
     # instantiate SNN
-    model = CattleNet(freezeLayers=False)
+    model = CattleNet(freezeLayers=True)
     model.to(device)
 
     # loss function
