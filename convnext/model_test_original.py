@@ -26,16 +26,16 @@ from tqdm import tqdm
 """
     remark: use CustomImageDatasetBCE for this task
 """
-def test_thresholds(test_dataset: CustomImageDatasetBCE,n, model_directory: str = '', model_version: str = '',model: CattleNetV3 = None,is_load_model = False,thresholds = [0.5]):
+def test_thresholds(test_dataset: CustomImageDatasetBCE, model_directory: str = '', model_version: str = '',model = None,is_load_model = False,thresholds = [0.5]):
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     total = 0
     correct = 0
     results = []
-    stats = [[] for i in range(0,thresholds)]
-    data_loader = DataLoader(test_dataset, batch_size=1, shuffle=True)
-    avg_precision = 0
-    avg_recall = 0
-    avg_balanced_acc = 0
+    stats = [{} for i in range(0,len(thresholds))]
+    data_loader = DataLoader(test_dataset, batch_size=8, shuffle=True)
+    avg_precision = [0.0 for i in range(0,len(thresholds))] 
+    avg_recall = [0.0 for i in range(0,len(thresholds))]
+    avg_balanced_acc = [0.0 for i in range(0,len(thresholds))]
     accuracy = 0
 
     if is_load_model:
@@ -57,7 +57,7 @@ def test_thresholds(test_dataset: CustomImageDatasetBCE,n, model_directory: str 
             """
                 Iterate through each threshold and save stats
             """
-            for d in thresholds:
+            for i,d in enumerate(thresholds):
                 classifications = (distances_sq < d).float() # use broadcasting to discern for each difference whether it is smaller than d => mark it as same image 
                 temp_result = (classifications == labels).float() # for each element, decide whether they are match the actual labels
                 true_positives = sum([1 if (l == 1 and classifications[i] == 1) else 0 for i,l in enumerate(labels)])
@@ -69,22 +69,33 @@ def test_thresholds(test_dataset: CustomImageDatasetBCE,n, model_directory: str 
                 true_negative_rate = true_negatives/(false_positives+true_negatives)
                 balanced_acc = (recall+true_negative_rate)/2
                 # accuracy = temp_result.sum(1)/classifications.size()[0]
-                stats.append({
+                stats[i] = {
                     'precision': precision,
                     'recall': recall,
                     'balanced_accuracy': balanced_acc
-                })
-            for s in stats:
-                avg_precision += s['precision']
-                avg_recall += s['recall']
-                avg_balanced_acc += s['balanced_accuracy']
-        
-        avg_precision /= batches
-        avg_recall /= batches
-        avg_balanced_acc /= batches
+                }
 
+            for i,s in enumerate(stats): # so for each distance threhold recorded result add the value and at the end divide by total no. batches
+                avg_precision[i] += s['precision']
+                avg_recall[i] += s['recall']
+                avg_balanced_acc[i] += s['balanced_accuracy']
+        
+        """
+            for each accumulated statistic for each distance threshold, divide by the amount of batches to calculate
+            the average precision, recall and balanced_acc using such distance threshold
+        """
+        for i in range(0,len(thresholds)):
+            avg_precision[i] /= batches
+            avg_recall[i] /= batches
+            avg_balanced_acc[i] /= batches
+
+        """
+            return results in form of a dictionary containing avg values for precision, recall and balanced accuracy for
+            each of the thresholds. So effectively, each of those values is an array containing each an average result per
+            distance threshold tested
+        """
         return {
-            'avg_precision': avg_precision, 
+            'avg_precision': avg_precision,
             'avg_recall': avg_recall,
             'avg_balanced_acc': avg_balanced_acc
         }
@@ -98,7 +109,7 @@ def test_thresholds(test_dataset: CustomImageDatasetBCE,n, model_directory: str 
         compared to other images
         This method is quite inefficient, considering to do vector quantization
 """
-def test(test_dataset: CustomImageDataset_Validation,n, model_directory: str = '', model_version: str = '',model: CattleNetV3 = None,is_load_model = False):
+def test(test_dataset: CustomImageDataset_Validation,n, model_directory: str = '', model_version: str = '',model = None,is_load_model = False):
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     total = 0
     correct = 0

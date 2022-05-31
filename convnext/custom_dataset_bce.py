@@ -92,11 +92,11 @@ class CustomImageDatasetBCE(Dataset):
 # send email
 
 class CustomImageDataset_Validation(Dataset):
-    def __init__(self, img_dir, n, transform=None, target_transform=None,annotations_csv = 'training_annotations.csv') -> None:
+    def __init__(self, img_dir, n, transform=None, target_transform=None,annotations_csv = 'validation_annotations.csv') -> None:
         # super().__init__() no superconstructor
         # generate_annotations_direct(img_dir,'validation_annotations')
         # self.train_size = train_size
-        self.img_labels = pd.read_csv('validation_annotations.csv')
+        self.img_labels = pd.read_csv(annotations_csv)
         self.img_dir = img_dir
         self.transform = transform
         self.n_size = n if n >= 2 else 2 # minimum is 2 (one positive for anchor and a negative)
