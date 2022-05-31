@@ -17,33 +17,41 @@ import time
 import os
 import copy
 from torchvision.io import read_image
+from convnext.custom_dataset_bce import CustomImageDatasetBCE
 from custom_dataset_bce import CustomImageDataset_Validation
 from torch.utils.data import DataLoader
 from cattleNetTest_v3 import CattleNetV3
 from tqdm import tqdm
 
-
-def test_thresholds(test_dataset: CustomImageDataset_Validation,n, model_directory: str = '', model_version: str = '',model: CattleNetV3 = None,is_load_model = False,thresholds = [0.5]):
+"""
+    remark: use CustomImageDatasetBCE for this task
+"""
+def test_thresholds(test_dataset: CustomImageDatasetBCE,n, model_directory: str = '', model_version: str = '',model: CattleNetV3 = None,is_load_model = False,thresholds = [0.5]):
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     total = 0
     correct = 0
     results = []
     stats = [[] for i in range(0,thresholds)]
     data_loader = DataLoader(test_dataset, batch_size=1, shuffle=True)
+    avg_precision = 0
+    avg_recall = 0
+    avg_balanced_acc = 0
+    accuracy = 0
+
     if is_load_model:
         pass
         # data_dict = encode_dataset(test_dataset, model_directory, model_version)
     else:
+        batches = 0
         for data in data_loader:
+            batches += 1
             anchor = data[0].to(device)
             images = data[1][0].to(device)
             labels = data[2][0]
 
             # forward pass using anchor and images
             anchor_res,images_res = model(anchor,images)
-            
-            
-            # max_elem = torch.argmin(torch.sub(anchor_res,images_res).pow(2).sum(1))
+
             distances_sq = torch.sub(anchor_res,images_res).pow(2).sum(1)
             
             """
@@ -60,30 +68,27 @@ def test_thresholds(test_dataset: CustomImageDataset_Validation,n, model_directo
                 recall = true_positives/(true_positives + false_negatives)
                 true_negative_rate = true_negatives/(false_positives+true_negatives)
                 balanced_acc = (recall+true_negative_rate)/2
+                # accuracy = temp_result.sum(1)/classifications.size()[0]
                 stats.append({
                     'precision': precision,
                     'recall': recall,
                     'balanced_accuracy': balanced_acc
-                })                
-
-            for i,res in enumerate(results):
-                print(res)
-                correct = res.sum(1)
-                print(res).sum(1)
-                stats.append({
-                    'tp': correct,
-                    'total': res.size()[0]
                 })
+            for s in stats:
+                avg_precision += s['precision']
+                avg_recall += s['recall']
+                avg_balanced_acc += s['balanced_accuracy']
+        
+        avg_precision /= batches
+        avg_recall /= batches
+        avg_balanced_acc /= batches
 
-            if max_elem == correct_idx:
-                # print('results :',res)
-                # print('reference: ', data[2])
-                correct += 1
-            total += 1
-    
-    # return accuracy
-    print('correct: {}/{}'.format(correct,total))
-    return correct/total
+        return {
+            'avg_precision': avg_precision, 
+            'avg_recall': avg_recall,
+            'avg_balanced_acc': avg_balanced_acc
+        }
+
 
 """
     Description:
