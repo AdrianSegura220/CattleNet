@@ -28,7 +28,7 @@ from tqdm import tqdm
 from model_test_original import test
 
 
-wandb setup (logging progress to online platform)
+# wandb setup (logging progress to online platform)
 wandb.init(project="cattleNet-arch1", entity="adriansegura220")
 
 
