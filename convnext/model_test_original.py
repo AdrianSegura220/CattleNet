@@ -39,6 +39,10 @@ def test_thresholds(test_dataset: CustomImageDatasetBCE, model_directory: str = 
     avg_precision_to_reduce = [0 for i in range(0,len(thresholds))]
     avg_recall_to_reduce = [0 for i in range(0,len(thresholds))]
     avg_balancedacc_to_reduce = [0 for i in range(0,len(thresholds))]
+    avg_tp = 0
+    avg_tn = 0
+    avg_fp = 0
+    avg_fn = 0
     accuracy = 0
 
     if is_load_model:
@@ -68,6 +72,11 @@ def test_thresholds(test_dataset: CustomImageDatasetBCE, model_directory: str = 
                 false_positives = sum([1 if (l == 0 and classifications[i] == 1) else 0 for i,l in enumerate(labels)])
                 false_negatives = sum([1 if (l == 1 and classifications[i] == 0) else 0 for i,l in enumerate(labels)])
                 
+                avg_tp += true_positives
+                avg_tn += true_negatives
+                avg_fp += false_positives
+                avg_fn += false_negatives
+
                 if true_positives + false_positives > 0:
                     precision = true_positives/(true_positives + false_positives)
                 else:
@@ -95,6 +104,13 @@ def test_thresholds(test_dataset: CustomImageDatasetBCE, model_directory: str = 
                 }
 
             for i,s in enumerate(stats): # so for each distance threhold recorded result add the value and at the end divide by total no. batches
+                
+                """
+                    So, for each distance threshold being tested, if the measurement was invalid, then simply
+                    not add value because it is not helpful, otherwise add the obtained value for that indicator, 
+                    but just make sure that the final division of accumulated indicators for the mean is made
+                    for only the values added and not for those that were invalid
+                """
                 if s['precision'] != -1:
                     avg_precision[i] += s['precision']
                 else:
@@ -119,6 +135,15 @@ def test_thresholds(test_dataset: CustomImageDatasetBCE, model_directory: str = 
             avg_precision[i] /= batches-avg_precision_to_reduce[i]
             avg_recall[i] /= batches-avg_recall_to_reduce[i]
             avg_balanced_acc[i] /= batches-avg_balancedacc_to_reduce[i]
+        
+        avg_tp /= batches
+        avg_tn /= batches
+        avg_fp /= batches
+        avg_fn /= batches
+        print('Avg tp: {}'.format(avg_tp))
+        print('Avg tn: {}'.format(avg_tn))
+        print('Avg fp: {}'.format(avg_fp))
+        print('Avg fn: {}'.format(avg_fn))
 
         """
             return results in form of a dictionary containing avg values for precision, recall and balanced accuracy for
