@@ -29,7 +29,9 @@ from model_test_original import test
 
 
 # wandb setup (logging progress to online platform)
-wandb.init(project="cattleNet-arch1", entity="adriansegura220")
+use_wandb = False
+if use_wandb:
+    wandb.init(project="cattleNet-arch1", entity="adriansegura220")
 
 
 # load and test a model version (no training)
@@ -52,11 +54,12 @@ n_shot = 15
 k_folds = 8
 thresholds_to_test = [0.1,0.25,0.4,0.5,0.6]
 
-wandb.config = {
-  "learning_rate": lr,
-  "epochs": num_epochs,
-  "batch_size": batch_size
-}
+if use_wandb:
+    wandb.config = {
+    "learning_rate": lr,
+    "epochs": num_epochs,
+    "batch_size": batch_size
+    }
 
 # def load_and_test(fname):
 #     model = CattleNet()
@@ -132,24 +135,25 @@ def train(d_loader,dataset_validation):
         """
             Improve this, remove hardcoded threshold indexing, make it dynamic
         """
-        wandb.log({
-            "loss": epoch_loss,
-            "Avg. balanced accuracy d=0.1": validation_results['avg_balanced_acc'][0],
-            "Avg. balanced accuracy d=0.25": validation_results['avg_balanced_acc'][1],
-            "Avg. balanced accuracy d=0.4": validation_results['avg_balanced_acc'][2],
-            "Avg. balanced accuracy d=0.5": validation_results['avg_balanced_acc'][3],
-            "Avg. balanced accuracy d=0.6": validation_results['avg_balanced_acc'][4],
-            "Avg. precision d=0.1": validation_results['avg_precision'][0],
-            "Avg. precision d=0.25": validation_results['avg_precision'][1],
-            "Avg. precision d=0.4": validation_results['avg_precision'][2],
-            "Avg. precision d=0.5": validation_results['avg_precision'][3],
-            "Avg. precision d=0.6": validation_results['avg_precision'][4],
-            "Avg. recall d=0.1": validation_results['avg_recall'][0],
-            "Avg. recall d=0.25": validation_results['avg_recall'][1],
-            "Avg. recall d=0.4": validation_results['avg_recall'][2],
-            "Avg. recall d=0.5": validation_results['avg_recall'][3],
-            "Avg. recall d=0.6": validation_results['avg_recall'][4]
-        })
+        if use_wandb:
+            wandb.log({
+                "loss": epoch_loss,
+                "Avg. balanced accuracy d=0.1": validation_results['avg_balanced_acc'][0],
+                "Avg. balanced accuracy d=0.25": validation_results['avg_balanced_acc'][1],
+                "Avg. balanced accuracy d=0.4": validation_results['avg_balanced_acc'][2],
+                "Avg. balanced accuracy d=0.5": validation_results['avg_balanced_acc'][3],
+                "Avg. balanced accuracy d=0.6": validation_results['avg_balanced_acc'][4],
+                "Avg. precision d=0.1": validation_results['avg_precision'][0],
+                "Avg. precision d=0.25": validation_results['avg_precision'][1],
+                "Avg. precision d=0.4": validation_results['avg_precision'][2],
+                "Avg. precision d=0.5": validation_results['avg_precision'][3],
+                "Avg. precision d=0.6": validation_results['avg_precision'][4],
+                "Avg. recall d=0.1": validation_results['avg_recall'][0],
+                "Avg. recall d=0.25": validation_results['avg_recall'][1],
+                "Avg. recall d=0.4": validation_results['avg_recall'][2],
+                "Avg. recall d=0.5": validation_results['avg_recall'][3],
+                "Avg. recall d=0.6": validation_results['avg_recall'][4]
+            })
 
         # 0.1,0.25,0.4,0.5,0.6
 

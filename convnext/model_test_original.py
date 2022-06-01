@@ -63,6 +63,9 @@ def test_thresholds(test_dataset: CustomImageDatasetBCE, model_directory: str = 
             anchor_res,images_res = model(anchor,images)
 
             distances_sq = torch.sub(anchor_res,images_res).pow(2).sum(1)
+
+            print(distances_sq.size())
+            exit()
             
             """
                 Iterate through each threshold and save stats
