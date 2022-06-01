@@ -62,8 +62,8 @@ def test_thresholds(test_dataset: CustomImageDatasetBCE, model_directory: str = 
                 temp_result = (classifications == labels).float() # for each element, decide whether they are match the actual labels
                 true_positives = sum([1 if (l == 1 and classifications[i] == 1) else 0 for i,l in enumerate(labels)])
                 true_negatives = sum([1 if (l == 0 and classifications[i] == 0) else 0 for i,l in enumerate(labels)])
-                false_positives = sum([1 if (l == 1 and classifications[i] == 0) else 0 for i,l in enumerate(labels)])
-                false_negatives = sum([1 if (l == 0 and classifications[i] == 1) else 0 for i,l in enumerate(labels)])
+                false_positives = sum([1 if (l == 0 and classifications[i] == 1) else 0 for i,l in enumerate(labels)])
+                false_negatives = sum([1 if (l == 1 and classifications[i] == 0) else 0 for i,l in enumerate(labels)])
                 print(true_positives)
                 print(true_negatives)
                 print(false_positives)
