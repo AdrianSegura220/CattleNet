@@ -46,8 +46,11 @@ def test_thresholds(test_dataset: CustomImageDatasetBCE, model_directory: str = 
         for data in data_loader:
             batches += 1
             anchor = data[0].to(device)
+            print(data[0].size())
             images = data[1][0].to(device)
+            print(data[1].size())
             labels = data[2][0]
+            exit()
 
             # forward pass using anchor and images
             anchor_res,images_res = model(anchor,images)
