@@ -121,7 +121,7 @@ def train(d_loader,dataset_validation):
         model.eval()
         with torch.no_grad():
             # epoch_acc = test(dataset_validation,n=n_shot,model=model,is_load_model=False)
-            validation_results = test_thresholds(dataset_validation,thresholds=thresholds_to_test)
+            validation_results = test_thresholds(dataset_validation,thresholds=thresholds_to_test,model=model)
             """
                 validation results returns an array with results for each distance threshold
                 e.g. given 3 thresholds to test: [0.1,0.3,0.5], then for each statistic (precision,recall and balanced acc)
