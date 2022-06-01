@@ -28,8 +28,8 @@ from tqdm import tqdm
 from model_test_original import test
 
 
-# wandb setup (logging progress to online platform)
-# wandb.init(project="cattleNet-arch1", entity="adriansegura220")
+wandb setup (logging progress to online platform)
+wandb.init(project="cattleNet-arch1", entity="adriansegura220")
 
 
 # load and test a model version (no training)
@@ -81,8 +81,8 @@ def train(d_loader,dataset_validation):
     epoch_loss = 0.0
     iterations_loop = 0
     # create directory for current training results
-    # final_path = os.path.join(path_to_results,'CattleNetContrastive_lr{}_BCE_datetime{}-{}H{}M{}S{}'.format(lr,datetime.datetime.today().day,datetime.datetime.today().month,datetime.datetime.today().hour,datetime.datetime.today().minute,datetime.datetime.today().second))
-    # os.mkdir(final_path)
+    final_path = os.path.join(path_to_results,'CattleNetContrastive_lr{}_BCE_datetime{}-{}H{}M{}S{}'.format(lr,datetime.datetime.today().day,datetime.datetime.today().month,datetime.datetime.today().hour,datetime.datetime.today().minute,datetime.datetime.today().second))
+    os.mkdir(final_path)
 
     for epoch in range(1,num_epochs):
         loop = tqdm(d_loader,leave=False,total=len(d_loader))
@@ -110,7 +110,6 @@ def train(d_loader,dataset_validation):
         #print details of elapsed epoch
         print("lr {}".format(curr_lr))
         print("Epoch {}\n Current loss {}\n".format(epoch,epoch_loss))
-        # wandb.log({"loss": epoch_loss})
 
         # maintain epochs in scales of 10
         iteration_number += 10
@@ -130,6 +129,30 @@ def train(d_loader,dataset_validation):
             """
         model.train()
 
+        """
+            Improve this, remove hardcoded threshold indexing, make it dynamic
+        """
+        wandb.log({
+            "loss": epoch_loss,
+            "Avg. balanced accuracy d=0.1": validation_results['avg_balanced_acc'][0],
+            "Avg. balanced accuracy d=0.25": validation_results['avg_balanced_acc'][1],
+            "Avg. balanced accuracy d=0.4": validation_results['avg_balanced_acc'][2],
+            "Avg. balanced accuracy d=0.5": validation_results['avg_balanced_acc'][3],
+            "Avg. balanced accuracy d=0.6": validation_results['avg_balanced_acc'][4],
+            "Avg. precision d=0.1": validation_results['avg_precision'][0],
+            "Avg. precision d=0.25": validation_results['avg_precision'][1],
+            "Avg. precision d=0.4": validation_results['avg_precision'][2],
+            "Avg. precision d=0.5": validation_results['avg_precision'][3],
+            "Avg. precision d=0.6": validation_results['avg_precision'][4],
+            "Avg. recall d=0.1": validation_results['avg_recall'][0],
+            "Avg. recall d=0.25": validation_results['avg_recall'][1],
+            "Avg. recall d=0.4": validation_results['avg_recall'][2],
+            "Avg. recall d=0.5": validation_results['avg_recall'][3],
+            "Avg. recall d=0.6": validation_results['avg_recall'][4]
+        })
+
+        # 0.1,0.25,0.4,0.5,0.6
+
         print('Epoch avg precision: {}'.format(validation_results['avg_precision']))
         print('Epoch avg recall: {}'.format(validation_results['avg_recall']))
         print('Epoch avg balanced accuracy: {}'.format(validation_results['avg_balanced_acc']))
@@ -146,9 +169,9 @@ def train(d_loader,dataset_validation):
         if epoch % 10 == 0:
             # save_figures(iteration_number,counter,loss,final_path,epoch,epoch_loss,curr_lr,accuracy,epoch_acc)
             #save model state up to this epoch
-            torch.save(model.state_dict(), os.path.join(final_path,"epoch{}_loss{}_lr{}.pt".format(epoch,epoch_loss,curr_lr)))
             if epoch_loss < min_loss:
                 min_loss = epoch_loss
+                torch.save(model.state_dict(), os.path.join(final_path,"epoch{}_loss{}_lr{}_maxAvgBalancedAcc{}.pt".format(epoch,epoch_loss,curr_lr,max(validation_results['avg_balanced_acc']))))
     
     
     return model
