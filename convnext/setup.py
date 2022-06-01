@@ -214,5 +214,6 @@ else:
         model.train()
         print("Starting training")
         model = train(d_loader=data_loader,dataset_validation=dataset_validation)
+        break # want to do the run once temporarily
     # torch.save(model.state_dict(), "model_sequential_isGoodMaybe2_{}.pt".format())
     print("Model Saved Successfully") 
