@@ -191,7 +191,7 @@ if loadtest:
     # load_and_test('../../BachelorsProject/Trainings/model_InitialLR0.001_lrDecay1wStep10_trainSize1066_testSize267_datetime20-5H2M11/epoch30_loss0.2583860134455695_lr1.0000000000000002e-06.pt')
 else:
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    final_path = os.path.join(path_to_results,'CattleNetContrastive_folds{}_lr{}_BCE_datetime{}-{}H{}M{}S{}'.format(k_folds,lr,datetime.datetime.today().day,datetime.datetime.today().month,datetime.datetime.today().hour,datetime.datetime.today().minute,datetime.datetime.today().second))
+    # final_path = os.path.join(path_to_results,'CattleNetContrastive_folds{}_lr{}_BCE_datetime{}-{}H{}M{}S{}'.format(k_folds,lr,datetime.datetime.today().day,datetime.datetime.today().month,datetime.datetime.today().hour,datetime.datetime.today().minute,datetime.datetime.today().second))
     # os.mkdir(final_path)
 
     for i in range(0,k_folds):
