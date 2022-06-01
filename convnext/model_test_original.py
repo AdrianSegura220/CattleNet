@@ -39,10 +39,10 @@ def test_thresholds(test_dataset: CustomImageDatasetBCE, model_directory: str = 
     avg_precision_to_reduce = [0 for i in range(0,len(thresholds))]
     avg_recall_to_reduce = [0 for i in range(0,len(thresholds))]
     avg_balancedacc_to_reduce = [0 for i in range(0,len(thresholds))]
-    avg_tp = 0
-    avg_tn = 0
-    avg_fp = 0
-    avg_fn = 0
+    avg_tp = [0 for i in range(0,len(thresholds))]
+    avg_tn = [0 for i in range(0,len(thresholds))]
+    avg_fp = [0 for i in range(0,len(thresholds))]
+    avg_fn = [0 for i in range(0,len(thresholds))]
     accuracy = 0
 
     if is_load_model:
@@ -72,10 +72,10 @@ def test_thresholds(test_dataset: CustomImageDatasetBCE, model_directory: str = 
                 false_positives = sum([1 if (l == 0 and classifications[i] == 1) else 0 for i,l in enumerate(labels)])
                 false_negatives = sum([1 if (l == 1 and classifications[i] == 0) else 0 for i,l in enumerate(labels)])
                 
-                avg_tp += true_positives
-                avg_tn += true_negatives
-                avg_fp += false_positives
-                avg_fn += false_negatives
+                avg_tp[i] += true_positives
+                avg_tn[i] += true_negatives
+                avg_fp[i] += false_positives
+                avg_fn[i] += false_negatives
 
                 if true_positives + false_positives > 0:
                     precision = true_positives/(true_positives + false_positives)
@@ -136,10 +136,10 @@ def test_thresholds(test_dataset: CustomImageDatasetBCE, model_directory: str = 
             avg_recall[i] /= batches-avg_recall_to_reduce[i]
             avg_balanced_acc[i] /= batches-avg_balancedacc_to_reduce[i]
         
-        avg_tp /= batches
-        avg_tn /= batches
-        avg_fp /= batches
-        avg_fn /= batches
+            avg_tp[i] /= batches
+            avg_tn[i] /= batches
+            avg_fp[i] /= batches
+            avg_fn[i] /= batches
         print('Avg tp: {}'.format(avg_tp))
         print('Avg tn: {}'.format(avg_tn))
         print('Avg fp: {}'.format(avg_fp))
