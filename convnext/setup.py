@@ -1,5 +1,7 @@
 from __future__ import print_function
 from __future__ import division
+import sys
+sys.path.insert(0,'..')
 from turtle import forward
 from torchvision import datasets, models, transforms 
 from torchvision import datasets, transforms as T
@@ -48,7 +50,7 @@ batch_size = 8
 num_epochs = 40
 n_shot = 15
 k_folds = 8
-thresholds_to_test = [0.1,0.25,0.5,0.75,0.85,0.9]
+thresholds_to_test = [0.1,0.25,0.4,0.5,0.6]
 
 wandb.config = {
   "learning_rate": lr,
@@ -167,7 +169,7 @@ if loadtest:
 else:
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     final_path = os.path.join(path_to_results,'CattleNetContrastive_folds{}_lr{}_BCE_datetime{}-{}H{}M{}S{}'.format(k_folds,lr,datetime.datetime.today().day,datetime.datetime.today().month,datetime.datetime.today().hour,datetime.datetime.today().minute,datetime.datetime.today().second))
-    os.mkdir(final_path)
+    # os.mkdir(final_path)
 
     for i in range(0,k_folds):
         # instantiate SNN model
