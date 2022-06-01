@@ -36,6 +36,9 @@ def test_thresholds(test_dataset: CustomImageDatasetBCE, model_directory: str = 
     avg_precision = [0.0 for i in range(0,len(thresholds))] 
     avg_recall = [0.0 for i in range(0,len(thresholds))]
     avg_balanced_acc = [0.0 for i in range(0,len(thresholds))]
+    avg_precision_to_reduce = [0 for i in range(0,len(thresholds))]
+    avg_recall_to_reduce = [0 for i in range(0,len(thresholds))]
+    avg_balancedacc_to_reduce = [0 for i in range(0,len(thresholds))]
     accuracy = 0
 
     if is_load_model:
@@ -64,15 +67,26 @@ def test_thresholds(test_dataset: CustomImageDatasetBCE, model_directory: str = 
                 true_negatives = sum([1 if (l == 0 and classifications[i] == 0) else 0 for i,l in enumerate(labels)])
                 false_positives = sum([1 if (l == 0 and classifications[i] == 1) else 0 for i,l in enumerate(labels)])
                 false_negatives = sum([1 if (l == 1 and classifications[i] == 0) else 0 for i,l in enumerate(labels)])
-                print(true_positives)
-                print(true_negatives)
-                print(false_positives)
-                print(false_negatives)
-                exit()
-                precision = true_positives/(true_positives + false_positives)
-                recall = true_positives/(true_positives + false_negatives)
-                true_negative_rate = true_negatives/(false_positives+true_negatives)
-                balanced_acc = (recall+true_negative_rate)/2
+                
+                if true_positives + false_positives > 0:
+                    precision = true_positives/(true_positives + false_positives)
+                else:
+                    precision = -1
+                
+                if true_positives + false_negatives > 0:
+                    recall = true_positives/(true_positives + false_negatives)
+                else:
+                    recall = -1
+
+                if false_positives + true_negatives > 0:
+                    true_negative_rate = true_negatives/(false_positives+true_negatives)
+                else:
+                    true_negative_rate = -1
+
+                if recall != -1 and true_negative_rate != -1:
+                    balanced_acc = (recall+true_negative_rate)/2
+                else:
+                    balanced_acc = -1
                 # accuracy = temp_result.sum(1)/classifications.size()[0]
                 stats[i] = {
                     'precision': precision,
@@ -81,18 +95,30 @@ def test_thresholds(test_dataset: CustomImageDatasetBCE, model_directory: str = 
                 }
 
             for i,s in enumerate(stats): # so for each distance threhold recorded result add the value and at the end divide by total no. batches
-                avg_precision[i] += s['precision']
-                avg_recall[i] += s['recall']
-                avg_balanced_acc[i] += s['balanced_accuracy']
+                if s['precision'] != -1:
+                    avg_precision[i] += s['precision']
+                else:
+                    avg_precision_to_reduce[i] += 1
+
+                if s['recall'] != -1:
+                    avg_recall[i] += s['recall']
+                else:
+                    avg_recall_to_reduce[i] += 1
+
+                if s['balanced_accuracy'] != -1:
+                    avg_balanced_acc[i] += s['balanced_accuracy']
+                else:
+                    avg_balancedacc_to_reduce[i] += 1
+                
         
         """
             for each accumulated statistic for each distance threshold, divide by the amount of batches to calculate
             the average precision, recall and balanced_acc using such distance threshold
         """
         for i in range(0,len(thresholds)):
-            avg_precision[i] /= batches
-            avg_recall[i] /= batches
-            avg_balanced_acc[i] /= batches
+            avg_precision[i] /= batches-avg_precision_to_reduce[i]
+            avg_recall[i] /= batches-avg_recall_to_reduce[i]
+            avg_balanced_acc[i] /= batches-avg_balancedacc_to_reduce[i]
 
         """
             return results in form of a dictionary containing avg values for precision, recall and balanced accuracy for
