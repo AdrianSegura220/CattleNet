@@ -43,6 +43,9 @@ def test_thresholds(test_dataset: CustomImageDatasetBCE, model_directory: str = 
     avg_tn = [0 for i in range(0,len(thresholds))]
     avg_fp = [0 for i in range(0,len(thresholds))]
     avg_fn = [0 for i in range(0,len(thresholds))]
+    zero_recall = [0 for i in range(0,len(thresholds))]
+    zero_precision = [0 for i in range(0,len(thresholds))]
+    zero_acc = [0 for i in range(0,len(thresholds))]
     accuracy = 0
 
     if is_load_model:
@@ -81,11 +84,13 @@ def test_thresholds(test_dataset: CustomImageDatasetBCE, model_directory: str = 
                     precision = true_positives/(true_positives + false_positives)
                 else:
                     precision = -1
+                    zero_precision[i] += 1
                 
                 if true_positives + false_negatives > 0:
                     recall = true_positives/(true_positives + false_negatives)
                 else:
                     recall = -1
+                    zero_recall[i] += 1
 
                 if false_positives + true_negatives > 0:
                     true_negative_rate = true_negatives/(false_positives+true_negatives)
@@ -96,6 +101,7 @@ def test_thresholds(test_dataset: CustomImageDatasetBCE, model_directory: str = 
                     balanced_acc = (recall+true_negative_rate)/2
                 else:
                     balanced_acc = -1
+                    zero_acc[i] += 1
                 # accuracy = temp_result.sum(1)/classifications.size()[0]
                 stats[i] = {
                     'precision': precision,
@@ -140,10 +146,13 @@ def test_thresholds(test_dataset: CustomImageDatasetBCE, model_directory: str = 
             avg_tn[i] /= batches
             avg_fp[i] /= batches
             avg_fn[i] /= batches
-        print('Avg tp: {}'.format(avg_tp))
-        print('Avg tn: {}'.format(avg_tn))
-        print('Avg fp: {}'.format(avg_fp))
-        print('Avg fn: {}'.format(avg_fn))
+        # print('Avg tp: {}'.format(avg_tp))
+        # print('Avg tn: {}'.format(avg_tn))
+        # print('Avg fp: {}'.format(avg_fp))
+        # print('Avg fn: {}'.format(avg_fn))
+        print('Zero precision: {}'.format(zero_precision))
+        print('Zero recall: {}'.format(zero_recall))
+        print('Zero acc: {}'.format(zero_acc))
 
         """
             return results in form of a dictionary containing avg values for precision, recall and balanced accuracy for
