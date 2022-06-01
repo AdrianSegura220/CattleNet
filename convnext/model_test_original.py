@@ -47,7 +47,7 @@ def test_thresholds(test_dataset: CustomImageDatasetBCE, model_directory: str = 
             batches += 1
             anchor = data[0].to(device)
             images = data[1].to(device)
-            labels = data[2]
+            labels = data[2].to(device)
 
             # forward pass using anchor and images
             anchor_res,images_res = model(anchor,images)
@@ -58,8 +58,8 @@ def test_thresholds(test_dataset: CustomImageDatasetBCE, model_directory: str = 
                 Iterate through each threshold and save stats
             """
             for i,d in enumerate(thresholds):
-                classifications = (distances_sq < d).float().to(device) # use broadcasting to discern for each difference whether it is smaller than d => mark it as same image 
-                temp_result = (classifications == labels).float().to(device) # for each element, decide whether they are match the actual labels
+                classifications = (distances_sq < d).float() # use broadcasting to discern for each difference whether it is smaller than d => mark it as same image 
+                temp_result = (classifications == labels).float() # for each element, decide whether they are match the actual labels
                 true_positives = sum([1 if (l == 1 and classifications[i] == 1) else 0 for i,l in enumerate(labels)])
                 true_negatives = sum([1 if (l == 0 and classifications[i] == 0) else 0 for i,l in enumerate(labels)])
                 false_positives = sum([1 if (l == 1 and classifications[i] == 0) else 0 for i,l in enumerate(labels)])
