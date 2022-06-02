@@ -17,8 +17,8 @@ import time
 import os
 import copy
 from torchvision.io import read_image
-from convnext.custom_dataset_bce import CustomImageDatasetBCE
-from custom_dataset_bce import CustomImageDataset_Validation
+# from convnext.custom_dataset_bce import CustomImageDatasetBCE
+from custom_dataset_bce import CustomImageDataset_Validation, CustomImageDatasetBCE
 from torch.utils.data import DataLoader
 from cattleNetTest_v3 import CattleNetV3
 from tqdm import tqdm
