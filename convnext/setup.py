@@ -28,8 +28,15 @@ from tqdm import tqdm
 from model_test_original import test
 
 
+# save or not model snapshots
+save_models = False
+
+# save or not figures
+save_figs = False
+
 # wandb setup (logging progress to online platform)
 use_wandb = False
+
 if use_wandb:
     wandb.init(project="cattleNet-arch1", entity="adriansegura220")
 
@@ -74,9 +81,12 @@ if use_wandb:
 def train(d_loader,dataset_validation):
     min_loss = 99999999999999.0
     loss = []
+    # arrays to save the best values for model training
     precision = [0.0 for i in range(0,len(thresholds_to_test))]
     recall = [0.0 for i in range(0,len(thresholds_to_test))]
     balanced_acc = [0.0 for i in range(0,len(thresholds_to_test))]
+    f_score = [0.0 for i in range(0,len(thresholds_to_test))]
+
     accuracy = []
     epoch_acc = 0.0
     counter = []
@@ -84,8 +94,9 @@ def train(d_loader,dataset_validation):
     epoch_loss = 0.0
     iterations_loop = 0
     # create directory for current training results
-    # final_path = os.path.join(path_to_results,'CattleNetContrastive_lr{}_BCE_datetime{}-{}H{}M{}S{}'.format(lr,datetime.datetime.today().day,datetime.datetime.today().month,datetime.datetime.today().hour,datetime.datetime.today().minute,datetime.datetime.today().second))
-    # os.mkdir(final_path)
+    if save_models or save_figs:
+        final_path = os.path.join(path_to_results,'CattleNetContrastive_lr{}_BCE_datetime{}-{}H{}M{}S{}'.format(lr,datetime.datetime.today().day,datetime.datetime.today().month,datetime.datetime.today().hour,datetime.datetime.today().minute,datetime.datetime.today().second))
+        os.mkdir(final_path)
 
     for epoch in range(1,num_epochs):
         loop = tqdm(d_loader,leave=False,total=len(d_loader))
@@ -152,7 +163,12 @@ def train(d_loader,dataset_validation):
                 "Avg. recall d=0.25": validation_results['avg_recall'][1],
                 "Avg. recall d=0.4": validation_results['avg_recall'][2],
                 "Avg. recall d=0.5": validation_results['avg_recall'][3],
-                "Avg. recall d=0.6": validation_results['avg_recall'][4]
+                "Avg. recall d=0.6": validation_results['avg_recall'][4],
+                "Avg. avg_f1-score d=0.1": validation_results['avg_f1-score'][0],
+                "Avg. avg_f1-score d=0.25": validation_results['avg_f1-score'][1],
+                "Avg. avg_f1-score d=0.4": validation_results['avg_f1-score'][2],
+                "Avg. avg_f1-score d=0.5": validation_results['avg_f1-score'][3],
+                "Avg. avg_f1-score d=0.6": validation_results['avg_f1-score'][4]
             })
 
         # 0.1,0.25,0.4,0.5,0.6
@@ -162,23 +178,32 @@ def train(d_loader,dataset_validation):
         print('Epoch avg balanced accuracy: {}'.format(validation_results['avg_balanced_acc']))
 
         """
-            CONTINUE HERE: decide how to display or save the statistics
+            Add obtained statistic, in order to average it at the very end, also
+            save the best performing statistic for each. Use an exponential moving
+            average to give bigger weight to latest results, because initial epochs
+            might make the average seem low because of low performing starting values.
+            NOTE: implement F1 score too
         """
         for d in range(0,len(thresholds_to_test)):
-            precision[i] = validation_results['avg_precision'][i]
-            recall[i] = validation_results['avg_recall'][i]
-            balanced_acc[i] = validation_results['avg_balanced_acc'][i]
+            precision[d] = validation_results['avg_precision'][d]
+            recall[d] = validation_results['avg_recall'][d]
+            # if there is a new best max value, then update these
+            # we do not update precision and recall in that way, because separately they are not that meaningfull
+            balanced_acc[d] = validation_results['avg_balanced_acc'][d] if balanced_acc[d] < validation_results['avg_balanced_acc'][d] else balanced_acc[d]
+            f_score[d] = validation_results['avg_f1-score'][d] if f_score[d] < validation_results['avg_f1-score'][d] else f_score[d]
 
         # save model and result every 10 epochs
         if epoch % 10 == 0:
-            # save_figures(iteration_number,counter,loss,final_path,epoch,epoch_loss,curr_lr,accuracy,epoch_acc)
+            if save_figs:
+                save_figures(iteration_number,counter,loss,final_path,epoch,epoch_loss,curr_lr,accuracy,epoch_acc)
+            
             #save model state up to this epoch
-            if epoch_loss < min_loss:
+            if save_models and epoch_loss < min_loss:
                 min_loss = epoch_loss
                 torch.save(model.state_dict(), os.path.join(final_path,"epoch{}_loss{}_lr{}_maxAvgBalancedAcc{}.pt".format(epoch,epoch_loss,curr_lr,max(validation_results['avg_balanced_acc']))))
     
-    
-    return model
+    # return model and the best values for balanced accuracy and also for f-score
+    return model,balanced_acc,f_score
 
 def save_figures(iteration_number,counter,loss,final_path,epoch,epoch_loss,curr_lr,accuracy,epoch_acc):
     plt.plot(counter,loss)
@@ -198,11 +223,14 @@ else:
     # final_path = os.path.join(path_to_results,'CattleNetContrastive_folds{}_lr{}_BCE_datetime{}-{}H{}M{}S{}'.format(k_folds,lr,datetime.datetime.today().day,datetime.datetime.today().month,datetime.datetime.today().hour,datetime.datetime.today().minute,datetime.datetime.today().second))
     # os.mkdir(final_path)
 
+    # create arrays to keep track of these performance values for each threshold tested
+    balanced_acc = [0.0 for i in range(0,len(thresholds_to_test))]
+    f_score = [0.0 for i in range(0,len(thresholds_to_test))]
+
     for i in range(0,k_folds):
         # instantiate SNN model
         model = CattleNet(freezeLayers=True)
         model.to(device)
-
         # loss function
         criterion = ContrastiveLoss()
 
@@ -217,7 +245,48 @@ else:
         data_loader = DataLoader(dataset_training, batch_size=batch_size, shuffle=True)
         model.train()
         print("Starting training")
-        model = train(d_loader=data_loader,dataset_validation=dataset_validation)
-        break # want to do the run once temporarily
+        model,res_balanced_acc,res_f_score = train(d_loader=data_loader,dataset_validation=dataset_validation)
+
+        for j in range(0,len(thresholds_to_test)):
+            # add to compute average at the end
+            balanced_acc[j] += res_balanced_acc[j]
+            f_score[j] += res_f_score[j]
+            if use_wandb:
+                wandb.log({
+                    "Best result balanced accuracy for d={}".format(thresholds_to_test[j]): res_balanced_acc[j],
+                    "Best result f-score for d={}".format(thresholds_to_test[j]): res_f_score[j]
+                })
+        
+    argmx_acc = 0
+    max_acc = 0
+    argmx_fscore = 0
+    max_fscore = 0
+
+    """
+        Calculate averages of all folds and select indices of distances with highest
+        balanced accuracy and highest f-scores
+    """
+    for i in range(0,len(thresholds_to_test)):
+        balanced_acc[i] /= k_folds
+        if balanced_acc[i] > max_acc:
+            max_acc = balanced_acc[i]
+            argmx_acc = i
+        
+        f_score[i] /= k_folds
+        if f_score[i] > max_fscore:
+            max_fscore = f_score[i]
+            argmx_fscore = i
+
+    print("Best distance threshold based on balanced acc {}-folds: d = {}".format(k_folds,thresholds_to_test[argmx_acc]))
+    print("Best distance threshold based on F1-score {}-folds: d = {}".format(k_folds,thresholds_to_test[argmx_fscore]))
+
+    if use_wandb:
+        wandb.log({
+            "Best distance threshold based on balanced acc {}-folds".format(k_folds): thresholds_to_test[argmx_acc],
+            "Best distance threshold based on f1-score {}-folds".format(k_folds): thresholds_to_test[argmx_fscore]
+        })
+        
+        # 0.1,0.25,0.4,0.5,0.6
+        
     # torch.save(model.state_dict(), "model_sequential_isGoodMaybe2_{}.pt".format())
     print("Model Saved Successfully") 
