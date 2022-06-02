@@ -193,3 +193,42 @@ class CustomImageDataset_Validation(Dataset):
 
 
         return anchor,final_images,labels
+
+
+class OneShotImageDataset(Dataset):
+    def __init__(self,img_dir, transform=None, target_transform=None,annotations_csv = 'validation_annotations.csv'):
+        self.img_labels = pd.read_csv(annotations_csv)
+        self.img_dir = img_dir
+        self.transform = transform
+        self.counts = {}
+        self.countPerSample()
+        self.target_transform = target_transform
+
+
+    """
+        Have count of how many images exist per label
+    """
+    def countPerSample(self):
+        for i in range(0,self.__len__()):
+            if self.img_labels.iloc[i,2] in self.counts:
+                self.counts[self.img_labels.iloc[i,2]][0] += 1
+            else:
+                self.counts[self.img_labels.iloc[i,2]] = [0,i] # add a list of two elements (first element saying count of elements and second saying starting index of such label)
+
+    def __len__(self):
+        return len(self.img_labels)-1
+
+
+    """
+        Simply gets a signle image and its label
+        We want this, because the aim is to store all the embeddings externally in the one-shot testing function in
+        an array. This dataset object is just meant to feed a normal stream of pictures and their respective labels.
+    """
+    def __getitem__(self, idx):
+        img = (read_image(os.path.join(self.img_dir, self.img_labels.iloc[idx, 1])).float())/255.0
+        label = self.img_labels.iloc[idx, 2]
+
+        if self.transform:
+            img = self.transform(img)
+
+        return img,label

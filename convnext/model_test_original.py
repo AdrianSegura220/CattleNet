@@ -182,6 +182,15 @@ def test_thresholds(test_dataset: CustomImageDatasetBCE, model_directory: str = 
             'avg_f1-score': avg_fscore
         }
 
+"""
+    In this function, the one-shot classification capacity of the model is tested.
+    To do this, we first calculate the embeddings for all the dataset, store them in a
+    dictionary for each class. Then for each of the classes, we select one of its images at random
+    as anchor for the test, we then select an image of all classes (including the same of the anchor,
+    but a different image). Once we do this, we use our defined distance threshold.
+"""
+def one_shot_test():
+    pass
 
 """
     Description:

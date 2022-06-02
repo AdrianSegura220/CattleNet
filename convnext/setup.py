@@ -18,7 +18,7 @@ import time
 import datetime
 import os
 import copy
-from convnext.model_test_original import test_thresholds
+from model_test_original import test_thresholds
 from custom_dataset_bce import CustomImageDataset_Validation, CustomImageDatasetBCE
 import wandb
 from custom_dataset import CustomImageDataset
