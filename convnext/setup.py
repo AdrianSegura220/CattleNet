@@ -29,13 +29,13 @@ from model_test_original import test
 
 
 # save or not model snapshots
-save_models = False
+save_models = True
 
 # save or not figures
 save_figs = False
 
 # wandb setup (logging progress to online platform)
-use_wandb = False
+use_wandb = True
 
 if use_wandb:
     wandb.init(project="cattleNet-arch1", entity="adriansegura220")
@@ -56,7 +56,7 @@ step_lr = 10
 lr=1e-3
 in_channel = 3
 batch_size = 8
-num_epochs = 3
+num_epochs = 40
 n_shot = 15
 k_folds = 8
 thresholds_to_test = [0.1,0.25,0.4,0.5,0.6]
@@ -228,7 +228,7 @@ else:
     balanced_acc = [0.0 for i in range(0,len(thresholds_to_test))]
     f_score = [0.0 for i in range(0,len(thresholds_to_test))]
 
-    for i in range(0,2):
+    for i in range(0,k_folds):
         # instantiate SNN model
         model = CattleNet(freezeLayers=True)
         model.to(device)
