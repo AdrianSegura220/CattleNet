@@ -106,7 +106,7 @@ def test_thresholds(test_dataset: CustomImageDatasetBCE, model_directory: str = 
                     balanced_acc = -1
                     zero_acc[i] += 1
 
-                if recall != -1 and precision != -1:
+                if recall != -1 and precision != -1 and recall > 0.0001 and precision > 0.0001:
                     fscore = 2*recall*precision/(precision+recall)
                 else:
                     fscore = -1
