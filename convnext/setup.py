@@ -56,7 +56,7 @@ step_lr = 10
 lr=1e-3
 in_channel = 3
 batch_size = 8
-num_epochs = 40
+num_epochs = 2
 n_shot = 15
 k_folds = 8
 thresholds_to_test = [0.1,0.25,0.4,0.5,0.6]
@@ -176,6 +176,7 @@ def train(d_loader,dataset_validation):
         print('Epoch avg precision: {}'.format(validation_results['avg_precision']))
         print('Epoch avg recall: {}'.format(validation_results['avg_recall']))
         print('Epoch avg balanced accuracy: {}'.format(validation_results['avg_balanced_acc']))
+        print('Epoch avg f-score: {}'.format(validation_results['avg_f1-score']))
 
         """
             Add obtained statistic, in order to average it at the very end, also
@@ -227,7 +228,7 @@ else:
     balanced_acc = [0.0 for i in range(0,len(thresholds_to_test))]
     f_score = [0.0 for i in range(0,len(thresholds_to_test))]
 
-    for i in range(0,k_folds):
+    for i in range(0,2):
         # instantiate SNN model
         model = CattleNet(freezeLayers=True)
         model.to(device)
