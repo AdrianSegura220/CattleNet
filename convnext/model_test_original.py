@@ -201,7 +201,7 @@ def one_shot_test(test_dataset: OneShotImageDataset,model,threshold):
 
     # generate all the embeddings and store them
     for data in data_loader:
-        print(data[1])
+        print(int(data[1]))
         exit()
         if data[1] not in images:
             images[data[1]] = []
