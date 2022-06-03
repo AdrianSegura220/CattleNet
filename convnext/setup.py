@@ -1,6 +1,8 @@
 from __future__ import print_function
 from __future__ import division
 import sys
+
+from convnext.custom_dataset_bce import OneShotImageDataset
 sys.path.insert(0,'..')
 from turtle import forward
 from torchvision import datasets, models, transforms 
@@ -135,7 +137,7 @@ def train(d_loader,dataset_validation):
         with torch.no_grad():
             # epoch_acc = test(dataset_validation,n=n_shot,model=model,is_load_model=False)
             validation_results = test_thresholds(dataset_validation,thresholds=thresholds_to_test,model=model)
-            one_shot = one_shot_test(dataset_validation,model,0.5)
+            one_shot = one_shot_test(dataset_one_shot,model,0.5)
             """
                 validation results returns an array with results for each distance threshold
                 e.g. given 3 thresholds to test: [0.1,0.3,0.5], then for each statistic (precision,recall and balanced acc)
@@ -245,6 +247,7 @@ else:
 
         dataset_training = CustomImageDatasetBCE(img_dir='../../dataset/Raw/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225]),transforms.Resize((240,240))]),annotations_csv='./training_testing_folds/training_annotations_fold{}.csv'.format(i))
         dataset_validation = CustomImageDatasetBCE(img_dir='../../dataset/Raw/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225]),transforms.Resize((240,240))]),annotations_csv='./training_testing_folds/validation_annotations_fold{}.csv'.format(i))
+        dataset_one_shot = OneShotImageDataset(img_dir='../../dataset/Raw/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225]),transforms.Resize((240,240))]))
         data_loader = DataLoader(dataset_training, batch_size=batch_size, shuffle=True)
         model.train()
         print("Starting training")
