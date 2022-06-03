@@ -202,7 +202,7 @@ def one_shot_test(test_dataset: OneShotImageDataset,model,threshold):
     # generate all the embeddings and store them
     for data in data_loader:
         if int(data[1]) not in images:
-            print(int(data[1]))
+            # print(int(data[1]))
             images[int(data[1])] = []
             
         img = data[0].to(device)
@@ -210,7 +210,7 @@ def one_shot_test(test_dataset: OneShotImageDataset,model,threshold):
         images[int(data[1])].append(out)
 
     print(len(images.keys()))
-    exit()
+    # exit()
     for j,k in enumerate(images.keys()):
         if len(images[k]) > 1:
             anchor_idx = random.randint(0,len(images[k])-1)
