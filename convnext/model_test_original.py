@@ -232,10 +232,11 @@ def one_shot_test(test_dataset: OneShotImageDataset,model,threshold):
             # rest
             # we have to subtract the anchor from the large tensor e.g. rest-anchor to use advantage of broadcasting
             differences = torch.sub(rest,anchor).pow(2).sum(1)
+            print('actual idx: ',j)
             print(differences)
             print(differences.size())
             results = (differences < threshold).float()
-            print(results.size())
+            # print(results.size())
             # exit()
             # selected = torch.argmin(differences)
             if results[j] == 1.0 and results.sum(0) == 1:
