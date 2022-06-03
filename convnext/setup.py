@@ -2,7 +2,7 @@ from __future__ import print_function
 from __future__ import division
 import sys
 
-from convnext.custom_dataset_bce import OneShotImageDataset
+
 sys.path.insert(0,'..')
 from turtle import forward
 from torchvision import datasets, models, transforms 
@@ -21,7 +21,7 @@ import datetime
 import os
 import copy
 from model_test_original import test_thresholds,one_shot_test
-from custom_dataset_bce import CustomImageDataset_Validation, CustomImageDatasetBCE
+from custom_dataset_bce import CustomImageDataset_Validation, CustomImageDatasetBCE, OneShotImageDataset
 import wandb
 from custom_dataset import CustomImageDataset
 from torch.utils.data import DataLoader
