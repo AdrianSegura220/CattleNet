@@ -212,7 +212,7 @@ def one_shot_test(test_dataset: OneShotImageDataset,model,threshold):
         if len(images[k]) > 1:
             anchor_idx = random.randint(0,len(images[k])-1)
             anchor = images[k][anchor_idx].to(device) # select anchor
-            rest = torch.Tensor(len(images.keys()),4096)
+            rest = torch.Tensor(len(images.keys()),4096).to(device)
             for i,k2 in enumerate(images.keys()):
                 idx = random.randint(0,len(images[k2])-1) # some random idx for current class
                 if i == j:
@@ -221,14 +221,14 @@ def one_shot_test(test_dataset: OneShotImageDataset,model,threshold):
                     while idx == anchor_idx:
                         idx = random.randint(0,len(images[k])-1) # assign a positive example image that is not the same as the anchor
                     
-                    rest[i] = images[k][idx]
+                    rest[i] = images[k][idx].to(device)
 
                 else:
-                    rest[i] = images[k2][idx]
+                    rest[i] = images[k2][idx].to(device)
             
-            rest.to(device)
+            # rest
             # we have to subtract the anchor from the large tensor e.g. rest-anchor to use advantage of broadcasting
-            differences = torch.sub(rest,anchor).to(device).pow(2).sum(1)
+            differences = torch.sub(rest,anchor).pow(2).sum(1)
             results = (differences < threshold).float()
 
             # selected = torch.argmin(differences)
