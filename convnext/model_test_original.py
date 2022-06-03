@@ -190,7 +190,7 @@ def test_thresholds(test_dataset: CustomImageDatasetBCE, model_directory: str = 
     as anchor for the test, we then select an image of all classes (including the same of the anchor,
     but a different image). Once we do this, we use our defined distance threshold.
 """
-def one_shot_test(test_dataset: OneShotImageDataset,model,threshold):
+def one_shot_test(test_dataset: OneShotImageDataset,model,threshold,use_argmin):
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     data_loader = DataLoader(test_dataset,batch_size=1)
     correct = 0
@@ -238,11 +238,17 @@ def one_shot_test(test_dataset: OneShotImageDataset,model,threshold):
             results = (differences < threshold).float()
             # print(results.size())
             # exit()
-            # selected = torch.argmin(differences)
-            if results[j] == 1.0 and results.sum(0) == 1:
-                correct += 1
-            else:
-                incorrect += 1
+            if use_argmin:
+                selected = torch.argmin(differences)
+                if selected == j:
+                    correct += 1
+                else:
+                    incorrect += 1
+            else:  
+                if results[j] == 1.0 and results.sum(0) == 1:
+                    correct += 1
+                else:
+                    incorrect += 1
         else:
             continue
 
