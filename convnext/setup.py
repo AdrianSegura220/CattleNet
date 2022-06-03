@@ -18,7 +18,7 @@ import time
 import datetime
 import os
 import copy
-from model_test_original import test_thresholds
+from model_test_original import test_thresholds,one_shot_test
 from custom_dataset_bce import CustomImageDataset_Validation, CustomImageDatasetBCE
 import wandb
 from custom_dataset import CustomImageDataset
@@ -135,6 +135,7 @@ def train(d_loader,dataset_validation):
         with torch.no_grad():
             # epoch_acc = test(dataset_validation,n=n_shot,model=model,is_load_model=False)
             validation_results = test_thresholds(dataset_validation,thresholds=thresholds_to_test,model=model)
+            one_shot = one_shot_test(dataset_validation,model,0.5)
             """
                 validation results returns an array with results for each distance threshold
                 e.g. given 3 thresholds to test: [0.1,0.3,0.5], then for each statistic (precision,recall and balanced acc)
@@ -177,6 +178,7 @@ def train(d_loader,dataset_validation):
         print('Epoch avg recall: {}'.format(validation_results['avg_recall']))
         print('Epoch avg balanced accuracy: {}'.format(validation_results['avg_balanced_acc']))
         print('Epoch avg f-score: {}'.format(validation_results['avg_f1-score']))
+        print('Epoch one-shot accuracy: {}'.format(one_shot))
 
         """
             Add obtained statistic, in order to average it at the very end, also
