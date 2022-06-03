@@ -18,7 +18,7 @@ import os
 import copy
 from torchvision.io import read_image
 # from convnext.custom_dataset_bce import CustomImageDatasetBCE
-from custom_dataset_bce import CustomImageDataset_Validation, CustomImageDatasetBCE
+from custom_dataset_bce import CustomImageDataset_Validation, CustomImageDatasetBCE, OneShotImageDataset
 from torch.utils.data import DataLoader
 from cattleNetTest_v3 import CattleNetV3
 from tqdm import tqdm
@@ -189,8 +189,12 @@ def test_thresholds(test_dataset: CustomImageDatasetBCE, model_directory: str = 
     as anchor for the test, we then select an image of all classes (including the same of the anchor,
     but a different image). Once we do this, we use our defined distance threshold.
 """
-def one_shot_test():
+def one_shot_test(test_dataset: OneShotImageDataset,):
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    data_loader = DataLoader(test_dataset,batch_size=1)
+    
     pass
+    
 
 """
     Description:
