@@ -208,6 +208,8 @@ def one_shot_test(test_dataset: OneShotImageDataset,model,threshold):
         out,dummy = model(img,img)
         images[int(data[1])].append(out)
 
+    print(len(images.keys()))
+    exit()
     for j,k in enumerate(images.keys()):
         if len(images[k]) > 1:
             anchor_idx = random.randint(0,len(images[k])-1)
@@ -233,7 +235,7 @@ def one_shot_test(test_dataset: OneShotImageDataset,model,threshold):
             print(differences.size())
             results = (differences < threshold).float()
             print(results.size())
-            exit()
+            # exit()
             # selected = torch.argmin(differences)
             if results[j] == 1.0 and results.sum(0) == 1:
                 correct += 1
