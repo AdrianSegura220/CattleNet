@@ -207,31 +207,34 @@ def one_shot_test(test_dataset: OneShotImageDataset,model,threshold):
         images[data[1]].append(out)
 
     for j,k in enumerate(images.keys()):
-        anchor_idx = random.randint(0,len(images[k])-1)
-        anchor = images[k][anchor_idx] # select anchor
-        rest = torch.Tensor(len(images.keys()),4096,1)
-        for i,k2 in enumerate(images.keys()):
-            idx = random.randint(0,len(images[k2])-1) # some random idx for current class
-            if i == j:
-                # select positive example
-                idx = random.randint(0,len(images[k])-1)
-                while idx == anchor_idx:
-                    idx = random.randint(0,len(images[k])-1) # assign a positive example image that is not the same as the anchor
-                
-                rest[i] = images[k][idx]
+        if len(images[k]) > 1:
+            anchor_idx = random.randint(0,len(images[k])-1)
+            anchor = images[k][anchor_idx] # select anchor
+            rest = torch.Tensor(len(images.keys()),4096,1)
+            for i,k2 in enumerate(images.keys()):
+                idx = random.randint(0,len(images[k2])-1) # some random idx for current class
+                if i == j:
+                    # select positive example
+                    idx = random.randint(0,len(images[k])-1)
+                    while idx == anchor_idx:
+                        idx = random.randint(0,len(images[k])-1) # assign a positive example image that is not the same as the anchor
+                    
+                    rest[i] = images[k][idx]
 
+                else:
+                    rest[i] = images[k2][idx]
+            
+            # we have to subtract the anchor from the large tensor e.g. rest-anchor to use advantage of broadcasting
+            differences = torch.sub(rest,anchor).pow(2).sum(1)
+            results = (differences < threshold).float()
+
+            # selected = torch.argmin(differences)
+            if results[j] == 1.0 and results.sum(0) == 1:
+                correct += 1
             else:
-                rest[i] = images[k2][idx]
-        
-        # we have to subtract the anchor from the large tensor e.g. rest-anchor to use advantage of broadcasting
-        differences = torch.sub(rest,anchor).pow(2).sum(1)
-        results = (differences < threshold).float()
-
-        # selected = torch.argmin(differences)
-        if results[j] == 1.0 and results.sum(0) == 1:
-            correct += 1
+                incorrect += 1
         else:
-            incorrect += 1
+            continue
 
     return correct/(correct+incorrect)
     
