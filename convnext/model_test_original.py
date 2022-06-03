@@ -212,7 +212,7 @@ def one_shot_test(test_dataset: OneShotImageDataset,model,threshold):
         if len(images[k]) > 1:
             anchor_idx = random.randint(0,len(images[k])-1)
             anchor = images[k][anchor_idx] # select anchor
-            rest = torch.Tensor(len(images.keys()),4096,1)
+            rest = torch.Tensor(len(images.keys()),4096)
             for i,k2 in enumerate(images.keys()):
                 idx = random.randint(0,len(images[k2])-1) # some random idx for current class
                 if i == j:
