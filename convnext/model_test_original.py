@@ -221,12 +221,7 @@ def one_shot_test(test_dataset: OneShotImageDataset,model,threshold,use_argmin):
                     while idx == anchor_idx:
                         idx = random.randint(0,len(images[k])-1) # assign a positive example image that is not the same as the anchor
                     
-                    print(torch.all(images[k][idx].to(device) == images[k2][idx].to(device)))
-                    exit()
-                    # rest[i] = images[k][idx].to(device)
-                    # print(rest[])
-                else:
-                    rest[i] = images[k2][idx].to(device)
+                rest[i] = images[k2][idx].to(device) # assign selected image from specific label
             
             # rest
             # we have to subtract the anchor from the large tensor e.g. rest-anchor to use advantage of broadcasting
