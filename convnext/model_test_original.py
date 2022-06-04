@@ -221,8 +221,10 @@ def one_shot_test(test_dataset: OneShotImageDataset,model,threshold,use_argmin):
                     while idx == anchor_idx:
                         idx = random.randint(0,len(images[k])-1) # assign a positive example image that is not the same as the anchor
                     
-                    rest[i] = images[k][idx].to(device)
-
+                    print(images[k][idx].to(device) == images[k2][idx].to(device))
+                    exit()
+                    # rest[i] = images[k][idx].to(device)
+                    # print(rest[])
                 else:
                     rest[i] = images[k2][idx].to(device)
             
