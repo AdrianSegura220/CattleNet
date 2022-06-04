@@ -228,7 +228,7 @@ def one_shot_test(test_dataset: OneShotImageDataset,model,threshold,use_argmin):
             differences = torch.sub(rest,anchor).pow(2).sum(1)
             results = (differences < threshold).float()
             if use_argmin:
-                print(differences[j])
+                print(differences)
                 print('actual idx: ',j)
                 selected = torch.argmin(differences)
                 print('selected idx: ',selected)
