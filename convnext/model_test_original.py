@@ -210,12 +210,12 @@ def one_shot_test(test_dataset: OneShotImageDataset,model,threshold,use_argmin):
 
     for j,k in enumerate(images.keys()):
         if len(images[k]) > 1:
-            anchor_idx = random.randint(0,len(images[k])-1)
+            anchor_idx = random.randint(0,len(images[k])-1) # select an index of anchor cow label
             anchor = images[k][anchor_idx].to(device) # select anchor
-            rest = torch.Tensor(len(images.keys()),4096).to(device)
+            rest = torch.Tensor(len(images.keys()),4096).to(device) # allocate space for all cow classes available
             for i,k2 in enumerate(images.keys()):
                 idx = random.randint(0,len(images[k2])-1) # some random idx for current class
-                if i == j:
+                if i == j: # if we are selecting an image for the same cow as anchor, make sure the image is not the same
                     # select positive example
                     idx = random.randint(0,len(images[k])-1)
                     while idx == anchor_idx:
@@ -229,7 +229,7 @@ def one_shot_test(test_dataset: OneShotImageDataset,model,threshold,use_argmin):
             # rest
             # we have to subtract the anchor from the large tensor e.g. rest-anchor to use advantage of broadcasting
             print(torch.sub(rest,anchor)[-1][:3])
-            differences = torch.sub(rest,anchor)[-1][:3].pow(2).sum(1)
+            differences = torch.sub(rest,anchor)[-1][:3].pow(2).sum(0)
             print(differences[-1][:3])
             print(differences.size())
             exit()
