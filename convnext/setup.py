@@ -60,7 +60,7 @@ lr=1e-3
 in_channel = 3
 batch_size = 32
 num_epochs = 70
-n_shot = 15
+n_shot = 25
 k_folds = 8
 thresholds_to_test = [0.1,0.25,0.4,0.5,0.6]
 
@@ -150,7 +150,7 @@ def train(d_loader,dataset_validation):
             # epoch_acc = test(dataset_validation,n=n_shot,model=model,is_load_model=False)
             # validation_results = test_thresholds(dataset_validation,thresholds=thresholds_to_test,model=model)
             # one_shot = one_shot_test(dataset_one_shot,model,0.5,False,True)
-            epoch_acc = test_cross_entropy(dataset_validation,25,model=model,is_load_model=False)
+            epoch_acc = test_cross_entropy(dataset_validation,n=n_shot,model=model,is_load_model=False)
             """
                 validation results returns an array with results for each distance threshold
                 e.g. given 3 thresholds to test: [0.1,0.3,0.5], then for each statistic (precision,recall and balanced acc)
