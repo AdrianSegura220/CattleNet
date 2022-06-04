@@ -239,7 +239,7 @@ def one_shot_test(test_dataset: OneShotImageDataset,model,threshold,use_argmin,q
                 if results[j] == 1.0 and results.sum(0) == 1:
                     correct += 1
                 else:
-                    if quantify_wrong:
+                    if results[k] == 1.0 and quantify_wrong:
                         print('False positives (falsely taken as same img): ',results.sum(0)-1)
                     incorrect += 1
         else:
