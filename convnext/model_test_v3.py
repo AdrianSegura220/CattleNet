@@ -43,11 +43,6 @@ def test(test_dataset: CustomImageDataset_Validation,n, model_directory: str = '
             anchor = data[0].repeat(n,1,1,1).to(device)
             images = data[1][0].to(device)
             labels = data[2][0]
-
-            print(anchor.size())
-            print(images.size())
-            print(labels.size())
-
             # forward pass using anchor and images
             res = model(anchor,images)
             
