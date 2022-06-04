@@ -240,7 +240,7 @@ def one_shot_test(test_dataset: OneShotImageDataset,model,threshold,use_argmin,q
                     correct += 1
                 else:
                     if quantify_wrong:
-                        print(results.sum(0)-1)
+                        print('False positives (falsely taken as same img): ',results.sum(0)-1)
                     incorrect += 1
         else:
             continue
