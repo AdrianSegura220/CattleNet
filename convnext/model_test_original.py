@@ -228,7 +228,7 @@ def one_shot_test(test_dataset: OneShotImageDataset,model,threshold,use_argmin):
             
             # rest
             # we have to subtract the anchor from the large tensor e.g. rest-anchor to use advantage of broadcasting
-            print(differences[-1])
+            print(torch.sub(rest,anchor)[-1])
             differences = torch.sub(rest,anchor).pow(2)
             print(differences[-1])
             print(differences.size())
