@@ -54,11 +54,11 @@ path_to_results = '../../BachelorsProject/Trainings/'
 
 #hyperparams
 lrDecay = 1
-step_lr = 10
+step_lr = 20
 lr=1e-3
 in_channel = 3
 batch_size = 8
-num_epochs = 40
+num_epochs = 70
 n_shot = 15
 k_folds = 8
 thresholds_to_test = [0.1,0.25,0.4,0.5,0.6]

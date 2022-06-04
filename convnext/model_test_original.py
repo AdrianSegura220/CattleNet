@@ -202,15 +202,12 @@ def one_shot_test(test_dataset: OneShotImageDataset,model,threshold,use_argmin):
     # generate all the embeddings and store them
     for data in data_loader:
         if int(data[1]) not in images:
-            # print(int(data[1]))
             images[int(data[1])] = []
             
         img = data[0].to(device)
         out,dummy = model(img,img)
         images[int(data[1])].append(out)
 
-    print(len(images.keys()))
-    # exit()
     for j,k in enumerate(images.keys()):
         if len(images[k]) > 1:
             anchor_idx = random.randint(0,len(images[k])-1)
@@ -232,18 +229,20 @@ def one_shot_test(test_dataset: OneShotImageDataset,model,threshold,use_argmin):
             # rest
             # we have to subtract the anchor from the large tensor e.g. rest-anchor to use advantage of broadcasting
             differences = torch.sub(rest,anchor).pow(2).sum(1)
-            print('actual idx: ',j)
             print(differences)
             print(differences.size())
             results = (differences < threshold).float()
             # print(results.size())
             # exit()
             if use_argmin:
+                print('actual idx: ',j)
                 selected = torch.argmin(differences)
                 if selected == j:
+                    print('C')
                     correct += 1
                 else:
                     incorrect += 1
+                    print('I')
             else:  
                 if results[j] == 1.0 and results.sum(0) == 1:
                     correct += 1
