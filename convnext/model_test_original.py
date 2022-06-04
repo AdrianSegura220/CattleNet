@@ -212,7 +212,7 @@ def one_shot_test(test_dataset: OneShotImageDataset,model,threshold,use_argmin,q
         if len(images[k]) > 1:
             anchor_idx = random.randint(0,len(images[k])-1) # select an index of anchor cow label
             anchor = images[k][anchor_idx].to(device) # select anchor
-            rest = torch.Tensor(len(images.keys()),4096).to(device) # allocate space for all cow classes available
+            rest = torch.Tensor(len(images.keys()),1024).to(device) # allocate space for all cow classes available
             for i,k2 in enumerate(images.keys()):
                 idx = random.randint(0,len(images[k2])-1) # some random idx for current class
                 if i == j: # if we are selecting an image for the same cow as anchor, make sure the image is not the same
@@ -242,8 +242,6 @@ def one_shot_test(test_dataset: OneShotImageDataset,model,threshold,use_argmin,q
                     if results[j] == 1.0 and quantify_wrong:
                         print('False positives (falsely taken as same img): ',results.sum(0)-1)
                     incorrect += 1
-        else:
-            continue
 
     return correct/(correct+incorrect)
     
