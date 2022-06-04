@@ -63,6 +63,10 @@ n_shot = 15
 k_folds = 8
 thresholds_to_test = [0.1,0.25,0.4,0.5,0.6]
 
+# loss function (true => binary cross entropy, false => contrastive loss)
+cross_entropy_mode = True
+
+
 if use_wandb:
     wandb.config = {
     "learning_rate": lr,
@@ -110,14 +114,21 @@ def train(d_loader,dataset_validation):
             optimizer.zero_grad()
             imgs1 = data[0].to(device)
             imgs2 = data[1].to(device)
-            labels = data[2].to(device)
-            out1,out2 = model(imgs1,imgs2)
-            loss_contrastive = criterion(out1,out2,labels)
-            loss_contrastive.backward()
+            labels = torch.reshape(data[2],(data[2].size()[0],1)).float().to(device)
+
+            if cross_entropy_mode:
+                out = model(imgs1,imgs2)
+                # print(out)
+                # print(labels.size())
+                loss_funct = criterion(out,labels)
+            else:
+                out1,out2 = model(imgs1,imgs2)
+                loss_funct = criterion(out1,out2,labels)
+            loss_funct.backward()
             optimizer.step()
             loop.set_description(f"Epoch [{epoch}/{num_epochs}]")
-            loop.set_postfix(loss=loss_contrastive.item())
-            epoch_loss += loss_contrastive.item()
+            loop.set_postfix(loss=loss_funct.item())
+            epoch_loss += loss_funct.item()
             iterations_loop += 1
         scheduler.step()
         epoch_loss /= iterations_loop
@@ -234,10 +245,13 @@ else:
 
     for i in range(0,k_folds):
         # instantiate SNN model
-        model = CattleNet(freezeLayers=True)
+        model = CattleNet(freezeLayers=True,cross_entropy=True)
         model.to(device)
         # loss function
-        criterion = ContrastiveLoss()
+        if not cross_entropy_mode:
+            criterion = ContrastiveLoss()
+        else:
+            criterion = nn.BCELoss()
 
         params = model.parameters()
         # setup optimizer (use Adam technique to optimize parameters (GD with momentum and RMS prop))

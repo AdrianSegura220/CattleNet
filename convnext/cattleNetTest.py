@@ -17,13 +17,19 @@ import custom_dataset
 from torch.utils.data import DataLoader
 
 class CattleNet(nn.Module):
-    def __init__(self,freezeLayers=False) -> None:
+    def __init__(self,freezeLayers=False,cross_entropy = False,embedding_size = 1024) -> None:
         super(CattleNet,self).__init__()
         self.convnext_tiny = models.convnext_tiny(pretrained=True)
         if freezeLayers:
             self.freeze_layers()
-        self.convnext_tiny.classifier[2] = nn.Linear(768,1024,bias=True)
+        self.convnext_tiny.classifier[2] = nn.Linear(768,embedding_size,bias=True)
         self.convnext_tiny = nn.Sequential(self.convnext_tiny,nn.Sigmoid())
+        self.cross_entropy = cross_entropy
+        # only used when cross_entropy = True
+        self.diff_layer = nn.Sequential( # difference layer
+            nn.Linear(embedding_size,1),
+            nn.Sigmoid()
+        )
 
 
 
@@ -50,4 +56,10 @@ class CattleNet(nn.Module):
         out1 = self.forward_once(input1)
         out2 = self.forward_once(input2)
 
-        return out1,out2
+
+        if self.cross_entropy:
+            res = self.diff_layer(torch.abs(torch.sub(out1,out2)))
+            # print('RES SIZE: ',res.size())s
+            return res
+        else:
+            return out1,out2
