@@ -147,8 +147,9 @@ def train(d_loader,dataset_validation):
         model.eval()
         with torch.no_grad():
             # epoch_acc = test(dataset_validation,n=n_shot,model=model,is_load_model=False)
-            validation_results = test_thresholds(dataset_validation,thresholds=thresholds_to_test,model=model)
-            one_shot = one_shot_test(dataset_one_shot,model,0.5,False,True)
+            # validation_results = test_thresholds(dataset_validation,thresholds=thresholds_to_test,model=model)
+            # one_shot = one_shot_test(dataset_one_shot,model,0.5,False,True)
+            epoch_acc = test(dataset_validation,25,model=model,is_load_model=False)
             """
                 validation results returns an array with results for each distance threshold
                 e.g. given 3 thresholds to test: [0.1,0.3,0.5], then for each statistic (precision,recall and balanced acc)
@@ -187,11 +188,14 @@ def train(d_loader,dataset_validation):
 
         # 0.1,0.25,0.4,0.5,0.6
 
-        print('Epoch avg precision: {}'.format(validation_results['avg_precision']))
-        print('Epoch avg recall: {}'.format(validation_results['avg_recall']))
-        print('Epoch avg balanced accuracy: {}'.format(validation_results['avg_balanced_acc']))
-        print('Epoch avg f-score: {}'.format(validation_results['avg_f1-score']))
-        print('Epoch one-shot accuracy: {}'.format(one_shot))
+        if not cross_entropy_mode:
+            print('Epoch avg precision: {}'.format(validation_results['avg_precision']))
+            print('Epoch avg recall: {}'.format(validation_results['avg_recall']))
+            print('Epoch avg balanced accuracy: {}'.format(validation_results['avg_balanced_acc']))
+            print('Epoch avg f-score: {}'.format(validation_results['avg_f1-score']))
+            print('Epoch one-shot accuracy: {}'.format(one_shot))
+        else:
+            print("Epoch {}\n Current loss {}\n Current Accuracy {}\n".format(epoch,epoch_loss,epoch_acc))
 
         """
             Add obtained statistic, in order to average it at the very end, also
@@ -200,13 +204,14 @@ def train(d_loader,dataset_validation):
             might make the average seem low because of low performing starting values.
             NOTE: implement F1 score too
         """
-        for d in range(0,len(thresholds_to_test)):
-            precision[d] = validation_results['avg_precision'][d]
-            recall[d] = validation_results['avg_recall'][d]
-            # if there is a new best max value, then update these
-            # we do not update precision and recall in that way, because separately they are not that meaningfull
-            balanced_acc[d] = validation_results['avg_balanced_acc'][d] if balanced_acc[d] < validation_results['avg_balanced_acc'][d] else balanced_acc[d]
-            f_score[d] = validation_results['avg_f1-score'][d] if f_score[d] < validation_results['avg_f1-score'][d] else f_score[d]
+        if not cross_entropy_mode:
+            for d in range(0,len(thresholds_to_test)):
+                precision[d] = validation_results['avg_precision'][d]
+                recall[d] = validation_results['avg_recall'][d]
+                # if there is a new best max value, then update these
+                # we do not update precision and recall in that way, because separately they are not that meaningfull
+                balanced_acc[d] = validation_results['avg_balanced_acc'][d] if balanced_acc[d] < validation_results['avg_balanced_acc'][d] else balanced_acc[d]
+                f_score[d] = validation_results['avg_f1-score'][d] if f_score[d] < validation_results['avg_f1-score'][d] else f_score[d]
 
         # save model and result every 10 epochs
         if epoch % 10 == 0:
@@ -259,9 +264,14 @@ else:
         optimizer = optim.Adam(params,lr=lr) 
         scheduler = StepLR(optimizer, step_size=step_lr, gamma=0.1)
 
-        dataset_training = CustomImageDatasetBCE(img_dir='../../dataset/Raw/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225]),transforms.Resize((240,240))]),annotations_csv='./training_testing_folds/training_annotations_fold{}.csv'.format(i))
-        dataset_validation = CustomImageDatasetBCE(img_dir='../../dataset/Raw/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225]),transforms.Resize((240,240))]),annotations_csv='./training_testing_folds/validation_annotations_fold{}.csv'.format(i))
-        dataset_one_shot = OneShotImageDataset(img_dir='../../dataset/Raw/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225]),transforms.Resize((240,240))]),annotations_csv='./training_testing_folds/validation_annotations_fold{}.csv'.format(i))
+        if not cross_entropy_mode:
+            dataset_training = CustomImageDatasetBCE(img_dir='../../dataset/Raw/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225]),transforms.Resize((240,240))]),annotations_csv='./training_testing_folds/training_annotations_fold{}.csv'.format(i))
+            dataset_validation = CustomImageDatasetBCE(img_dir='../../dataset/Raw/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225]),transforms.Resize((240,240))]),annotations_csv='./training_testing_folds/validation_annotations_fold{}.csv'.format(i))
+            dataset_one_shot = OneShotImageDataset(img_dir='../../dataset/Raw/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225]),transforms.Resize((240,240))]),annotations_csv='./training_testing_folds/validation_annotations_fold{}.csv'.format(i))
+        else:
+            dataset_training = CustomImageDatasetBCE(img_dir='../../dataset/Raw/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225]),transforms.Resize((240,240))]))
+            dataset_validation = CustomImageDataset_Validation(img_dir='../../dataset/Raw/Combined/',n=n_shot,transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225]),transforms.Resize((240,240))]))
+        
         data_loader = DataLoader(dataset_training, batch_size=batch_size, shuffle=True)
         model.train()
         print("Starting training")
