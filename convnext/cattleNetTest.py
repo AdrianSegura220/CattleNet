@@ -27,11 +27,11 @@ class CattleNet(nn.Module):
         # ORIGINALLY: 
         self.convnext_tiny.classifier[2] = nn.Linear(768,4096,bias=True)
 
-        # self.convnext_tiny = nn.Sequential(
-        #     self.convnext_tiny,
-        #     nn.Linear(1000,2048,bias=True),
-        #     nn.Sigmoid()
-        # )
+        self.convnext_tiny = nn.Sequential(
+            self.convnext_tiny,
+            # nn.Linear(1000,2048,bias=True),
+            nn.Sigmoid()
+        )
         self.cross_entropy = cross_entropy
 
         # only used when cross_entropy = True
