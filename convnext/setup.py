@@ -150,7 +150,7 @@ def train(d_loader,dataset_validation):
             if cross_entropy_mode and epoch % 10 == 0:
                 epoch_acc = test_cross_entropy(dataset_validation,n=n_shot,model=model,is_load_model=False)
             else:
-                epoch_acc = test(dataset_validation,n=n_shot,model=model,is_load_model=False)
+                # epoch_acc = test(dataset_validation,n=n_shot,model=model,is_load_model=False)
                 validation_results = test_thresholds(dataset_validation,thresholds=thresholds_to_test,model=model)
                 one_shot = one_shot_test(dataset_one_shot,model,0.5,False,True)
             """
