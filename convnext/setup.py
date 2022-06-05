@@ -273,6 +273,7 @@ else:
             dataset_validation = CustomImageDatasetBCE(img_dir='../../dataset/Raw/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225]),transforms.Resize((240,240))]),annotations_csv='./training_testing_folds/validation_annotations_fold{}.csv'.format(i))
             dataset_one_shot = OneShotImageDataset(img_dir='../../dataset/Raw/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225]),transforms.Resize((240,240))]),annotations_csv='./training_testing_folds/validation_annotations_fold{}.csv'.format(i))
         else:
+            print('yooo')
             dataset_training = CustomImageDatasetBCE(img_dir='../../dataset/Raw/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225]),transforms.Resize((240,240))]))
             dataset_validation = CustomImageDataset_Validation(img_dir='../../dataset/Raw/Combined/',n=n_shot,transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225]),transforms.Resize((240,240))]))
         
