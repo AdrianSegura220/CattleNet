@@ -145,19 +145,20 @@ def train(d_loader,dataset_validation):
         loss.append(epoch_loss)
 
         # validation:
-        model.eval()
-        with torch.no_grad():
-            # epoch_acc = test(dataset_validation,n=n_shot,model=model,is_load_model=False)
-            # validation_results = test_thresholds(dataset_validation,thresholds=thresholds_to_test,model=model)
-            # one_shot = one_shot_test(dataset_one_shot,model,0.5,False,True)
-            epoch_acc = test_cross_entropy(dataset_validation,n=n_shot,model=model,is_load_model=False)
-            """
-                validation results returns an array with results for each distance threshold
-                e.g. given 3 thresholds to test: [0.1,0.3,0.5], then for each statistic (precision,recall and balanced acc)
-                we will have 3 results, one for each threshold, because each threshold will give potentially different
-                results on how well the equal and different embeddings can be discriminated
-            """
-        model.train()
+        if epoch % 10 == 0:
+            model.eval()
+            with torch.no_grad():
+                # epoch_acc = test(dataset_validation,n=n_shot,model=model,is_load_model=False)
+                # validation_results = test_thresholds(dataset_validation,thresholds=thresholds_to_test,model=model)
+                # one_shot = one_shot_test(dataset_one_shot,model,0.5,False,True)
+                epoch_acc = test_cross_entropy(dataset_validation,n=n_shot,model=model,is_load_model=False)
+                """
+                    validation results returns an array with results for each distance threshold
+                    e.g. given 3 thresholds to test: [0.1,0.3,0.5], then for each statistic (precision,recall and balanced acc)
+                    we will have 3 results, one for each threshold, because each threshold will give potentially different
+                    results on how well the equal and different embeddings can be discriminated
+                """
+            model.train()
 
         """
             Improve this, remove hardcoded threshold indexing, make it dynamic
@@ -196,7 +197,8 @@ def train(d_loader,dataset_validation):
             print('Epoch avg f-score: {}'.format(validation_results['avg_f1-score']))
             print('Epoch one-shot accuracy: {}'.format(one_shot))
         else:
-            print("Epoch {}\n Current loss {}\n Current Accuracy {}\n".format(epoch,epoch_loss,epoch_acc))
+            if epoch % 10 == 0:
+                print("Epoch {}\n Current loss {}\n Current Accuracy {}\n".format(epoch,epoch_loss,epoch_acc))
 
         """
             Add obtained statistic, in order to average it at the very end, also
