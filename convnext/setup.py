@@ -65,7 +65,7 @@ k_folds = 8
 thresholds_to_test = [0.1,0.25,0.4,0.5,0.6]
 
 # loss function (true => binary cross entropy, false => contrastive loss)
-cross_entropy_mode = True
+cross_entropy_mode = False
 
 
 if use_wandb:
@@ -145,20 +145,21 @@ def train(d_loader,dataset_validation):
         loss.append(epoch_loss)
 
         # validation:
-        if epoch % 10 == 0:
-            model.eval()
-            with torch.no_grad():
-                # epoch_acc = test(dataset_validation,n=n_shot,model=model,is_load_model=False)
-                # validation_results = test_thresholds(dataset_validation,thresholds=thresholds_to_test,model=model)
-                # one_shot = one_shot_test(dataset_one_shot,model,0.5,False,True)
+        model.eval()
+        with torch.no_grad():
+            if cross_entropy_mode and epoch % 10 == 0:
                 epoch_acc = test_cross_entropy(dataset_validation,n=n_shot,model=model,is_load_model=False)
-                """
-                    validation results returns an array with results for each distance threshold
-                    e.g. given 3 thresholds to test: [0.1,0.3,0.5], then for each statistic (precision,recall and balanced acc)
-                    we will have 3 results, one for each threshold, because each threshold will give potentially different
-                    results on how well the equal and different embeddings can be discriminated
-                """
-            model.train()
+            else:
+                epoch_acc = test(dataset_validation,n=n_shot,model=model,is_load_model=False)
+                validation_results = test_thresholds(dataset_validation,thresholds=thresholds_to_test,model=model)
+                one_shot = one_shot_test(dataset_one_shot,model,0.5,False,True)
+            """
+                validation results returns an array with results for each distance threshold
+                e.g. given 3 thresholds to test: [0.1,0.3,0.5], then for each statistic (precision,recall and balanced acc)
+                we will have 3 results, one for each threshold, because each threshold will give potentially different
+                results on how well the equal and different embeddings can be discriminated
+            """
+        model.train()
 
         """
             Improve this, remove hardcoded threshold indexing, make it dynamic
@@ -253,7 +254,7 @@ else:
 
     for i in range(0,k_folds):
         # instantiate SNN model
-        model = CattleNet(freezeLayers=True,cross_entropy=True)
+        model = CattleNet(freezeLayers=True,cross_entropy=False)
         model.to(device)
         # loss function
         if not cross_entropy_mode:
