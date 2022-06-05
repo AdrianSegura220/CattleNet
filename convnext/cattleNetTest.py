@@ -20,17 +20,16 @@ class CattleNet(nn.Module):
     def __init__(self,freezeLayers=False,cross_entropy = False,embedding_size = 4096) -> None:
         super(CattleNet,self).__init__()
         self.convnext_tiny = models.convnext_tiny(pretrained=True)
+
         if freezeLayers:
             self.freeze_layers()
 
         # ORIGINALLY: 
-        self.convnext_tiny.classifier[2] = nn.Linear(768,1000,bias=True)
+        # self.convnext_tiny.classifier[2] = nn.Linear(768,4096,bias=True)
 
         self.convnext_tiny = nn.Sequential(
             self.convnext_tiny,
             nn.Linear(1000,2048,bias=True),
-            nn.Sigmoid(),
-            nn.Linear(2048,4096,bias=True),
             nn.Sigmoid()
         )
         self.cross_entropy = cross_entropy
@@ -53,7 +52,10 @@ class CattleNet(nn.Module):
     def freeze_layers(self):
         for param in self.convnext_tiny.parameters():
             param.requires_grad = False
-        
+
+        # keep last native layer trainable (not original setup)
+        for param in self.convnext_tiny.classifier[2].parameters():
+            param.requires_grad = True
 
     def forward_once(self,input):
         x = self.convnext_tiny(input)

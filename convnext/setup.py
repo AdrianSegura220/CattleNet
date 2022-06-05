@@ -255,6 +255,7 @@ else:
     for i in range(0,k_folds):
         # instantiate SNN model
         model = CattleNet(freezeLayers=True,cross_entropy=False)
+        print(model)
         model.to(device)
         # loss function
         if not cross_entropy_mode:
