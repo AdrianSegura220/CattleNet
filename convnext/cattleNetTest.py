@@ -33,7 +33,7 @@ class CattleNet(nn.Module):
             nn.Sigmoid()
         )
         self.cross_entropy = cross_entropy
-        
+
         # only used when cross_entropy = True
         # self.diff_layer = nn.Sequential( # difference layer
         #     nn.Linear(embedding_size,1),
@@ -74,5 +74,4 @@ class CattleNet(nn.Module):
             # print('RES SIZE: ',res.size())s
             return res
         else:
-            print('normal')
             return out1,out2
