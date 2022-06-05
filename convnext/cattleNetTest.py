@@ -24,7 +24,7 @@ class CattleNet(nn.Module):
             self.freeze_layers()
 
         # ORIGINALLY: 
-        # self.convnext_tiny.classifier[2] = nn.Linear(768,embedding_size,bias=True)
+        self.convnext_tiny.classifier[2] = nn.Linear(768,1000,bias=True)
 
         self.convnext_tiny = nn.Sequential(
             self.convnext_tiny,
