@@ -23,7 +23,7 @@ class CattleNet(nn.Module):
         if freezeLayers:
             self.freeze_layers()
         self.convnext_tiny.classifier[2] = nn.Linear(768,4096,bias=True)
-        self.convnext_tiny = nn.Sequential(self.convnext_tiny,nn.Sigmoid())
+        self.convnext_tiny = nn.Sequential(self.convnext_tiny,nn.Sigmoid(),nn.Linear(4096,256),nn.Sigmoid(),nn.Linear(256,64))
 
 
 
@@ -49,5 +49,4 @@ class CattleNet(nn.Module):
     def forward(self,input1,input2):
         out1 = self.forward_once(input1)
         out2 = self.forward_once(input2)
-
         return out1,out2

@@ -3,6 +3,14 @@ from __future__ import division
 import sys
 
 
+"""
+    TODO: CHANGE ONE-SHOT THRESHOLD, PRINT DISTANCES BETWEEN EMBEDDINGS TO HAVE A BETTER IDEA ON HOW IS THE MODEL PRODUDING SUCH DISTANCES AND
+            PERHAPS DECIDE ON NEW THRESHOLD GROUP TO TEST
+            - I AM SUSPECTING 0.25 COULD BE A GOOD THRESHOLD FOR ONE-SHOT TESTING FUNCTION
+            - TRY ARGMIN AGAIN
+            - Train model for a lot of epochs using threshold one-shot and also argmin to see results
+"""
+
 sys.path.insert(0,'..')
 from turtle import forward
 from torchvision import datasets, models, transforms 
@@ -136,14 +144,14 @@ def train(d_loader,dataset_validation):
         model.eval()
         with torch.no_grad():
             # epoch_acc = test(dataset_validation,n=n_shot,model=model,is_load_model=False)
-            validation_results = test_thresholds(dataset_validation,thresholds=thresholds_to_test,model=model)
-            one_shot = one_shot_test(dataset_one_shot,model,0.5,False,True)
             """
                 validation results returns an array with results for each distance threshold
                 e.g. given 3 thresholds to test: [0.1,0.3,0.5], then for each statistic (precision,recall and balanced acc)
                 we will have 3 results, one for each threshold, because each threshold will give potentially different
                 results on how well the equal and different embeddings can be discriminated
             """
+            validation_results = test_thresholds(dataset_validation,thresholds=thresholds_to_test,model=model)
+            one_shot = one_shot_test(dataset_one_shot,model,0.5,True,True)
         model.train()
 
         """
