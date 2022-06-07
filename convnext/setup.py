@@ -58,9 +58,9 @@ step_lr = 1
 lr=1e-3
 in_channel = 3
 batch_size = 64
-num_epochs = 70
+num_epochs = 200
 n_shot = 15
-k_folds = 8
+k_folds = 1
 thresholds_to_test = [0.1,0.25,0.4,0.5,0.6]
 
 if use_wandb:
