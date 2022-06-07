@@ -225,10 +225,13 @@ def one_shot_test(test_dataset: OneShotImageDataset,model,threshold,use_argmin,q
             
             # rest
             # we have to subtract the anchor from the large tensor e.g. rest-anchor to use advantage of broadcasting
-            differences = torch.sub(rest,anchor).pow(2).sum(1)
+            cos = nn.CosineSimilarity(eps = 1e-6)
+            # differences = torch.sub(rest,anchor).pow(2).sum(1)
+            differences = cos(rest,anchor)
             results = (differences < threshold).float()
             if use_argmin:
-                selected = torch.argmin(differences)
+                # selected = torch.argmin(differences)
+                selected = torch.argmax(differences)
                 print('--------\n')
                 for k,dist in enumerate(differences):
                     if k == j:
