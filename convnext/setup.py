@@ -171,7 +171,8 @@ def train(d_loader,dataset_validation):
                 "Avg. avg_f1-score d=0.25": validation_results['avg_f1-score'][1],
                 "Avg. avg_f1-score d=0.4": validation_results['avg_f1-score'][2],
                 "Avg. avg_f1-score d=0.5": validation_results['avg_f1-score'][3],
-                "Avg. avg_f1-score d=0.6": validation_results['avg_f1-score'][4]
+                "Avg. avg_f1-score d=0.6": validation_results['avg_f1-score'][4],
+                "One-shot score": one_shot
             })
 
         # 0.1,0.25,0.4,0.5,0.6
