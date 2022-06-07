@@ -45,7 +45,7 @@ save_models = False
 save_figs = False
 
 # wandb setup (logging progress to online platform)
-use_wandb = False
+use_wandb = True
 
 if use_wandb:
     wandb.init(project="cattleNet-arch1", entity="adriansegura220")
@@ -62,13 +62,13 @@ path_to_results = '../../BachelorsProject/Trainings/'
 
 #hyperparams
 lrDecay = 1
-step_lr = 20
+step_lr = 1
 lr=1e-3
 in_channel = 3
 batch_size = 64
-num_epochs = 70
+num_epochs = 200
 n_shot = 15
-k_folds = 8
+k_folds = 1
 thresholds_to_test = [0.1,0.25,0.4,0.5,0.6]
 
 if use_wandb:
@@ -179,7 +179,8 @@ def train(d_loader,dataset_validation):
                 "Avg. avg_f1-score d=0.25": validation_results['avg_f1-score'][1],
                 "Avg. avg_f1-score d=0.4": validation_results['avg_f1-score'][2],
                 "Avg. avg_f1-score d=0.5": validation_results['avg_f1-score'][3],
-                "Avg. avg_f1-score d=0.6": validation_results['avg_f1-score'][4]
+                "Avg. avg_f1-score d=0.6": validation_results['avg_f1-score'][4],
+                "One-shot performance": one_shot
             })
 
         # 0.1,0.25,0.4,0.5,0.6
@@ -243,6 +244,7 @@ else:
     for i in range(0,k_folds):
         # instantiate SNN model
         model = CattleNet(freezeLayers=True)
+        print(model)
         model.to(device)
         # loss function
         criterion = ContrastiveLoss()
@@ -251,7 +253,7 @@ else:
         # setup optimizer (use Adam technique to optimize parameters (GD with momentum and RMS prop))
         # by default: learning rate = 0.001, betas=(0.9, 0.999), eps=1e-08, weight_decay=0
         optimizer = optim.Adam(params,lr=lr) 
-        scheduler = StepLR(optimizer, step_size=step_lr, gamma=0.1)
+        scheduler = StepLR(optimizer, step_size=step_lr, gamma=0.99)
 
         dataset_training = CustomImageDatasetBCE(img_dir='../../dataset/Raw/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225]),transforms.Resize((240,240))]),annotations_csv='./training_testing_folds/training_annotations_fold{}.csv'.format(i))
         dataset_validation = CustomImageDatasetBCE(img_dir='../../dataset/Raw/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225]),transforms.Resize((240,240))]),annotations_csv='./training_testing_folds/validation_annotations_fold{}.csv'.format(i))
