@@ -33,7 +33,7 @@ def test_thresholds(test_dataset: CustomImageDatasetBCE, model_directory: str = 
     correct = 0
     results = []
     stats = [{} for i in range(0,len(thresholds))]
-    data_loader = DataLoader(test_dataset, batch_size=8, shuffle=True)
+    data_loader = DataLoader(test_dataset, batch_size=32, shuffle=True)
     avg_precision = [0.0 for i in range(0,len(thresholds))] 
     avg_recall = [0.0 for i in range(0,len(thresholds))]
     avg_balanced_acc = [0.0 for i in range(0,len(thresholds))]
