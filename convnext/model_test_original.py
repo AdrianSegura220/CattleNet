@@ -232,7 +232,7 @@ def one_shot_test(test_dataset: OneShotImageDataset,model,threshold,use_argmin,q
                 print('--------\n')
                 for k,dist in enumerate(differences):
                     if k == j:
-                        print(' \{\{ {} \}\} '.format(dist))
+                        print(' \{\{ {} \}\} '.format(dist),end='')
                     else:
                         print(' ||| {} ||| '.format(dist) if k == selected else ' {} '.format(dist) ,end='')
                     print()
