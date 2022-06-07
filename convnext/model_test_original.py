@@ -229,12 +229,14 @@ def one_shot_test(test_dataset: OneShotImageDataset,model,threshold,use_argmin,q
             results = (differences < threshold).float()
             if use_argmin:
                 selected = torch.argmin(differences)
+                print('--------\n',differences[j])
                 if selected == j:
                     print('C')
                     correct += 1
                 else:
                     incorrect += 1
                     print('I')
+                print('----------\n')
             else:
                 if results[j] == 1.0 and results.sum(0) == 1:
                     correct += 1
