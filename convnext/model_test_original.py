@@ -1,7 +1,7 @@
 from __future__ import print_function
 from __future__ import division
 from base64 import encode
-from turtle import forward
+from turtle import distance, forward
 from sklearn.metrics import balanced_accuracy_score
 from torchvision import datasets, models, transforms 
 from torchvision import datasets, transforms as T
@@ -190,7 +190,7 @@ def test_thresholds(test_dataset: CustomImageDatasetBCE, model_directory: str = 
     as anchor for the test, we then select an image of all classes (including the same of the anchor,
     but a different image). Once we do this, we use our defined distance threshold.
 """
-def one_shot_test(test_dataset: OneShotImageDataset,model,threshold,use_argmin,quantify_wrong):
+def one_shot_test(test_dataset: OneShotImageDataset,model,threshold,use_argmin,quantify_wrong,distance_measure="cosine"):
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     data_loader = DataLoader(test_dataset,batch_size=1)
     correct = 0
@@ -223,15 +223,26 @@ def one_shot_test(test_dataset: OneShotImageDataset,model,threshold,use_argmin,q
                     
                 rest[i] = images[k2][idx].to(device) # assign selected image from specific label
             
+
             # rest
-            # we have to subtract the anchor from the large tensor e.g. rest-anchor to use advantage of broadcasting
-            cos = nn.CosineSimilarity(eps = 1e-6)
-            # differences = torch.sub(rest,anchor).pow(2).sum(1)
-            differences = cos(rest,anchor)
+            if distance_measure == "cosine":
+                cos = nn.CosineSimilarity(eps = 1e-6)
+                differences = cos(rest,anchor)
+                # results = (differences >= threshold).float()
+            else:
+                # we have to subtract the anchor from the large tensor e.g. rest-anchor to use advantage of broadcasting
+                differences = torch.sub(rest,anchor).pow(2).sum(1)    
+                # compute embeddings that are below the threshold of acceptance
+                
+                
             results = (differences < threshold).float()
+
+            
             if use_argmin:
-                # selected = torch.argmin(differences)
-                selected = torch.argmax(differences)
+                if distance_measure == "euclidean":
+                    selected = torch.argmin(differences) # for euclidean distance we want the minimum value
+                else:
+                    selected = torch.argmax(differences) # for cosine distance, we want the maximum value
                 print('--------\n')
                 for k,dist in enumerate(differences):
                     if k == j:

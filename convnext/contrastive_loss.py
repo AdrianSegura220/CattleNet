@@ -10,8 +10,10 @@ class ContrastiveLoss(nn.Module):
         self.eps = 0.0001
     
     def forward(self, x0: torch.Tensor,x1: torch.Tensor,label):
-        # print(x0.size())
         # print('label size: ',label)
+
+        # print(x0[0].pow(2).sum())
+        # exit()
         euclidean_distance = (x0-x1).pow(2).sum(1)
         # euclidean_distance = euclidean_distance.sqrt()
         # print(euclidean_distance.size())

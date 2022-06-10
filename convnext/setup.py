@@ -151,7 +151,7 @@ def train(d_loader,dataset_validation):
                 results on how well the equal and different embeddings can be discriminated
             """
             validation_results = test_thresholds(dataset_validation,thresholds=thresholds_to_test,model=model)
-            one_shot = one_shot_test(dataset_one_shot,model,0.5,True,True)
+            one_shot = one_shot_test(dataset_one_shot,model,0.5,True,True,"euclidean")
         model.train()
 
         """

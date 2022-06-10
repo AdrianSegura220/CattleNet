@@ -47,6 +47,10 @@ class CattleNet(nn.Module):
         # return self.convnext_tiny.features(input)
 
     def forward(self,input1,input2):
+                # normalize input vectors 
+        
         out1 = self.forward_once(input1)
         out2 = self.forward_once(input2)
+        # out1 = nn.functional.normalize(out1,dim=1)
+        # out2 = nn.functional.normalize(out2,dim=1)
         return out1,out2
