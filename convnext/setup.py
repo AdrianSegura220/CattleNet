@@ -58,7 +58,7 @@ lrDecay = 1
 step_lr = 1
 lr=1e-3
 in_channel = 3
-batch_size = 128
+batch_size = 64
 num_epochs = 200
 n_shot = 15
 k_folds = 1
@@ -106,7 +106,7 @@ def train(d_loader,dataset_validation):
         epoch_loss = 0.0
         iterations_loop = 0
         for data in loop:
-            print(data[0].size())
+            # print(data[0].size())
             label = 0
             #### do something with images ...
             optimizer.zero_grad()
