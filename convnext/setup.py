@@ -28,6 +28,7 @@ from torch.utils.data import DataLoader
 from cattleNetTest import CattleNet
 from tqdm import tqdm
 from model_test_original import test
+from torch.utils.data import default_collate
 
 
 # save or not model snapshots
@@ -221,6 +222,10 @@ def save_figures(iteration_number,counter,loss,final_path,epoch,epoch_loss,curr_
     plt.ylabel('Accuracy')
     plt.savefig(os.path.join(final_path,"ACC{}_epoch{}_lr{}.png".format(epoch_acc,epoch_loss,curr_lr)))
 
+def custom_collate(batch):
+    batch = list(filter(lambda img: img is not None,batch))
+    return default_collate(batch)
+
 if loadtest:
     pass
     # load_and_test('../../BachelorsProject/Trainings/model_InitialLR0.001_lrDecay1wStep10_trainSize1066_testSize267_datetime20-5H2M11/epoch30_loss0.2583860134455695_lr1.0000000000000002e-06.pt')
@@ -246,10 +251,12 @@ else:
         optimizer = optim.Adam(params,lr=lr) 
         scheduler = StepLR(optimizer, step_size=step_lr, gamma=0.99)
 
-        dataset_training = CustomImageDatasetBCE(img_dir='../../dataset/Raw/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225]),transforms.Resize((240,240))]),annotations_csv='./training_testing_folds/training_annotations_fold{}.csv'.format(i))
+        dataset_training = CustomImageDatasetBCE(img_dir='../../dataset/Raw/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225]),transforms.Resize((240,240))]),annotations_csv='./training_testing_folds/training_annotations_fold{}.csv'.format(i),trainMode=True)
         dataset_validation = CustomImageDatasetBCE(img_dir='../../dataset/Raw/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225]),transforms.Resize((240,240))]),annotations_csv='./training_testing_folds/validation_annotations_fold{}.csv'.format(i))
         dataset_one_shot = OneShotImageDataset(img_dir='../../dataset/Raw/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225]),transforms.Resize((240,240))]),annotations_csv='./training_testing_folds/validation_annotations_fold{}.csv'.format(i))
-        data_loader = DataLoader(dataset_training, batch_size=batch_size, shuffle=True)
+        data_loader = DataLoader(dataset_training, batch_size=batch_size, shuffle=True,collate_fn=custom_collate)
+
+
         model.train()
         print("Starting training")
         model,res_balanced_acc,res_f_score = train(d_loader=data_loader,dataset_validation=dataset_validation)
