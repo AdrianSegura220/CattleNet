@@ -39,7 +39,6 @@ class CustomImageDatasetBCE(Dataset):
                 self.counts[self.img_labels.iloc[i,2]][0] += 1
             else:
                 self.counts[self.img_labels.iloc[i,2]] = [0,i]
-                self.selected[self.img_labels.iloc[i,2]] = []
 
     def __len__(self):
         return len(self.img_labels)-1
