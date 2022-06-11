@@ -106,6 +106,7 @@ def train(d_loader,dataset_validation):
         epoch_loss = 0.0
         iterations_loop = 0
         for data in loop:
+            print(data.size())
             label = 0
             #### do something with images ...
             optimizer.zero_grad()
