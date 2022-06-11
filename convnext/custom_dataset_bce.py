@@ -19,7 +19,7 @@ from preprocess import generate_annotations,generate_annotations_direct
     target_transform: a transformation to apply to label of each image when extracting using __getitem__()
 """
 class CustomImageDatasetBCE(Dataset):
-    def __init__(self, img_dir, transform=None, target_transform=None,annotations_csv = 'training_annotations.csv',trainMode = False) -> None:
+    def __init__(self, img_dir, transform=None, target_transform=None,annotations_csv = 'training_annotations.csv') -> None:
         # super().__init__() no superconstructor
         # generate_annotations_direct(img_dir,'training_annotations')
         # self.train_size = train_size
@@ -27,11 +27,7 @@ class CustomImageDatasetBCE(Dataset):
         self.img_dir = img_dir
         self.transform = transform
         self.counts = {}
-        self.selected = {}
-        self.trainMode = trainMode
         self.countPerSample()
-        if self.trainMode: # only some images will be separated for validation if we are using the data for training. If it is being used for testing, then not.
-            self.computeToUse()
         self.target_transform = target_transform
 
     """
@@ -47,20 +43,6 @@ class CustomImageDatasetBCE(Dataset):
 
     def __len__(self):
         return len(self.img_labels)-1
-
-    
-    """
-        Compute images that will be used for the testing part.
-        For each class in the dataset, if they have enough images (> 2), then select two images (to ensure having at least a positive example)
-    """
-    def computeToUse(self):
-        for i in range(0,self.__len__()):
-            if self.counts[self.img_labels.iloc[i,2]][0] > 2: # only use images for validation where there are more than 2 images for that class (so that at least 2 are 4 training)
-                if len(self.selected[self.img_labels.iloc[i,2]]) < 2:
-                    self.selected[self.img_labels.iloc[i,2]].append(self.img_labels.iloc[i,1]) # append name of file selected for validation set
-
-        print(self.selected)
-
 
     """
         Return image as float tensor
@@ -104,16 +86,7 @@ class CustomImageDatasetBCE(Dataset):
         if self.target_transform:
             label = self.target_transform(label)
 
-        """
-            Basically if any of the two images in the pair is an excluded image (that will be used for validation)
-            then we do not return anythin, as we want to exclude it from training.
-            The None cases will be filtered by the custom collator passed into the dataset loader. This
-            custom collator function can be found in `setup.py`.
-        """
-        if self.trainMode and (img1_file_name in self.selected[label] or img2_file_name in self.selected[label2]):
-            return None
-        else:
-            return image,image2, 1.0 if label == label2 else 0.0 
+        return image,image2, 1.0 if label == label2 else 0.0 
 
 
 

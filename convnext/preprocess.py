@@ -19,30 +19,57 @@ def generate_folds(directory:str, k: int):
     files.sort()
     files = files[1:] # first element is never a valid file but a .ds file, so skip it
     # print(files)
-    labels = [file.split('_')[0] for file in files]
+    labels = [file.split('_')[0] for file in files] # basically, only take label, as files are structured as: <label number>_<some other data>.jpeg
     
     number_files = len(files)-1
 
     validation_size = int(number_files/k)
     train_size = number_files-validation_size
+    train_splits = [{'train': [],'labels':[]} for i in range(0,k)]
 
     # process:
     # generate list of all files and from those, use a loop to generate each fold and generate csv files
     for i in range(0,k):
         train_current = []
         validation_current = []
+
         upper_limit_validation = validation_size*i+validation_size if validation_size*i+validation_size <= number_files else number_files
         
+        # generate validation data frames for current split
         validation_current = files[validation_size*i:upper_limit_validation] # select only the specific portion for the validation at fold k
         labels_validation_current = [file.split('_')[0] for file in validation_current] # generate labels for k'th validation fold
         df = pd.DataFrame({'Path': validation_current,'Label': labels_validation_current}) # generate data frame having as columns the path to an image and labels for each of such images
         df.to_csv('./training_testing_folds/validation_annotations_fold{}.csv'.format(i))
 
-
+        # save training fold (will be modified later to extract the training validation examples, so not converting yet to a csv file)
         training_current = files[0:validation_size*i]+files[upper_limit_validation:] # select only the portion for the training at fold k
+        train_splits[i]['train'] += training_current
         labels_training_current = [file.split('_')[0] for file in training_current] # generate labels for k'th training fold
-        df = pd.DataFrame({'Path': training_current,'Label': labels_training_current}) # generate data frame having as columns the path to an image and labels for each of such images
+        train_splits[i]['labels'] += labels_training_current
+        # df = pd.DataFrame({'Path': training_current,'Label': labels_training_current}) # generate data frame having as columns the path to an image and labels for each of such images
+        #df.to_csv('./training_testing_folds/training_annotations_fold{}.csv'.format(i))
+
+    # generate annotations for all folds for training validation
+    prevLabel = '0'
+    for i in range(0,k):
+        train_validation = []
+        labels_train_validation = []
+        for j in range(0,len(train_splits[i]['train'])):
+            if j < len(train_splits[i]['labels']) and train_splits[i]['labels'][j] != prevLabel:
+                prevLabel = train_splits[i]['labels'][j]
+                current_label = train_splits[i]['labels'][j]
+                if j+3 < len(train_splits[i]['train']) and train_splits[i]['labels'][j+3] == train_splits[i]['labels'][j]:
+                    # add elements to train validation set
+                    train_validation += train_splits[i]['train'][j:j+2] # grab two elements if there are more than 3 examples (i.e. 4 >=) (so that we can have at least a positive example for each case (training and training validation))
+                    labels_train_validation += [current_label for k in range(0,2)] # add label for each of the images added to the training-validation set
+                    # re-arrange training set for i ' th fold
+                    train_splits[i]['train'] = train_splits[i]['train'][:j]+train_splits[i]['train'][j+2:] # modify training set to exclude those images selected for training - validation set
+                    train_splits[i]['labels'] = train_splits[i]['labels'][:j]+train_splits[i]['labels'][j+2:]
+        df = pd.DataFrame({'Path': train_splits[i]['train'],'Label': train_splits[i]['labels']}) # generate data frame having as columns the path to an image and labels for each of such images
         df.to_csv('./training_testing_folds/training_annotations_fold{}.csv'.format(i))
+
+        df = pd.DataFrame({'Path': train_validation,'Label': labels_train_validation}) # generate data frame having as columns the path to an image and labels for each of such images
+        df.to_csv('./training_testing_folds/training_validation_annotations_fold{}.csv'.format(i))
 
 def generate_annotations_direct(directory: str,name_output: str):
     files = os.listdir(directory)
