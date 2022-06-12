@@ -38,7 +38,7 @@ save_models = False
 save_figs = False
 
 # wandb setup (logging progress to online platform)
-use_wandb = True
+use_wandb = False
 
 if use_wandb:
     wandb.init(project="cattleNet-arch1", entity="adriansegura220")

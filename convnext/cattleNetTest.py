@@ -39,6 +39,9 @@ class CattleNet(nn.Module):
         for param in self.convnext_tiny.parameters():
             param.requires_grad = False
         
+        for param in self.convnext_tiny.classifier.parameters():
+            param.requires_grad = True
+        
 
     def forward_once(self,input):
         x = self.convnext_tiny(input)
