@@ -232,13 +232,6 @@ def one_shot_test(test_dataset: OneShotImageDataset,model,threshold,use_argmin,q
             if use_argmin:
                 # selected = torch.argmin(differences)
                 selected = torch.argmax(differences)
-                # print('--------\n')
-                # for k,dist in enumerate(differences):
-                #     if k == j:
-                #         print(' (( {} )) '.format(dist),end='')
-                #     else:
-                #         print(' ||| {} ||| '.format(dist) if k == selected else ' {} '.format(dist) ,end='')
-                    # print()
                 if selected == j:
                     print('C')
                     correct += 1
