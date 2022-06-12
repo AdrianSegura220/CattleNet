@@ -38,7 +38,7 @@ save_models = False
 save_figs = False
 
 # wandb setup (logging progress to online platform)
-use_wandb = False
+use_wandb = True
 
 if use_wandb:
     wandb.init(project="cattleNet-arch1", entity="adriansegura220")
@@ -59,7 +59,7 @@ step_lr = 1
 lr=2e-3
 in_channel = 3
 batch_size = 128
-num_epochs = 200
+num_epochs = 150
 n_shot = 15
 k_folds = 1
 thresholds_to_test = [0.1,0.25,0.4,0.5,0.6]
