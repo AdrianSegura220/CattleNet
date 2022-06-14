@@ -1,0 +1,36 @@
+
+Starting training
+
+
+
+
+
+
+Traceback (most recent call last):
+  File "/home/adriansegura/Desktop/RUG/CattleNet/convnext/setup.py", line 263, in <module>
+    model,res_balanced_acc,res_f_score = train(d_loader=data_loader,dataset_validation=dataset_validation)
+  File "/home/adriansegura/Desktop/RUG/CattleNet/convnext/setup.py", line 108, in train
+    for data in loop:
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/tqdm/std.py", line 1195, in __iter__
+    for obj in iterable:
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 530, in __next__
+    data = self._next_data()
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 570, in _next_data
+    data = self._dataset_fetcher.fetch(index)  # may raise StopIteration
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/utils/data/_utils/fetch.py", line 49, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/utils/data/_utils/fetch.py", line 49, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/home/adriansegura/Desktop/RUG/CattleNet/convnext/custom_dataset_bce.py", line 59, in __getitem__
+    if self.img_labels.iloc[i,2] == self.img_labels.iloc[idx, 2]:
+  File "/home/adriansegura/anaconda3/lib/python3.9/site-packages/pandas/core/indexing.py", line 960, in __getitem__
+    return self.obj._get_value(*key, takeable=self._takeable)
+  File "/home/adriansegura/anaconda3/lib/python3.9/site-packages/pandas/core/frame.py", line 3612, in _get_value
+    series = self._ixs(col, axis=1)
+  File "/home/adriansegura/anaconda3/lib/python3.9/site-packages/pandas/core/frame.py", line 3442, in _ixs
+    result = self._box_col_values(col_mgr, i)
+  File "/home/adriansegura/anaconda3/lib/python3.9/site-packages/pandas/core/frame.py", line 3915, in _box_col_values
+    return klass(values, name=name, fastpath=True).__finalize__(self)
+  File "/home/adriansegura/anaconda3/lib/python3.9/site-packages/pandas/core/generic.py", line 5517, in __finalize__
+    @final
+KeyboardInterrupt
