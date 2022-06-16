@@ -25,8 +25,6 @@ class CattleNet(nn.Module):
         self.convnext_tiny.classifier[2] = nn.Linear(768,4096,bias=True)
         self.convnext_tiny = nn.Sequential(self.convnext_tiny,nn.Sigmoid())
 
-
-
     def unfreeze_layers(self):
         for param in self.convnext_tiny.parameters():
             param.requires_grad = True
@@ -49,8 +47,7 @@ class CattleNet(nn.Module):
         return x
         # return self.convnext_tiny.features(input)
 
-    def forward(self,input1,input2):
-        out1 = self.forward_once(input1)
-        out2 = self.forward_once(input2)
+    def forward(self,image):
+        result = self.forward_once(image)
 
-        return out1,out2
+        return result

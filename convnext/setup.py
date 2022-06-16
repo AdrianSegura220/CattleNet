@@ -1,5 +1,6 @@
 from __future__ import print_function
 from __future__ import division
+from math import dist
 import sys
 
 
@@ -29,6 +30,8 @@ from cattleNetTest import CattleNet
 from tqdm import tqdm
 from model_test_original import test
 from torch.utils.data import default_collate
+from dataset_triplets import SimpleTriplet
+from triplet_loss import TripletLoss
 
 
 # save or not model snapshots
@@ -38,7 +41,7 @@ save_models = False
 save_figs = False
 
 # wandb setup (logging progress to online platform)
-use_wandb = True
+use_wandb = False
 
 if use_wandb:
     wandb.init(project="cattleNet-arch1", entity="adriansegura220")
@@ -58,7 +61,7 @@ lrDecay = 1
 step_lr = 1
 lr=15e-4
 in_channel = 3
-batch_size = 128
+batch_size = 16
 num_epochs = 150
 n_shot = 15
 k_folds = 1
@@ -79,6 +82,88 @@ if use_wandb:
 #     model.eval()
 #     acc = test(validation,model=model,is_load_model=False)
 #     print(acc)
+
+
+def mineHardTriples(images,labels,model):
+    output = torch.Tensor()
+    model.eval()
+    with torch.no_grad():
+        output = model(images)
+
+    # compute pairwise distances
+    dot_embeddings = torch.matmul(output,torch.transpose(output,0,1))
+
+    diagonal = torch.diagonal(dot_embeddings) # obtain diagonal (contains the squared norm of each embedding)
+
+    # compute pairwise distance (squared distance) matrix:
+    distances = diagonal[None,:] - 2*dot_embeddings + diagonal[:,None]
+
+    labelsMatrix = torch.Tensor(distances.size())
+
+    mask = torch.zeros(distances.size()).bool()
+
+    hard_positives = torch.Tensor(distances.size()[0])
+
+    cnt = 0
+    for i in range(0,distances.size()[0]):
+        for j in range(0,distances.size()[0]):
+            if i != j and labels[i] == labels[j]: # to enforce images are not the same but that they have the same label
+                # print(i,j)
+                # print(output[i][:5])
+                # print()
+                # print(output[j][:5])
+                if mask[j,i] == False:
+                    mask[i,j] = True
+                    cnt += 1
+    # print(cnt)
+
+    for i in range(0,distances.size()[0]):
+        # currRow = torch.masked_select(distances[i],mask[i])
+        max_dist = -1.0
+        max_idx = -1
+        for j in range(0,distances.size()[0]):
+            if mask[i,j] == True and max_dist < distances[i][j]:
+                max_idx = j
+        hard_positives[i] = max_idx if max_idx != -1 else -1
+        
+    # mask_minus_one = hard_positives.not_equal(-1)
+    # hard_positives = torch.masked_select(hard_positives,mask_minus_one)
+
+    # declare tensor for hard_negatives
+    hard_negatives = torch.Tensor(distances.size()[0])
+
+    for i in range(0,distances.size()[0]):
+        for j in range(0,distances.size()[0]):
+            mask[i,j] = True if labels[i] != labels[j] else False # in order to enforce only different labels from anchor
+
+    for i in range(0,distances.size()[0]):
+        min_dist = 999999.0
+        min_idx = -1
+        for j in range(0,distances.size()[0]):
+            if mask[i,j] == True and min_dist > distances[i][j]:
+                min_idx = j
+
+        # currRow = torch.masked_select(distances[i],mask[i])
+        # hard_negatives[i] = torch.argmin(currRow) if currRow.size()[0] > 0 else -1
+        hard_negatives[i] = min_idx if min_idx != -1 else -1
+        
+    triplets = []
+    for i in range(0,distances.size()[0]):
+        if hard_positives[i] != -1.0 and hard_negatives[i] != -1.0:
+            triplets.append((i,hard_positives[i],hard_negatives[i])) # push a tuple having indices for images in current batch: (i,j,k), where label(images[i]) == label(images[j]) but they are not the same image and the hardest one to identify. Also label(images[i]) != label(images[k]) but they are the closest images between the anchor and negative examples 
+
+    anchors = torch.Tensor(len(triplets))
+    positives = torch.Tensor(len(triplets))
+    negatives = torch.Tensor(len(triplets))
+
+    for i in range(0,len(triplets)):
+        anchors[i] = triplets[i][0]
+        positives[i] = triplets[i][1]
+        negatives[i] = triplets[i][2]
+
+    model.train() # set model back to train mode
+    return anchors.int(),positives.int(),negatives.int() # return the indices of images for each (anchors, positives, negatives in order)
+
 
 
 def train(d_loader,dataset_validation):
@@ -110,16 +195,40 @@ def train(d_loader,dataset_validation):
             label = 0
             #### do something with images ...
             optimizer.zero_grad()
-            imgs1 = data[0].to(device)
-            imgs2 = data[1].to(device)
-            labels = data[2].to(device)
-            out1,out2 = model(imgs1,imgs2)
-            loss_contrastive = criterion(out1,out2,labels)
-            loss_contrastive.backward()
+
+
+            imgs = data[0].to(device)
+            labels = data[1]
+            anchorIndices, positiveIndices, negativeIndices = mineHardTriples(imgs,labels,model)
+
+            if anchorIndices.size()[0] == 0:
+                continue
+
+            anchors = torch.index_select(imgs,0,anchorIndices)
+            positives = torch.index_select(imgs,0,positiveIndices)
+            negatives = torch.index_select(imgs,0,negativeIndices)
+
+            for i in range(0,anchorIndices.size()[0]):
+                print(labels[anchorIndices[i]],labels[positiveIndices[i]],labels[negativeIndices[i]])   
+
+            # print(anchors.size())
+            # print(positives.size())
+            # print(negatives.size())
+
+            # exit()
+
+            # generate embeddings for all triplets to then compare them using triplet loss
+            anchorsEmbeddings = model(anchors)
+            positivesEmbeddings = model(positives)
+            negativesEmbeddings = model(negatives)
+
+            # pass embeddings generated for triplets to triplet loss
+            lossFunction = criterion(anchorsEmbeddings,positivesEmbeddings,negativesEmbeddings)
+            lossFunction.backward()
             optimizer.step()
             loop.set_description(f"Epoch [{epoch}/{num_epochs}]")
-            loop.set_postfix(loss=loss_contrastive.item())
-            epoch_loss += loss_contrastive.item()
+            loop.set_postfix(loss=lossFunction.item())
+            epoch_loss += lossFunction.item()
             iterations_loop += 1
         scheduler.step()
         epoch_loss /= iterations_loop
@@ -244,7 +353,8 @@ else:
         model = CattleNet(freezeLayers=True)
         model.to(device)
         # loss function
-        criterion = ContrastiveLoss()
+        # criterion = ContrastiveLoss()
+        criterion = TripletLoss()
 
         params = model.parameters()
         # setup optimizer (use Adam technique to optimize parameters (GD with momentum and RMS prop))
@@ -252,7 +362,8 @@ else:
         optimizer = optim.Adam(params,lr=lr) 
         scheduler = StepLR(optimizer, step_size=step_lr, gamma=0.99)
 
-        dataset_training = CustomImageDatasetBCE(img_dir='../../dataset/Preprocessed/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225])]),annotations_csv='./training_testing_folds/training_annotations_fold{}.csv'.format(i))
+        # dataset_training = CustomImageDatasetBCE(img_dir='../../dataset/Preprocessed/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225])]),annotations_csv='./training_testing_folds/training_annotations_fold{}.csv'.format(i))
+        dataset_training = SimpleTriplet(img_dir='../../dataset/Preprocessed/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225])]),annotations_csv='./training_testing_folds/validation_annotations_fold{}.csv'.format(i))
         dataset_validation = CustomImageDatasetBCE(img_dir='../../dataset/Preprocessed/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225])]),annotations_csv='./training_testing_folds/validation_annotations_fold{}.csv'.format(i))
         dataset_one_shot = OneShotImageDataset(img_dir='../../dataset/Preprocessed/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225])]),annotations_csv='./training_testing_folds/validation_annotations_fold{}.csv'.format(i))
         data_loader = DataLoader(dataset_training, batch_size=batch_size, shuffle=True)

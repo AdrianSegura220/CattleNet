@@ -63,7 +63,8 @@ def test_thresholds(test_dataset: CustomImageDatasetBCE, model_directory: str = 
             labels = data[2].to(device)
 
             # forward pass using anchor and images
-            anchor_res,images_res = model(anchor,images)
+            anchor_res = model(anchor)
+            images_res = model(images)
 
             distances_sq = torch.sub(anchor_res,images_res).pow(2).sum(1)
             
@@ -205,7 +206,7 @@ def one_shot_test(test_dataset: OneShotImageDataset,model,threshold,use_argmin,q
             images[int(data[1])] = []
             
         img = data[0].to(device)
-        out,dummy = model(img,img)
+        out = model(img)
         images[int(data[1])].append(out)
 
     for j,k in enumerate(images.keys()):
@@ -274,7 +275,8 @@ def test(test_dataset: CustomImageDataset_Validation,n, model_directory: str = '
             labels = data[2][0]
 
             # forward pass using anchor and images
-            anchor_res,images_res = model(anchor,images)
+            anchor_res = model(anchor)
+            images_res = model(images)
             
             correct_idx = torch.argmax(data[2])
             max_elem = torch.argmin(torch.sub(anchor_res,images_res).pow(2).sum(1))
