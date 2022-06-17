@@ -38,10 +38,12 @@ def test_thresholds(test_dataset: CustomImageDatasetBCE, model_directory: str = 
     avg_recall = [0.0 for i in range(0,len(thresholds))]
     avg_balanced_acc = [0.0 for i in range(0,len(thresholds))]
     avg_fscore = [0.0 for i in range(0,len(thresholds))]
+    avg_false_positive_rate = [0.0 for i in range(0,len(thresholds))]
     avg_precision_to_reduce = [0 for i in range(0,len(thresholds))]
     avg_recall_to_reduce = [0 for i in range(0,len(thresholds))]
     avg_balancedacc_to_reduce = [0 for i in range(0,len(thresholds))]
     avg_fscore_to_reduce = [0 for i in range(0,len(thresholds))]
+    avg_false_positive_rate_to_reduce = [0 for i in range(0,len(thresholds))]
     avg_tp = [0 for i in range(0,len(thresholds))]
     avg_tn = [0 for i in range(0,len(thresholds))]
     avg_fp = [0 for i in range(0,len(thresholds))]
@@ -84,6 +86,7 @@ def test_thresholds(test_dataset: CustomImageDatasetBCE, model_directory: str = 
                 avg_fp[i] += false_positives
                 avg_fn[i] += false_negatives
 
+
                 if true_positives + false_positives > 0:
                     precision = true_positives/(true_positives + false_positives)
                 else:
@@ -112,12 +115,18 @@ def test_thresholds(test_dataset: CustomImageDatasetBCE, model_directory: str = 
                 else:
                     fscore = -1
 
+                if recall != -1 and false_positives + true_positives > 0:
+                    false_positive_rate = false_positives/(false_positives + true_negatives)
+                else:
+                    false_positive_rate = -1
+
                 # accuracy = temp_result.sum(1)/classifications.size()[0]
                 stats[i] = {
                     'precision': precision,
                     'recall': recall,
                     'balanced_accuracy': balanced_acc,
-                    'f1-score': fscore
+                    'f1-score': fscore,
+                    'false_positive_rate': false_positive_rate
                 }
 
             for i,s in enumerate(stats): # so for each distance threhold recorded result add the value and at the end divide by total no. batches
@@ -147,8 +156,12 @@ def test_thresholds(test_dataset: CustomImageDatasetBCE, model_directory: str = 
                     avg_fscore[i] += s['f1-score']
                 else:
                     avg_fscore_to_reduce[i] += 1
-                
-        
+
+                if s['false_positive_rate'] != -1:
+                    false_positive_rate[i] += s['f1-score']
+                else:
+                    false_positive_rate[i] += 1
+
         """
             for each accumulated statistic for each distance threshold, divide by the amount of batches to calculate
             the average precision, recall and balanced_acc using such distance threshold
@@ -158,11 +171,19 @@ def test_thresholds(test_dataset: CustomImageDatasetBCE, model_directory: str = 
             avg_recall[i] /= (batches-avg_recall_to_reduce[i])
             avg_balanced_acc[i] /= (batches-avg_balancedacc_to_reduce[i])
             avg_fscore[i] /= (batches-avg_fscore_to_reduce[i])
+            avg_false_positive_rate[i] /= (batches-avg_false_positive_rate_to_reduce[i])
+
         
             avg_tp[i] /= batches
             avg_tn[i] /= batches
             avg_fp[i] /= batches
             avg_fn[i] /= batches
+
+        """
+            Compute roc with average values
+        """
+        
+
         # print('Avg tp: {}'.format(avg_tp))
         # print('Avg tn: {}'.format(avg_tn))
         # print('Avg fp: {}'.format(avg_fp))
@@ -180,7 +201,8 @@ def test_thresholds(test_dataset: CustomImageDatasetBCE, model_directory: str = 
             'avg_precision': avg_precision,
             'avg_recall': avg_recall,
             'avg_balanced_acc': avg_balanced_acc,
-            'avg_f1-score': avg_fscore
+            'avg_f1-score': avg_fscore,
+            'avg_fpr': avg_false_positive_rate
         }
 
 """

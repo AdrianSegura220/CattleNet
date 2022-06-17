@@ -9,6 +9,7 @@ from torchvision import datasets, models, transforms
 from torchvision import datasets, transforms as T
 from contrastive_loss import ContrastiveLoss
 from torch.optim.lr_scheduler import StepLR
+import sklearn.metrics as metrics
 import torchvision.models as models
 import torch
 import torch.nn as nn
@@ -38,7 +39,7 @@ save_models = False
 save_figs = False
 
 # wandb setup (logging progress to online platform)
-use_wandb = True
+use_wandb = False
 
 if use_wandb:
     wandb.init(project="cattleNet-arch1", entity="adriansegura220")
@@ -81,7 +82,23 @@ if use_wandb:
 #     print(acc)
 
 
-def train(d_loader,dataset_validation):
+def compute_roc_auc(out1,out2,labels,epoch):
+    cos = nn.CosineSimilarity(dim=1,eps=1e-6)
+    scores = cos(out1,out2)
+    fpr, tpr, thresholds = metrics.roc_curve(labels.cpu().numpy(), scores.cpu().numpy())
+    roc_auc = metrics.auc(fpr, tpr)
+    plt.title('Receiver Operating Characteristic')
+    plt.plot(fpr, tpr, 'b', label = 'AUC = %0.2f' % roc_auc)
+    plt.legend(loc = 'lower right')
+    plt.plot([0, 1], [0, 1],'r--')
+    plt.xlim([0, 1])
+    plt.ylim([0, 1])
+    plt.ylabel('True Positive Rate')
+    plt.xlabel('False Positive Rate')
+    plt.savefig('../roc_epoch{}.png'.format(epoch))
+
+
+def train(d_loader,dataset_validation,dataset_validation_training):
     min_loss = 99999999999999.0
     loss = []
     # arrays to save the best values for model training
@@ -117,6 +134,8 @@ def train(d_loader,dataset_validation):
             loss_contrastive = criterion(out1,out2,labels)
             loss_contrastive.backward()
             optimizer.step()
+            with torch.no_grad():
+                compute_roc_auc(out1,out2,labels,epoch)
             loop.set_description(f"Epoch [{epoch}/{num_epochs}]")
             loop.set_postfix(loss=loss_contrastive.item())
             epoch_loss += loss_contrastive.item()
@@ -139,6 +158,7 @@ def train(d_loader,dataset_validation):
         with torch.no_grad():
             # epoch_acc = test(dataset_validation,n=n_shot,model=model,is_load_model=False)
             validation_results = test_thresholds(dataset_validation,thresholds=thresholds_to_test,model=model)
+            validation_training_results = test_thresholds(dataset_validation_training,thresholds=thresholds_to_test,model=model)
             one_shot = one_shot_test(dataset_one_shot,model,0.5,True,True)
             """
                 validation results returns an array with results for each distance threshold
@@ -174,7 +194,27 @@ def train(d_loader,dataset_validation):
                 "Avg. avg_f1-score d=0.4": validation_results['avg_f1-score'][2],
                 "Avg. avg_f1-score d=0.5": validation_results['avg_f1-score'][3],
                 "Avg. avg_f1-score d=0.6": validation_results['avg_f1-score'][4],
-                "One-shot score": one_shot
+                "One-shot score": one_shot,
+                "Avg. balanced accuracy d=0.1": validation_training_results['avg_balanced_acc'][0],
+                "Avg. balanced accuracy d=0.25": validation_training_results['avg_balanced_acc'][1],
+                "Avg. balanced accuracy d=0.4": validation_training_results['avg_balanced_acc'][2],
+                "Avg. balanced accuracy d=0.5": validation_training_results['avg_balanced_acc'][3],
+                "Avg. balanced accuracy d=0.6": validation_training_results['avg_balanced_acc'][4],
+                "Avg. precision d=0.1": validation_training_results['avg_precision'][0],
+                "Avg. precision d=0.25": validation_training_results['avg_precision'][1],
+                "Avg. precision d=0.4": validation_training_results['avg_precision'][2],
+                "Avg. precision d=0.5": validation_training_results['avg_precision'][3],
+                "Avg. precision d=0.6": validation_training_results['avg_precision'][4],
+                "Avg. recall d=0.1": validation_training_results['avg_recall'][0],
+                "Avg. recall d=0.25": validation_training_results['avg_recall'][1],
+                "Avg. recall d=0.4": validation_training_results['avg_recall'][2],
+                "Avg. recall d=0.5": validation_training_results['avg_recall'][3],
+                "Avg. recall d=0.6": validation_training_results['avg_recall'][4],
+                "Avg. avg_f1-score d=0.1": validation_training_results['avg_f1-score'][0],
+                "Avg. avg_f1-score d=0.25": validation_training_results['avg_f1-score'][1],
+                "Avg. avg_f1-score d=0.4": validation_training_results['avg_f1-score'][2],
+                "Avg. avg_f1-score d=0.5": validation_training_results['avg_f1-score'][3],
+                "Avg. avg_f1-score d=0.6": validation_training_results['avg_f1-score'][4],
             })
 
         # 0.1,0.25,0.4,0.5,0.6
@@ -254,13 +294,14 @@ else:
 
         dataset_training = CustomImageDatasetBCE(img_dir='../../dataset/Preprocessed/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225])]),annotations_csv='./training_testing_folds/training_annotations_fold{}.csv'.format(i))
         dataset_validation = CustomImageDatasetBCE(img_dir='../../dataset/Preprocessed/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225])]),annotations_csv='./training_testing_folds/validation_annotations_fold{}.csv'.format(i))
+        dataset_validation_training = CustomImageDatasetBCE(img_dir='../../dataset/Preprocessed/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225])]),annotations_csv='./training_testing_folds/training_validation_annotations_fold{}.csv'.format(i))
         dataset_one_shot = OneShotImageDataset(img_dir='../../dataset/Preprocessed/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225])]),annotations_csv='./training_testing_folds/validation_annotations_fold{}.csv'.format(i))
         data_loader = DataLoader(dataset_training, batch_size=batch_size, shuffle=True)
 
 
         model.train()
         print("Starting training")
-        model,res_balanced_acc,res_f_score = train(d_loader=data_loader,dataset_validation=dataset_validation)
+        model,res_balanced_acc,res_f_score = train(d_loader=data_loader,dataset_validation=dataset_validation,dataset_validation_training=dataset_validation_training)
 
         for j in range(0,len(thresholds_to_test)):
             # add to compute average at the end
