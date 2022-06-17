@@ -22,7 +22,7 @@ import datetime
 import os
 import copy
 from model_test_original import test_thresholds,one_shot_test
-from custom_dataset_bce import CustomImageDataset_Validation, CustomImageDatasetBCE, OneShotImageDataset
+from custom_dataset_bce import CustomImageDataset_Validation, CustomImageDatasetBCE, OneShotImageDataset                                                                                                                                                                                                                                
 import wandb
 from custom_dataset import CustomImageDataset
 from torch.utils.data import DataLoader
@@ -41,7 +41,7 @@ save_models = False
 save_figs = False
 
 # wandb setup (logging progress to online platform)
-use_wandb = False
+use_wandb = True
 
 if use_wandb:
     wandb.init(project="cattleNet-arch1", entity="adriansegura220")
@@ -59,9 +59,9 @@ path_to_results = '../../BachelorsProject/Trainings/'
 #hyperparams
 lrDecay = 1
 step_lr = 1
-lr=15e-4
+lr=0.005
 in_channel = 3
-batch_size = 16
+batch_size = 128
 num_epochs = 150
 n_shot = 15
 k_folds = 1
@@ -183,7 +183,7 @@ def train(d_loader,dataset_validation):
     iterations_loop = 0
     # create directory for current training results
     if save_models or save_figs:
-        final_path = os.path.join(path_to_results,'CattleNetContrastive_lr{}_BCE_datetime{}-{}H{}M{}S{}'.format(lr,datetime.datetime.today().day,datetime.datetime.today().month,datetime.datetime.today().hour,datetime.datetime.today().minute,datetime.datetime.today().second))
+        final_path = os.path.join(path_to_results,'CattleNetContrastive_lr{}_BCE_datetime{}-{}H{}M{}S{}'.format(lr,datetime.datetime.today().day,datetime.datetime.today().month,datetime.datetime.today().hour,datetime.datetime.today().minute,datetime.datetime.today().second)) 
         os.mkdir(final_path)
 
     for epoch in range(1,num_epochs):
@@ -204,12 +204,12 @@ def train(d_loader,dataset_validation):
             if anchorIndices.size()[0] == 0:
                 continue
 
-            anchors = torch.index_select(imgs,0,anchorIndices)
-            positives = torch.index_select(imgs,0,positiveIndices)
-            negatives = torch.index_select(imgs,0,negativeIndices)
+            anchors = torch.index_select(imgs,0,anchorIndices.to(device))
+            positives = torch.index_select(imgs,0,positiveIndices.to(device))
+            negatives = torch.index_select(imgs,0,negativeIndices.to(device))
 
-            for i in range(0,anchorIndices.size()[0]):
-                print(labels[anchorIndices[i]],labels[positiveIndices[i]],labels[negativeIndices[i]])   
+            # for i in range(0,anchorIndices.size()[0]):
+            #     print(labels[anchorIndices[i]],labels[positiveIndices[i]],labels[negativeIndices[i]])   
 
             # print(anchors.size())
             # print(positives.size())
@@ -363,7 +363,7 @@ else:
         scheduler = StepLR(optimizer, step_size=step_lr, gamma=0.99)
 
         # dataset_training = CustomImageDatasetBCE(img_dir='../../dataset/Preprocessed/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225])]),annotations_csv='./training_testing_folds/training_annotations_fold{}.csv'.format(i))
-        dataset_training = SimpleTriplet(img_dir='../../dataset/Preprocessed/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225])]),annotations_csv='./training_testing_folds/validation_annotations_fold{}.csv'.format(i))
+        dataset_training = SimpleTriplet(img_dir='../../dataset/Preprocessed/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225])]),annotations_csv='./training_testing_folds/training_annotations_fold{}.csv'.format(i))
         dataset_validation = CustomImageDatasetBCE(img_dir='../../dataset/Preprocessed/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225])]),annotations_csv='./training_testing_folds/validation_annotations_fold{}.csv'.format(i))
         dataset_one_shot = OneShotImageDataset(img_dir='../../dataset/Preprocessed/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225])]),annotations_csv='./training_testing_folds/validation_annotations_fold{}.csv'.format(i))
         data_loader = DataLoader(dataset_training, batch_size=batch_size, shuffle=True)
