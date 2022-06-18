@@ -2,7 +2,6 @@ from __future__ import print_function
 from __future__ import division
 from base64 import encode
 from turtle import forward
-from cv2 import threshold
 from sklearn.metrics import balanced_accuracy_score
 from torchvision import datasets, models, transforms 
 from torchvision import datasets, transforms as T
