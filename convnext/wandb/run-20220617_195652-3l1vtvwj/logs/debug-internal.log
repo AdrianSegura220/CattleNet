@@ -1,0 +1,580 @@
+2022-06-17 19:56:53,209 INFO    MainThread:116847 [internal.py:wandb_internal():90] W&B internal server running at pid: 116847, started at: 2022-06-17 19:56:53.209463
+2022-06-17 19:56:53,210 INFO    WriterThread:116847 [datastore.py:open_for_write():75] open: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/run-3l1vtvwj.wandb
+2022-06-17 19:56:53,211 DEBUG   SenderThread:116847 [sender.py:send():232] send: header
+2022-06-17 19:56:53,211 DEBUG   SenderThread:116847 [sender.py:send():232] send: run
+2022-06-17 19:56:53,436 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: check_version
+2022-06-17 19:56:53,438 INFO    SenderThread:116847 [dir_watcher.py:__init__():197] watching files in: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files
+2022-06-17 19:56:53,439 INFO    SenderThread:116847 [sender.py:_start_run_threads():811] run started: 3l1vtvwj with start time 1655488612
+2022-06-17 19:56:53,439 DEBUG   SenderThread:116847 [sender.py:send():232] send: summary
+2022-06-17 19:56:53,439 INFO    SenderThread:116847 [sender.py:_save_file():948] saving file wandb-summary.json with policy end
+2022-06-17 19:56:53,439 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: check_version
+2022-06-17 19:56:53,515 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: run_start
+2022-06-17 19:56:53,518 DEBUG   HandlerThread:116847 [meta.py:__init__():35] meta init
+2022-06-17 19:56:53,518 DEBUG   HandlerThread:116847 [meta.py:__init__():49] meta init done
+2022-06-17 19:56:53,518 DEBUG   HandlerThread:116847 [meta.py:probe():209] probe
+2022-06-17 19:56:53,525 DEBUG   HandlerThread:116847 [meta.py:_setup_git():199] setup git
+2022-06-17 19:56:53,539 DEBUG   HandlerThread:116847 [meta.py:_setup_git():206] setup git done
+2022-06-17 19:56:53,539 DEBUG   HandlerThread:116847 [meta.py:_save_pip():53] save pip
+2022-06-17 19:56:53,540 DEBUG   HandlerThread:116847 [meta.py:_save_pip():67] save pip done
+2022-06-17 19:56:53,540 DEBUG   HandlerThread:116847 [meta.py:_save_conda():74] save conda
+2022-06-17 19:56:54,442 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_created():244] file/dir created: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/wandb-summary.json
+2022-06-17 19:56:54,442 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_created():244] file/dir created: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/requirements.txt
+2022-06-17 19:56:54,442 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_created():244] file/dir created: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/conda-environment.yaml
+2022-06-17 19:56:56,866 DEBUG   HandlerThread:116847 [meta.py:_save_conda():84] save conda done
+2022-06-17 19:56:56,866 DEBUG   HandlerThread:116847 [meta.py:probe():247] probe done
+2022-06-17 19:56:56,870 DEBUG   SenderThread:116847 [sender.py:send():232] send: files
+2022-06-17 19:56:56,870 INFO    SenderThread:116847 [sender.py:_save_file():948] saving file wandb-metadata.json with policy now
+2022-06-17 19:56:56,874 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 19:56:56,874 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 19:56:57,051 DEBUG   SenderThread:116847 [sender.py:send():232] send: telemetry
+2022-06-17 19:56:57,441 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/conda-environment.yaml
+2022-06-17 19:56:57,442 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_created():244] file/dir created: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/wandb-metadata.json
+2022-06-17 19:56:57,442 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_created():244] file/dir created: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 19:56:57,470 INFO    Thread-11 :116847 [upload_job.py:push():132] Uploaded file /tmp/tmpbid37mbawandb/33tdj233-wandb-metadata.json
+2022-06-17 19:57:01,442 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 19:57:05,443 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 19:57:09,444 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 19:57:12,058 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 19:57:12,058 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 19:57:13,445 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 19:57:17,446 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 19:57:21,447 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 19:57:21,737 DEBUG   SenderThread:116847 [sender.py:send():232] send: stats
+2022-06-17 19:57:23,448 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 19:57:24,448 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/config.yaml
+2022-06-17 19:57:25,449 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 19:57:27,309 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 19:57:27,310 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 19:57:27,449 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 19:57:29,450 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 19:57:31,450 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 19:57:33,451 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 19:57:35,451 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 19:57:39,452 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 19:57:42,508 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 19:57:42,509 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 19:57:43,453 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 19:57:47,454 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 19:57:51,947 DEBUG   SenderThread:116847 [sender.py:send():232] send: stats
+2022-06-17 19:57:57,717 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 19:57:57,718 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 19:58:02,396 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: partial_history
+2022-06-17 19:58:02,397 DEBUG   SenderThread:116847 [sender.py:send():232] send: history
+2022-06-17 19:58:02,398 DEBUG   SenderThread:116847 [sender.py:send():232] send: summary
+2022-06-17 19:58:02,399 INFO    SenderThread:116847 [sender.py:_save_file():948] saving file wandb-summary.json with policy end
+2022-06-17 19:58:02,458 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/wandb-summary.json
+2022-06-17 19:58:03,458 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 19:58:07,459 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 19:58:11,460 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 19:58:12,900 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 19:58:12,900 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 19:58:15,462 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 19:58:19,463 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 19:58:22,146 DEBUG   SenderThread:116847 [sender.py:send():232] send: stats
+2022-06-17 19:58:23,464 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 19:58:27,465 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 19:58:28,092 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 19:58:28,093 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 19:58:31,466 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 19:58:35,467 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 19:58:40,469 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 19:58:43,283 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 19:58:43,284 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 19:58:44,470 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 19:58:48,471 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 19:58:51,472 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 19:58:52,375 DEBUG   SenderThread:116847 [sender.py:send():232] send: stats
+2022-06-17 19:58:52,472 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 19:58:58,481 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 19:58:58,481 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 19:59:06,302 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: partial_history
+2022-06-17 19:59:06,303 DEBUG   SenderThread:116847 [sender.py:send():232] send: history
+2022-06-17 19:59:06,303 DEBUG   SenderThread:116847 [sender.py:send():232] send: summary
+2022-06-17 19:59:06,305 INFO    SenderThread:116847 [sender.py:_save_file():948] saving file wandb-summary.json with policy end
+2022-06-17 19:59:06,477 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/wandb-summary.json
+2022-06-17 19:59:08,477 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 19:59:12,479 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 19:59:13,668 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 19:59:13,668 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 19:59:16,480 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 19:59:20,481 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 19:59:22,578 DEBUG   SenderThread:116847 [sender.py:send():232] send: stats
+2022-06-17 19:59:24,482 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 19:59:28,484 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 19:59:28,860 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 19:59:28,860 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 19:59:32,485 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 19:59:36,486 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 19:59:40,487 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 19:59:44,044 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 19:59:44,044 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 19:59:44,489 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 19:59:48,490 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 19:59:52,491 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 19:59:52,794 DEBUG   SenderThread:116847 [sender.py:send():232] send: stats
+2022-06-17 19:59:56,493 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 19:59:59,228 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 19:59:59,228 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 20:00:10,883 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: partial_history
+2022-06-17 20:00:10,884 DEBUG   SenderThread:116847 [sender.py:send():232] send: history
+2022-06-17 20:00:10,884 DEBUG   SenderThread:116847 [sender.py:send():232] send: summary
+2022-06-17 20:00:10,885 INFO    SenderThread:116847 [sender.py:_save_file():948] saving file wandb-summary.json with policy end
+2022-06-17 20:00:11,497 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/wandb-summary.json
+2022-06-17 20:00:12,497 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:00:14,421 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 20:00:14,421 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 20:00:16,499 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:00:20,500 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:00:22,996 DEBUG   SenderThread:116847 [sender.py:send():232] send: stats
+2022-06-17 20:00:24,501 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:00:28,502 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:00:29,615 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 20:00:29,616 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 20:00:32,504 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:00:36,505 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:00:40,506 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:00:44,507 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:00:44,800 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 20:00:44,800 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 20:00:48,508 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:00:52,510 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:00:53,226 DEBUG   SenderThread:116847 [sender.py:send():232] send: stats
+2022-06-17 20:00:56,511 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:00:59,984 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 20:00:59,984 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 20:01:00,512 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:01:14,941 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: partial_history
+2022-06-17 20:01:14,942 DEBUG   SenderThread:116847 [sender.py:send():232] send: history
+2022-06-17 20:01:14,942 DEBUG   SenderThread:116847 [sender.py:send():232] send: summary
+2022-06-17 20:01:14,942 INFO    SenderThread:116847 [sender.py:_save_file():948] saving file wandb-summary.json with policy end
+2022-06-17 20:01:15,181 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 20:01:15,181 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 20:01:15,516 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/wandb-summary.json
+2022-06-17 20:01:16,516 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:01:20,517 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:01:23,450 DEBUG   SenderThread:116847 [sender.py:send():232] send: stats
+2022-06-17 20:01:24,518 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:01:28,519 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:01:30,380 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 20:01:30,380 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 20:01:32,520 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:01:36,521 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:01:40,522 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:01:44,523 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:01:45,565 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 20:01:45,565 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 20:01:48,524 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:01:52,526 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:01:53,657 DEBUG   SenderThread:116847 [sender.py:send():232] send: stats
+2022-06-17 20:01:56,527 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:02:00,528 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:02:00,743 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 20:02:00,743 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 20:02:02,528 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:02:15,946 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 20:02:15,946 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 20:02:19,098 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: partial_history
+2022-06-17 20:02:19,099 DEBUG   SenderThread:116847 [sender.py:send():232] send: history
+2022-06-17 20:02:19,099 DEBUG   SenderThread:116847 [sender.py:send():232] send: summary
+2022-06-17 20:02:19,101 INFO    SenderThread:116847 [sender.py:_save_file():948] saving file wandb-summary.json with policy end
+2022-06-17 20:02:19,532 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/wandb-summary.json
+2022-06-17 20:02:20,533 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:02:21,533 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:02:23,866 DEBUG   SenderThread:116847 [sender.py:send():232] send: stats
+2022-06-17 20:02:25,534 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:02:29,535 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:02:31,129 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 20:02:31,129 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 20:02:33,536 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:02:37,537 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:02:41,539 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:02:45,540 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:02:46,312 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 20:02:46,312 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 20:02:49,541 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:02:53,542 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:02:54,085 DEBUG   SenderThread:116847 [sender.py:send():232] send: stats
+2022-06-17 20:02:57,543 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:03:01,488 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 20:03:01,488 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 20:03:01,544 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:03:05,545 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:03:09,547 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:03:16,678 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 20:03:16,679 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 20:03:22,935 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: partial_history
+2022-06-17 20:03:22,935 DEBUG   SenderThread:116847 [sender.py:send():232] send: history
+2022-06-17 20:03:22,936 DEBUG   SenderThread:116847 [sender.py:send():232] send: summary
+2022-06-17 20:03:22,938 INFO    SenderThread:116847 [sender.py:_save_file():948] saving file wandb-summary.json with policy end
+2022-06-17 20:03:23,551 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/wandb-summary.json
+2022-06-17 20:03:24,285 DEBUG   SenderThread:116847 [sender.py:send():232] send: stats
+2022-06-17 20:03:25,551 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:03:29,553 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:03:31,869 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 20:03:31,870 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 20:03:33,554 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:03:37,555 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:03:41,556 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:03:45,558 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:03:47,118 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 20:03:47,118 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 20:03:49,559 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:03:53,560 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:03:54,503 DEBUG   SenderThread:116847 [sender.py:send():232] send: stats
+2022-06-17 20:03:57,562 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:04:01,563 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:04:02,360 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 20:04:02,361 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 20:04:05,564 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:04:09,565 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:04:13,566 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:04:17,541 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 20:04:17,541 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 20:04:24,706 DEBUG   SenderThread:116847 [sender.py:send():232] send: stats
+2022-06-17 20:04:27,531 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: partial_history
+2022-06-17 20:04:27,532 DEBUG   SenderThread:116847 [sender.py:send():232] send: history
+2022-06-17 20:04:27,532 DEBUG   SenderThread:116847 [sender.py:send():232] send: summary
+2022-06-17 20:04:27,532 INFO    SenderThread:116847 [sender.py:_save_file():948] saving file wandb-summary.json with policy end
+2022-06-17 20:04:27,574 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/wandb-summary.json
+2022-06-17 20:04:29,573 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:04:32,735 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 20:04:32,735 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 20:04:33,574 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:04:37,575 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:04:41,576 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:04:45,577 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:04:47,919 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 20:04:47,919 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 20:04:49,579 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:04:53,580 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:04:54,923 DEBUG   SenderThread:116847 [sender.py:send():232] send: stats
+2022-06-17 20:04:55,581 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:04:57,581 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:04:59,582 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:05:01,582 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:05:03,122 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 20:05:03,122 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 20:05:03,583 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:05:05,583 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:05:07,584 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:05:11,585 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:05:15,586 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:05:18,318 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 20:05:18,318 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 20:05:25,104 DEBUG   SenderThread:116847 [sender.py:send():232] send: stats
+2022-06-17 20:05:31,078 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: partial_history
+2022-06-17 20:05:31,078 DEBUG   SenderThread:116847 [sender.py:send():232] send: history
+2022-06-17 20:05:31,078 DEBUG   SenderThread:116847 [sender.py:send():232] send: summary
+2022-06-17 20:05:31,079 INFO    SenderThread:116847 [sender.py:_save_file():948] saving file wandb-summary.json with policy end
+2022-06-17 20:05:31,590 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/wandb-summary.json
+2022-06-17 20:05:31,591 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:05:33,507 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 20:05:33,507 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 20:05:33,591 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:05:35,591 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:05:39,593 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:05:42,593 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:05:44,594 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:05:48,595 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:05:48,691 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 20:05:48,691 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 20:05:52,596 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:05:55,285 DEBUG   SenderThread:116847 [sender.py:send():232] send: stats
+2022-06-17 20:05:56,597 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:06:00,598 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:06:03,893 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 20:06:03,893 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 20:06:04,600 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:06:08,601 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:06:10,601 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:06:14,602 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:06:18,603 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:06:19,101 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 20:06:19,102 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 20:06:20,604 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:06:21,604 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:06:22,605 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:06:25,458 DEBUG   SenderThread:116847 [sender.py:send():232] send: stats
+2022-06-17 20:06:34,313 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 20:06:34,313 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 20:06:36,082 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: partial_history
+2022-06-17 20:06:36,083 DEBUG   SenderThread:116847 [sender.py:send():232] send: history
+2022-06-17 20:06:36,084 DEBUG   SenderThread:116847 [sender.py:send():232] send: summary
+2022-06-17 20:06:36,084 INFO    SenderThread:116847 [sender.py:_save_file():948] saving file wandb-summary.json with policy end
+2022-06-17 20:06:36,608 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/wandb-summary.json
+2022-06-17 20:06:38,609 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:06:42,610 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:06:44,610 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:06:46,611 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:06:48,612 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:06:49,502 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 20:06:49,503 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 20:06:52,613 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:06:55,700 DEBUG   SenderThread:116847 [sender.py:send():232] send: stats
+2022-06-17 20:06:56,614 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:07:00,615 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:07:02,616 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:07:04,616 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:07:04,697 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 20:07:04,698 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 20:07:08,617 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:07:12,618 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:07:14,619 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:07:16,619 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:07:19,899 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 20:07:19,899 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 20:07:20,621 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:07:24,622 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:07:25,914 DEBUG   SenderThread:116847 [sender.py:send():232] send: stats
+2022-06-17 20:07:35,089 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 20:07:35,089 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 20:07:39,799 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: partial_history
+2022-06-17 20:07:39,800 DEBUG   SenderThread:116847 [sender.py:send():232] send: history
+2022-06-17 20:07:39,800 DEBUG   SenderThread:116847 [sender.py:send():232] send: summary
+2022-06-17 20:07:39,800 INFO    SenderThread:116847 [sender.py:_save_file():948] saving file wandb-summary.json with policy end
+2022-06-17 20:07:40,626 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/wandb-summary.json
+2022-06-17 20:07:40,626 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:07:42,627 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:07:44,627 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:07:48,628 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:07:50,272 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 20:07:50,273 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 20:07:52,629 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:07:56,187 DEBUG   SenderThread:116847 [sender.py:send():232] send: stats
+2022-06-17 20:07:56,630 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:08:00,631 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:08:04,632 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:08:05,462 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 20:08:05,462 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 20:08:08,634 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:08:12,635 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:08:16,636 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:08:20,637 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:08:20,656 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 20:08:20,657 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 20:08:24,639 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:08:26,434 DEBUG   SenderThread:116847 [sender.py:send():232] send: stats
+2022-06-17 20:08:28,640 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:08:35,856 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 20:08:35,857 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 20:08:43,428 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: partial_history
+2022-06-17 20:08:43,429 DEBUG   SenderThread:116847 [sender.py:send():232] send: history
+2022-06-17 20:08:43,429 DEBUG   SenderThread:116847 [sender.py:send():232] send: summary
+2022-06-17 20:08:43,429 INFO    SenderThread:116847 [sender.py:_save_file():948] saving file wandb-summary.json with policy end
+2022-06-17 20:08:43,644 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/wandb-summary.json
+2022-06-17 20:08:44,644 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:08:45,644 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:08:49,645 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:08:51,060 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 20:08:51,060 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 20:08:53,647 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:08:56,648 DEBUG   SenderThread:116847 [sender.py:send():232] send: stats
+2022-06-17 20:08:57,649 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:09:01,650 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:09:05,651 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:09:06,248 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 20:09:06,248 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 20:09:09,652 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:09:13,653 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:09:17,655 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:09:21,431 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 20:09:21,431 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 20:09:21,656 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:09:25,657 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:09:26,848 DEBUG   SenderThread:116847 [sender.py:send():232] send: stats
+2022-06-17 20:09:29,658 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:09:31,659 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:09:32,659 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:09:36,608 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 20:09:36,608 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 20:09:47,209 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: partial_history
+2022-06-17 20:09:47,209 DEBUG   SenderThread:116847 [sender.py:send():232] send: history
+2022-06-17 20:09:47,210 DEBUG   SenderThread:116847 [sender.py:send():232] send: summary
+2022-06-17 20:09:47,210 INFO    SenderThread:116847 [sender.py:_save_file():948] saving file wandb-summary.json with policy end
+2022-06-17 20:09:47,663 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/wandb-summary.json
+2022-06-17 20:09:48,663 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:09:49,664 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:09:51,813 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 20:09:51,813 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 20:09:53,665 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:09:57,045 DEBUG   SenderThread:116847 [sender.py:send():232] send: stats
+2022-06-17 20:09:57,666 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:10:01,667 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:10:03,668 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:10:05,669 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:10:07,013 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 20:10:07,013 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 20:10:07,669 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:10:11,671 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:10:15,672 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:10:19,673 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:10:22,266 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 20:10:22,266 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 20:10:23,674 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:10:27,260 DEBUG   SenderThread:116847 [sender.py:send():232] send: stats
+2022-06-17 20:10:27,675 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:10:31,676 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:10:35,677 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:10:37,446 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 20:10:37,446 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 20:10:50,991 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: partial_history
+2022-06-17 20:10:50,992 DEBUG   SenderThread:116847 [sender.py:send():232] send: history
+2022-06-17 20:10:50,992 DEBUG   SenderThread:116847 [sender.py:send():232] send: summary
+2022-06-17 20:10:50,993 INFO    SenderThread:116847 [sender.py:_save_file():948] saving file wandb-summary.json with policy end
+2022-06-17 20:10:51,681 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/wandb-summary.json
+2022-06-17 20:10:51,681 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:10:52,621 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 20:10:52,622 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 20:10:53,682 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:10:55,683 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:10:57,428 DEBUG   SenderThread:116847 [sender.py:send():232] send: stats
+2022-06-17 20:10:59,684 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:11:03,685 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:11:07,686 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:11:07,816 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 20:11:07,817 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 20:11:11,687 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:11:15,688 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:11:19,689 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:11:23,010 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 20:11:23,011 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 20:11:23,690 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:11:27,631 DEBUG   SenderThread:116847 [sender.py:send():232] send: stats
+2022-06-17 20:11:27,691 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:11:31,692 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:11:35,693 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:11:38,229 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 20:11:38,230 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 20:11:39,695 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:11:53,415 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 20:11:53,415 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 20:11:55,129 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: partial_history
+2022-06-17 20:11:55,129 DEBUG   SenderThread:116847 [sender.py:send():232] send: history
+2022-06-17 20:11:55,132 DEBUG   SenderThread:116847 [sender.py:send():232] send: summary
+2022-06-17 20:11:55,132 INFO    SenderThread:116847 [sender.py:_save_file():948] saving file wandb-summary.json with policy end
+2022-06-17 20:11:55,699 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/wandb-summary.json
+2022-06-17 20:11:55,699 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:11:57,828 DEBUG   SenderThread:116847 [sender.py:send():232] send: stats
+2022-06-17 20:11:59,700 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:12:03,701 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:12:08,595 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: stop_status
+2022-06-17 20:12:08,595 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: stop_status
+2022-06-17 20:12:08,703 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:12:11,839 WARNING MainThread:116847 [internal.py:wandb_internal():153] Internal process interrupt: 1
+2022-06-17 20:12:11,845 DEBUG   SenderThread:116847 [sender.py:send():232] send: telemetry
+2022-06-17 20:12:12,704 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:12:14,645 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: poll_exit
+2022-06-17 20:12:14,646 DEBUG   SenderThread:116847 [sender.py:send():232] send: exit
+2022-06-17 20:12:14,646 INFO    SenderThread:116847 [sender.py:send_exit():368] handling exit code: 255
+2022-06-17 20:12:14,646 INFO    SenderThread:116847 [sender.py:send_exit():370] handling runtime: 921
+2022-06-17 20:12:14,646 INFO    SenderThread:116847 [sender.py:_save_file():948] saving file wandb-summary.json with policy end
+2022-06-17 20:12:14,647 INFO    SenderThread:116847 [sender.py:send_exit():376] send defer
+2022-06-17 20:12:14,647 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: poll_exit
+2022-06-17 20:12:14,647 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: defer
+2022-06-17 20:12:14,647 INFO    HandlerThread:116847 [handler.py:handle_request_defer():164] handle defer: 0
+2022-06-17 20:12:14,647 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: defer
+2022-06-17 20:12:14,647 INFO    SenderThread:116847 [sender.py:send_request_defer():385] handle sender defer: 0
+2022-06-17 20:12:14,647 INFO    SenderThread:116847 [sender.py:transition_state():389] send defer: 1
+2022-06-17 20:12:14,648 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: defer
+2022-06-17 20:12:14,648 INFO    HandlerThread:116847 [handler.py:handle_request_defer():164] handle defer: 1
+2022-06-17 20:12:14,661 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: defer
+2022-06-17 20:12:14,661 INFO    SenderThread:116847 [sender.py:send_request_defer():385] handle sender defer: 1
+2022-06-17 20:12:14,661 INFO    SenderThread:116847 [sender.py:transition_state():389] send defer: 2
+2022-06-17 20:12:14,662 DEBUG   SenderThread:116847 [sender.py:send():232] send: stats
+2022-06-17 20:12:14,662 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: defer
+2022-06-17 20:12:14,662 INFO    HandlerThread:116847 [handler.py:handle_request_defer():164] handle defer: 2
+2022-06-17 20:12:14,662 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: defer
+2022-06-17 20:12:14,662 INFO    SenderThread:116847 [sender.py:send_request_defer():385] handle sender defer: 2
+2022-06-17 20:12:14,662 INFO    SenderThread:116847 [sender.py:transition_state():389] send defer: 3
+2022-06-17 20:12:14,663 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: defer
+2022-06-17 20:12:14,663 INFO    HandlerThread:116847 [handler.py:handle_request_defer():164] handle defer: 3
+2022-06-17 20:12:14,663 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: defer
+2022-06-17 20:12:14,663 INFO    SenderThread:116847 [sender.py:send_request_defer():385] handle sender defer: 3
+2022-06-17 20:12:14,663 INFO    SenderThread:116847 [sender.py:transition_state():389] send defer: 4
+2022-06-17 20:12:14,663 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: defer
+2022-06-17 20:12:14,663 INFO    HandlerThread:116847 [handler.py:handle_request_defer():164] handle defer: 4
+2022-06-17 20:12:14,663 DEBUG   SenderThread:116847 [sender.py:send():232] send: summary
+2022-06-17 20:12:14,664 INFO    SenderThread:116847 [sender.py:_save_file():948] saving file wandb-summary.json with policy end
+2022-06-17 20:12:14,664 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: defer
+2022-06-17 20:12:14,664 INFO    SenderThread:116847 [sender.py:send_request_defer():385] handle sender defer: 4
+2022-06-17 20:12:14,664 INFO    SenderThread:116847 [sender.py:transition_state():389] send defer: 5
+2022-06-17 20:12:14,664 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: defer
+2022-06-17 20:12:14,664 INFO    HandlerThread:116847 [handler.py:handle_request_defer():164] handle defer: 5
+2022-06-17 20:12:14,664 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: defer
+2022-06-17 20:12:14,664 INFO    SenderThread:116847 [sender.py:send_request_defer():385] handle sender defer: 5
+2022-06-17 20:12:14,705 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/wandb-summary.json
+2022-06-17 20:12:14,705 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:12:14,748 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: poll_exit
+2022-06-17 20:12:14,880 INFO    SenderThread:116847 [sender.py:transition_state():389] send defer: 6
+2022-06-17 20:12:14,880 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: poll_exit
+2022-06-17 20:12:14,881 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: defer
+2022-06-17 20:12:14,881 INFO    HandlerThread:116847 [handler.py:handle_request_defer():164] handle defer: 6
+2022-06-17 20:12:14,881 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: defer
+2022-06-17 20:12:14,881 INFO    SenderThread:116847 [sender.py:send_request_defer():385] handle sender defer: 6
+2022-06-17 20:12:14,881 INFO    SenderThread:116847 [dir_watcher.py:finish():312] shutting down directory watcher
+2022-06-17 20:12:14,981 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: poll_exit
+2022-06-17 20:12:15,705 INFO    Thread-7  :116847 [dir_watcher.py:_on_file_modified():257] file/dir modified: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/config.yaml
+2022-06-17 20:12:15,706 INFO    SenderThread:116847 [dir_watcher.py:finish():342] scan: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files
+2022-06-17 20:12:15,706 INFO    SenderThread:116847 [dir_watcher.py:finish():356] scan save: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/wandb-summary.json wandb-summary.json
+2022-06-17 20:12:15,706 INFO    SenderThread:116847 [dir_watcher.py:finish():356] scan save: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log output.log
+2022-06-17 20:12:15,709 INFO    SenderThread:116847 [dir_watcher.py:finish():356] scan save: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/requirements.txt requirements.txt
+2022-06-17 20:12:15,711 INFO    SenderThread:116847 [dir_watcher.py:finish():356] scan save: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/config.yaml config.yaml
+2022-06-17 20:12:15,713 INFO    SenderThread:116847 [dir_watcher.py:finish():356] scan save: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/wandb-metadata.json wandb-metadata.json
+2022-06-17 20:12:15,713 INFO    SenderThread:116847 [dir_watcher.py:finish():356] scan save: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/conda-environment.yaml conda-environment.yaml
+2022-06-17 20:12:15,713 INFO    SenderThread:116847 [sender.py:transition_state():389] send defer: 7
+2022-06-17 20:12:15,715 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: poll_exit
+2022-06-17 20:12:15,715 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: defer
+2022-06-17 20:12:15,718 INFO    HandlerThread:116847 [handler.py:handle_request_defer():164] handle defer: 7
+2022-06-17 20:12:15,718 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: defer
+2022-06-17 20:12:15,718 INFO    SenderThread:116847 [sender.py:send_request_defer():385] handle sender defer: 7
+2022-06-17 20:12:15,719 INFO    SenderThread:116847 [file_pusher.py:finish():145] shutting down file pusher
+2022-06-17 20:12:15,816 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: poll_exit
+2022-06-17 20:12:15,817 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: poll_exit
+2022-06-17 20:12:15,919 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: poll_exit
+2022-06-17 20:12:15,923 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: poll_exit
+2022-06-17 20:12:16,026 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: poll_exit
+2022-06-17 20:12:16,027 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: poll_exit
+2022-06-17 20:12:16,128 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: poll_exit
+2022-06-17 20:12:16,128 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: poll_exit
+2022-06-17 20:12:16,229 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: poll_exit
+2022-06-17 20:12:16,229 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: poll_exit
+2022-06-17 20:12:16,271 INFO    Thread-12 :116847 [upload_job.py:push():132] Uploaded file /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/wandb-summary.json
+2022-06-17 20:12:16,280 INFO    Thread-14 :116847 [upload_job.py:push():132] Uploaded file /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/requirements.txt
+2022-06-17 20:12:16,290 INFO    Thread-13 :116847 [upload_job.py:push():132] Uploaded file /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/output.log
+2022-06-17 20:12:16,315 INFO    Thread-16 :116847 [upload_job.py:push():132] Uploaded file /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/conda-environment.yaml
+2022-06-17 20:12:16,316 INFO    Thread-15 :116847 [upload_job.py:push():132] Uploaded file /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/files/config.yaml
+2022-06-17 20:12:16,330 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: poll_exit
+2022-06-17 20:12:16,330 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: poll_exit
+2022-06-17 20:12:16,431 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: poll_exit
+2022-06-17 20:12:16,431 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: poll_exit
+2022-06-17 20:12:16,517 INFO    Thread-6  :116847 [sender.py:transition_state():389] send defer: 8
+2022-06-17 20:12:16,517 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: defer
+2022-06-17 20:12:16,517 INFO    HandlerThread:116847 [handler.py:handle_request_defer():164] handle defer: 8
+2022-06-17 20:12:16,518 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: defer
+2022-06-17 20:12:16,518 INFO    SenderThread:116847 [sender.py:send_request_defer():385] handle sender defer: 8
+2022-06-17 20:12:16,532 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: poll_exit
+2022-06-17 20:12:18,289 INFO    SenderThread:116847 [sender.py:transition_state():389] send defer: 9
+2022-06-17 20:12:18,289 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: poll_exit
+2022-06-17 20:12:18,289 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: defer
+2022-06-17 20:12:18,292 INFO    HandlerThread:116847 [handler.py:handle_request_defer():164] handle defer: 9
+2022-06-17 20:12:18,292 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: defer
+2022-06-17 20:12:18,292 INFO    SenderThread:116847 [sender.py:send_request_defer():385] handle sender defer: 9
+2022-06-17 20:12:18,292 INFO    SenderThread:116847 [sender.py:transition_state():389] send defer: 10
+2022-06-17 20:12:18,293 DEBUG   SenderThread:116847 [sender.py:send():232] send: final
+2022-06-17 20:12:18,293 DEBUG   SenderThread:116847 [sender.py:send():232] send: footer
+2022-06-17 20:12:18,293 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: defer
+2022-06-17 20:12:18,293 INFO    HandlerThread:116847 [handler.py:handle_request_defer():164] handle defer: 10
+2022-06-17 20:12:18,293 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: defer
+2022-06-17 20:12:18,294 INFO    SenderThread:116847 [sender.py:send_request_defer():385] handle sender defer: 10
+2022-06-17 20:12:18,393 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: poll_exit
+2022-06-17 20:12:18,393 DEBUG   SenderThread:116847 [sender.py:send_request():246] send_request: poll_exit
+2022-06-17 20:12:18,393 INFO    SenderThread:116847 [file_pusher.py:join():150] waiting for file pusher
+2022-06-17 20:12:18,887 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: sampled_history
+2022-06-17 20:12:18,888 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: get_summary
+2022-06-17 20:12:18,889 DEBUG   HandlerThread:116847 [handler.py:handle_request():141] handle_request: shutdown
+2022-06-17 20:12:18,889 INFO    HandlerThread:116847 [handler.py:finish():806] shutting down handler
+2022-06-17 20:12:19,293 INFO    WriterThread:116847 [datastore.py:close():279] close: /home/adriansegura/Desktop/RUG/CattleNet/convnext/wandb/run-20220617_195652-3l1vtvwj/run-3l1vtvwj.wandb
+2022-06-17 20:12:19,786 INFO    SenderThread:116847 [sender.py:finish():1110] shutting down sender
+2022-06-17 20:12:19,786 INFO    SenderThread:116847 [file_pusher.py:finish():145] shutting down file pusher
+2022-06-17 20:12:19,786 INFO    SenderThread:116847 [file_pusher.py:join():150] waiting for file pusher
+2022-06-17 20:12:19,848 INFO    MainThread:116847 [internal.py:handle_exit():80] Internal process exited

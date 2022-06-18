@@ -1,0 +1,24 @@
+{
+    "os": "Linux-5.15.15-76051515-generic-x86_64-with-glibc2.34",
+    "python": "3.9.12",
+    "heartbeatAt": "2022-06-17T17:39:40.903763",
+    "startedAt": "2022-06-17T17:39:39.953069",
+    "docker": null,
+    "gpu": "NVIDIA GeForce GTX 1660 SUPER",
+    "gpu_count": 1,
+    "cpu_count": 12,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "/home/adriansegura/Desktop/RUG/CattleNet/convnext/setup.py",
+    "codePath": "convnext/setup.py",
+    "git": {
+        "remote": "https://github.com/AdrianSegura220/CattleNet.git",
+        "commit": "8bd09864748a866bba8354f98c44685d6045e336"
+    },
+    "email": "adrianseglor@gmail.com",
+    "root": "/home/adriansegura/Desktop/RUG/CattleNet",
+    "host": "pop-os",
+    "username": "adriansegura",
+    "executable": "/home/adriansegura/anaconda3/bin/python"
+}

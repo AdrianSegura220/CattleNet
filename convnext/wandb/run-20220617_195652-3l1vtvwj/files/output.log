@@ -1,0 +1,759 @@
+
+Starting training
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [1/150]:  92%|███████████████████████████████████████████████████████████████████████████████████████████████████████████▎         | 11/12 [00:43<00:03,  3.95s/it, loss=0.168]
+lr 0.014849999999999999
+Epoch 1
+
+ Current loss 203.37071877480165
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+C
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+Epoch avg. auc value: 0.6541672615809239
+Epoch one-shot accuracy: 0.030303030303030304
+
+
+
+
+
+
+
+
+
+
+
+Epoch [2/150]:  92%|███████████████████████████████████████████████████████████████████████████████████████████████████████████▎         | 11/12 [00:43<00:03,  3.98s/it, loss=0.181]
+lr 0.0147015
+Epoch 2
+
+ Current loss 0.1673680889854349
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+C
+I
+I
+I
+I
+I
+I
+I
+C
+I
+I
+I
+I
+I
+I
+I
+I
+C
+I
+I
+I
+I
+I
+Epoch avg. auc value: 0.7164210612673314
+Epoch one-shot accuracy: 0.09090909090909091
+
+
+
+
+
+
+
+
+
+
+
+Epoch [3/150]:  92%|███████████████████████████████████████████████████████████████████████████████████████████████████████████▎         | 11/12 [00:44<00:03,  3.96s/it, loss=0.136]
+lr 0.014554484999999999
+Epoch 3
+
+ Current loss 0.13381901818875003
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+C
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+Epoch avg. auc value: 0.7612988457593575
+Epoch one-shot accuracy: 0.030303030303030304
+
+
+
+
+
+
+
+
+
+
+
+Epoch [4/150]:  92%|███████████████████████████████████████████████████████████████████████████████████████████████████████████▎         | 11/12 [00:44<00:04,  4.00s/it, loss=0.121]
+lr 0.014408940149999999
+Epoch 4
+
+ Current loss 0.13619584205394034
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+C
+I
+I
+I
+I
+I
+I
+I
+I
+I
+C
+I
+I
+Epoch avg. auc value: 0.7331183950318275
+Epoch one-shot accuracy: 0.06060606060606061
+
+
+
+
+
+
+
+
+
+
+
+Epoch [5/150]:  92%|███████████████████████████████████████████████████████████████████████████████████████████████████████████▎         | 11/12 [00:43<00:03,  3.99s/it, loss=0.116]
+lr 0.014264850748499999
+Epoch 5
+
+ Current loss 0.12556219991311807
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+C
+Epoch avg. auc value: 0.8097375937692716
+Epoch one-shot accuracy: 0.030303030303030304
+
+
+
+
+
+
+
+
+
+
+
+Epoch [6/150]:  92%|███████████████████████████████████████████████████████████████████████████████████████████████████████████▎         | 11/12 [00:44<00:04,  4.01s/it, loss=0.101]
+lr 0.014122202241014998
+Epoch 6
+
+ Current loss 0.09914175421703293
+I
+C
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+C
+I
+I
+I
+I
+C
+I
+C
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+Epoch avg. auc value: 0.7623263599427392
+Epoch one-shot accuracy: 0.12121212121212122
+
+
+
+
+
+
+
+
+
+
+
+Epoch [7/150]:  92%|███████████████████████████████████████████████████████████████████████████████████████████████████████████▎         | 11/12 [00:44<00:03,  3.93s/it, loss=0.103]
+lr 0.013980980218604848
+Epoch 7
+
+ Current loss 0.0952406066975832
+I
+C
+I
+C
+I
+I
+I
+I
+I
+I
+C
+I
+I
+I
+I
+C
+C
+I
+I
+I
+I
+I
+I
+C
+C
+I
+I
+I
+I
+I
+C
+I
+I
+Epoch avg. auc value: 0.8190450313584959
+Epoch one-shot accuracy: 0.24242424242424243
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [8/150]:  92%|██████████████████████████████████████████████████████████████████████████████████████████████████████████▎         | 11/12 [00:43<00:03,  3.98s/it, loss=0.0779]
+lr 0.0138411704164188
+Epoch 8
+
+ Current loss 0.08693503941157515
+  0%|                                                                                                                                                         | 0/12 [00:00<?, ?it/s]
+I
+C
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+Epoch avg. auc value: 0.8530627089545495
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [9/150]:  92%|██████████████████████████████████████████████████████████████████████████████████████████████████████████▎         | 11/12 [00:48<00:04,  4.13s/it, loss=0.0705]
+lr 0.013702758712254612
+Epoch 9
+
+ Current loss 0.0772795378577447
+C
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+C
+C
+C
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+Epoch avg. auc value: 0.837089230591953
+Epoch one-shot accuracy: 0.12121212121212122
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [10/150]:  92%|█████████████████████████████████████████████████████████████████████████████████████████████████████████▍         | 11/12 [00:43<00:03,  3.98s/it, loss=0.0936]
+lr 0.013565731125132065
+Epoch 10
+
+ Current loss 0.0848196563156241
+  0%|                                                                                                                                                         | 0/12 [00:00<?, ?it/s]
+I
+I
+I
+C
+I
+I
+I
+I
+I
+I
+I
+I
+I
+C
+I
+I
+I
+C
+C
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+Epoch avg. auc value: 0.8307725603993369
+
+
+
+
+
+
+
+
+
+
+
+Epoch [11/150]:  92%|█████████████████████████████████████████████████████████████████████████████████████████████████████████▍         | 11/12 [00:43<00:03,  3.91s/it, loss=0.0911]
+lr 0.013430073813880745
+Epoch 11
+
+ Current loss 0.08233338535113556
+I
+I
+I
+I
+C
+I
+I
+I
+I
+I
+I
+I
+I
+C
+I
+C
+I
+I
+I
+I
+C
+I
+I
+I
+C
+C
+I
+I
+C
+I
+C
+I
+I
+Epoch avg. auc value: 0.8541275499385972
+Epoch one-shot accuracy: 0.24242424242424243
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [12/150]:  92%|█████████████████████████████████████████████████████████████████████████████████████████████████████████▍         | 11/12 [00:43<00:04,  4.00s/it, loss=0.0774]
+lr 0.013295773075741937
+Epoch 12
+ Current loss 0.07329667633065672
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+C
+I
+I
+I
+C
+I
+I
+I
+I
+I
+I
+C
+I
+I
+I
+I
+I
+I
+I
+I
+Epoch avg. auc value: 0.8816651660644469
+Epoch one-shot accuracy: 0.09090909090909091
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [13/150]:  92%|█████████████████████████████████████████████████████████████████████████████████████████████████████████▍         | 11/12 [00:43<00:03,  3.95s/it, loss=0.0893]
+lr 0.013162815344984518
+Epoch 13
+
+ Current loss 0.07578572057018909
+  0%|                                                                                                                                                         | 0/12 [00:00<?, ?it/s]
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+C
+I
+I
+I
+I
+I
+I
+I
+C
+I
+I
+I
+I
+I
+I
+C
+Epoch avg. auc value: 0.8898217124687712
+
+
+
+
+
+
+
+
+
+
+
+Epoch [14/150]:  92%|█████████████████████████████████████████████████████████████████████████████████████████████████████████▍         | 11/12 [00:44<00:04,  4.01s/it, loss=0.0608]
+lr 0.013031187191534673
+Epoch 14
+
+ Current loss 0.07593201461755528
+I
+I
+I
+I
+I
+I
+C
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+C
+I
+I
+C
+I
+C
+I
+I
+Epoch avg. auc value: 0.8879029340924504
+Epoch one-shot accuracy: 0.12121212121212122
+
+
+
+
+Traceback (most recent call last):
+  File "/home/adriansegura/Desktop/RUG/CattleNet/convnext/setup.py", line 310, in <module>
+    model,res_balanced_acc,res_f_score = train(d_loader=data_loader,dataset_validation=dataset_validation,dataset_validation_training=dataset_validation_training)
+  File "/home/adriansegura/Desktop/RUG/CattleNet/convnext/setup.py", line 126, in train
+    for data in loop:
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/tqdm/std.py", line 1195, in __iter__
+    for obj in iterable:
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 530, in __next__
+    data = self._next_data()
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 570, in _next_data
+    data = self._dataset_fetcher.fetch(index)  # may raise StopIteration
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/utils/data/_utils/fetch.py", line 49, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/utils/data/_utils/fetch.py", line 49, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/home/adriansegura/Desktop/RUG/CattleNet/convnext/custom_dataset_bce.py", line 59, in __getitem__
+    if self.img_labels.iloc[i,2] == self.img_labels.iloc[idx, 2]:
+  File "/home/adriansegura/anaconda3/lib/python3.9/site-packages/pandas/core/indexing.py", line 960, in __getitem__
+    return self.obj._get_value(*key, takeable=self._takeable)
+  File "/home/adriansegura/anaconda3/lib/python3.9/site-packages/pandas/core/frame.py", line 3612, in _get_value
+    series = self._ixs(col, axis=1)
+  File "/home/adriansegura/anaconda3/lib/python3.9/site-packages/pandas/core/frame.py", line 3441, in _ixs
+    col_mgr = self._mgr.iget(i)
+  File "/home/adriansegura/anaconda3/lib/python3.9/site-packages/pandas/core/internals/managers.py", line 1026, in iget
+    return SingleBlockManager(nb, self.axes[1])
+KeyboardInterrupt

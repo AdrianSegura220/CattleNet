@@ -10,6 +10,7 @@ import torchvision.models as models
 import torch
 import torch.nn as nn
 import torch.optim as optim
+import sklearn.metrics as metrics
 import numpy as np
 import torchvision
 import matplotlib.pyplot as plt
@@ -19,21 +20,46 @@ import random
 import copy
 from torchvision.io import read_image
 # from convnext.custom_dataset_bce import CustomImageDatasetBCE
-from custom_dataset_bce import CustomImageDataset_Validation, CustomImageDatasetBCE, OneShotImageDataset
+from custom_dataset_bce import CustomImageDataset_Validation, CustomImageDatasetBCE, OneShotImageDataset                                                                                                                                                                            
 from torch.utils.data import DataLoader
 from cattleNetTest_v3 import CattleNetV3
 from tqdm import tqdm
 
+
+def compute_roc_auc(out1,out2,labels,batch,epoch):
+    cos = nn.CosineSimilarity(dim=1,eps=1e-6)
+    scores = cos(out1,out2)
+    fpr, tpr, thresholds = metrics.roc_curve(labels.cpu().numpy(), scores.cpu().numpy())
+    roc_auc = metrics.auc(fpr, tpr)
+    plt.gca().cla()
+    plt.title('Receiver Operating Characteristic')
+    plt.plot(fpr, tpr, 'b', label = 'AUC = %0.2f' % roc_auc)
+    plt.legend(loc = 'lower right')
+    plt.plot([0, 1], [0, 1],'r--')
+    plt.xlim([0, 1])
+    plt.ylim([0, 1])
+    plt.ylabel('True Positive Rate')
+    plt.xlabel('False Positive Rate')
+    for i in range(0,len(thresholds)):
+        plt.axvline(x=fpr[i])
+        plt.text(x=fpr[i]+0.02,y=tpr[i]-0.1,s=str(thresholds[i]))
+    plt.savefig('../roc_figures/roc_batch{}__EPOCHnr{}.png'.format(batch,epoch))
+    
+    print(len(thresholds))
+    print(len(fpr))
+    print(len(tpr))
+    return roc_auc
+
 """
     remark: use CustomImageDatasetBCE for this task
 """
-def test_thresholds(test_dataset: CustomImageDatasetBCE, model_directory: str = '', model_version: str = '',model = None,is_load_model = False,thresholds = [0.5]):
+def test_thresholds(test_dataset: CustomImageDatasetBCE, model_directory: str = '', model_version: str = '',model = None,is_load_model = False,thresholds = [0.5],epoch=0):
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     total = 0
     correct = 0
     results = []
     stats = [{} for i in range(0,len(thresholds))]
-    data_loader = DataLoader(test_dataset, batch_size=8, shuffle=True)
+    data_loader = DataLoader(test_dataset, batch_size=64, shuffle=True)
     avg_precision = [0.0 for i in range(0,len(thresholds))] 
     avg_recall = [0.0 for i in range(0,len(thresholds))]
     avg_balanced_acc = [0.0 for i in range(0,len(thresholds))]
@@ -52,6 +78,7 @@ def test_thresholds(test_dataset: CustomImageDatasetBCE, model_directory: str = 
     zero_precision = [0 for i in range(0,len(thresholds))]
     zero_acc = [0 for i in range(0,len(thresholds))]
     accuracy = 0
+    avg_auc = 0.0
 
     if is_load_model:
         pass
@@ -67,143 +94,148 @@ def test_thresholds(test_dataset: CustomImageDatasetBCE, model_directory: str = 
             # forward pass using anchor and images
             anchor_res,images_res = model(anchor,images)
 
-            distances_sq = torch.sub(anchor_res,images_res).pow(2).sum(1)
+            
+            avg_auc += compute_roc_auc(anchor_res,images_res,labels,batches,epoch)
+
+        return avg_auc/batches
+        # UNCOMMENT
+        #     distances_sq = torch.sub(anchor_res,images_res).pow(2).sum(1)
             
             
-            """
-                Iterate through each threshold and save stats
-            """
-            for i,d in enumerate(thresholds):
-                classifications = (distances_sq < d).float() # use broadcasting to discern for each difference whether it is smaller than d => mark it as same image 
-                temp_result = (classifications == labels).float() # for each element, decide whether they are match the actual labels
-                true_positives = sum([1 if (l == 1 and classifications[i] == 1) else 0 for i,l in enumerate(labels)])
-                true_negatives = sum([1 if (l == 0 and classifications[i] == 0) else 0 for i,l in enumerate(labels)])
-                false_positives = sum([1 if (l == 0 and classifications[i] == 1) else 0 for i,l in enumerate(labels)])
-                false_negatives = sum([1 if (l == 1 and classifications[i] == 0) else 0 for i,l in enumerate(labels)])
+        #     """
+        #         Iterate through each threshold and save stats
+        #     """
+        #     for i,d in enumerate(thresholds):
+        #         classifications = (distances_sq < d).float() # use broadcasting to discern for each difference whether it is smaller than d => mark it as same image 
+        #         temp_result = (classifications == labels).float() # for each element, decide whether they are match the actual labels
+        #         true_positives = sum([1 if (l == 1 and classifications[i] == 1) else 0 for i,l in enumerate(labels)])
+        #         true_negatives = sum([1 if (l == 0 and classifications[i] == 0) else 0 for i,l in enumerate(labels)])
+        #         false_positives = sum([1 if (l == 0 and classifications[i] == 1) else 0 for i,l in enumerate(labels)])
+        #         false_negatives = sum([1 if (l == 1 and classifications[i] == 0) else 0 for i,l in enumerate(labels)])
                 
-                avg_tp[i] += true_positives
-                avg_tn[i] += true_negatives
-                avg_fp[i] += false_positives
-                avg_fn[i] += false_negatives
+        #         avg_tp[i] += true_positives
+        #         avg_tn[i] += true_negatives
+        #         avg_fp[i] += false_positives
+        #         avg_fn[i] += false_negatives
 
 
-                if true_positives + false_positives > 0:
-                    precision = true_positives/(true_positives + false_positives)
-                else:
-                    precision = -1
-                    zero_precision[i] += 1
+        #         if true_positives + false_positives > 0:
+        #             precision = true_positives/(true_positives + false_positives)
+        #         else:
+        #             precision = -1
+        #             zero_precision[i] += 1
                 
-                if true_positives + false_negatives > 0:
-                    recall = true_positives/(true_positives + false_negatives)
-                else:
-                    recall = -1
-                    zero_recall[i] += 1
+        #         if true_positives + false_negatives > 0:
+        #             recall = true_positives/(true_positives + false_negatives)
+        #         else:
+        #             recall = -1
+        #             zero_recall[i] += 1
 
-                if false_positives + true_negatives > 0:
-                    true_negative_rate = true_negatives/(false_positives+true_negatives)
-                else:
-                    true_negative_rate = -1
+        #         if false_positives + true_negatives > 0:
+        #             true_negative_rate = true_negatives/(false_positives+true_negatives)
+        #         else:
+        #             true_negative_rate = -1
 
-                if recall != -1 and true_negative_rate != -1:
-                    balanced_acc = (recall+true_negative_rate)/2
-                else:
-                    balanced_acc = -1
-                    zero_acc[i] += 1
+        #         if recall != -1 and true_negative_rate != -1:
+        #             balanced_acc = (recall+true_negative_rate)/2
+        #         else:
+        #             balanced_acc = -1
+        #             zero_acc[i] += 1
 
-                if recall != -1 and precision != -1 and recall > 0.0001 and precision > 0.0001:
-                    fscore = 2*recall*precision/(precision+recall)
-                else:
-                    fscore = -1
+        #         if recall != -1 and precision != -1 and recall > 0.0001 and precision > 0.0001:
+        #             fscore = 2*recall*precision/(precision+recall)
+        #         else:
+        #             fscore = -1
 
-                if recall != -1 and false_positives + true_positives > 0:
-                    false_positive_rate = false_positives/(false_positives + true_negatives)
-                else:
-                    false_positive_rate = -1
+        #         if recall != -1 and false_positives + true_positives > 0:
+        #             false_positive_rate = false_positives/(false_positives + true_negatives)
+        #         else:
+        #             false_positive_rate = -1
 
-                # accuracy = temp_result.sum(1)/classifications.size()[0]
-                stats[i] = {
-                    'precision': precision,
-                    'recall': recall,
-                    'balanced_accuracy': balanced_acc,
-                    'f1-score': fscore,
-                    'false_positive_rate': false_positive_rate
-                }
+        #         # accuracy = temp_result.sum(1)/classifications.size()[0]
+        #         stats[i] = {
+        #             'precision': precision,
+        #             'recall': recall,
+        #             'balanced_accuracy': balanced_acc,
+        #             'f1-score': fscore,
+        #             'false_positive_rate': false_positive_rate
+        #         }
 
-            for i,s in enumerate(stats): # so for each distance threhold recorded result add the value and at the end divide by total no. batches
+        #     for i,s in enumerate(stats): # so for each distance threhold recorded result add the value and at the end divide by total no. batches
                 
-                """
-                    So, for each distance threshold being tested, if the measurement was invalid, then simply
-                    not add value because it is not helpful, otherwise add the obtained value for that indicator, 
-                    but just make sure that the final division of accumulated indicators for the mean is made
-                    for only the values added and not for those that were invalid
-                """
-                if s['precision'] != -1:
-                    avg_precision[i] += s['precision']
-                else:
-                    avg_precision_to_reduce[i] += 1
+        #         """
+        #             So, for each distance threshold being tested, if the measurement was invalid, then simply
+        #             not add value because it is not helpful, otherwise add the obtained value for that indicator, 
+        #             but just make sure that the final division of accumulated indicators for the mean is made
+        #             for only the values added and not for those that were invalid
+        #         """
+        #         if s['precision'] != -1:
+        #             avg_precision[i] += s['precision']
+        #         else:
+        #             avg_precision_to_reduce[i] += 1
 
-                if s['recall'] != -1:
-                    avg_recall[i] += s['recall']
-                else:
-                    avg_recall_to_reduce[i] += 1
+        #         if s['recall'] != -1:
+        #             avg_recall[i] += s['recall']
+        #         else:
+        #             avg_recall_to_reduce[i] += 1
 
-                if s['balanced_accuracy'] != -1:
-                    avg_balanced_acc[i] += s['balanced_accuracy']
-                else:
-                    avg_balancedacc_to_reduce[i] += 1
+        #         if s['balanced_accuracy'] != -1:
+        #             avg_balanced_acc[i] += s['balanced_accuracy']
+        #         else:
+        #             avg_balancedacc_to_reduce[i] += 1
 
-                if s['f1-score'] != -1:
-                    avg_fscore[i] += s['f1-score']
-                else:
-                    avg_fscore_to_reduce[i] += 1
+        #         if s['f1-score'] != -1:
+        #             avg_fscore[i] += s['f1-score']
+        #         else:
+        #             avg_fscore_to_reduce[i] += 1
 
-                if s['false_positive_rate'] != -1:
-                    false_positive_rate[i] += s['f1-score']
-                else:
-                    false_positive_rate[i] += 1
+        #         if s['false_positive_rate'] != -1:
+        #             avg_false_positive_rate[i] += s['false_positive_rate']
+        #         else:
+        #             avg_false_positive_rate_to_reduce[i] += 1
 
-        """
-            for each accumulated statistic for each distance threshold, divide by the amount of batches to calculate
-            the average precision, recall and balanced_acc using such distance threshold
-        """
-        for i in range(0,len(thresholds)):
-            avg_precision[i] /= (batches-avg_precision_to_reduce[i])
-            avg_recall[i] /= (batches-avg_recall_to_reduce[i])
-            avg_balanced_acc[i] /= (batches-avg_balancedacc_to_reduce[i])
-            avg_fscore[i] /= (batches-avg_fscore_to_reduce[i])
-            avg_false_positive_rate[i] /= (batches-avg_false_positive_rate_to_reduce[i])
+        # """
+        #     for each accumulated statistic for each distance threshold, divide by the amount of batches to calculate
+        #     the average precision, recall and balanced_acc using such distance threshold
+        # """
+        # for i in range(0,len(thresholds)):
+        #     avg_precision[i] /= (batches-avg_precision_to_reduce[i])
+        #     avg_recall[i] /= (batches-avg_recall_to_reduce[i])
+        #     avg_balanced_acc[i] /= (batches-avg_balancedacc_to_reduce[i])
+        #     avg_fscore[i] /= (batches-avg_fscore_to_reduce[i])
+        #     avg_false_positive_rate[i] /= (batches-avg_false_positive_rate_to_reduce[i])
 
         
-            avg_tp[i] /= batches
-            avg_tn[i] /= batches
-            avg_fp[i] /= batches
-            avg_fn[i] /= batches
+        #     avg_tp[i] /= batches
+        #     avg_tn[i] /= batches
+        #     avg_fp[i] /= batches
+        #     avg_fn[i] /= batches
 
-        """
-            Compute roc with average values
-        """
+        # """
+        #     Compute roc with average values
+        # """
         
 
-        # print('Avg tp: {}'.format(avg_tp))
-        # print('Avg tn: {}'.format(avg_tn))
-        # print('Avg fp: {}'.format(avg_fp))
-        # print('Avg fn: {}'.format(avg_fn))
-        print('Zero precision: {}'.format(zero_precision))
-        print('Zero recall: {}'.format(zero_recall))
-        print('Zero acc: {}'.format(zero_acc))
+        # # print('Avg tp: {}'.format(avg_tp))
+        # # print('Avg tn: {}'.format(avg_tn))
+        # # print('Avg fp: {}'.format(avg_fp))
+        # # print('Avg fn: {}'.format(avg_fn))
+        # print('Zero precision: {}'.format(zero_precision))
+        # print('Zero recall: {}'.format(zero_recall))
+        # print('Zero acc: {}'.format(zero_acc))
 
-        """
-            return results in form of a dictionary containing avg values for precision, recall and balanced accuracy for
-            each of the thresholds. So effectively, each of those values is an array containing each an average result per
-            distance threshold tested
-        """
-        return {
-            'avg_precision': avg_precision,
-            'avg_recall': avg_recall,
-            'avg_balanced_acc': avg_balanced_acc,
-            'avg_f1-score': avg_fscore,
-            'avg_fpr': avg_false_positive_rate
-        }
+        # """
+        #     return results in form of a dictionary containing avg values for precision, recall and balanced accuracy for
+        #     each of the thresholds. So effectively, each of those values is an array containing each an average result per
+        #     distance threshold tested
+        # """
+        # return {
+        #     'avg_precision': avg_precision,
+        #     'avg_recall': avg_recall,
+        #     'avg_balanced_acc': avg_balanced_acc,
+        #     'avg_f1-score': avg_fscore,
+        #     'avg_fpr': avg_false_positive_rate
+        # }
 
 """
     In this function, the one-shot classification capacity of the model is tested.

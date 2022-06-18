@@ -1,0 +1,57 @@
+
+Starting training
+
+
+
+
+
+
+
+
+
+
+
+Epoch [1/150]:  92%|████████████████████████████████████████████████████████████████████████████████████████████████████████████▏         | 11/12 [00:42<00:03,  3.80s/it, loss=12.9]
+lr 0.001485
+Epoch 1
+
+ Current loss 37.99423405610935
+I
+I
+C
+I
+I
+I
+I
+C
+I
+I
+I
+I
+I
+C
+I
+I
+I
+C
+I
+I
+I
+I
+I
+I
+I
+I
+I
+C
+I
+I
+I
+I
+C
+Traceback (most recent call last):
+  File "/home/adriansegura/Desktop/RUG/CattleNet/convnext/setup.py", line 307, in <module>
+    model,res_balanced_acc,res_f_score = train(d_loader=data_loader,dataset_validation=dataset_validation,dataset_validation_training=dataset_validation_training)
+  File "/home/adriansegura/Desktop/RUG/CattleNet/convnext/setup.py", line 225, in train
+    print('Epoch avg precision: {}'.format(validation_results['avg_precision']))
+IndexError: invalid index to scalar variable.

@@ -1,0 +1,61 @@
+
+Starting training
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [1/150]:  92%|████████████████████████████████████████████████████████████████████████████████████████████████████████████▏         | 11/12 [00:42<00:03,  3.89s/it, loss=14.4]
+lr 0.001485
+Epoch 1
+
+ Current loss 37.890802900123084
+Zero precision: [1, 1, 1, 1, 1]
+Zero recall: [0, 0, 0, 0, 0]
+Zero acc: [0, 0, 0, 0, 0]
+I
+I
+I
+C
+C
+I
+I
+I
+I
+C
+I
+I
+I
+I
+I
+C
+I
+I
+I
+C
+C
+I
+I
+I
+C
+I
+I
+I
+I
+I
+I
+I
+I
+Traceback (most recent call last):
+  File "/home/adriansegura/Desktop/RUG/CattleNet/convnext/setup.py", line 303, in <module>
+    model,res_balanced_acc,res_f_score = train(d_loader=data_loader,dataset_validation=dataset_validation,dataset_validation_training=dataset_validation_training)
+  File "/home/adriansegura/Desktop/RUG/CattleNet/convnext/setup.py", line 197, in train
+    "Avg. balanced accuracy d=0.1": validation_training_results['avg_balanced_acc'][0],
+NameError: name 'validation_training_results' is not defined

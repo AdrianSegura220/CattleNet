@@ -22,7 +22,7 @@ import datetime
 import os
 import copy
 from model_test_original import test_thresholds,one_shot_test
-from custom_dataset_bce import CustomImageDataset_Validation, CustomImageDatasetBCE, OneShotImageDataset
+from custom_dataset_bce import CustomImageDataset_Validation, CustomImageDatasetBCE, OneShotImageDataset    
 import wandb
 from custom_dataset import CustomImageDataset
 from torch.utils.data import DataLoader
@@ -39,7 +39,7 @@ save_models = False
 save_figs = False
 
 # wandb setup (logging progress to online platform)
-use_wandb = False
+use_wandb = True
 
 if use_wandb:
     wandb.init(project="cattleNet-arch1", entity="adriansegura220")
@@ -57,7 +57,7 @@ path_to_results = '../../BachelorsProject/Trainings/'
 #hyperparams
 lrDecay = 1
 step_lr = 1
-lr=15e-4
+lr=15e-3
 in_channel = 3
 batch_size = 128
 num_epochs = 150
@@ -95,7 +95,8 @@ def compute_roc_auc(out1,out2,labels,epoch):
     plt.ylim([0, 1])
     plt.ylabel('True Positive Rate')
     plt.xlabel('False Positive Rate')
-    plt.savefig('../roc_epoch{}.png'.format(epoch))
+    plt.savefig('../roc_figures/roc_epoch{}.png'.format(epoch))
+    plt.clf()
 
 
 def train(d_loader,dataset_validation,dataset_validation_training):
@@ -134,8 +135,6 @@ def train(d_loader,dataset_validation,dataset_validation_training):
             loss_contrastive = criterion(out1,out2,labels)
             loss_contrastive.backward()
             optimizer.step()
-            with torch.no_grad():
-                compute_roc_auc(out1,out2,labels,epoch)
             loop.set_description(f"Epoch [{epoch}/{num_epochs}]")
             loop.set_postfix(loss=loss_contrastive.item())
             epoch_loss += loss_contrastive.item()
@@ -157,8 +156,8 @@ def train(d_loader,dataset_validation,dataset_validation_training):
         model.eval()
         with torch.no_grad():
             # epoch_acc = test(dataset_validation,n=n_shot,model=model,is_load_model=False)
-            validation_results = test_thresholds(dataset_validation,thresholds=thresholds_to_test,model=model)
-            validation_training_results = test_thresholds(dataset_validation_training,thresholds=thresholds_to_test,model=model)
+            validation_results = test_thresholds(dataset_validation,thresholds=thresholds_to_test,model=model,epoch=epoch)
+            # validation_training_results = test_thresholds(dataset_validation_training,thresholds=thresholds_to_test,model=model)
             one_shot = one_shot_test(dataset_one_shot,model,0.5,True,True)
             """
                 validation results returns an array with results for each distance threshold
@@ -173,56 +172,63 @@ def train(d_loader,dataset_validation,dataset_validation_training):
         """
         if use_wandb:
             wandb.log({
-                "loss": epoch_loss,
-                "Avg. balanced accuracy d=0.1": validation_results['avg_balanced_acc'][0],
-                "Avg. balanced accuracy d=0.25": validation_results['avg_balanced_acc'][1],
-                "Avg. balanced accuracy d=0.4": validation_results['avg_balanced_acc'][2],
-                "Avg. balanced accuracy d=0.5": validation_results['avg_balanced_acc'][3],
-                "Avg. balanced accuracy d=0.6": validation_results['avg_balanced_acc'][4],
-                "Avg. precision d=0.1": validation_results['avg_precision'][0],
-                "Avg. precision d=0.25": validation_results['avg_precision'][1],
-                "Avg. precision d=0.4": validation_results['avg_precision'][2],
-                "Avg. precision d=0.5": validation_results['avg_precision'][3],
-                "Avg. precision d=0.6": validation_results['avg_precision'][4],
-                "Avg. recall d=0.1": validation_results['avg_recall'][0],
-                "Avg. recall d=0.25": validation_results['avg_recall'][1],
-                "Avg. recall d=0.4": validation_results['avg_recall'][2],
-                "Avg. recall d=0.5": validation_results['avg_recall'][3],
-                "Avg. recall d=0.6": validation_results['avg_recall'][4],
-                "Avg. avg_f1-score d=0.1": validation_results['avg_f1-score'][0],
-                "Avg. avg_f1-score d=0.25": validation_results['avg_f1-score'][1],
-                "Avg. avg_f1-score d=0.4": validation_results['avg_f1-score'][2],
-                "Avg. avg_f1-score d=0.5": validation_results['avg_f1-score'][3],
-                "Avg. avg_f1-score d=0.6": validation_results['avg_f1-score'][4],
-                "One-shot score": one_shot,
-                "Avg. balanced accuracy d=0.1": validation_training_results['avg_balanced_acc'][0],
-                "Avg. balanced accuracy d=0.25": validation_training_results['avg_balanced_acc'][1],
-                "Avg. balanced accuracy d=0.4": validation_training_results['avg_balanced_acc'][2],
-                "Avg. balanced accuracy d=0.5": validation_training_results['avg_balanced_acc'][3],
-                "Avg. balanced accuracy d=0.6": validation_training_results['avg_balanced_acc'][4],
-                "Avg. precision d=0.1": validation_training_results['avg_precision'][0],
-                "Avg. precision d=0.25": validation_training_results['avg_precision'][1],
-                "Avg. precision d=0.4": validation_training_results['avg_precision'][2],
-                "Avg. precision d=0.5": validation_training_results['avg_precision'][3],
-                "Avg. precision d=0.6": validation_training_results['avg_precision'][4],
-                "Avg. recall d=0.1": validation_training_results['avg_recall'][0],
-                "Avg. recall d=0.25": validation_training_results['avg_recall'][1],
-                "Avg. recall d=0.4": validation_training_results['avg_recall'][2],
-                "Avg. recall d=0.5": validation_training_results['avg_recall'][3],
-                "Avg. recall d=0.6": validation_training_results['avg_recall'][4],
-                "Avg. avg_f1-score d=0.1": validation_training_results['avg_f1-score'][0],
-                "Avg. avg_f1-score d=0.25": validation_training_results['avg_f1-score'][1],
-                "Avg. avg_f1-score d=0.4": validation_training_results['avg_f1-score'][2],
-                "Avg. avg_f1-score d=0.5": validation_training_results['avg_f1-score'][3],
-                "Avg. avg_f1-score d=0.6": validation_training_results['avg_f1-score'][4],
+                "Avg. AUC value per epoch for testing validation": validation_results,
+                "Avg. one-shot performance": one_shot,
+                "loss": epoch_loss
             })
+            #UNCOMMENT
+            # wandb.log({
+            #     "loss": epoch_loss,
+            #     "Avg. balanced accuracy d=0.1": validation_results['avg_balanced_acc'][0],
+            #     "Avg. balanced accuracy d=0.25": validation_results['avg_balanced_acc'][1],
+            #     "Avg. balanced accuracy d=0.4": validation_results['avg_balanced_acc'][2],
+            #     "Avg. balanced accuracy d=0.5": validation_results['avg_balanced_acc'][3],
+            #     "Avg. balanced accuracy d=0.6": validation_results['avg_balanced_acc'][4],
+            #     "Avg. precision d=0.1": validation_results['avg_precision'][0],
+            #     "Avg. precision d=0.25": validation_results['avg_precision'][1],
+            #     "Avg. precision d=0.4": validation_results['avg_precision'][2],
+            #     "Avg. precision d=0.5": validation_results['avg_precision'][3],
+            #     "Avg. precision d=0.6": validation_results['avg_precision'][4],
+            #     "Avg. recall d=0.1": validation_results['avg_recall'][0],
+            #     "Avg. recall d=0.25": validation_results['avg_recall'][1],
+            #     "Avg. recall d=0.4": validation_results['avg_recall'][2],
+            #     "Avg. recall d=0.5": validation_results['avg_recall'][3],
+            #     "Avg. recall d=0.6": validation_results['avg_recall'][4],
+            #     "Avg. avg_f1-score d=0.1": validation_results['avg_f1-score'][0],
+            #     "Avg. avg_f1-score d=0.25": validation_results['avg_f1-score'][1],
+            #     "Avg. avg_f1-score d=0.4": validation_results['avg_f1-score'][2],
+            #     "Avg. avg_f1-score d=0.5": validation_results['avg_f1-score'][3],
+            #     "Avg. avg_f1-score d=0.6": validation_results['avg_f1-score'][4],
+            #     "One-shot score": one_shot,
+            #     "Avg. balanced accuracy d=0.1": validation_training_results['avg_balanced_acc'][0],
+            #     "Avg. balanced accuracy d=0.25": validation_training_results['avg_balanced_acc'][1],
+            #     "Avg. balanced accuracy d=0.4": validation_training_results['avg_balanced_acc'][2],
+            #     "Avg. balanced accuracy d=0.5": validation_training_results['avg_balanced_acc'][3],
+            #     "Avg. balanced accuracy d=0.6": validation_training_results['avg_balanced_acc'][4],
+            #     "Avg. precision d=0.1": validation_training_results['avg_precision'][0],
+            #     "Avg. precision d=0.25": validation_training_results['avg_precision'][1],
+            #     "Avg. precision d=0.4": validation_training_results['avg_precision'][2],
+            #     "Avg. precision d=0.5": validation_training_results['avg_precision'][3],
+            #     "Avg. precision d=0.6": validation_training_results['avg_precision'][4],
+            #     "Avg. recall d=0.1": validation_training_results['avg_recall'][0],
+            #     "Avg. recall d=0.25": validation_training_results['avg_recall'][1],
+            #     "Avg. recall d=0.4": validation_training_results['avg_recall'][2],
+            #     "Avg. recall d=0.5": validation_training_results['avg_recall'][3],
+            #     "Avg. recall d=0.6": validation_training_results['avg_recall'][4],
+            #     "Avg. avg_f1-score d=0.1": validation_training_results['avg_f1-score'][0],
+            #     "Avg. avg_f1-score d=0.25": validation_training_results['avg_f1-score'][1],
+            #     "Avg. avg_f1-score d=0.4": validation_training_results['avg_f1-score'][2],
+            #     "Avg. avg_f1-score d=0.5": validation_training_results['avg_f1-score'][3],
+            #     "Avg. avg_f1-score d=0.6": validation_training_results['avg_f1-score'][4],
+            # })
 
-        # 0.1,0.25,0.4,0.5,0.6
-
-        print('Epoch avg precision: {}'.format(validation_results['avg_precision']))
-        print('Epoch avg recall: {}'.format(validation_results['avg_recall']))
-        print('Epoch avg balanced accuracy: {}'.format(validation_results['avg_balanced_acc']))
-        print('Epoch avg f-score: {}'.format(validation_results['avg_f1-score']))
+        
+        # UNCOMMENT
+        # print('Epoch avg precision: {}'.format(validation_results['avg_precision']))
+        # print('Epoch avg recall: {}'.format(validation_results['avg_recall']))
+        # print('Epoch avg balanced accuracy: {}'.format(validation_results['avg_balanced_acc']))
+        # print('Epoch avg f-score: {}'.format(validation_results['avg_f1-score']))
+        print('Epoch avg. auc value: {}'.format(validation_results))
         print('Epoch one-shot accuracy: {}'.format(one_shot))
 
         """
@@ -232,13 +238,13 @@ def train(d_loader,dataset_validation,dataset_validation_training):
             might make the average seem low because of low performing starting values.
             NOTE: implement F1 score too
         """
-        for d in range(0,len(thresholds_to_test)):
-            precision[d] = validation_results['avg_precision'][d]
-            recall[d] = validation_results['avg_recall'][d]
-            # if there is a new best max value, then update these
-            # we do not update precision and recall in that way, because separately they are not that meaningfull
-            balanced_acc[d] = validation_results['avg_balanced_acc'][d] if balanced_acc[d] < validation_results['avg_balanced_acc'][d] else balanced_acc[d]
-            f_score[d] = validation_results['avg_f1-score'][d] if f_score[d] < validation_results['avg_f1-score'][d] else f_score[d]
+        # for d in range(0,len(thresholds_to_test)):
+        #     precision[d] = validation_results['avg_precision'][d]
+        #     recall[d] = validation_results['avg_recall'][d]
+        #     # if there is a new best max value, then update these
+        #     # we do not update precision and recall in that way, because separately they are not that meaningfull
+        #     balanced_acc[d] = validation_results['avg_balanced_acc'][d] if balanced_acc[d] < validation_results['avg_balanced_acc'][d] else balanced_acc[d]
+        #     f_score[d] = validation_results['avg_f1-score'][d] if f_score[d] < validation_results['avg_f1-score'][d] else f_score[d]
 
         # save model and result every 10 epochs
         if epoch % 10 == 0:
