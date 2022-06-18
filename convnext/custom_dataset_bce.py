@@ -64,7 +64,7 @@ class CustomImageDatasetBCE(Dataset):
                             selectedImage = random.randint(0,(self.counts[self.img_labels.iloc[idx, 2]][0]-1)) # select one of the pictures randomly
                     else: # else we are forced to select a different image
                         force_different = True
-                        print('Forced different image for image label: ',self.img_labels.iloc[idx, 2])
+                        # print('Forced different image for image label: ',self.img_labels.iloc[idx, 2])
                         break
                         # selectedImage = 0
                     image2 = (read_image(os.path.join(self.img_dir, self.img_labels.iloc[i+selectedImage, 1])).float())/255.0 # selected image should be of same cow but different image
@@ -92,7 +92,7 @@ class CustomImageDatasetBCE(Dataset):
         if self.target_transform:
             label = self.target_transform(label)
 
-        return image,image2, 1.0 if label == label2 else 0.0 
+        return image,image2, 1.0 if label == label2 else 0.0
 
 
 

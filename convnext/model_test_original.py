@@ -50,8 +50,6 @@ def compute_roc_auc(out1,out2,labels,batch,epoch,mode):
 
     bestThreshold = thresholds[np.argmax(tpr-fpr)]
 
-    print(bestThreshold)
-
     return roc_auc,bestThreshold
 
 """

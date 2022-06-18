@@ -39,7 +39,7 @@ save_models = False
 save_figs = False
 
 # wandb setup (logging progress to online platform)
-use_wandb = False
+use_wandb = True
 
 if use_wandb:
     wandb.init(project="cattleNet-arch1", entity="adriansegura220")
@@ -227,6 +227,7 @@ def train(d_loader,dataset_validation,dataset_validation_training):
         # print('Epoch avg f-score: {}'.format(validation_results['avg_f1-score']))
         print('Epoch avg. auc value: {}'.format(validation_results))
         print('Epoch one-shot accuracy: {}'.format(one_shot))
+        print('Best threshold running-average value: {}'.format(avg_best_threshold/epoch))
 
         """
             Add obtained statistic, in order to average it at the very end, also
