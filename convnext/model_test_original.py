@@ -25,7 +25,7 @@ from torch.utils.data import DataLoader
 from cattleNetTest_v3 import CattleNetV3
 from tqdm import tqdm
 
-def compute_roc_auc(out1,out2,labels,batch,epoch):
+def compute_roc_auc(out1,out2,labels,batch,epoch,mode):
     cos = nn.CosineSimilarity(dim=1,eps=1e-6)
     scores = cos(out1,out2)
     fpr, tpr, thresholds = metrics.roc_curve(labels.cpu().numpy(), scores.cpu().numpy())
@@ -42,11 +42,11 @@ def compute_roc_auc(out1,out2,labels,batch,epoch):
     for i in range(0,len(thresholds)):
         plt.axvline(x=fpr[i])
         plt.text(x=fpr[i]+0.02,y=tpr[i]-0.1,s=str(thresholds[i]))
-    plt.savefig('../roc_figures/roc_batch{}__EPOCHnr{}.png'.format(batch,epoch))
-    
-    print(len(thresholds))
-    print(len(fpr))
-    print(len(tpr))
+
+    if mode == 'testing':
+        plt.savefig('../roc_figures/roc_batch{}__EPOCHnr{}.png'.format(batch,epoch))
+    else:
+        plt.savefig('../roc_figures_training_validation/t_roc_batch{}__EPOCHnr{}.png'.format(batch,epoch))
 
     bestThreshold = thresholds[np.argmax(tpr-fpr)]
 
@@ -57,7 +57,7 @@ def compute_roc_auc(out1,out2,labels,batch,epoch):
 """
     remark: use CustomImageDatasetBCE for this task
 """
-def test_thresholds(test_dataset: CustomImageDatasetBCE, model_directory: str = '', model_version: str = '',model = None,is_load_model = False,thresholds = [0.5],epoch=0):
+def test_thresholds(test_dataset: CustomImageDatasetBCE, model_directory: str = '', model_version: str = '',model = None,is_load_model = False,thresholds = [0.5],epoch=0,mode='testing'):
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     total = 0
     correct = 0
@@ -99,13 +99,11 @@ def test_thresholds(test_dataset: CustomImageDatasetBCE, model_directory: str = 
             # forward pass using anchor and images
             anchor_res,images_res = model(anchor,images)
 
-            auc_result, best_threshold = compute_roc_auc(anchor_res,images_res,labels,batches,epoch)
+            auc_result, best_threshold = compute_roc_auc(anchor_res,images_res,labels,batches,epoch,mode)
 
             # add calculated values to running sum to average at the end
             avg_auc += auc_result
             avg_best_threshold += best_threshold
-
-
 
         return avg_auc/batches,avg_best_threshold/batches
         # UNCOMMENT

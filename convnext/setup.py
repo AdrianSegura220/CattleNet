@@ -147,7 +147,8 @@ def train(d_loader,dataset_validation,dataset_validation_training):
         model.eval()
         with torch.no_grad():
             # epoch_acc = test(dataset_validation,n=n_shot,model=model,is_load_model=False)
-            validation_results,avg_best_calculated_threshold = test_thresholds(dataset_validation,thresholds=thresholds_to_test,model=model,epoch=epoch)
+            validation_results,avg_best_calculated_threshold = test_thresholds(dataset_validation,thresholds=thresholds_to_test,model=model,epoch=epoch,mode='testing')
+            validation_results_training,dummyBestThreshold = test_thresholds(dataset_validation_training,thresholds=thresholds_to_test,model=model,epoch=epoch,mode='training')
             # validation_training_results = test_thresholds(dataset_validation_training,thresholds=thresholds_to_test,model=model)
             one_shot = one_shot_test(dataset_one_shot,model,0.5,True,True)
 
@@ -167,6 +168,7 @@ def train(d_loader,dataset_validation,dataset_validation_training):
         if use_wandb:
             wandb.log({
                 "Avg. AUC value per epoch for testing validation": validation_results,
+                "Avg. AUC value per epoch for training validation": validation_results_training,
                 "Avg. one-shot performance": one_shot,
                 "loss": epoch_loss,
                 "Best threshold running average: ": avg_best_threshold/epoch
