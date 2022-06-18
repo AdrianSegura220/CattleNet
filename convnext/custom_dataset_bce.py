@@ -58,7 +58,7 @@ class CustomImageDatasetBCE(Dataset):
         if same_class:
             for i in range(0,self.__len__()):
                 if self.img_labels.iloc[i,2] == self.img_labels.iloc[idx, 2]:
-                    if self.counts[self.img_labels.iloc[idx, 2]][0] > 0: # if there is more than one image to choose from for this label
+                    if self.counts[self.img_labels.iloc[idx, 2]][0] > 1: # if there is more than one image to choose from for this label
                         selectedImage = random.randint(0,(self.counts[self.img_labels.iloc[idx, 2]][0]-1)) # select one of the pictures randomly
                         while selectedImage + i == idx: # keep attempting to select a random image of the same class until you choose a different image than the anchor
                             selectedImage = random.randint(0,(self.counts[self.img_labels.iloc[idx, 2]][0]-1)) # select one of the pictures randomly
