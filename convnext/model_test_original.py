@@ -43,14 +43,8 @@ def compute_roc_auc(out1,out2,labels,batch,epoch):
         plt.axvline(x=fpr[i])
         plt.text(x=fpr[i]+0.02,y=tpr[i]-0.1,s=str(thresholds[i]))
     plt.savefig('../roc_figures/roc_batch{}__EPOCHnr{}.png'.format(batch,epoch))
-    
-    print(len(thresholds))
-    print(len(fpr))
-    print(len(tpr))
 
     bestThreshold = thresholds[np.argmax(tpr-fpr)]
-
-    print(bestThreshold)
 
     return roc_auc,bestThreshold
 
