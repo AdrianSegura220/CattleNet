@@ -39,7 +39,7 @@ save_models = False
 save_figs = False
 
 # wandb setup (logging progress to online platform)
-use_wandb = True
+use_wandb = False
 
 if use_wandb:
     wandb.init(project="cattleNet-arch1", entity="adriansegura220")
@@ -98,6 +98,7 @@ def train(d_loader,dataset_validation,dataset_validation_training):
     balanced_acc = [0.0 for i in range(0,len(thresholds_to_test))]
     f_score = [0.0 for i in range(0,len(thresholds_to_test))]
     avg_best_threshold = 0.0
+    avg_best_training_threshold = 0.0
 
     accuracy = []
     epoch_acc = 0.0
@@ -148,11 +149,12 @@ def train(d_loader,dataset_validation,dataset_validation_training):
         with torch.no_grad():
             # epoch_acc = test(dataset_validation,n=n_shot,model=model,is_load_model=False)
             validation_results,avg_best_calculated_threshold = test_thresholds(dataset_validation,thresholds=thresholds_to_test,model=model,epoch=epoch,mode='testing')
-            validation_results_training,dummyBestThreshold = test_thresholds(dataset_validation_training,thresholds=thresholds_to_test,model=model,epoch=epoch,mode='training')
+            validation_results_training,avg_best_calculated_training_threshold = test_thresholds(dataset_validation_training,thresholds=thresholds_to_test,model=model,epoch=epoch,mode='training')
             # validation_training_results = test_thresholds(dataset_validation_training,thresholds=thresholds_to_test,model=model)
             one_shot = one_shot_test(dataset_one_shot,model,0.5,True,True)
 
             avg_best_threshold += avg_best_calculated_threshold # add last best-calculated threshold to running sum
+            avg_best_training_threshold += avg_best_calculated_training_threshold # add last best-calculated threshold to running sum
 
             """
                 validation results returns an array with results for each distance threshold
@@ -171,7 +173,8 @@ def train(d_loader,dataset_validation,dataset_validation_training):
                 "Avg. AUC value per epoch for training validation": validation_results_training,
                 "Avg. one-shot performance": one_shot,
                 "loss": epoch_loss,
-                "Best threshold running average: ": avg_best_threshold/epoch
+                "Best threshold running average for testing validation: ": avg_best_threshold/epoch,
+                "Best threshold running average for training validation": avg_best_training_threshold/epoch
             })
             #UNCOMMENT
             # wandb.log({
