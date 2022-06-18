@@ -92,6 +92,8 @@ class CustomImageDatasetBCE(Dataset):
         if self.target_transform:
             label = self.target_transform(label)
 
+        print(label==label2,label,label2,img1_file_name,img2_file_name)
+
         return image,image2, 1.0 if label == label2 else 0.0
 
 
