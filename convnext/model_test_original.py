@@ -26,6 +26,7 @@ from cattleNetTest_v3 import CattleNetV3
 from tqdm import tqdm
 
 def compute_roc_auc(out1,out2,labels,batch,epoch,mode):
+    print('compute roc mode: ',mode)
     cos = nn.CosineSimilarity(dim=1,eps=1e-6)
     scores = cos(out1,out2)
     fpr, tpr, thresholds = metrics.roc_curve(labels.cpu().numpy(), scores.cpu().numpy())
