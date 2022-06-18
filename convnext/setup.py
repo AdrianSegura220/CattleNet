@@ -39,7 +39,7 @@ save_models = False
 save_figs = False
 
 # wandb setup (logging progress to online platform)
-use_wandb = True
+use_wandb = False
 
 if use_wandb:
     wandb.init(project="cattleNet-arch1", entity="adriansegura220")
@@ -72,16 +72,6 @@ if use_wandb:
     "batch_size": batch_size
     }
 
-# def load_and_test(fname):
-#     model = CattleNet()
-#     model.load_state_dict(torch.load(fname)) # load model that is to be tested
-#     model.eval()
-#     model.to(device)
-#     model.eval()
-#     acc = test(validation,model=model,is_load_model=False)
-#     print(acc)
-
-
 def compute_roc_auc(out1,out2,labels,epoch):
     cos = nn.CosineSimilarity(dim=1,eps=1e-6)
     scores = cos(out1,out2)
@@ -107,6 +97,7 @@ def train(d_loader,dataset_validation,dataset_validation_training):
     recall = [0.0 for i in range(0,len(thresholds_to_test))]
     balanced_acc = [0.0 for i in range(0,len(thresholds_to_test))]
     f_score = [0.0 for i in range(0,len(thresholds_to_test))]
+    avg_best_threshold = 0.0
 
     accuracy = []
     epoch_acc = 0.0
@@ -156,9 +147,12 @@ def train(d_loader,dataset_validation,dataset_validation_training):
         model.eval()
         with torch.no_grad():
             # epoch_acc = test(dataset_validation,n=n_shot,model=model,is_load_model=False)
-            validation_results = test_thresholds(dataset_validation,thresholds=thresholds_to_test,model=model,epoch=epoch)
+            validation_results,avg_best_calculated_threshold = test_thresholds(dataset_validation,thresholds=thresholds_to_test,model=model,epoch=epoch)
             # validation_training_results = test_thresholds(dataset_validation_training,thresholds=thresholds_to_test,model=model)
             one_shot = one_shot_test(dataset_one_shot,model,0.5,True,True)
+
+            avg_best_threshold += avg_best_calculated_threshold # add last best-calculated threshold to running sum
+
             """
                 validation results returns an array with results for each distance threshold
                 e.g. given 3 thresholds to test: [0.1,0.3,0.5], then for each statistic (precision,recall and balanced acc)
@@ -174,7 +168,8 @@ def train(d_loader,dataset_validation,dataset_validation_training):
             wandb.log({
                 "Avg. AUC value per epoch for testing validation": validation_results,
                 "Avg. one-shot performance": one_shot,
-                "loss": epoch_loss
+                "loss": epoch_loss,
+                "Best threshold running average: ": avg_best_threshold/epoch
             })
             #UNCOMMENT
             # wandb.log({

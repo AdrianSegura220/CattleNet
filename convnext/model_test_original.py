@@ -2,6 +2,7 @@ from __future__ import print_function
 from __future__ import division
 from base64 import encode
 from turtle import forward
+from cv2 import threshold
 from sklearn.metrics import balanced_accuracy_score
 from torchvision import datasets, models, transforms 
 from torchvision import datasets, transforms as T
@@ -25,7 +26,6 @@ from torch.utils.data import DataLoader
 from cattleNetTest_v3 import CattleNetV3
 from tqdm import tqdm
 
-
 def compute_roc_auc(out1,out2,labels,batch,epoch):
     cos = nn.CosineSimilarity(dim=1,eps=1e-6)
     scores = cos(out1,out2)
@@ -48,7 +48,12 @@ def compute_roc_auc(out1,out2,labels,batch,epoch):
     print(len(thresholds))
     print(len(fpr))
     print(len(tpr))
-    return roc_auc
+
+    bestThreshold = thresholds[np.argmax(tpr-fpr)]
+
+    print(bestThreshold)
+
+    return roc_auc,bestThreshold
 
 """
     remark: use CustomImageDatasetBCE for this task
@@ -60,7 +65,7 @@ def test_thresholds(test_dataset: CustomImageDatasetBCE, model_directory: str = 
     results = []
     stats = [{} for i in range(0,len(thresholds))]
     data_loader = DataLoader(test_dataset, batch_size=64, shuffle=True)
-    avg_precision = [0.0 for i in range(0,len(thresholds))] 
+    avg_precision = [0.0 for i in range(0,len(thresholds))]
     avg_recall = [0.0 for i in range(0,len(thresholds))]
     avg_balanced_acc = [0.0 for i in range(0,len(thresholds))]
     avg_fscore = [0.0 for i in range(0,len(thresholds))]
@@ -79,6 +84,7 @@ def test_thresholds(test_dataset: CustomImageDatasetBCE, model_directory: str = 
     zero_acc = [0 for i in range(0,len(thresholds))]
     accuracy = 0
     avg_auc = 0.0
+    avg_best_threshold = 0.0
 
     if is_load_model:
         pass
@@ -94,10 +100,15 @@ def test_thresholds(test_dataset: CustomImageDatasetBCE, model_directory: str = 
             # forward pass using anchor and images
             anchor_res,images_res = model(anchor,images)
 
-            
-            avg_auc += compute_roc_auc(anchor_res,images_res,labels,batches,epoch)
+            auc_result, best_threshold = compute_roc_auc(anchor_res,images_res,labels,batches,epoch)
 
-        return avg_auc/batches
+            # add calculated values to running sum to average at the end
+            avg_auc += auc_result
+            avg_best_threshold += best_threshold
+
+
+
+        return avg_auc/batches,avg_best_threshold/batches
         # UNCOMMENT
         #     distances_sq = torch.sub(anchor_res,images_res).pow(2).sum(1)
             

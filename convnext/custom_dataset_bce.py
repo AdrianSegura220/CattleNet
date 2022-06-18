@@ -48,24 +48,31 @@ class CustomImageDatasetBCE(Dataset):
     """
     def __getitem__(self, idx):
         # path to image being picked
+        force_different = False
         img1_file_name = self.img_labels.iloc[idx, 1]
         img2_file_name = ''
-        img_path = os.path.join(self.img_dir, self.img_labels.iloc[idx, 1])
+        img_path = os.path.join(self.img_dir, self.img_labels.iloc[idx, 1]) # path to read anchor image
         # same_class = random.randint(0,1) 
         same_class = random.choice([0,1]) # used to approximately select around 50% of samples to be equal and 50% to be different
         
         if same_class:
             for i in range(0,self.__len__()):
                 if self.img_labels.iloc[i,2] == self.img_labels.iloc[idx, 2]:
-                    if self.counts[self.img_labels.iloc[idx, 2]][0] > 1:
+                    if self.counts[self.img_labels.iloc[idx, 2]][0] > 0: # if there is more than one image to choose from for this label
                         selectedImage = random.randint(0,(self.counts[self.img_labels.iloc[idx, 2]][0]-1)) # select one of the pictures randomly
-                    else:
-                        selectedImage = 0
-                    image2 = (read_image(os.path.join(self.img_dir, self.img_labels.iloc[i+selectedImage, 1])).float())/255.0 # selected image should be of same cow
-                    label2 = self.img_labels.iloc[i+selectedImage, 2]
+                        while selectedImage + i == idx: # keep attempting to select a random image of the same class until you choose a different image than the anchor
+                            selectedImage = random.randint(0,(self.counts[self.img_labels.iloc[idx, 2]][0]-1)) # select one of the pictures randomly
+                    else: # else we are forced to select a different image
+                        force_different = True
+                        print('Forced different image for image label: ',self.img_labels.iloc[idx, 2])
+                        break
+                        # selectedImage = 0
+                    image2 = (read_image(os.path.join(self.img_dir, self.img_labels.iloc[i+selectedImage, 1])).float())/255.0 # selected image should be of same cow but different image
+                    label2 = self.img_labels.iloc[i+selectedImage, 2] # same label as anchor
                     img2_file_name = self.img_labels.iloc[i+selectedImage, 1]
                     break
-        else:
+
+        if not same_class or force_different:
             # total_to_use = self.__len__() if self.train_size == -1 else self.train_size # set max num used for training purposes
             rand_idx = random.randint(0,self.__len__()-1)
             image2 = (read_image(os.path.join(self.img_dir, self.img_labels.iloc[rand_idx, 1])).float())/255.0 # choose a random image
