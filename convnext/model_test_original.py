@@ -31,23 +31,23 @@ def compute_roc_auc(out1,out2,labels,batch,epoch,mode):
     scores = cos(out1,out2)
     fpr, tpr, thresholds = metrics.roc_curve(labels.cpu().numpy(), scores.cpu().numpy())
     roc_auc = metrics.auc(fpr, tpr)
-    plt.gca().cla()
-    plt.title('Receiver Operating Characteristic')
-    plt.plot(fpr, tpr, 'b', label = 'AUC = %0.2f' % roc_auc)
-    plt.legend(loc = 'lower right')
-    plt.plot([0, 1], [0, 1],'r--')
-    plt.xlim([0, 1])
-    plt.ylim([0, 1])
-    plt.ylabel('True Positive Rate')
-    plt.xlabel('False Positive Rate')
-    for i in range(0,len(thresholds)):
-        plt.axvline(x=fpr[i])
-        plt.text(x=fpr[i]+0.02,y=tpr[i]-0.1,s=str(thresholds[i]))
+    # plt.gca().cla()
+    # plt.title('Receiver Operating Characteristic')
+    # plt.plot(fpr, tpr, 'b', label = 'AUC = %0.2f' % roc_auc)
+    # plt.legend(loc = 'lower right')
+    # plt.plot([0, 1], [0, 1],'r--')
+    # plt.xlim([0, 1])
+    # plt.ylim([0, 1])
+    # plt.ylabel('True Positive Rate')
+    # plt.xlabel('False Positive Rate')
+    # for i in range(0,len(thresholds)):
+    #     plt.axvline(x=fpr[i])
+    #     plt.text(x=fpr[i]+0.02,y=tpr[i]-0.1,s=str(thresholds[i]))
 
-    if mode == 'testing':
-        plt.savefig('../roc_figures/roc_batch{}__EPOCHnr{}.png'.format(batch,epoch))
-    else:
-        plt.savefig('../roc_figures_training_validation/t_roc_batch{}__EPOCHnr{}.png'.format(batch,epoch))
+    # if mode == 'testing':
+    #     plt.savefig('../roc_figures/roc_batch{}__EPOCHnr{}.png'.format(batch,epoch))
+    # else:
+    #     plt.savefig('../roc_figures_training_validation/t_roc_batch{}__EPOCHnr{}.png'.format(batch,epoch))
 
     bestThreshold = thresholds[np.argmax(tpr-fpr)]
 

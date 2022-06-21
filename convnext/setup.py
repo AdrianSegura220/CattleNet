@@ -33,7 +33,7 @@ from torch.utils.data import default_collate
 
 
 # save or not model snapshots
-save_models = False
+save_models = True
 
 # save or not figures
 save_figs = False
@@ -57,10 +57,10 @@ path_to_results = '../../BachelorsProject/Trainings/'
 #hyperparams
 lrDecay = 1
 step_lr = 1
-lr=15e-3
+lr=15e-4
 in_channel = 3
 batch_size = 128
-num_epochs = 150
+num_epochs = 500
 n_shot = 15
 k_folds = 1
 thresholds_to_test = [0.1,0.25,0.4,0.5,0.6]
@@ -91,6 +91,7 @@ def compute_roc_auc(out1,out2,labels,epoch):
 
 def train(d_loader,dataset_validation,dataset_validation_training):
     min_loss = 99999999999999.0
+    max_auc = -1.0
     loss = []
     # arrays to save the best values for model training
     precision = [0.0 for i in range(0,len(thresholds_to_test))]
@@ -108,7 +109,7 @@ def train(d_loader,dataset_validation,dataset_validation_training):
     iterations_loop = 0
     # create directory for current training results
     if save_models or save_figs:
-        final_path = os.path.join(path_to_results,'CattleNetContrastive_lr{}_BCE_datetime{}-{}H{}M{}S{}'.format(lr,datetime.datetime.today().day,datetime.datetime.today().month,datetime.datetime.today().hour,datetime.datetime.today().minute,datetime.datetime.today().second))
+        final_path = os.path.join(path_to_results,'AUC_Contrastive{}_datetime{}-{}H{}M{}S{}'.format(lr,datetime.datetime.today().day,datetime.datetime.today().month,datetime.datetime.today().hour,datetime.datetime.today().minute,datetime.datetime.today().second))
         os.mkdir(final_path)
 
     for epoch in range(1,num_epochs):
@@ -253,9 +254,9 @@ def train(d_loader,dataset_validation,dataset_validation_training):
                 save_figures(iteration_number,counter,loss,final_path,epoch,epoch_loss,curr_lr,accuracy,epoch_acc)
             
             #save model state up to this epoch
-            if save_models and epoch_loss < min_loss:
-                min_loss = epoch_loss
-                torch.save(model.state_dict(), os.path.join(final_path,"epoch{}_loss{}_lr{}_maxAvgBalancedAcc{}.pt".format(epoch,epoch_loss,curr_lr,max(validation_results['avg_balanced_acc']))))
+        if save_models and validation_results > max_auc:
+            max_auc = validation_results
+            torch.save(model.state_dict(), os.path.join(final_path,"epoch{}_AUC{}.pt".format(epoch,validation_results)))
     
     # return model and the best values for balanced accuracy and also for f-score
     return model,balanced_acc,f_score
@@ -314,11 +315,11 @@ else:
             # add to compute average at the end
             balanced_acc[j] += res_balanced_acc[j]
             f_score[j] += res_f_score[j]
-            if use_wandb:
-                wandb.log({
-                    "Best result balanced accuracy for d={}".format(thresholds_to_test[j]): res_balanced_acc[j],
-                    "Best result f-score for d={}".format(thresholds_to_test[j]): res_f_score[j]
-                })
+            # if use_wandb:
+            #     wandb.log({
+            #         "Best result balanced accuracy for d={}".format(thresholds_to_test[j]): res_balanced_acc[j],
+            #         "Best result f-score for d={}".format(thresholds_to_test[j]): res_f_score[j]
+            #     })
         
     argmx_acc = 0
     max_acc = 0
@@ -343,11 +344,11 @@ else:
     print("Best distance threshold based on balanced acc {}-folds: d = {}".format(k_folds,thresholds_to_test[argmx_acc]))
     print("Best distance threshold based on F1-score {}-folds: d = {}".format(k_folds,thresholds_to_test[argmx_fscore]))
 
-    if use_wandb:
-        wandb.log({
-            "Best distance threshold based on balanced acc {}-folds".format(k_folds): thresholds_to_test[argmx_acc],
-            "Best distance threshold based on f1-score {}-folds".format(k_folds): thresholds_to_test[argmx_fscore]
-        })
+    # if use_wandb:
+    #     wandb.log({
+    #         "Best distance threshold based on balanced acc {}-folds".format(k_folds): thresholds_to_test[argmx_acc],
+    #         "Best distance threshold based on f1-score {}-folds".format(k_folds): thresholds_to_test[argmx_fscore]
+    #     })
         
         # 0.1,0.25,0.4,0.5,0.6
         
