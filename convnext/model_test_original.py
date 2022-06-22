@@ -105,7 +105,7 @@ def test_thresholds(test_dataset: CustomImageDatasetBCE, model_directory: str = 
 
             auc_result, best_threshold = compute_roc_auc(anchor_res,images_res,labels,batches,epoch,mode)
 
-            loss += criterion(anchor_res,images_res,labels)
+            loss += criterion(anchor_res,images_res,labels).item()
 
             # add calculated values to running sum to average at the end
             avg_auc += auc_result
