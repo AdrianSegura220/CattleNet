@@ -142,7 +142,7 @@ def train(d_loader,dataset_validation,dataset_validation_training):
         with torch.no_grad():
             # epoch_acc = test(dataset_validation,n=n_shot,model=model,is_load_model=False)
             validation_results,avg_best_calculated_threshold,loss_testing_validation = test_thresholds(dataset_validation,thresholds=thresholds_to_test,model=model,epoch=epoch,mode='testing',criterion=criterion)
-            validation_results_training,avg_best_calculated_training_threshold,loss_training_validation = test_thresholds(dataset_validation_training,thresholds=thresholds_to_test,model=model,epoch=epoch,mode='training')
+            validation_results_training,avg_best_calculated_training_threshold,loss_training_validation = test_thresholds(dataset_validation_training,thresholds=thresholds_to_test,model=model,epoch=epoch,mode='training',criterion=criterion)
             # validation_training_results = test_thresholds(dataset_validation_training,thresholds=thresholds_to_test,model=model)
             one_shot = one_shot_test(dataset_one_shot,model,0.5,True,True)
 
