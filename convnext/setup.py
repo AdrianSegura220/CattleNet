@@ -41,10 +41,6 @@ save_figs = False
 # wandb setup (logging progress to online platform)
 use_wandb = True
 
-if use_wandb:
-    wandb.init(project="cattleNet-arch1", entity="adriansegura220")
-
-
 # load and test a model version (no training)
 loadtest = False
 
@@ -60,17 +56,10 @@ step_lr = 1
 lr=15e-4
 in_channel = 3
 batch_size = 128
-num_epochs = 500
+num_epochs = 200
 n_shot = 15
 k_folds = 1
 thresholds_to_test = [0.1,0.25,0.4,0.5,0.6]
-
-if use_wandb:
-    wandb.config = {
-    "learning_rate": lr,
-    "epochs": num_epochs,
-    "batch_size": batch_size
-    }
 
 def compute_roc_auc(out1,out2,labels,epoch):
     cos = nn.CosineSimilarity(dim=1,eps=1e-6)
@@ -100,6 +89,8 @@ def train(d_loader,dataset_validation,dataset_validation_training):
     f_score = [0.0 for i in range(0,len(thresholds_to_test))]
     avg_best_threshold = 0.0
     avg_best_training_threshold = 0.0
+    avg_auc_validation_testing = 0.0
+    avg_auc_validation_training = 0.0
 
     accuracy = []
     epoch_acc = 0.0
@@ -156,7 +147,8 @@ def train(d_loader,dataset_validation,dataset_validation_training):
 
             avg_best_threshold += avg_best_calculated_threshold # add last best-calculated threshold to running sum
             avg_best_training_threshold += avg_best_calculated_training_threshold # add last best-calculated threshold to running sum
-
+            avg_auc_validation_testing += validation_results # add to divide in the end to get whole model's average
+            avg_auc_validation_training += validation_results_training # add to divide in the end to get whole model's average
             """
                 validation results returns an array with results for each distance threshold
                 e.g. given 3 thresholds to test: [0.1,0.3,0.5], then for each statistic (precision,recall and balanced acc)
@@ -256,10 +248,13 @@ def train(d_loader,dataset_validation,dataset_validation_training):
             #save model state up to this epoch
         if save_models and validation_results > max_auc:
             max_auc = validation_results
-            torch.save(model.state_dict(), os.path.join(final_path,"epoch{}_AUC{}.pt".format(epoch,validation_results)))
+            torch.save(model.state_dict(), os.path.join(final_path,"epoch{}_AUC{}_oneshot{}.pt".format(epoch,validation_results,one_shot)))
     
     # return model and the best values for balanced accuracy and also for f-score
-    return model,balanced_acc,f_score
+    avg_auc_validation_testing /= num_epochs # divide to get total average
+    avg_auc_validation_training /= num_epochs # divide to get toal average
+
+    return model,avg_auc_validation_testing,avg_auc_validation_training
 
 def save_figures(iteration_number,counter,loss,final_path,epoch,epoch_loss,curr_lr,accuracy,epoch_acc):
     plt.plot(counter,loss)
@@ -294,10 +289,20 @@ else:
         # loss function
         criterion = ContrastiveLoss()
 
+        if use_wandb:
+            run = wandb.init(project="cattleNet-arch1", entity="adriansegura220",reinit=True)
+
+        if use_wandb:
+            wandb.config = {
+            "learning_rate": lr,
+            "epochs": num_epochs,
+            "batch_size": batch_size
+            }
+
         params = model.parameters()
         # setup optimizer (use Adam technique to optimize parameters (GD with momentum and RMS prop))
         # by default: learning rate = 0.001, betas=(0.9, 0.999), eps=1e-08, weight_decay=0
-        optimizer = optim.Adam(params,lr=lr) 
+        optimizer = optim.Adam(params,lr=lr)
         scheduler = StepLR(optimizer, step_size=step_lr, gamma=0.99)
 
         dataset_training = CustomImageDatasetBCE(img_dir='../../dataset/Preprocessed/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225])]),annotations_csv='./training_testing_folds/training_annotations_fold{}.csv'.format(i))
@@ -310,6 +315,8 @@ else:
         model.train()
         print("Starting training")
         model,res_balanced_acc,res_f_score = train(d_loader=data_loader,dataset_validation=dataset_validation,dataset_validation_training=dataset_validation_training)
+        
+        run.finish()
 
         for j in range(0,len(thresholds_to_test)):
             # add to compute average at the end
