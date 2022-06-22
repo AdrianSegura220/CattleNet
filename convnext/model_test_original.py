@@ -60,7 +60,7 @@ def compute_roc_auc(out1,out2,labels,batch,epoch,mode):
 """
     remark: use CustomImageDatasetBCE for this task
 """
-def test_thresholds(test_dataset: CustomImageDatasetBCE, model_directory: str = '', model_version: str = '',model = None,is_load_model = False,thresholds = [0.5],epoch=0,mode='testing'):
+def test_thresholds(test_dataset: CustomImageDatasetBCE, model_directory: str = '', model_version: str = '',model = None,is_load_model = False,thresholds = [0.5],epoch=0,mode='testing',criterion=None):
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     total = 0
     correct = 0
@@ -87,6 +87,7 @@ def test_thresholds(test_dataset: CustomImageDatasetBCE, model_directory: str = 
     accuracy = 0
     avg_auc = 0.0
     avg_best_threshold = 0.0
+    loss = 0.0
 
     if is_load_model:
         pass
@@ -104,11 +105,13 @@ def test_thresholds(test_dataset: CustomImageDatasetBCE, model_directory: str = 
 
             auc_result, best_threshold = compute_roc_auc(anchor_res,images_res,labels,batches,epoch,mode)
 
+            loss += criterion(anchor_res,images_res,labels)
+
             # add calculated values to running sum to average at the end
             avg_auc += auc_result
             avg_best_threshold += best_threshold
 
-        return avg_auc/batches,avg_best_threshold/batches
+        return avg_auc/batches,avg_best_threshold/batches,loss/batches
         # UNCOMMENT
         #     distances_sq = torch.sub(anchor_res,images_res).pow(2).sum(1)
             

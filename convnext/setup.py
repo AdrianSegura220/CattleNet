@@ -94,6 +94,8 @@ def train(d_loader,dataset_validation,dataset_validation_training):
     avg_best_training_threshold = 0.0
     avg_auc_validation_testing = 0.0
     avg_auc_validation_training = 0.0
+    avg_loss_training_validation = 0.0
+    avg_loss_testing_validation = 0.0
 
     accuracy = []
     epoch_acc = 0.0
@@ -103,7 +105,7 @@ def train(d_loader,dataset_validation,dataset_validation_training):
     iterations_loop = 0
     # create directory for current training results
     if save_models or save_figs:
-        final_path = os.path.join(path_to_results,'AUC_Contrastive{}_datetime{}-{}H{}M{}S{}'.format(lr,datetime.datetime.today().day,datetime.datetime.today().month,datetime.datetime.today().hour,datetime.datetime.today().minute,datetime.datetime.today().second))
+        final_path = os.path.join(path_to_results,'FINALAUC_Contrastive{}_datetime{}-{}H{}M{}S{}'.format(lr,datetime.datetime.today().day,datetime.datetime.today().month,datetime.datetime.today().hour,datetime.datetime.today().minute,datetime.datetime.today().second))
         os.mkdir(final_path)
 
     for epoch in range(1,num_epochs):
@@ -143,8 +145,8 @@ def train(d_loader,dataset_validation,dataset_validation_training):
         model.eval()
         with torch.no_grad():
             # epoch_acc = test(dataset_validation,n=n_shot,model=model,is_load_model=False)
-            validation_results,avg_best_calculated_threshold = test_thresholds(dataset_validation,thresholds=thresholds_to_test,model=model,epoch=epoch,mode='testing')
-            validation_results_training,avg_best_calculated_training_threshold = test_thresholds(dataset_validation_training,thresholds=thresholds_to_test,model=model,epoch=epoch,mode='training')
+            validation_results,avg_best_calculated_threshold,loss_testing_validation = test_thresholds(dataset_validation,thresholds=thresholds_to_test,model=model,epoch=epoch,mode='testing',criterion=criterion)
+            validation_results_training,avg_best_calculated_training_threshold,loss_training_validation = test_thresholds(dataset_validation_training,thresholds=thresholds_to_test,model=model,epoch=epoch,mode='training')
             # validation_training_results = test_thresholds(dataset_validation_training,thresholds=thresholds_to_test,model=model)
             one_shot = one_shot_test(dataset_one_shot,model,0.5,True,True)
 
@@ -152,6 +154,8 @@ def train(d_loader,dataset_validation,dataset_validation_training):
             avg_best_training_threshold += avg_best_calculated_training_threshold # add last best-calculated threshold to running sum
             avg_auc_validation_testing += validation_results # add to divide in the end to get whole model's average
             avg_auc_validation_training += validation_results_training # add to divide in the end to get whole model's average
+            avg_loss_training_validation += loss_training_validation
+            avg_loss_testing_validation += loss_testing_validation
             """
                 validation results returns an array with results for each distance threshold
                 e.g. given 3 thresholds to test: [0.1,0.3,0.5], then for each statistic (precision,recall and balanced acc)
@@ -170,7 +174,9 @@ def train(d_loader,dataset_validation,dataset_validation_training):
                 "Avg. one-shot performance": one_shot,
                 "loss": epoch_loss,
                 "Best threshold running average for testing validation: ": avg_best_threshold/epoch,
-                "Best threshold running average for training validation": avg_best_training_threshold/epoch
+                "Best threshold running average for training validation": avg_best_training_threshold/epoch,
+                "Avg. loss testing validation": avg_loss_testing_validation/epoch,
+                "Avg. loss training validation": avg_loss_training_validation/epoch
             })
             #UNCOMMENT
             # wandb.log({
