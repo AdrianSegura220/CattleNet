@@ -2,6 +2,8 @@ from __future__ import print_function
 from __future__ import division
 import sys
 
+from pygame import K_f
+
 
 sys.path.insert(0,'..')
 from turtle import forward
@@ -58,7 +60,7 @@ in_channel = 3
 batch_size = 128
 num_epochs = 200
 n_shot = 15
-k_folds = 1
+k_folds = 8
 thresholds_to_test = [0.1,0.25,0.4,0.5,0.6]
 
 def compute_roc_auc(out1,out2,labels,epoch):
@@ -81,6 +83,7 @@ def compute_roc_auc(out1,out2,labels,epoch):
 def train(d_loader,dataset_validation,dataset_validation_training):
     min_loss = 99999999999999.0
     max_auc = -1.0
+    max_one_shot = -1.0
     loss = []
     # arrays to save the best values for model training
     precision = [0.0 for i in range(0,len(thresholds_to_test))]
@@ -246,7 +249,8 @@ def train(d_loader,dataset_validation,dataset_validation_training):
                 save_figures(iteration_number,counter,loss,final_path,epoch,epoch_loss,curr_lr,accuracy,epoch_acc)
             
             #save model state up to this epoch
-        if save_models and validation_results > max_auc:
+        if save_models and (validation_results > max_auc or one_shot > max_one_shot):
+            max_one_shot = one_shot
             max_auc = validation_results
             torch.save(model.state_dict(), os.path.join(final_path,"epoch{}_AUC{}_oneshot{}.pt".format(epoch,validation_results,one_shot)))
     
@@ -279,8 +283,10 @@ else:
     # os.mkdir(final_path)
 
     # create arrays to keep track of these performance values for each threshold tested
-    balanced_acc = [0.0 for i in range(0,len(thresholds_to_test))]
-    f_score = [0.0 for i in range(0,len(thresholds_to_test))]
+    avg_folds_auc_testing_validation = 0.0
+    avg_folds_auc_training_validation = 0.0
+    # balanced_acc = [0.0 for i in range(0,len(thresholds_to_test))]
+    # f_score = [0.0 for i in range(0,len(thresholds_to_test))]
 
     for i in range(0,k_folds):
         # instantiate SNN model
@@ -314,42 +320,52 @@ else:
 
         model.train()
         print("Starting training")
-        model,res_balanced_acc,res_f_score = train(d_loader=data_loader,dataset_validation=dataset_validation,dataset_validation_training=dataset_validation_training)
+        model,avg_auc_validation_testing,avg_auc_validation_training = train(d_loader=data_loader,dataset_validation=dataset_validation,dataset_validation_training=dataset_validation_training)
         
+
+        if use_wandb:
+            wandb.log({
+                "Total avg. auc testing validation of the fold": avg_auc_validation_testing,
+                "Total avg. auc training validation of the fold": avg_auc_validation_training
+            })
+        
+        avg_folds_auc_testing_validation += avg_auc_validation_testing
+        avg_folds_auc_training_validation += avg_auc_validation_training
         run.finish()
 
-        for j in range(0,len(thresholds_to_test)):
-            # add to compute average at the end
-            balanced_acc[j] += res_balanced_acc[j]
-            f_score[j] += res_f_score[j]
-            # if use_wandb:
-            #     wandb.log({
-            #         "Best result balanced accuracy for d={}".format(thresholds_to_test[j]): res_balanced_acc[j],
-            #         "Best result f-score for d={}".format(thresholds_to_test[j]): res_f_score[j]
-            #     })
-        
-    argmx_acc = 0
-    max_acc = 0
-    argmx_fscore = 0
-    max_fscore = 0
+        # for j in range(0,len(thresholds_to_test)):
+        #     # add to compute average at the end
+        #     balanced_acc[j] += res_balanced_acc[j]
+        #     f_score[j] += res_f_score[j]
+        #     # if use_wandb:
+        #     #     wandb.log({
+        #     #         "Best result balanced accuracy for d={}".format(thresholds_to_test[j]): res_balanced_acc[j],
+        #     #         "Best result f-score for d={}".format(thresholds_to_test[j]): res_f_score[j]
+        #     #     })
+    print('Average auc for testing validation amongst all folds:',avg_folds_auc_testing_validation/k_folds)
+    print('Average auc for training validation amongst all folds:',avg_folds_auc_training_validation/k_folds)
+    # argmx_acc = 0
+    # max_acc = 0
+    # argmx_fscore = 0
+    # max_fscore = 0
 
     """
         Calculate averages of all folds and select indices of distances with highest
         balanced accuracy and highest f-scores
     """
-    for i in range(0,len(thresholds_to_test)):
-        balanced_acc[i] /= k_folds
-        if balanced_acc[i] > max_acc:
-            max_acc = balanced_acc[i]
-            argmx_acc = i
+    # for i in range(0,len(thresholds_to_test)):
+    #     balanced_acc[i] /= k_folds
+    #     if balanced_acc[i] > max_acc:
+    #         max_acc = balanced_acc[i]
+    #         argmx_acc = i
         
-        f_score[i] /= k_folds
-        if f_score[i] > max_fscore:
-            max_fscore = f_score[i]
-            argmx_fscore = i
+    #     f_score[i] /= k_folds
+    #     if f_score[i] > max_fscore:
+    #         max_fscore = f_score[i]
+    #         argmx_fscore = i
 
-    print("Best distance threshold based on balanced acc {}-folds: d = {}".format(k_folds,thresholds_to_test[argmx_acc]))
-    print("Best distance threshold based on F1-score {}-folds: d = {}".format(k_folds,thresholds_to_test[argmx_fscore]))
+    # print("Best distance threshold based on balanced acc {}-folds: d = {}".format(k_folds,thresholds_to_test[argmx_acc]))
+    # print("Best distance threshold based on F1-score {}-folds: d = {}".format(k_folds,thresholds_to_test[argmx_fscore]))
 
     # if use_wandb:
     #     wandb.log({
@@ -360,4 +376,3 @@ else:
         # 0.1,0.25,0.4,0.5,0.6
         
     # torch.save(model.state_dict(), "model_sequential_isGoodMaybe2_{}.pt".format())
-    print("Model Saved Successfully") 
