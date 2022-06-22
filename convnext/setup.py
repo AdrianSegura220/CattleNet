@@ -1,10 +1,6 @@
 from __future__ import print_function
 from __future__ import division
 import sys
-
-from pygame import K_f
-
-
 sys.path.insert(0,'..')
 from turtle import forward
 from torchvision import datasets, models, transforms 
