@@ -159,7 +159,7 @@ def train(d_loader,dataset_validation,dataset_validation_training,fold=0):
         auc_plain_training_avg /= iterations_loop
         auc_plain_training_threshold_avg /= iterations_loop
 
-
+        #useless comment
         scheduler.step()
         epoch_loss /= iterations_loop
         curr_lr = optimizer.state_dict()['param_groups'][0]['lr']
