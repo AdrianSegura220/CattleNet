@@ -1,0 +1,8 @@
+
+Starting training
+Traceback (most recent call last):
+  File "/home/adriansegura/Desktop/RUG/CattleNet/convnext/setup.py", line 366, in <module>
+    model,avg_auc_validation_testing,avg_auc_validation_training = train(d_loader=data_loader,dataset_validation=dataset_validation,dataset_validation_training=dataset_validation_training,fold=i)
+  File "/home/adriansegura/Desktop/RUG/CattleNet/convnext/setup.py", line 151, in train
+    auc_training, best_threshold_training = compute_roc_auc(out1,out2,labels,iterations_loop,epoch,'actual_training')
+TypeError: compute_roc_auc() missing 1 required positional argument: 'fold'

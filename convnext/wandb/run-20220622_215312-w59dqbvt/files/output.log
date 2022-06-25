@@ -1,0 +1,35 @@
+
+  0% 0/13 [00:00<?, ?it/s]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [1/200]:  92% 12/13 [00:47<00:03,  3.91s/it, loss=12.3]
+lr 0.001485
+Epoch 1
+ Current loss 41.0580686034436
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  training
+Traceback (most recent call last):
+  File "/home/adriansegura/Desktop/RUG/CattleNet/convnext/setup.py", line 325, in <module>
+    model,avg_auc_validation_testing,avg_auc_validation_training = train(d_loader=data_loader,dataset_validation=dataset_validation,dataset_validation_training=dataset_validation_training)
+  File "/home/adriansegura/Desktop/RUG/CattleNet/convnext/setup.py", line 145, in train
+    validation_results_training,avg_best_calculated_training_threshold,loss_training_validation = test_thresholds(dataset_validation_training,thresholds=thresholds_to_test,model=model,epoch=epoch,mode='training')
+  File "/home/adriansegura/Desktop/RUG/CattleNet/convnext/model_test_original.py", line 108, in test_thresholds
+    loss += criterion(anchor_res,images_res,labels)
+TypeError: 'NoneType' object is not callable

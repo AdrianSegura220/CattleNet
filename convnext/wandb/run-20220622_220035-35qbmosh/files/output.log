@@ -1,0 +1,634 @@
+
+Starting training
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [1/200]:  92%|████████████████████████████████████████████████████████████████▌     | 12/13 [00:47<00:03,  4.00s/it, loss=15]
+lr 0.001485
+Epoch 1
+
+ Current loss 43.336901339903356
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+  0%|                                                                                                       | 0/13 [00:00<?, ?it/s]
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+C
+C
+C
+I
+I
+I
+I
+C
+I
+I
+I
+I
+I
+I
+I
+C
+I
+I
+I
+C
+I
+Epoch avg. auc value: 0.7383638701178852
+Epoch one-shot accuracy: 0.1935483870967742
+
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [2/200]:  92%|██████████████████████████████████████████████████████████████▊     | 12/13 [00:50<00:03,  3.89s/it, loss=2.34]
+lr 0.00147015
+Epoch 2
+ Current loss 6.1266778640532245
+
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+I
+I
+I
+I
+C
+I
+C
+I
+I
+I
+I
+C
+I
+I
+I
+C
+I
+C
+I
+I
+C
+I
+I
+I
+C
+C
+I
+C
+I
+I
+C
+Epoch avg. auc value: 0.7106261117952928
+Epoch one-shot accuracy: 0.3225806451612903
+Best threshold running-average value: 0.9985268771648408
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [3/200]:  92%|██████████████████████████████████████████████████████████████▊     | 12/13 [00:47<00:03,  3.97s/it, loss=1.25]
+lr 0.0014554485
+Epoch 3
+
+ Current loss 2.0691820053977628
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+I
+C
+I
+I
+I
+I
+I
+I
+I
+I
+C
+I
+I
+I
+I
+I
+C
+I
+C
+I
+I
+C
+I
+I
+I
+I
+I
+C
+I
+I
+I
+Epoch avg. auc value: 0.6549445799825308
+Epoch one-shot accuracy: 0.1935483870967742
+Best threshold running-average value: 0.9988500118255615
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [4/200]:  92%|█████████████████████████████████████████████████████████████▊     | 12/13 [00:46<00:03,  3.89s/it, loss=0.594]
+lr 0.001440894015
+Epoch 4
+
+ Current loss 0.9319006821929394
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+  0%|                                                                                                       | 0/13 [00:00<?, ?it/s]
+I
+C
+C
+I
+I
+I
+I
+I
+I
+I
+C
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+C
+I
+I
+I
+I
+I
+I
+I
+Epoch avg. auc value: 0.6669000947941512
+Epoch one-shot accuracy: 0.12903225806451613
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [5/200]:  92%|█████████████████████████████████████████████████████████████▊     | 12/13 [00:47<00:03,  3.97s/it, loss=0.373]
+lr 0.00142648507485
+Epoch 5
+
+ Current loss 0.529540004954797
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+I
+I
+I
+C
+C
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+C
+I
+C
+I
+I
+I
+I
+I
+C
+C
+I
+I
+I
+I
+I
+Epoch avg. auc value: 0.7454054774448093
+Epoch one-shot accuracy: 0.1935483870967742
+Best threshold running-average value: 0.9991903424263
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [6/200]:  92%|█████████████████████████████████████████████████████████████▊     | 12/13 [00:46<00:03,  3.92s/it, loss=0.295]
+lr 0.0014122202241015
+Epoch 6
+
+ Current loss 0.40289561200126595
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+I
+I
+C
+I
+I
+I
+I
+C
+C
+I
+I
+I
+I
+I
+I
+I
+C
+I
+C
+I
+I
+I
+I
+I
+I
+I
+C
+I
+C
+I
+I
+Epoch avg. auc value: 0.7112289741929702
+Epoch one-shot accuracy: 0.22580645161290322
+Best threshold running-average value: 0.9992865224679311
+
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [7/200]:  92%|█████████████████████████████████████████████████████████████▊     | 12/13 [00:47<00:03,  3.96s/it, loss=0.184]
+lr 0.001398098021860485
+Epoch 7
+ Current loss 0.25355310013878074
+
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+I
+C
+C
+I
+I
+I
+I
+C
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+C
+I
+I
+I
+I
+C
+I
+I
+I
+Epoch avg. auc value: 0.6993089611211054
+Epoch one-shot accuracy: 0.16129032258064516
+Best threshold running-average value: 0.999360317843301
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [8/200]:  92%|█████████████████████████████████████████████████████████████▊     | 12/13 [00:46<00:03,  3.87s/it, loss=0.184]
+lr 0.00138411704164188
+Epoch 8
+
+ Current loss 0.2469106103534039
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+I
+I
+I
+C
+I
+I
+I
+C
+I
+I
+I
+I
+I
+I
+I
+I
+C
+C
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+C
+I
+C
+Epoch avg. auc value: 0.7036357314583122
+Epoch one-shot accuracy: 0.1935483870967742
+Best threshold running-average value: 0.9994168594479561
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [9/200]:  92%|█████████████████████████████████████████████████████████████▊     | 12/13 [00:47<00:03,  3.91s/it, loss=0.141]
+lr 0.0013702758712254614
+Epoch 9
+
+ Current loss 0.18962694042760717
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+  0%|                                                                                                       | 0/13 [00:00<?, ?it/s]
+I
+I
+I
+C
+I
+I
+C
+C
+I
+I
+I
+I
+C
+I
+I
+I
+I
+C
+I
+I
+I
+I
+I
+I
+C
+I
+I
+I
+I
+I
+C
+Epoch avg. auc value: 0.7401672050201462
+Epoch one-shot accuracy: 0.22580645161290322
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [10/200]:  92%|████████████████████████████████████████████████████████████▉     | 12/13 [00:47<00:04,  4.02s/it, loss=0.175]
+lr 0.0013565731125132067
+Epoch 10
+
+ Current loss 0.15922351659029105
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+  0%|                                                                                                       | 0/13 [00:00<?, ?it/s]
+I
+I
+I
+C
+I
+I
+I
+C
+I
+I
+I
+I
+I
+I
+I
+I
+I
+C
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+C
+Epoch avg. auc value: 0.6693790159531302
+Epoch one-shot accuracy: 0.12903225806451613
+
+
+
+
+
+
+

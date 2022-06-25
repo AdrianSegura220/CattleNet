@@ -59,11 +59,13 @@ n_shot = 15
 k_folds = 8
 thresholds_to_test = [0.1,0.25,0.4,0.5,0.6]
 
-def compute_roc_auc(out1,out2,labels,epoch):
+def compute_roc_auc(out1,out2,labels,batch,epoch,mode,fold):
+    print('compute roc mode: ',mode)
     cos = nn.CosineSimilarity(dim=1,eps=1e-6)
     scores = cos(out1,out2)
     fpr, tpr, thresholds = metrics.roc_curve(labels.cpu().numpy(), scores.cpu().numpy())
     roc_auc = metrics.auc(fpr, tpr)
+    plt.gca().cla()
     plt.title('Receiver Operating Characteristic')
     plt.plot(fpr, tpr, 'b', label = 'AUC = %0.2f' % roc_auc)
     plt.legend(loc = 'lower right')
@@ -72,11 +74,28 @@ def compute_roc_auc(out1,out2,labels,epoch):
     plt.ylim([0, 1])
     plt.ylabel('True Positive Rate')
     plt.xlabel('False Positive Rate')
-    plt.savefig('../roc_figures/roc_epoch{}.png'.format(epoch))
-    plt.clf()
+
+    # plot threshold values for such points roc curve
+    # for i in range(0,len(thresholds)):
+    #     plt.axvline(x=fpr[i])
+    #     plt.text(x=fpr[i]+0.02,y=tpr[i]-0.1,s=str(thresholds[i]))
+
+    if mode == 'testing':
+        if roc_auc > 0.85:
+            plt.savefig('../roc_figures/fold_{}roc_batch{}__EPOCHnr{}.png'.format(fold,batch,epoch))
+    elif mode == 'actual_training':
+        if roc_auc > 0.85:
+            plt.savefig('../roc_figures_plain_training/fold_{}roc_batch{}__EPOCHnr{}.png'.format(fold,batch,epoch))
+    else:
+        if roc_auc > 0.85:
+            plt.savefig('../roc_figures_training_validation/fold_{}t_roc_batch{}__EPOCHnr{}.png'.format(fold,batch,epoch))
+
+    bestThreshold = thresholds[np.argmax(tpr-fpr)]
+
+    return roc_auc,bestThreshold
 
 
-def train(d_loader,dataset_validation,dataset_validation_training):
+def train(d_loader,dataset_validation,dataset_validation_training,fold=0):
     min_loss = 99999999999999.0
     max_auc = -1.0
     max_one_shot = -1.0
@@ -92,6 +111,8 @@ def train(d_loader,dataset_validation,dataset_validation_training):
     avg_auc_validation_training = 0.0
     avg_loss_training_validation = 0.0
     avg_loss_testing_validation = 0.0
+    auc_plain_training_avg = 0.0
+    auc_plain_training_threshold_avg = 0.0
 
     accuracy = []
     epoch_acc = 0.0
@@ -108,6 +129,8 @@ def train(d_loader,dataset_validation,dataset_validation_training):
         loop = tqdm(d_loader,leave=False,total=len(d_loader))
         epoch_loss = 0.0
         iterations_loop = 0
+        auc_plain_training_avg = 0.0
+        auc_plain_training_threshold_avg
         for data in loop:
             # print(data[0].size())
             label = 0
@@ -123,7 +146,20 @@ def train(d_loader,dataset_validation,dataset_validation_training):
             loop.set_description(f"Epoch [{epoch}/{num_epochs}]")
             loop.set_postfix(loss=loss_contrastive.item())
             epoch_loss += loss_contrastive.item()
+
+            with torch.no_grad():
+                auc_training, best_threshold_training = compute_roc_auc(out1,out2,labels,iterations_loop,epoch,'actual_training',fold)
+
+                auc_plain_training_avg += auc_training
+                auc_plain_training_threshold_avg += best_threshold_training
+
+
             iterations_loop += 1
+        
+        auc_plain_training_avg /= iterations_loop
+        auc_plain_training_threshold_avg /= iterations_loop
+
+
         scheduler.step()
         epoch_loss /= iterations_loop
         curr_lr = optimizer.state_dict()['param_groups'][0]['lr']
@@ -141,8 +177,8 @@ def train(d_loader,dataset_validation,dataset_validation_training):
         model.eval()
         with torch.no_grad():
             # epoch_acc = test(dataset_validation,n=n_shot,model=model,is_load_model=False)
-            validation_results,avg_best_calculated_threshold,loss_testing_validation = test_thresholds(dataset_validation,thresholds=thresholds_to_test,model=model,epoch=epoch,mode='testing',criterion=criterion)
-            validation_results_training,avg_best_calculated_training_threshold,loss_training_validation = test_thresholds(dataset_validation_training,thresholds=thresholds_to_test,model=model,epoch=epoch,mode='training',criterion=criterion)
+            validation_results,avg_best_calculated_threshold,loss_testing_validation = test_thresholds(dataset_validation,thresholds=thresholds_to_test,model=model,epoch=epoch,mode='testing',criterion=criterion,fold=fold)
+            validation_results_training,avg_best_calculated_training_threshold,loss_training_validation = test_thresholds(dataset_validation_training,thresholds=thresholds_to_test,model=model,epoch=epoch,mode='training',criterion=criterion,fold=fold)
             # validation_training_results = test_thresholds(dataset_validation_training,thresholds=thresholds_to_test,model=model)
             one_shot = one_shot_test(dataset_one_shot,model,0.5,True,True)
 
@@ -167,6 +203,8 @@ def train(d_loader,dataset_validation,dataset_validation_training):
             wandb.log({
                 "Avg. AUC value per epoch for testing validation": validation_results,
                 "Avg. AUC value per epoch for training validation": validation_results_training,
+                "PLAIN TRAINING: AVG AUC": auc_plain_training_avg,
+                "Best threshold avg. plain_training": auc_plain_training_threshold_avg,
                 "Avg. one-shot performance": one_shot,
                 "loss": epoch_loss,
                 "Best threshold running average for testing validation: ": avg_best_threshold/epoch,
@@ -252,8 +290,11 @@ def train(d_loader,dataset_validation,dataset_validation_training):
             
             #save model state up to this epoch
         if save_models and (validation_results > max_auc or one_shot > max_one_shot):
-            max_one_shot = one_shot
-            max_auc = validation_results
+            if one_shot > max_one_shot:
+                max_one_shot = one_shot
+            
+            if validation_results > max_auc:
+                max_auc = validation_results
             torch.save(model.state_dict(), os.path.join(final_path,"epoch{}_AUC{}_oneshot{}.pt".format(epoch,validation_results,one_shot)))
     
     # return model and the best values for balanced accuracy and also for f-score
@@ -290,7 +331,7 @@ else:
     # balanced_acc = [0.0 for i in range(0,len(thresholds_to_test))]
     # f_score = [0.0 for i in range(0,len(thresholds_to_test))]
 
-    for i in range(0,k_folds):
+    for i in range(5,k_folds):
         # instantiate SNN model
         model = CattleNet(freezeLayers=True)
         model.to(device)
@@ -322,7 +363,7 @@ else:
 
         model.train()
         print("Starting training")
-        model,avg_auc_validation_testing,avg_auc_validation_training = train(d_loader=data_loader,dataset_validation=dataset_validation,dataset_validation_training=dataset_validation_training)
+        model,avg_auc_validation_testing,avg_auc_validation_training = train(d_loader=data_loader,dataset_validation=dataset_validation,dataset_validation_training=dataset_validation_training,fold=i)
         
 
         if use_wandb:

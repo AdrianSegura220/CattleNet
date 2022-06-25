@@ -1,0 +1,8 @@
+
+Starting training
+Traceback (most recent call last):
+  File "/home/adriansegura/Desktop/RUG/CattleNet/convnext/setup.py", line 366, in <module>
+    model,avg_auc_validation_testing,avg_auc_validation_training = train(d_loader=data_loader,dataset_validation=dataset_validation,dataset_validation_training=dataset_validation_training,fold=i)
+  File "/home/adriansegura/Desktop/RUG/CattleNet/convnext/setup.py", line 150, in train
+    with torch.no_grad:
+AttributeError: __enter__
