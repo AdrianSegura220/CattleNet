@@ -4,7 +4,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 class ContrastiveLoss(nn.Module):
-    def __init__(self,margin=1.0) -> None:
+    def __init__(self,margin=0.7) -> None:
         super(ContrastiveLoss,self).__init__()
         self.margin = margin
         self.eps = 0.0001
@@ -12,7 +12,11 @@ class ContrastiveLoss(nn.Module):
     def forward(self, x0: torch.Tensor,x1: torch.Tensor,label):
         # print(x0.size())
         # print('label size: ',label)
-        euclidean_distance = (x0-x1).pow(2).sum(1)
+        x0_norm = F.normalize(x0)
+        x1_norm = F.normalize(x1)
+
+
+        euclidean_distance = (x0-x1).pow(2).sum(1).sqrt()
         # euclidean_distance = euclidean_distance.sqrt()
         # print(euclidean_distance.size())
         # print('EUCLIDEAN: ',euclidean_distance)
