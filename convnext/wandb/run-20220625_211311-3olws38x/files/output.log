@@ -1,0 +1,119 @@
+
+Starting training
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [1/150]:  92%|████████████████████████████████████████████████████████████████████████████████████████████████████████████         | 12/13 [00:48<00:04,  4.03s/it, loss=0.258]
+lr 0.001485
+Epoch 1
+
+ Current loss 0.23517942917768114
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+C
+I
+I
+I
+I
+I
+I
+I
+I
+I
+Epoch avg. auc value: 0.47113503478353325
+Epoch one-shot accuracy: 0.03125
+Best threshold running-average value: 1.1999987959861755
+
+
+
+
+
+
+
+
+
+
+
+Traceback (most recent call last):
+  File "/home/adriansegura/Desktop/RUG/CattleNet/convnext/setup.py", line 366, in <module>
+    model,avg_auc_validation_testing,avg_auc_validation_training = train(d_loader=data_loader,dataset_validation=dataset_validation,dataset_validation_training=dataset_validation_training,fold=i)
+  File "/home/adriansegura/Desktop/RUG/CattleNet/convnext/setup.py", line 142, in train
+    out1,out2 = model(imgs1,imgs2)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/adriansegura/Desktop/RUG/CattleNet/convnext/cattleNetTest.py", line 53, in forward
+    out1 = self.forward_once(input1)
+  File "/home/adriansegura/Desktop/RUG/CattleNet/convnext/cattleNetTest.py", line 47, in forward_once
+    x = self.convnext_tiny(input)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/container.py", line 141, in forward
+    input = module(input)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torchvision/models/convnext.py", line 186, in forward
+    return self._forward_impl(x)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torchvision/models/convnext.py", line 180, in _forward_impl
+    x = self.features(x)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/container.py", line 141, in forward
+    input = module(input)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/container.py", line 141, in forward
+    input = module(input)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torchvision/models/convnext.py", line 73, in forward
+    result = self.layer_scale * self.block(input)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/container.py", line 141, in forward
+    input = module(input)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/conv.py", line 447, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/conv.py", line 443, in _conv_forward
+    return F.conv2d(input, weight, bias, self.stride,
+KeyboardInterrupt

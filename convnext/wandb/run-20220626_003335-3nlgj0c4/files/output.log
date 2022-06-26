@@ -1,0 +1,448 @@
+
+Starting training
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [1/150]:  92%|████████████████████████████████████████████████████████████████████████████████████████████████████████████         | 12/13 [00:49<00:04,  4.13s/it, loss=0.245]
+lr 0.001485
+Epoch 1
+
+ Current loss 0.2438751903653237
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+C
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+Epoch avg. auc value: 0.4994808671803579
+Epoch one-shot accuracy: 0.03125
+Best threshold running-average value: 1.8
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [2/150]:  92%|████████████████████████████████████████████████████████████████████████████████████████████████████████████         | 12/13 [00:48<00:04,  4.07s/it, loss=0.238]
+lr 0.00147015
+Epoch 2
+
+ Current loss 0.24539450426587434
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+C
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+Epoch avg. auc value: 0.5
+Epoch one-shot accuracy: 0.03125
+Best threshold running-average value: 1.9
+
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [3/150]:  92%|████████████████████████████████████████████████████████████████████████████████████████████████████████████▉         | 12/13 [00:48<00:04,  4.02s/it, loss=0.23]
+lr 0.0014554485
+Epoch 3
+ Current loss 0.24603178530608655
+
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+C
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+Epoch avg. auc value: 0.5
+Epoch one-shot accuracy: 0.03125
+Best threshold running-average value: 1.9333333333333333
+
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [4/150]:  92%|████████████████████████████████████████████████████████████████████████████████████████████████████████████▉         | 12/13 [00:48<00:03,  3.97s/it, loss=0.23]
+lr 0.001440894015
+Epoch 4
+
+ Current loss 0.26225811743478755
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+C
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+Epoch avg. auc value: 0.5
+Epoch one-shot accuracy: 0.03125
+Best threshold running-average value: 1.95
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [5/150]:  92%|████████████████████████████████████████████████████████████████████████████████████████████████████████████         | 12/13 [00:48<00:04,  4.03s/it, loss=0.184]
+lr 0.00142648507485
+Epoch 5
+ Current loss 0.25084048185235636
+
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+C
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+Epoch avg. auc value: 0.5
+Epoch one-shot accuracy: 0.03125
+Best threshold running-average value: 1.9600000000000002
+
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [6/150]:  92%|████████████████████████████████████████████████████████████████████████████████████████████████████████████         | 12/13 [00:48<00:04,  4.06s/it, loss=0.238]
+lr 0.0014122202241015
+Epoch 6
+ Current loss 0.25233879418322797
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+C
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+Epoch avg. auc value: 0.5
+Epoch one-shot accuracy: 0.03125
+Best threshold running-average value: 1.9666666666666668
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [7/150]:  92%|████████████████████████████████████████████████████████████████████████████████████████████████████████████         | 12/13 [00:48<00:03,  3.89s/it, loss=0.277]
+lr 0.001398098021860485
+Epoch 7
+
+ Current loss 0.26321146091811415
+compute roc mode:  testing
+Traceback (most recent call last):
+  File "/home/adriansegura/Desktop/RUG/CattleNet/convnext/setup.py", line 366, in <module>
+    model,avg_auc_validation_testing,avg_auc_validation_training = train(d_loader=data_loader,dataset_validation=dataset_validation,dataset_validation_training=dataset_validation_training,fold=i)
+  File "/home/adriansegura/Desktop/RUG/CattleNet/convnext/setup.py", line 180, in train
+    validation_results,avg_best_calculated_threshold,loss_testing_validation = test_thresholds(dataset_validation,thresholds=thresholds_to_test,model=model,epoch=epoch,mode='testing',criterion=criterion,fold=fold)
+  File "/home/adriansegura/Desktop/RUG/CattleNet/convnext/model_test_original.py", line 104, in test_thresholds
+    anchor_res,images_res = model(anchor,images)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/adriansegura/Desktop/RUG/CattleNet/convnext/cattleNetTest.py", line 54, in forward
+    out2 = self.forward_once(input2)
+  File "/home/adriansegura/Desktop/RUG/CattleNet/convnext/cattleNetTest.py", line 47, in forward_once
+    x = self.convnext_tiny(input)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/container.py", line 141, in forward
+    input = module(input)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torchvision/models/convnext.py", line 186, in forward
+    return self._forward_impl(x)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torchvision/models/convnext.py", line 180, in _forward_impl
+    x = self.features(x)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/container.py", line 141, in forward
+    input = module(input)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/container.py", line 141, in forward
+    input = module(input)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torchvision/models/convnext.py", line 73, in forward
+    result = self.layer_scale * self.block(input)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/container.py", line 141, in forward
+    input = module(input)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/conv.py", line 447, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/conv.py", line 443, in _conv_forward
+    return F.conv2d(input, weight, bias, self.stride,
+KeyboardInterrupt

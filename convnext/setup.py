@@ -37,7 +37,7 @@ save_models = True
 save_figs = False
 
 # wandb setup (logging progress to online platform)
-use_wandb = False
+use_wandb = True
 
 # load and test a model version (no training)
 loadtest = False
@@ -51,7 +51,7 @@ path_to_results = '../../BachelorsProject/Trainings/'
 #hyperparams
 lrDecay = 1
 step_lr = 1
-lr=15e-4
+lr=1e-3
 in_channel = 3
 batch_size = 128
 num_epochs = 150
@@ -130,7 +130,7 @@ def train(d_loader,dataset_validation,dataset_validation_training,fold=0):
         epoch_loss = 0.0
         iterations_loop = 0
         auc_plain_training_avg = 0.0
-        auc_plain_training_threshold_avg
+        # auc_plain_training_threshold_avg
         for data in loop:
             # print(data[0].size())
             label = 0
@@ -147,17 +147,17 @@ def train(d_loader,dataset_validation,dataset_validation_training,fold=0):
             loop.set_postfix(loss=loss_contrastive.item())
             epoch_loss += loss_contrastive.item()
 
-            with torch.no_grad():
-                auc_training, best_threshold_training = compute_roc_auc(out1,out2,labels,iterations_loop,epoch,'actual_training',fold)
+            # with torch.no_grad():
+            #     auc_training, best_threshold_training = compute_roc_auc(out1,out2,labels,iterations_loop,epoch,'actual_training',fold)
 
-                auc_plain_training_avg += auc_training
-                auc_plain_training_threshold_avg += best_threshold_training
+            #     auc_plain_training_avg += auc_training
+            #     auc_plain_training_threshold_avg += best_threshold_training
 
 
             iterations_loop += 1
         
-        auc_plain_training_avg /= iterations_loop
-        auc_plain_training_threshold_avg /= iterations_loop
+        # auc_plain_training_avg /= iterations_loop
+        # auc_plain_training_threshold_avg /= iterations_loop
 
 
         scheduler.step()
@@ -203,8 +203,8 @@ def train(d_loader,dataset_validation,dataset_validation_training,fold=0):
             wandb.log({
                 "Avg. AUC value per epoch for testing validation": validation_results,
                 "Avg. AUC value per epoch for training validation": validation_results_training,
-                "PLAIN TRAINING: AVG AUC": auc_plain_training_avg,
-                "Best threshold avg. plain_training": auc_plain_training_threshold_avg,
+                # "PLAIN TRAINING: AVG AUC": auc_plain_training_avg,
+                # "Best threshold avg. plain_training": auc_plain_training_threshold_avg,
                 "Avg. one-shot performance": one_shot,
                 "loss": epoch_loss,
                 "Best threshold running average for testing validation: ": avg_best_threshold/epoch,
@@ -331,7 +331,7 @@ else:
     # balanced_acc = [0.0 for i in range(0,len(thresholds_to_test))]
     # f_score = [0.0 for i in range(0,len(thresholds_to_test))]
 
-    for i in range(5,k_folds):
+    for i in range(1,k_folds):
         # instantiate SNN model
         model = CattleNet(freezeLayers=True)
         model.to(device)
