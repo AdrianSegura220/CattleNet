@@ -22,8 +22,8 @@ class CattleNet(nn.Module):
         self.convnext_tiny = models.convnext_tiny(pretrained=True)
         if freezeLayers:
             self.freeze_layers()
-        self.convnext_tiny.classifier[2] = nn.Linear(768,4096,bias=True)
-        self.convnext_tiny = nn.Sequential(self.convnext_tiny,nn.Sigmoid())
+        self.convnext_tiny.classifier[2] = nn.Linear(768,2048,bias=True)
+        self.convnext_tiny = nn.Sequential(self.convnext_tiny,nn.ReLU(),nn.Linear(2048,16,bias=True),nn.Sigmoid())
 
 
 

@@ -1,0 +1,60 @@
+
+Starting training
+
+Epoch [1/200]:   8%|█████████▊                                                                                                                      | 1/13 [00:04<00:50,  4.24s/it, loss=0.171]
+
+Epoch [1/200]:  15%|███████████████████▋                                                                                                            | 2/13 [00:08<00:47,  4.29s/it, loss=0.173]
+
+Epoch [1/200]:  23%|█████████████████████████████▌                                                                                                  | 3/13 [00:12<00:41,  4.16s/it, loss=0.158]
+torch.Size([128, 1024])
+
+
+Epoch [1/200]:  38%|█████████████████████████████████████████████████▌                                                                               | 5/13 [00:21<00:34,  4.29s/it, loss=0.12]
+
+Epoch [1/200]:  46%|███████████████████████████████████████████████████████████                                                                     | 6/13 [00:25<00:29,  4.15s/it, loss=0.123]
+
+Epoch [1/200]:  54%|████████████████████████████████████████████████████████████████████▉                                                           | 7/13 [00:29<00:25,  4.19s/it, loss=0.109]
+
+Epoch [1/200]:  62%|██████████████████████████████████████████████████████████████████████████████▏                                                | 8/13 [00:33<00:20,  4.13s/it, loss=0.0996]
+torch.Size([128, 1024])
+
+
+Epoch [1/200]:  77%|████████████████████████████████████████████████████████████████████████████████████████████████▉                             | 10/13 [00:41<00:12,  4.19s/it, loss=0.0912]
+
+Epoch [1/200]:  85%|██████████████████████████████████████████████████████████████████████████████████████████████████████████▌                   | 11/13 [00:46<00:08,  4.29s/it, loss=0.0875]
+
+Epoch [1/200]:  92%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▎         | 12/13 [00:50<00:04,  4.26s/it, loss=0.0881]
+
+torch.Size([128, 1024])
+torch.Size([124, 1024])
+lr 0.001485
+Epoch 1
+ Current loss 0.11785146433607899
+compute roc mode:  testing
+torch.Size([64, 1024])
+compute roc mode:  testing
+torch.Size([64, 1024])
+compute roc mode:  testing
+torch.Size([64, 1024])
+compute roc mode:  testing
+torch.Size([64, 1024])
+compute roc mode:  testing
+torch.Size([12, 1024])
+compute roc mode:  training
+torch.Size([64, 1024])
+compute roc mode:  training
+torch.Size([64, 1024])
+compute roc mode:  training
+torch.Size([64, 1024])
+compute roc mode:  training
+torch.Size([64, 1024])
+compute roc mode:  training
+torch.Size([19, 1024])
+Traceback (most recent call last):
+  File "/home/adriansegura/Desktop/RUG/CattleNet/convnext/setup.py", line 331, in <module>
+    model,avg_auc_validation_testing,avg_auc_validation_training = train(d_loader=data_loader,dataset_validation=dataset_validation,dataset_validation_training=dataset_validation_training)
+  File "/home/adriansegura/Desktop/RUG/CattleNet/convnext/setup.py", line 149, in train
+    one_shot = one_shot_test(dataset_one_shot,model,0.5,True,True)
+  File "/home/adriansegura/Desktop/RUG/CattleNet/convnext/model_test_original.py", line 294, in one_shot_test
+    rest[i] = images[k2][idx].to(device) # assign selected image from specific label
+RuntimeError: The expanded size of the tensor (4096) must match the existing size (1024) at non-singleton dimension 0.  Target sizes: [4096].  Tensor sizes: [1024]

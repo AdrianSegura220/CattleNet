@@ -1,0 +1,163 @@
+
+Starting training
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [1/200]:  92%|████████████████████████████████████████████████████████████████████████████████████████████████████████████         | 12/13 [00:49<00:04,  4.06s/it, loss=0.043]
+lr 0.001485
+Epoch 1
+
+ Current loss 0.05062990849234028
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+I
+C
+I
+I
+C
+I
+I
+I
+C
+I
+I
+I
+I
+I
+I
+I
+C
+C
+C
+I
+C
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+Epoch avg. auc value: 0.877910809990899
+Epoch one-shot accuracy: 0.22580645161290322
+Best threshold running-average value: 0.9285833358764648
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [2/200]:  92%|███████████████████████████████████████████████████████████████████████████████████████████████████████████         | 12/13 [00:48<00:04,  4.08s/it, loss=0.0347]
+lr 0.00147015
+Epoch 2
+
+ Current loss 0.03718837143052203
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+C
+I
+I
+I
+I
+C
+I
+C
+C
+I
+I
+I
+C
+C
+I
+I
+I
+C
+I
+I
+I
+C
+I
+C
+I
+I
+I
+I
+C
+I
+C
+Epoch avg. auc value: 0.8843484155337604
+Epoch one-shot accuracy: 0.3548387096774194
+Best threshold running-average value: 0.9375683546066285
+
+
+
+
+
+
+
+
+
+
+
+
+
+Traceback (most recent call last):
+  File "/home/adriansegura/Desktop/RUG/CattleNet/convnext/setup.py", line 327, in <module>
+    model,avg_auc_validation_testing,avg_auc_validation_training = train(d_loader=data_loader,dataset_validation=dataset_validation,dataset_validation_training=dataset_validation_training)
+  File "/home/adriansegura/Desktop/RUG/CattleNet/convnext/setup.py", line 113, in train
+    for data in loop:
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/tqdm/std.py", line 1195, in __iter__
+    for obj in iterable:
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 530, in __next__
+    data = self._next_data()
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 570, in _next_data
+    data = self._dataset_fetcher.fetch(index)  # may raise StopIteration
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/utils/data/_utils/fetch.py", line 49, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/utils/data/_utils/fetch.py", line 49, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/home/adriansegura/Desktop/RUG/CattleNet/convnext/custom_dataset_bce.py", line 90, in __getitem__
+    image = self.transform(image)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torchvision/transforms/transforms.py", line 95, in __call__
+    img = t(img)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torchvision/transforms/transforms.py", line 270, in forward
+    return F.normalize(tensor, self.mean, self.std, self.inplace)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torchvision/transforms/functional.py", line 363, in normalize
+    tensor.sub_(mean).div_(std)
+KeyboardInterrupt

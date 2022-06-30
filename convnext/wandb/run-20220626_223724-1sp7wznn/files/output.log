@@ -1,0 +1,77 @@
+
+Starting training
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [1/200]:  92%|████████████████████████████████████████████████████████████████████████████████████████████████████████████▉         | 12/13 [00:48<00:04,  4.08s/it, loss=1.41]
+lr 0.001485
+Epoch 1
+
+ Current loss 2.7289849847980383
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+C
+C
+I
+I
+C
+C
+I
+I
+I
+I
+I
+I
+I
+C
+I
+I
+I
+I
+I
+Epoch avg. auc value: 0.774569357365481
+Epoch one-shot accuracy: 0.16129032258064516
+Best threshold running-average value: 0.9985618591308594
+
+
+
+
+
+
+
+
+
+
+
+
+
+

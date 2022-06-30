@@ -1,0 +1,86 @@
+
+  0%|                                                                                                                                                                                       | 0/13 [00:00<?, ?it/s]
+Starting training
+
+Epoch [1/200]:   8%|███████████▍                                                                                                                                        | 1/13 [00:04<00:50,  4.19s/it, loss=0.255]
+
+Epoch [1/200]:  15%|██████████████████████▊                                                                                                                             | 2/13 [00:08<00:46,  4.21s/it, loss=0.222]
+
+Epoch [1/200]:  23%|██████████████████████████████████▏                                                                                                                 | 3/13 [00:12<00:41,  4.14s/it, loss=0.189]
+
+Epoch [1/200]:  31%|█████████████████████████████████████████████▌                                                                                                      | 4/13 [00:16<00:37,  4.16s/it, loss=0.204]
+
+Epoch [1/200]:  38%|█████████████████████████████████████████████████████████▎                                                                                           | 5/13 [00:20<00:32,  4.08s/it, loss=0.24]
+
+Epoch [1/200]:  46%|████████████████████████████████████████████████████████████████████▎                                                                               | 6/13 [00:24<00:28,  4.08s/it, loss=0.193]
+
+Epoch [1/200]:  54%|███████████████████████████████████████████████████████████████████████████████▋                                                                    | 7/13 [00:28<00:24,  4.09s/it, loss=0.208]
+
+Epoch [1/200]:  62%|███████████████████████████████████████████████████████████████████████████████████████████                                                         | 8/13 [00:32<00:20,  4.05s/it, loss=0.213]
+
+Epoch [1/200]:  69%|██████████████████████████████████████████████████████████████████████████████████████████████████████▍                                             | 9/13 [00:36<00:15,  3.97s/it, loss=0.225]
+
+Epoch [1/200]:  77%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████                                  | 10/13 [00:40<00:11,  3.94s/it, loss=0.192]
+
+Epoch [1/200]:  85%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▍                      | 11/13 [00:44<00:07,  3.89s/it, loss=0.207]
+
+Epoch [1/200]:  92%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▋           | 12/13 [00:48<00:03,  4.00s/it, loss=0.174]
+torch.Size([124, 256])
+lr 9.900000000000001e-05
+Epoch 1
+
+ Current loss 0.20920771455576073
+compute roc mode:  testing
+torch.Size([64, 256])
+compute roc mode:  testing
+torch.Size([64, 256])
+compute roc mode:  testing
+torch.Size([64, 256])
+compute roc mode:  testing
+torch.Size([64, 256])
+Traceback (most recent call last):
+  File "/home/adriansegura/Desktop/RUG/CattleNet/convnext/setup.py", line 331, in <module>
+    model,avg_auc_validation_testing,avg_auc_validation_training = train(d_loader=data_loader,dataset_validation=dataset_validation,dataset_validation_training=dataset_validation_training)
+  File "/home/adriansegura/Desktop/RUG/CattleNet/convnext/setup.py", line 146, in train
+    validation_results,avg_best_calculated_threshold,loss_testing_validation = test_thresholds(dataset_validation,thresholds=thresholds_to_test,model=model,epoch=epoch,mode='testing',criterion=criterion)
+  File "/home/adriansegura/Desktop/RUG/CattleNet/convnext/model_test_original.py", line 106, in test_thresholds
+    anchor_res,images_res = model(anchor,images)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/adriansegura/Desktop/RUG/CattleNet/convnext/cattleNetTest.py", line 54, in forward
+    out2 = self.forward_once(input2)
+  File "/home/adriansegura/Desktop/RUG/CattleNet/convnext/cattleNetTest.py", line 47, in forward_once
+    x = self.convnext_tiny(input)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/container.py", line 141, in forward
+    input = module(input)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torchvision/models/convnext.py", line 186, in forward
+    return self._forward_impl(x)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torchvision/models/convnext.py", line 180, in _forward_impl
+    x = self.features(x)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/container.py", line 141, in forward
+    input = module(input)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/container.py", line 141, in forward
+    input = module(input)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torchvision/models/convnext.py", line 73, in forward
+    result = self.layer_scale * self.block(input)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/container.py", line 141, in forward
+    input = module(input)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/conv.py", line 447, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/conv.py", line 443, in _conv_forward
+    return F.conv2d(input, weight, bias, self.stride,
+KeyboardInterrupt

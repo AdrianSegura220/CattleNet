@@ -1,0 +1,2255 @@
+
+  0%|                                                                                                                                                                                        | 0/7 [00:00<?, ?it/s]
+Starting training
+
+Epoch [1/200]:  14%|█████████████████████▎                                                                                                                               | 1/7 [00:07<00:47,  7.95s/it, loss=0.232]
+
+
+Epoch [1/200]:  29%|██████████████████████████████████████████▌                                                                                                          | 2/7 [00:15<00:38,  7.78s/it, loss=0.167]
+
+Epoch [1/200]:  43%|███████████████████████████████████████████████████████████████▊                                                                                     | 3/7 [00:22<00:30,  7.56s/it, loss=0.116]
+
+Epoch [1/200]:  57%|█████████████████████████████████████████████████████████████████████████████████████▏                                                               | 4/7 [00:30<00:22,  7.53s/it, loss=0.107]
+
+
+Epoch [1/200]:  71%|██████████████████████████████████████████████████████████████████████████████████████████████████████████▍                                          | 5/7 [00:37<00:15,  7.54s/it, loss=0.101]
+
+Epoch [1/200]:  86%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▊                     | 6/7 [00:45<00:07,  7.55s/it, loss=0.0928]
+torch.Size([124, 16])
+lr 0.00099
+Epoch 1
+
+ Current loss 0.12859065143273557
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([12, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([19, 16])
+I
+I
+I
+I
+I
+I
+C
+I
+I
+I
+I
+I
+C
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+C
+I
+I
+I
+C
+I
+I
+Epoch avg. auc value: 0.7902129268379835
+Epoch one-shot accuracy: 0.12903225806451613
+Best threshold running-average value: 0.928069007396698
+  0%|                                                                                                                                                                                        | 0/7 [00:00<?, ?it/s]
+
+
+Epoch [2/200]:  14%|█████████████████████▏                                                                                                                              | 1/7 [00:07<00:44,  7.35s/it, loss=0.0997]
+
+Epoch [2/200]:  29%|██████████████████████████████████████████▎                                                                                                         | 2/7 [00:14<00:36,  7.39s/it, loss=0.0762]
+
+Epoch [2/200]:  43%|███████████████████████████████████████████████████████████████▍                                                                                    | 3/7 [00:22<00:29,  7.49s/it, loss=0.0932]
+
+Epoch [2/200]:  57%|████████████████████████████████████████████████████████████████████████████████████▌                                                               | 4/7 [00:29<00:22,  7.47s/it, loss=0.0896]
+
+
+Epoch [2/200]:  71%|█████████████████████████████████████████████████████████████████████████████████████████████████████████▋                                          | 5/7 [00:43<00:14,  7.38s/it, loss=0.0726]
+
+Epoch [2/200]:  86%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▊                     | 6/7 [00:43<00:07,  7.15s/it, loss=0.0798]
+torch.Size([124, 16])
+lr 0.0009801
+Epoch 2
+ Current loss 0.08353519089341695
+compute roc mode:  testing
+
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([12, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([19, 16])
+I
+C
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+C
+I
+I
+I
+I
+I
+I
+C
+C
+C
+I
+I
+I
+I
+Epoch avg. auc value: 0.8576866010333752
+Epoch one-shot accuracy: 0.16129032258064516
+Best threshold running-average value: 0.8774056732654572
+  0%|                                                                                                                                                                                        | 0/7 [00:00<?, ?it/s]
+
+Epoch [3/200]:  14%|█████████████████████▏                                                                                                                              | 1/7 [00:07<00:47,  7.94s/it, loss=0.0714]
+
+
+Epoch [3/200]:  29%|██████████████████████████████████████████▎                                                                                                         | 2/7 [00:15<00:37,  7.48s/it, loss=0.0846]
+
+Epoch [3/200]:  43%|███████████████████████████████████████████████████████████████▍                                                                                    | 3/7 [00:22<00:30,  7.56s/it, loss=0.0745]
+
+Epoch [3/200]:  57%|█████████████████████████████████████████████████████████████████████████████████████▏                                                               | 4/7 [00:30<00:22,  7.62s/it, loss=0.058]
+
+
+Epoch [3/200]:  71%|█████████████████████████████████████████████████████████████████████████████████████████████████████████▋                                          | 5/7 [00:37<00:14,  7.37s/it, loss=0.0727]
+
+
+Epoch [3/200]:  86%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▋                     | 6/7 [00:45<00:07,  7.52s/it, loss=0.066]
+torch.Size([124, 16])
+lr 0.000970299
+Epoch 3
+
+ Current loss 0.073401886587202
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([12, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([19, 16])
+I
+I
+I
+C
+I
+I
+I
+C
+I
+I
+I
+I
+I
+C
+I
+C
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+C
+I
+Epoch avg. auc value: 0.8502275433544784
+Epoch one-shot accuracy: 0.16129032258064516
+Best threshold running-average value: 0.866791037718455
+  0%|                                                                                                                                                                                        | 0/7 [00:00<?, ?it/s]
+
+
+Epoch [4/200]:  14%|█████████████████████▏                                                                                                                              | 1/7 [00:07<00:45,  7.51s/it, loss=0.0546]
+
+Epoch [4/200]:  29%|██████████████████████████████████████████▎                                                                                                         | 2/7 [00:14<00:36,  7.27s/it, loss=0.0757]
+
+
+Epoch [4/200]:  43%|███████████████████████████████████████████████████████████████▍                                                                                    | 3/7 [00:21<00:29,  7.31s/it, loss=0.0696]
+
+Epoch [4/200]:  57%|████████████████████████████████████████████████████████████████████████████████████▌                                                               | 4/7 [00:29<00:22,  7.39s/it, loss=0.0616]
+
+Epoch [4/200]:  71%|█████████████████████████████████████████████████████████████████████████████████████████████████████████▋                                          | 5/7 [00:36<00:14,  7.35s/it, loss=0.0672]
+
+Epoch [4/200]:  86%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▊                     | 6/7 [00:44<00:07,  7.44s/it, loss=0.0637]
+torch.Size([124, 16])
+lr 0.0009605960099999999
+Epoch 4
+ Current loss 0.06675417964624021
+
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([12, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([19, 16])
+C
+I
+I
+I
+I
+I
+I
+I
+I
+C
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+C
+I
+I
+I
+C
+I
+Epoch avg. auc value: 0.8657286243102776
+Epoch one-shot accuracy: 0.12903225806451613
+Best threshold running-average value: 0.8736068725585937
+  0%|                                                                                                                                                                                        | 0/7 [00:00<?, ?it/s]
+
+Epoch [5/200]:  14%|█████████████████████▏                                                                                                                              | 1/7 [00:07<00:45,  7.63s/it, loss=0.0633]
+
+Epoch [5/200]:  29%|██████████████████████████████████████████▎                                                                                                         | 2/7 [00:14<00:36,  7.25s/it, loss=0.0654]
+
+Epoch [5/200]:  43%|███████████████████████████████████████████████████████████████▍                                                                                    | 3/7 [00:21<00:29,  7.29s/it, loss=0.0614]
+
+
+Epoch [5/200]:  57%|████████████████████████████████████████████████████████████████████████████████████▌                                                               | 4/7 [00:29<00:22,  7.34s/it, loss=0.0748]
+
+Epoch [5/200]:  71%|█████████████████████████████████████████████████████████████████████████████████████████████████████████▋                                          | 5/7 [00:36<00:14,  7.30s/it, loss=0.0637]
+
+Epoch [5/200]:  86%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▊                     | 6/7 [00:43<00:07,  7.27s/it, loss=0.0712]
+torch.Size([124, 16])
+lr 0.0009509900498999999
+Epoch 5
+ Current loss 0.06737850364456972
+
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([12, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([19, 16])
+I
+C
+C
+I
+I
+I
+C
+C
+I
+C
+I
+I
+I
+C
+I
+I
+I
+I
+I
+I
+I
+I
+C
+I
+I
+I
+I
+I
+I
+I
+I
+Epoch avg. auc value: 0.8693824535001007
+Epoch one-shot accuracy: 0.22580645161290322
+Best threshold running-average value: 0.8647119832038879
+  0%|                                                                                                                                                                                        | 0/7 [00:00<?, ?it/s]
+
+Epoch [6/200]:  14%|█████████████████████▏                                                                                                                              | 1/7 [00:07<00:44,  7.49s/it, loss=0.0652]
+
+
+Epoch [6/200]:  29%|██████████████████████████████████████████▎                                                                                                         | 2/7 [00:14<00:37,  7.49s/it, loss=0.0703]
+
+Epoch [6/200]:  43%|███████████████████████████████████████████████████████████████▍                                                                                    | 3/7 [00:22<00:29,  7.43s/it, loss=0.0525]
+
+Epoch [6/200]:  57%|████████████████████████████████████████████████████████████████████████████████████▌                                                               | 4/7 [00:29<00:21,  7.32s/it, loss=0.0632]
+
+
+Epoch [6/200]:  71%|█████████████████████████████████████████████████████████████████████████████████████████████████████████▋                                          | 5/7 [00:37<00:14,  7.42s/it, loss=0.0596]
+
+Epoch [6/200]:  86%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▊                     | 6/7 [00:44<00:07,  7.42s/it, loss=0.0613]
+torch.Size([124, 16])
+lr 0.0009414801494009999
+Epoch 6
+
+ Current loss 0.06313209006216663
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([12, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([19, 16])
+I
+C
+I
+I
+C
+C
+I
+I
+I
+I
+I
+C
+C
+I
+I
+C
+I
+I
+I
+I
+C
+I
+I
+I
+C
+I
+I
+C
+C
+I
+I
+Epoch avg. auc value: 0.8807110466797703
+Epoch one-shot accuracy: 0.3225806451612903
+Best threshold running-average value: 0.8714507023493449
+  0%|                                                                                                                                                                                        | 0/7 [00:00<?, ?it/s]
+
+Epoch [7/200]:  14%|█████████████████████▏                                                                                                                              | 1/7 [00:06<00:41,  6.95s/it, loss=0.0649]
+
+
+Epoch [7/200]:  29%|██████████████████████████████████████████▎                                                                                                         | 2/7 [00:14<00:35,  7.19s/it, loss=0.0602]
+
+Epoch [7/200]:  43%|███████████████████████████████████████████████████████████████▍                                                                                    | 3/7 [00:21<00:28,  7.21s/it, loss=0.0544]
+
+Epoch [7/200]:  57%|████████████████████████████████████████████████████████████████████████████████████▌                                                               | 4/7 [00:29<00:21,  7.33s/it, loss=0.0564]
+
+Epoch [7/200]:  71%|██████████████████████████████████████████████████████████████████████████████████████████████████████████▍                                          | 5/7 [00:36<00:14,  7.26s/it, loss=0.067]
+
+Epoch [7/200]:  86%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▊                     | 6/7 [00:43<00:07,  7.42s/it, loss=0.0662]
+torch.Size([124, 16])
+lr 0.0009320653479069899
+Epoch 7
+
+ Current loss 0.06202620749809185
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([12, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([19, 16])
+C
+I
+C
+I
+I
+I
+I
+C
+I
+I
+I
+C
+I
+I
+I
+I
+I
+C
+C
+I
+I
+I
+I
+I
+I
+C
+I
+I
+I
+I
+I
+Epoch avg. auc value: 0.9255193864695741
+Epoch one-shot accuracy: 0.22580645161290322
+Best threshold running-average value: 0.8781588656561715
+  0%|                                                                                                                                                                                        | 0/7 [00:00<?, ?it/s]
+
+
+Epoch [8/200]:  14%|█████████████████████▏                                                                                                                              | 1/7 [00:07<00:45,  7.55s/it, loss=0.0596]
+
+Epoch [8/200]:  29%|██████████████████████████████████████████▎                                                                                                         | 2/7 [00:14<00:35,  7.19s/it, loss=0.0645]
+
+
+Epoch [8/200]:  43%|███████████████████████████████████████████████████████████████▍                                                                                    | 3/7 [00:21<00:28,  7.20s/it, loss=0.0667]
+
+
+Epoch [8/200]:  57%|████████████████████████████████████████████████████████████████████████████████████▌                                                               | 4/7 [00:35<00:21,  7.19s/it, loss=0.0563]
+
+Epoch [8/200]:  71%|█████████████████████████████████████████████████████████████████████████████████████████████████████████▋                                          | 5/7 [00:36<00:14,  7.20s/it, loss=0.0562]
+
+Epoch [8/200]:  86%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▊                     | 6/7 [00:43<00:07,  7.17s/it, loss=0.0543]
+torch.Size([124, 16])
+lr 0.00092274469442792
+Epoch 8
+
+ Current loss 0.059033225099833185
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([12, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([19, 16])
+C
+C
+C
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+C
+I
+I
+I
+I
+I
+I
+I
+I
+C
+I
+I
+I
+I
+I
+I
+I
+C
+Epoch avg. auc value: 0.8548306796404681
+Epoch one-shot accuracy: 0.1935483870967742
+Best threshold running-average value: 0.8787822917103767
+  0%|                                                                                                                                                                                        | 0/7 [00:00<?, ?it/s]
+
+
+Epoch [9/200]:  14%|█████████████████████▏                                                                                                                              | 1/7 [00:14<00:44,  7.46s/it, loss=0.0609]
+
+Epoch [9/200]:  29%|██████████████████████████████████████████▎                                                                                                         | 2/7 [00:14<00:36,  7.24s/it, loss=0.0529]
+
+Epoch [9/200]:  43%|███████████████████████████████████████████████████████████████▍                                                                                    | 3/7 [00:21<00:29,  7.32s/it, loss=0.0577]
+
+Epoch [9/200]:  57%|████████████████████████████████████████████████████████████████████████████████████▌                                                               | 4/7 [00:29<00:21,  7.24s/it, loss=0.0627]
+
+Epoch [9/200]:  71%|█████████████████████████████████████████████████████████████████████████████████████████████████████████▋                                          | 5/7 [00:36<00:14,  7.14s/it, loss=0.0542]
+
+Epoch [9/200]:  86%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▊                     | 6/7 [00:43<00:07,  7.20s/it, loss=0.0532]
+torch.Size([124, 16])
+lr 0.0009135172474836408
+Epoch 9
+
+ Current loss 0.05770816435429945
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([12, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([19, 16])
+  0%|                                                                                                                                                                                        | 0/7 [00:00<?, ?it/s]
+I
+I
+I
+I
+I
+I
+I
+C
+I
+C
+C
+I
+I
+I
+I
+C
+I
+I
+I
+I
+I
+I
+C
+I
+I
+I
+I
+I
+I
+I
+I
+Epoch avg. auc value: 0.8866192797354593
+Epoch one-shot accuracy: 0.16129032258064516
+Best threshold running-average value: 0.8810753544171651
+
+Epoch [10/200]:  14%|█████████████████████                                                                                                                              | 1/7 [00:07<00:44,  7.34s/it, loss=0.0575]
+
+Epoch [10/200]:  29%|██████████████████████████████████████████                                                                                                         | 2/7 [00:14<00:36,  7.21s/it, loss=0.0484]
+
+Epoch [10/200]:  43%|███████████████████████████████████████████████████████████████                                                                                    | 3/7 [00:21<00:29,  7.35s/it, loss=0.0442]
+
+Epoch [10/200]:  57%|████████████████████████████████████████████████████████████████████████████████████                                                               | 4/7 [00:29<00:22,  7.36s/it, loss=0.0526]
+
+
+Epoch [10/200]:  71%|█████████████████████████████████████████████████████████████████████████████████████████████████████████                                          | 5/7 [00:36<00:14,  7.24s/it, loss=0.0587]
+
+Epoch [10/200]:  86%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                     | 6/7 [00:43<00:07,  7.18s/it, loss=0.0578]
+torch.Size([124, 16])
+lr 0.0009043820750088043
+Epoch 10
+
+ Current loss 0.052983608637553296
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([12, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([19, 16])
+I
+I
+I
+C
+C
+I
+C
+I
+I
+I
+C
+C
+I
+C
+C
+I
+I
+I
+I
+I
+I
+C
+I
+I
+I
+I
+I
+I
+I
+I
+I
+Epoch avg. auc value: 0.9267330712079687
+Epoch one-shot accuracy: 0.25806451612903225
+Best threshold running-average value: 0.8842251396179199
+  0%|                                                                                                                                                                                        | 0/7 [00:00<?, ?it/s]
+
+Epoch [11/200]:  14%|█████████████████████                                                                                                                              | 1/7 [00:07<00:43,  7.20s/it, loss=0.0526]
+
+
+Epoch [11/200]:  29%|██████████████████████████████████████████▎                                                                                                         | 2/7 [00:21<00:36,  7.38s/it, loss=0.046]
+
+Epoch [11/200]:  43%|███████████████████████████████████████████████████████████████                                                                                    | 3/7 [00:22<00:30,  7.54s/it, loss=0.0549]
+
+
+Epoch [11/200]:  57%|████████████████████████████████████████████████████████████████████████████████████                                                               | 4/7 [00:30<00:22,  7.61s/it, loss=0.0482]
+
+Epoch [11/200]:  71%|█████████████████████████████████████████████████████████████████████████████████████████████████████████                                          | 5/7 [00:37<00:14,  7.34s/it, loss=0.0524]
+
+
+
+Epoch [11/200]:  86%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                     | 6/7 [00:48<00:07,  7.41s/it, loss=0.0564]
+torch.Size([124, 16])
+lr 0.0008953382542587163
+Epoch 11
+ Current loss 0.05269911518102954
+compute roc mode:  testing
+
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([12, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([19, 16])
+I
+C
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+C
+I
+I
+I
+I
+I
+C
+C
+C
+I
+C
+C
+I
+I
+I
+I
+I
+I
+Epoch avg. auc value: 0.9072615199096881
+Epoch one-shot accuracy: 0.22580645161290322
+Best threshold running-average value: 0.8864327213980935
+  0%|                                                                                                                                                                                        | 0/7 [00:00<?, ?it/s]
+
+
+Epoch [12/200]:  14%|█████████████████████                                                                                                                              | 1/7 [00:07<00:44,  7.40s/it, loss=0.0502]
+
+Epoch [12/200]:  29%|██████████████████████████████████████████                                                                                                         | 2/7 [00:14<00:35,  7.18s/it, loss=0.0499]
+
+Epoch [12/200]:  43%|███████████████████████████████████████████████████████████████                                                                                    | 3/7 [00:21<00:29,  7.27s/it, loss=0.0517]
+
+Epoch [12/200]:  57%|████████████████████████████████████████████████████████████████████████████████████                                                               | 4/7 [00:29<00:22,  7.34s/it, loss=0.0528]
+
+Epoch [12/200]:  71%|█████████████████████████████████████████████████████████████████████████████████████████████████████████                                          | 5/7 [00:36<00:14,  7.46s/it, loss=0.0496]
+
+Epoch [12/200]:  86%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                     | 6/7 [00:44<00:07,  7.39s/it, loss=0.0464]
+torch.Size([124, 16])
+lr 0.0008863848717161291
+Epoch 12
+
+ Current loss 0.05119476550264197
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([12, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([19, 16])
+I
+I
+I
+C
+C
+I
+I
+C
+C
+I
+I
+I
+I
+C
+I
+I
+I
+I
+C
+I
+C
+I
+C
+I
+I
+C
+I
+I
+I
+I
+I
+Epoch avg. auc value: 0.8698971560512161
+Epoch one-shot accuracy: 0.2903225806451613
+Best threshold running-average value: 0.885797768831253
+  0%|                                                                                                                                                                                        | 0/7 [00:00<?, ?it/s]
+
+
+Epoch [13/200]:  14%|█████████████████████▎                                                                                                                               | 1/7 [00:14<00:46,  7.69s/it, loss=0.05]
+
+Epoch [13/200]:  29%|██████████████████████████████████████████                                                                                                         | 2/7 [00:15<00:37,  7.59s/it, loss=0.0521]
+
+
+Epoch [13/200]:  43%|███████████████████████████████████████████████████████████████                                                                                    | 3/7 [00:28<00:29,  7.40s/it, loss=0.0547]
+
+Epoch [13/200]:  57%|████████████████████████████████████████████████████████████████████████████████████                                                               | 4/7 [00:29<00:21,  7.24s/it, loss=0.0545]
+
+Epoch [13/200]:  71%|█████████████████████████████████████████████████████████████████████████████████████████████████████████                                          | 5/7 [00:36<00:14,  7.18s/it, loss=0.0525]
+
+Epoch [13/200]:  86%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▊                     | 6/7 [00:43<00:07,  7.26s/it, loss=0.057]
+torch.Size([124, 16])
+lr 0.0008775210229989678
+Epoch 13
+
+ Current loss 0.05400117225074719
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([12, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([19, 16])
+I
+I
+C
+I
+C
+I
+I
+C
+I
+I
+C
+I
+I
+C
+I
+I
+I
+I
+I
+I
+C
+I
+I
+C
+I
+C
+I
+I
+I
+I
+C
+Epoch avg. auc value: 0.9160411545483296
+Epoch one-shot accuracy: 0.2903225806451613
+Best threshold running-average value: 0.8871963106668913
+  0%|                                                                                                                                                                                        | 0/7 [00:00<?, ?it/s]
+
+Epoch [14/200]:  14%|█████████████████████                                                                                                                              | 1/7 [00:07<00:42,  7.04s/it, loss=0.0448]
+
+Epoch [14/200]:  29%|██████████████████████████████████████████                                                                                                         | 2/7 [00:14<00:35,  7.08s/it, loss=0.0507]
+
+Epoch [14/200]:  43%|███████████████████████████████████████████████████████████████                                                                                    | 3/7 [00:21<00:28,  7.11s/it, loss=0.0559]
+
+Epoch [14/200]:  57%|████████████████████████████████████████████████████████████████████████████████████                                                               | 4/7 [00:28<00:21,  7.08s/it, loss=0.0504]
+
+
+Epoch [14/200]:  71%|█████████████████████████████████████████████████████████████████████████████████████████████████████████                                          | 5/7 [00:42<00:14,  7.24s/it, loss=0.0459]
+
+Epoch [14/200]:  86%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                     | 6/7 [00:43<00:07,  7.25s/it, loss=0.0628]
+torch.Size([124, 16])
+lr 0.0008687458127689781
+Epoch 14
+ Current loss 0.0518773179645849
+
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([12, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([19, 16])
+I
+I
+I
+I
+I
+I
+C
+C
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+C
+C
+I
+C
+I
+C
+I
+I
+I
+I
+I
+Epoch avg. auc value: 0.930611166438051
+Epoch one-shot accuracy: 0.1935483870967742
+Best threshold running-average value: 0.8885649127619608
+
+Epoch [15/200]:   0%|                                                                                                                                                                        | 0/7 [00:06<?, ?it/s]
+
+Epoch [15/200]:  14%|█████████████████████▏                                                                                                                              | 1/7 [00:07<00:42,  7.16s/it, loss=0.049]
+
+Epoch [15/200]:  29%|██████████████████████████████████████████                                                                                                         | 2/7 [00:14<00:37,  7.41s/it, loss=0.0521]
+
+Epoch [15/200]:  43%|███████████████████████████████████████████████████████████████                                                                                    | 3/7 [00:22<00:29,  7.36s/it, loss=0.0552]
+
+Epoch [15/200]:  57%|████████████████████████████████████████████████████████████████████████████████████                                                               | 4/7 [00:29<00:22,  7.35s/it, loss=0.0434]
+
+Epoch [15/200]:  71%|█████████████████████████████████████████████████████████████████████████████████████████████████████████                                          | 5/7 [00:36<00:14,  7.23s/it, loss=0.0527]
+
+Epoch [15/200]:  86%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                     | 6/7 [00:43<00:07,  7.23s/it, loss=0.0431]
+torch.Size([124, 16])
+lr 0.0008600583546412883
+Epoch 15
+
+ Current loss 0.048153566589209294
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([12, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([19, 16])
+I
+C
+I
+I
+C
+C
+I
+C
+C
+I
+I
+I
+I
+I
+I
+I
+I
+C
+I
+C
+I
+C
+I
+I
+I
+C
+I
+I
+I
+I
+C
+Epoch avg. auc value: 0.9281083532550951
+Epoch one-shot accuracy: 0.3225806451612903
+Best threshold running-average value: 0.8886840939521791
+
+Epoch [16/200]:   0%|                                                                                                                                                                        | 0/7 [00:06<?, ?it/s]
+
+Epoch [16/200]:  14%|█████████████████████                                                                                                                              | 1/7 [00:07<00:43,  7.25s/it, loss=0.0511]
+
+
+Epoch [16/200]:  29%|██████████████████████████████████████████                                                                                                         | 2/7 [00:14<00:37,  7.43s/it, loss=0.0488]
+
+Epoch [16/200]:  43%|███████████████████████████████████████████████████████████████                                                                                    | 3/7 [00:22<00:30,  7.52s/it, loss=0.0373]
+
+Epoch [16/200]:  57%|████████████████████████████████████████████████████████████████████████████████████                                                               | 4/7 [00:29<00:22,  7.41s/it, loss=0.0445]
+
+
+Epoch [16/200]:  71%|█████████████████████████████████████████████████████████████████████████████████████████████████████████                                          | 5/7 [00:36<00:14,  7.36s/it, loss=0.0419]
+
+Epoch [16/200]:  86%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                     | 6/7 [00:44<00:07,  7.33s/it, loss=0.0447]
+torch.Size([124, 16])
+lr 0.0008514577710948754
+Epoch 16
+
+ Current loss 0.045153046183274696
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([12, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([19, 16])
+C
+C
+I
+I
+C
+C
+  0%|                                                                                                                                                                                        | 0/7 [00:00<?, ?it/s]
+I
+I
+I
+I
+I
+C
+I
+C
+I
+I
+I
+C
+I
+C
+I
+C
+C
+I
+I
+C
+I
+I
+I
+I
+I
+Epoch avg. auc value: 0.8924077784960138
+Epoch one-shot accuracy: 0.3548387096774194
+Best threshold running-average value: 0.8868607617914678
+
+Epoch [17/200]:  14%|█████████████████████                                                                                                                              | 1/7 [00:07<00:44,  7.37s/it, loss=0.0438]
+
+
+Epoch [17/200]:  29%|██████████████████████████████████████████                                                                                                         | 2/7 [00:14<00:35,  7.18s/it, loss=0.0523]
+
+Epoch [17/200]:  43%|███████████████████████████████████████████████████████████████                                                                                    | 3/7 [00:21<00:29,  7.34s/it, loss=0.0596]
+
+Epoch [17/200]:  57%|████████████████████████████████████████████████████████████████████████████████████                                                               | 4/7 [00:29<00:22,  7.37s/it, loss=0.0455]
+
+
+Epoch [17/200]:  71%|█████████████████████████████████████████████████████████████████████████████████████████████████████████                                          | 5/7 [00:44<00:15,  7.53s/it, loss=0.0487]
+
+Epoch [17/200]:  86%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                     | 6/7 [00:44<00:07,  7.47s/it, loss=0.0602]
+torch.Size([124, 16])
+lr 0.0008429431933839266
+Epoch 17
+
+ Current loss 0.048895885692274266
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([12, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([19, 16])
+I
+C
+I
+I
+I
+C
+I
+I
+I
+I
+I
+I
+I
+C
+I
+I
+I
+I
+C
+I
+I
+C
+I
+I
+I
+C
+I
+I
+C
+I
+C
+Epoch avg. auc value: 0.9195702415863707
+Epoch one-shot accuracy: 0.25806451612903225
+Best threshold running-average value: 0.8825240864473232
+  0%|                                                                                                                                                                                        | 0/7 [00:00<?, ?it/s]
+
+Epoch [18/200]:  14%|█████████████████████                                                                                                                              | 1/7 [00:07<00:43,  7.22s/it, loss=0.0395]
+
+
+Epoch [18/200]:  29%|██████████████████████████████████████████▎                                                                                                         | 2/7 [00:14<00:36,  7.29s/it, loss=0.049]
+
+Epoch [18/200]:  43%|███████████████████████████████████████████████████████████████                                                                                    | 3/7 [00:21<00:29,  7.29s/it, loss=0.0451]
+
+Epoch [18/200]:  57%|████████████████████████████████████████████████████████████████████████████████████                                                               | 4/7 [00:29<00:21,  7.28s/it, loss=0.0476]
+
+Epoch [18/200]:  71%|█████████████████████████████████████████████████████████████████████████████████████████████████████████▋                                          | 5/7 [00:36<00:14,  7.26s/it, loss=0.043]
+
+Epoch [18/200]:  86%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▊                     | 6/7 [00:43<00:07,  7.32s/it, loss=0.046]
+torch.Size([124, 16])
+lr 0.0008345137614500873
+Epoch 18
+
+ Current loss 0.04564309926974941
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([12, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([19, 16])
+  0%|                                                                                                                                                                                        | 0/7 [00:00<?, ?it/s]
+C
+I
+I
+I
+I
+I
+I
+C
+I
+I
+I
+I
+I
+C
+I
+I
+I
+C
+I
+I
+I
+I
+I
+I
+I
+C
+I
+I
+I
+I
+I
+Epoch avg. auc value: 0.9241964402215818
+Epoch one-shot accuracy: 0.16129032258064516
+Best threshold running-average value: 0.8832420435216694
+
+Epoch [19/200]:  14%|█████████████████████                                                                                                                              | 1/7 [00:07<00:45,  7.55s/it, loss=0.0482]
+
+Epoch [19/200]:  29%|██████████████████████████████████████████                                                                                                         | 2/7 [00:15<00:37,  7.52s/it, loss=0.0477]
+
+Epoch [19/200]:  43%|███████████████████████████████████████████████████████████████                                                                                    | 3/7 [00:22<00:29,  7.36s/it, loss=0.0513]
+
+Epoch [19/200]:  57%|████████████████████████████████████████████████████████████████████████████████████                                                               | 4/7 [00:29<00:22,  7.33s/it, loss=0.0361]
+
+
+Epoch [19/200]:  71%|█████████████████████████████████████████████████████████████████████████████████████████████████████████                                          | 5/7 [00:36<00:14,  7.23s/it, loss=0.0465]
+
+Epoch [19/200]:  86%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                     | 6/7 [00:43<00:07,  7.20s/it, loss=0.0431]
+torch.Size([124, 16])
+lr 0.0008261686238355864
+Epoch 19
+
+ Current loss 0.046540892294587015
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([12, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([19, 16])
+I
+C
+I
+I
+C
+C
+I
+C
+I
+I
+C
+I
+C
+I
+I
+C
+I
+I
+C
+I
+I
+C
+I
+I
+I
+I
+I
+I
+C
+I
+C
+Epoch avg. auc value: 0.9360090029460946
+Epoch one-shot accuracy: 0.3548387096774194
+Best threshold running-average value: 0.8812643559355485
+  0%|                                                                                                                                                                                        | 0/7 [00:00<?, ?it/s]
+
+
+Epoch [20/200]:  14%|█████████████████████                                                                                                                              | 1/7 [00:13<00:42,  7.09s/it, loss=0.0398]
+
+Epoch [20/200]:  29%|██████████████████████████████████████████                                                                                                         | 2/7 [00:14<00:36,  7.24s/it, loss=0.0429]
+
+
+Epoch [20/200]:  43%|███████████████████████████████████████████████████████████████                                                                                    | 3/7 [00:28<00:28,  7.17s/it, loss=0.0367]
+
+Epoch [20/200]:  57%|████████████████████████████████████████████████████████████████████████████████████                                                               | 4/7 [00:28<00:21,  7.10s/it, loss=0.0522]
+
+Epoch [20/200]:  71%|█████████████████████████████████████████████████████████████████████████████████████████████████████████                                          | 5/7 [00:35<00:14,  7.13s/it, loss=0.0429]
+
+Epoch [20/200]:  86%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                     | 6/7 [00:42<00:07,  7.11s/it, loss=0.0496]
+torch.Size([124, 16])
+lr 0.0008179069375972306
+Epoch 20
+ Current loss 0.04444389656761245
+
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([12, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([19, 16])
+I
+I
+I
+C
+C
+I
+I
+I
+I
+I
+C
+I
+I
+C
+I
+I
+I
+I
+C
+I
+C
+I
+I
+C
+I
+I
+C
+C
+I
+C
+C
+Epoch avg. auc value: 0.9329833940658034
+Epoch one-shot accuracy: 0.3548387096774194
+Best threshold running-average value: 0.8809781914949418
+
+Epoch [21/200]:   0%|                                                                                                                                                                        | 0/7 [00:06<?, ?it/s]
+
+Epoch [21/200]:  14%|█████████████████████                                                                                                                              | 1/7 [00:07<00:44,  7.38s/it, loss=0.0444]
+
+Epoch [21/200]:  29%|██████████████████████████████████████████                                                                                                         | 2/7 [00:14<00:36,  7.25s/it, loss=0.0498]
+
+Epoch [21/200]:  43%|███████████████████████████████████████████████████████████████                                                                                    | 3/7 [00:21<00:29,  7.31s/it, loss=0.0479]
+
+Epoch [21/200]:  57%|████████████████████████████████████████████████████████████████████████████████████                                                               | 4/7 [00:29<00:21,  7.28s/it, loss=0.0448]
+
+Epoch [21/200]:  71%|█████████████████████████████████████████████████████████████████████████████████████████████████████████                                          | 5/7 [00:36<00:14,  7.35s/it, loss=0.0477]
+
+Epoch [21/200]:  86%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                     | 6/7 [00:44<00:07,  7.39s/it, loss=0.0393]
+torch.Size([124, 16])
+lr 0.0008097278682212583
+Epoch 21
+
+ Current loss 0.04646428597953115
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([12, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([19, 16])
+I
+C
+I
+I
+I
+I
+I
+I
+I
+I
+C
+I
+I
+I
+I
+I
+I
+C
+C
+C
+I
+I
+I
+C
+I
+C
+I
+I
+C
+I
+C
+Epoch avg. auc value: 0.8565482931047448
+Epoch one-shot accuracy: 0.2903225806451613
+Best threshold running-average value: 0.8800500960577102
+  0%|                                                                                                                                                                                        | 0/7 [00:00<?, ?it/s]
+
+Epoch [22/200]:  14%|█████████████████████                                                                                                                              | 1/7 [00:07<00:44,  7.47s/it, loss=0.0488]
+
+Epoch [22/200]:  29%|██████████████████████████████████████████                                                                                                         | 2/7 [00:14<00:37,  7.43s/it, loss=0.0464]
+
+Epoch [22/200]:  43%|███████████████████████████████████████████████████████████████                                                                                    | 3/7 [00:22<00:29,  7.39s/it, loss=0.0486]
+
+Epoch [22/200]:  57%|████████████████████████████████████████████████████████████████████████████████████                                                               | 4/7 [00:29<00:22,  7.40s/it, loss=0.0453]
+
+Epoch [22/200]:  71%|█████████████████████████████████████████████████████████████████████████████████████████████████████████▋                                          | 5/7 [00:36<00:14,  7.35s/it, loss=0.049]
+
+Epoch [22/200]:  86%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                     | 6/7 [00:44<00:07,  7.36s/it, loss=0.0398]
+torch.Size([124, 16])
+lr 0.0008016305895390457
+Epoch 22
+
+ Current loss 0.04610522935754242
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([12, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([19, 16])
+  0%|                                                                                                                                                                                        | 0/7 [00:00<?, ?it/s]
+I
+C
+I
+I
+C
+I
+I
+I
+I
+I
+C
+I
+C
+I
+I
+C
+I
+C
+I
+I
+I
+I
+I
+C
+I
+I
+I
+I
+I
+I
+I
+Epoch avg. auc value: 0.9365257824218762
+Epoch one-shot accuracy: 0.22580645161290322
+Best threshold running-average value: 0.8799244154583324
+
+
+Epoch [23/200]:  14%|█████████████████████                                                                                                                              | 1/7 [00:14<00:44,  7.35s/it, loss=0.0475]
+
+Epoch [23/200]:  29%|██████████████████████████████████████████                                                                                                         | 2/7 [00:14<00:36,  7.31s/it, loss=0.0483]
+
+Epoch [23/200]:  43%|███████████████████████████████████████████████████████████████                                                                                    | 3/7 [00:21<00:29,  7.25s/it, loss=0.0504]
+
+Epoch [23/200]:  57%|████████████████████████████████████████████████████████████████████████████████████                                                               | 4/7 [00:28<00:21,  7.20s/it, loss=0.0455]
+
+Epoch [23/200]:  71%|█████████████████████████████████████████████████████████████████████████████████████████████████████████                                          | 5/7 [00:36<00:14,  7.24s/it, loss=0.0415]
+
+Epoch [23/200]:  86%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                     | 6/7 [00:43<00:07,  7.26s/it, loss=0.0483]
+torch.Size([124, 16])
+lr 0.0007936142836436553
+Epoch 23
+
+ Current loss 0.04807397669223888
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([12, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([19, 16])
+  0%|                                                                                                                                                                                        | 0/7 [00:00<?, ?it/s]
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+C
+I
+C
+I
+I
+I
+I
+I
+I
+C
+I
+I
+C
+I
+C
+I
+I
+I
+Epoch avg. auc value: 0.9274774270477097
+Epoch one-shot accuracy: 0.16129032258064516
+Best threshold running-average value: 0.8780126457628997
+
+Epoch [24/200]:  14%|█████████████████████                                                                                                                              | 1/7 [00:07<00:43,  7.33s/it, loss=0.0414]
+
+
+Epoch [24/200]:  29%|██████████████████████████████████████████                                                                                                         | 2/7 [00:14<00:35,  7.16s/it, loss=0.0539]
+
+
+Epoch [24/200]:  43%|███████████████████████████████████████████████████████████████                                                                                    | 3/7 [00:28<00:28,  7.11s/it, loss=0.0548]
+
+Epoch [24/200]:  57%|████████████████████████████████████████████████████████████████████████████████████                                                               | 4/7 [00:28<00:21,  7.26s/it, loss=0.0478]
+
+Epoch [24/200]:  71%|█████████████████████████████████████████████████████████████████████████████████████████████████████████                                          | 5/7 [00:35<00:14,  7.16s/it, loss=0.0408]
+
+Epoch [24/200]:  86%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                     | 6/7 [00:43<00:07,  7.37s/it, loss=0.0442]
+torch.Size([124, 16])
+lr 0.0007856781408072188
+Epoch 24
+
+ Current loss 0.047100258465931924
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([12, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([19, 16])
+  0%|                                                                                                                                                                                        | 0/7 [00:00<?, ?it/s]
+I
+I
+I
+I
+I
+I
+I
+I
+C
+I
+C
+I
+C
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+C
+C
+I
+I
+C
+C
+I
+Epoch avg. auc value: 0.8585824576232219
+Epoch one-shot accuracy: 0.22580645161290322
+Best threshold running-average value: 0.8773477385441463
+
+Epoch [25/200]:  14%|█████████████████████▎                                                                                                                               | 1/7 [00:07<00:42,  7.09s/it, loss=0.04]
+
+Epoch [25/200]:  29%|██████████████████████████████████████████                                                                                                         | 2/7 [00:14<00:35,  7.11s/it, loss=0.0495]
+
+
+Epoch [25/200]:  43%|███████████████████████████████████████████████████████████████                                                                                    | 3/7 [00:28<00:28,  7.24s/it, loss=0.0399]
+
+Epoch [25/200]:  57%|████████████████████████████████████████████████████████████████████████████████████                                                               | 4/7 [00:28<00:21,  7.17s/it, loss=0.0454]
+
+
+Epoch [25/200]:  71%|█████████████████████████████████████████████████████████████████████████████████████████████████████████                                          | 5/7 [00:42<00:14,  7.24s/it, loss=0.0391]
+
+
+Epoch [25/200]:  86%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                     | 6/7 [00:46<00:07,  7.16s/it, loss=0.0448]
+torch.Size([124, 16])
+lr 0.0007778213593991466
+Epoch 25
+ Current loss 0.0428744018802542
+
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([12, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([19, 16])
+I
+I
+I
+I
+I
+I
+I
+I
+I
+C
+C
+I
+C
+C
+I
+I
+C
+C
+I
+I
+C
+I
+I
+I
+I
+C
+I
+I
+C
+I
+C
+Epoch avg. auc value: 0.9074915483434755
+Epoch one-shot accuracy: 0.3225806451612903
+Best threshold running-average value: 0.876357903957367
+
+Epoch [26/200]:   0%|                                                                                                                                                                        | 0/7 [00:06<?, ?it/s]
+
+Epoch [26/200]:  14%|█████████████████████                                                                                                                              | 1/7 [00:07<00:44,  7.46s/it, loss=0.0442]
+
+Epoch [26/200]:  29%|██████████████████████████████████████████                                                                                                         | 2/7 [00:14<00:36,  7.23s/it, loss=0.0488]
+
+Epoch [26/200]:  43%|███████████████████████████████████████████████████████████████                                                                                    | 3/7 [00:21<00:28,  7.14s/it, loss=0.0435]
+
+
+Epoch [26/200]:  57%|████████████████████████████████████████████████████████████████████████████████████                                                               | 4/7 [00:29<00:21,  7.27s/it, loss=0.0448]
+
+Epoch [26/200]:  71%|█████████████████████████████████████████████████████████████████████████████████████████████████████████                                          | 5/7 [00:36<00:14,  7.19s/it, loss=0.0376]
+
+Epoch [26/200]:  86%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                     | 6/7 [00:43<00:07,  7.31s/it, loss=0.0444]
+torch.Size([124, 16])
+lr 0.000770043145805155
+Epoch 26
+ Current loss 0.04312199576060732
+
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([12, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([19, 16])
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+C
+I
+I
+C
+I
+I
+I
+I
+I
+I
+I
+I
+C
+I
+I
+I
+I
+I
+Epoch avg. auc value: 0.9334773949384955
+Epoch one-shot accuracy: 0.0967741935483871
+Best threshold running-average value: 0.8760841924410602
+  0%|                                                                                                                                                                                        | 0/7 [00:00<?, ?it/s]
+
+
+Epoch [27/200]:  14%|█████████████████████                                                                                                                              | 1/7 [00:07<00:43,  7.18s/it, loss=0.0385]
+
+Epoch [27/200]:  29%|██████████████████████████████████████████                                                                                                         | 2/7 [00:14<00:36,  7.27s/it, loss=0.0497]
+
+Epoch [27/200]:  43%|███████████████████████████████████████████████████████████████                                                                                    | 3/7 [00:21<00:28,  7.23s/it, loss=0.0477]
+
+Epoch [27/200]:  57%|████████████████████████████████████████████████████████████████████████████████████                                                               | 4/7 [00:28<00:21,  7.13s/it, loss=0.0485]
+
+Epoch [27/200]:  71%|█████████████████████████████████████████████████████████████████████████████████████████████████████████                                          | 5/7 [00:35<00:14,  7.08s/it, loss=0.0416]
+
+
+Epoch [27/200]:  86%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                     | 6/7 [00:43<00:07,  7.31s/it, loss=0.0331]
+
+Epoch [27/200]:  86%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                     | 6/7 [00:46<00:07,  7.31s/it, loss=0.0331]
+lr 0.0007623427143471034
+Epoch 27
+ Current loss 0.04358872849600356
+compute roc mode:  testing
+
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([12, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([19, 16])
+I
+I
+I
+I
+C
+I
+I
+I
+I
+I
+I
+C
+I
+C
+I
+I
+I
+I
+I
+I
+I
+I
+I
+C
+C
+C
+I
+I
+I
+I
+I
+Epoch avg. auc value: 0.9127344094753195
+Epoch one-shot accuracy: 0.1935483870967742
+Best threshold running-average value: 0.8757375575878003
+  0%|                                                                                                                                                                                        | 0/7 [00:00<?, ?it/s]
+
+
+Epoch [28/200]:  14%|█████████████████████                                                                                                                              | 1/7 [00:07<00:44,  7.41s/it, loss=0.0427]
+
+Epoch [28/200]:  29%|██████████████████████████████████████████                                                                                                         | 2/7 [00:14<00:36,  7.36s/it, loss=0.0379]
+
+Epoch [28/200]:  43%|███████████████████████████████████████████████████████████████                                                                                    | 3/7 [00:22<00:29,  7.40s/it, loss=0.0467]
+
+
+Epoch [28/200]:  57%|████████████████████████████████████████████████████████████████████████████████████                                                               | 4/7 [00:37<00:22,  7.54s/it, loss=0.0423]
+
+Epoch [28/200]:  71%|█████████████████████████████████████████████████████████████████████████████████████████████████████████                                          | 5/7 [00:37<00:15,  7.57s/it, loss=0.0481]
+
+Epoch [28/200]:  86%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                     | 6/7 [00:44<00:07,  7.49s/it, loss=0.0403]
+torch.Size([124, 16])
+lr 0.0007547192872036325
+Epoch 28
+
+ Current loss 0.04194680422464292
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([12, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([19, 16])
+I
+I
+I
+C
+C
+I
+I
+C
+I
+I
+C
+I
+C
+I
+I
+C
+I
+I
+I
+C
+I
+I
+C
+I
+I
+C
+I
+I
+I
+C
+I
+Epoch avg. auc value: 0.9258768820028012
+Epoch one-shot accuracy: 0.3225806451612903
+Best threshold running-average value: 0.8759111506598337
+  0%|                                                                                                                                                                                        | 0/7 [00:00<?, ?it/s]
+
+Epoch [29/200]:  14%|█████████████████████                                                                                                                              | 1/7 [00:07<00:44,  7.48s/it, loss=0.0328]
+
+
+Epoch [29/200]:  29%|██████████████████████████████████████████                                                                                                         | 2/7 [00:21<00:37,  7.52s/it, loss=0.0405]
+
+Epoch [29/200]:  43%|███████████████████████████████████████████████████████████████                                                                                    | 3/7 [00:22<00:30,  7.50s/it, loss=0.0505]
+
+Epoch [29/200]:  57%|████████████████████████████████████████████████████████████████████████████████████                                                               | 4/7 [00:29<00:22,  7.38s/it, loss=0.0486]
+
+Epoch [29/200]:  71%|█████████████████████████████████████████████████████████████████████████████████████████████████████████                                          | 5/7 [00:36<00:14,  7.28s/it, loss=0.0434]
+
+
+Epoch [29/200]:  86%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                     | 6/7 [00:44<00:07,  7.31s/it, loss=0.0416]
+torch.Size([124, 16])
+lr 0.0007471720943315961
+Epoch 29
+ Current loss 0.0427925335615136
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([12, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([19, 16])
+I
+C
+I
+C
+C
+C
+I
+C
+I
+I
+I
+I
+I
+C
+I
+C
+C
+C
+I
+I
+I
+I
+I
+I
+I
+C
+I
+I
+I
+I
+I
+Epoch avg. auc value: 0.9100463532647319
+Epoch one-shot accuracy: 0.3225806451612903
+Best threshold running-average value: 0.8759360930015302
+  0%|                                                                                                                                                                                        | 0/7 [00:00<?, ?it/s]
+
+Epoch [30/200]:  14%|█████████████████████                                                                                                                              | 1/7 [00:07<00:42,  7.16s/it, loss=0.0432]
+
+Epoch [30/200]:  29%|██████████████████████████████████████████                                                                                                         | 2/7 [00:14<00:35,  7.09s/it, loss=0.0425]
+
+Epoch [30/200]:  43%|███████████████████████████████████████████████████████████████                                                                                    | 3/7 [00:21<00:28,  7.09s/it, loss=0.0458]
+
+Epoch [30/200]:  57%|████████████████████████████████████████████████████████████████████████████████████                                                               | 4/7 [00:28<00:21,  7.28s/it, loss=0.0376]
+
+Epoch [30/200]:  71%|█████████████████████████████████████████████████████████████████████████████████████████████████████████                                          | 5/7 [00:36<00:14,  7.27s/it, loss=0.0394]
+
+Epoch [30/200]:  86%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                     | 6/7 [00:43<00:07,  7.18s/it, loss=0.0366]
+
+torch.Size([124, 16])
+lr 0.0007397003733882801
+Epoch 30
+ Current loss 0.040392565938996094
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([64, 16])
+compute roc mode:  testing
+torch.Size([12, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([64, 16])
+compute roc mode:  training
+torch.Size([19, 16])
+I
+I
+I
+C
+I
+I
+I
+I
+I
+I
+I
+C
+C
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+C
+I
+C
+I
+I
+C
+I
+C
+Epoch avg. auc value: 0.9220488429976097
+Epoch one-shot accuracy: 0.22580645161290322
+Best threshold running-average value: 0.8765166827042898
+Traceback (most recent call last):
+  File "/home/adriansegura/Desktop/RUG/CattleNet/convnext/setup.py", line 331, in <module>
+    model,avg_auc_validation_testing,avg_auc_validation_training = train(d_loader=data_loader,dataset_validation=dataset_validation,dataset_validation_training=dataset_validation_training)
+  File "/home/adriansegura/Desktop/RUG/CattleNet/convnext/setup.py", line 121, in train
+    out1,out2 = model(imgs1,imgs2)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/adriansegura/Desktop/RUG/CattleNet/convnext/cattleNetTest.py", line 53, in forward
+    out1 = self.forward_once(input1)
+  File "/home/adriansegura/Desktop/RUG/CattleNet/convnext/cattleNetTest.py", line 47, in forward_once
+    x = self.convnext_tiny(input)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/container.py", line 141, in forward
+    input = module(input)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torchvision/models/convnext.py", line 186, in forward
+    return self._forward_impl(x)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torchvision/models/convnext.py", line 180, in _forward_impl
+    x = self.features(x)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/container.py", line 141, in forward
+    input = module(input)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/container.py", line 141, in forward
+    input = module(input)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torchvision/models/convnext.py", line 73, in forward
+    result = self.layer_scale * self.block(input)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/container.py", line 141, in forward
+    input = module(input)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/nn/modules/activation.py", line 670, in forward
+    return F.gelu(input)
+RuntimeError: CUDA out of memory. Tried to allocate 1.15 GiB (GPU 0; 5.80 GiB total capacity; 1.87 GiB already allocated; 241.00 MiB free; 3.88 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF

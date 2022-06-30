@@ -23,6 +23,7 @@ from torchvision.io import read_image
 from custom_dataset_bce import CustomImageDataset_Validation, CustomImageDatasetBCE, OneShotImageDataset                                                                                                                                                                            
 from torch.utils.data import DataLoader
 from cattleNetTest_v3 import CattleNetV3
+from sklearn.metrics import roc_auc_score
 from tqdm import tqdm
 
 def compute_roc_auc(out1,out2,labels,batch,epoch,mode):
@@ -30,7 +31,8 @@ def compute_roc_auc(out1,out2,labels,batch,epoch,mode):
     cos = nn.CosineSimilarity(dim=1,eps=1e-6)
     scores = cos(out1,out2)
     fpr, tpr, thresholds = metrics.roc_curve(labels.cpu().numpy(), scores.cpu().numpy())
-    roc_auc = metrics.auc(fpr, tpr)
+    # roc_auc = metrics.auc(fpr, tpr)
+    roc_auc = roc_auc_score(labels.cpu().numpy(), scores.cpu().numpy())
     plt.gca().cla()
     plt.title('Receiver Operating Characteristic')
     plt.plot(fpr, tpr, 'b', label = 'AUC = %0.2f' % roc_auc)
@@ -280,7 +282,7 @@ def one_shot_test(test_dataset: OneShotImageDataset,model,threshold,use_argmin,q
         if len(images[k]) > 1:
             anchor_idx = random.randint(0,len(images[k])-1) # select an index of anchor cow label
             anchor = images[k][anchor_idx].to(device) # select anchor
-            rest = torch.Tensor(len(images.keys()),4096).to(device) # allocate space for all cow classes available
+            rest = torch.Tensor(len(images.keys()),16).to(device) # allocate space for all cow classes available
             for i,k2 in enumerate(images.keys()):
                 idx = random.randint(0,len(images[k2])-1) # some random idx for current class
                 if i == j: # if we are selecting an image for the same cow as anchor, make sure the image is not the same

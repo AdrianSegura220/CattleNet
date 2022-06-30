@@ -2,21 +2,28 @@ from sklearn.metrics import euclidean_distances
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+from torchmetrics.functional import pairwise_euclidean_distance
 
 class ContrastiveLoss(nn.Module):
-    def __init__(self,margin=0.7) -> None:
+    def __init__(self,margin=1.0) -> None:
         super(ContrastiveLoss,self).__init__()
         self.margin = margin
         self.eps = 0.0001
     
-    def forward(self, x0: torch.Tensor,x1: torch.Tensor,label):
-        # print(x0.size())
+    def forward(self, x0: torch.Tensor,x1: torch.Tensor,label):                 
+        print(x0.size())
         # print('label size: ',label)
-        x0_norm = F.normalize(x0)
-        x1_norm = F.normalize(x1)
+        x0_norm = F.normalize(x0).float()
+        x1_norm = F.normalize(x1).float()
 
-
-        euclidean_distance = (x0-x1).pow(2).sum(1).sqrt()
+        pdist = torch.nn.PairwiseDistance(p=2)
+        euclidean_distance = pdist(x0_norm,x1_norm)
+        # euclidean_distance = (x0_norm-x1_norm).pow(2).sum(1).sqrt()
+        # euclidean_distance = pairwise_euclidean_distance(x0_norm,torch.transpose(x1_norm,0,1))
+        # print(euclidean_distance.size())
+        # exit()
+        # print(euclidean_distance.size())
+        # exit()
         # euclidean_distance = euclidean_distance.sqrt()
         # print(euclidean_distance.size())
         # print('EUCLIDEAN: ',euclidean_distance)

@@ -1,0 +1,227 @@
+
+Starting training
+
+Epoch [1/200]:   0%|                                                                                                                                                                        | 0/13 [00:03<?, ?it/s]
+
+Epoch [1/200]:   8%|███████████▍                                                                                                                                        | 1/13 [00:04<00:48,  4.03s/it, loss=0.228]
+
+Epoch [1/200]:  15%|██████████████████████▊                                                                                                                             | 2/13 [00:08<00:44,  4.03s/it, loss=0.192]
+
+Epoch [1/200]:  23%|██████████████████████████████████▏                                                                                                                 | 3/13 [00:12<00:40,  4.04s/it, loss=0.153]
+
+Epoch [1/200]:  31%|█████████████████████████████████████████████▌                                                                                                      | 4/13 [00:16<00:37,  4.13s/it, loss=0.122]
+
+Epoch [1/200]:  38%|████████████████████████████████████████████████████████▉                                                                                           | 5/13 [00:20<00:32,  4.08s/it, loss=0.124]
+
+Epoch [1/200]:  46%|████████████████████████████████████████████████████████████████████▎                                                                               | 6/13 [00:24<00:28,  4.08s/it, loss=0.101]
+
+Epoch [1/200]:  54%|███████████████████████████████████████████████████████████████████████████████▋                                                                    | 7/13 [00:28<00:24,  4.07s/it, loss=0.102]
+
+Epoch [1/200]:  62%|██████████████████████████████████████████████████████████████████████████████████████████▍                                                        | 8/13 [00:32<00:20,  4.05s/it, loss=0.0887]
+
+Epoch [1/200]:  69%|█████████████████████████████████████████████████████████████████████████████████████████████████████▊                                             | 9/13 [00:36<00:16,  4.08s/it, loss=0.0892]
+
+Epoch [1/200]:  77%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████▎                                 | 10/13 [00:40<00:12,  4.08s/it, loss=0.0819]
+
+Epoch [1/200]:  85%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▌                      | 11/13 [00:44<00:08,  4.03s/it, loss=0.0797]
+
+Epoch [1/200]:  92%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▊           | 12/13 [00:48<00:03,  3.99s/it, loss=0.0791]
+torch.Size([124, 256])
+lr 0.00099
+Epoch 1
+
+ Current loss 0.1163349242620619
+compute roc mode:  testing
+torch.Size([64, 256])
+compute roc mode:  testing
+torch.Size([64, 256])
+compute roc mode:  testing
+torch.Size([64, 256])
+compute roc mode:  testing
+torch.Size([64, 256])
+compute roc mode:  testing
+torch.Size([12, 256])
+compute roc mode:  training
+torch.Size([64, 256])
+compute roc mode:  training
+torch.Size([64, 256])
+compute roc mode:  training
+torch.Size([64, 256])
+compute roc mode:  training
+torch.Size([64, 256])
+compute roc mode:  training
+torch.Size([19, 256])
+I
+I
+I
+I
+I
+C
+I
+I
+I
+I
+I
+I
+C
+I
+I
+I
+I
+C
+I
+C
+I
+I
+I
+I
+C
+I
+I
+I
+I
+I
+C
+Epoch avg. auc value: 0.8532434839939912
+Epoch one-shot accuracy: 0.1935483870967742
+Best threshold running-average value: 0.9146684765815735
+  0%|                                                                                                                                                                                       | 0/13 [00:00<?, ?it/s]
+
+Epoch [2/200]:   8%|███████████▎                                                                                                                                       | 1/13 [00:04<00:49,  4.10s/it, loss=0.0688]
+
+Epoch [2/200]:  15%|██████████████████████▌                                                                                                                            | 2/13 [00:08<00:47,  4.29s/it, loss=0.0789]
+
+Epoch [2/200]:  23%|██████████████████████████████████▏                                                                                                                 | 3/13 [00:12<00:42,  4.21s/it, loss=0.075]
+
+Epoch [2/200]:  31%|█████████████████████████████████████████████▏                                                                                                     | 4/13 [00:16<00:37,  4.21s/it, loss=0.0767]
+
+Epoch [2/200]:  38%|████████████████████████████████████████████████████████▌                                                                                          | 5/13 [00:21<00:33,  4.22s/it, loss=0.0584]
+
+Epoch [2/200]:  46%|███████████████████████████████████████████████████████████████████▊                                                                               | 6/13 [00:25<00:29,  4.21s/it, loss=0.0786]
+
+Epoch [2/200]:  54%|███████████████████████████████████████████████████████████████████████████████▏                                                                   | 7/13 [00:29<00:25,  4.27s/it, loss=0.0738]
+
+Epoch [2/200]:  62%|██████████████████████████████████████████████████████████████████████████████████████████▍                                                        | 8/13 [00:33<00:20,  4.13s/it, loss=0.0705]
+
+Epoch [2/200]:  69%|█████████████████████████████████████████████████████████████████████████████████████████████████████▊                                             | 9/13 [00:37<00:16,  4.06s/it, loss=0.0575]
+
+Epoch [2/200]:  77%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████▎                                 | 10/13 [00:41<00:12,  4.07s/it, loss=0.0581]
+
+
+Epoch [2/200]:  92%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▊           | 12/13 [00:49<00:04,  4.08s/it, loss=0.0681]
+
+torch.Size([128, 256])
+torch.Size([124, 256])
+lr 0.0009801
+Epoch 2
+ Current loss 0.06965909377018327
+compute roc mode:  testing
+torch.Size([64, 256])
+compute roc mode:  testing
+torch.Size([64, 256])
+compute roc mode:  testing
+torch.Size([64, 256])
+compute roc mode:  testing
+torch.Size([64, 256])
+compute roc mode:  testing
+torch.Size([12, 256])
+compute roc mode:  training
+torch.Size([64, 256])
+compute roc mode:  training
+torch.Size([64, 256])
+compute roc mode:  training
+torch.Size([64, 256])
+compute roc mode:  training
+torch.Size([64, 256])
+compute roc mode:  training
+torch.Size([19, 256])
+  0%|                                                                                                                                                                                       | 0/13 [00:00<?, ?it/s]
+I
+I
+C
+I
+I
+C
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+C
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+C
+Epoch avg. auc value: 0.9310937506183686
+Epoch one-shot accuracy: 0.12903225806451613
+
+Epoch [3/200]:   8%|███████████▎                                                                                                                                       | 1/13 [00:03<00:46,  3.90s/it, loss=0.0605]
+
+Epoch [3/200]:  15%|██████████████████████▌                                                                                                                            | 2/13 [00:07<00:42,  3.87s/it, loss=0.0585]
+
+Epoch [3/200]:  23%|█████████████████████████████████▉                                                                                                                 | 3/13 [00:11<00:39,  4.00s/it, loss=0.0696]
+
+Epoch [3/200]:  31%|█████████████████████████████████████████████▏                                                                                                     | 4/13 [00:15<00:36,  4.02s/it, loss=0.0713]
+
+Epoch [3/200]:  38%|████████████████████████████████████████████████████████▌                                                                                          | 5/13 [00:20<00:32,  4.03s/it, loss=0.0596]
+
+Epoch [3/200]:  46%|███████████████████████████████████████████████████████████████████▊                                                                               | 6/13 [00:23<00:27,  3.98s/it, loss=0.0786]
+
+Epoch [3/200]:  54%|███████████████████████████████████████████████████████████████████████████████▏                                                                   | 7/13 [00:27<00:24,  4.01s/it, loss=0.0648]
+
+Epoch [3/200]:  62%|██████████████████████████████████████████████████████████████████████████████████████████▍                                                        | 8/13 [00:32<00:20,  4.06s/it, loss=0.0609]
+
+Epoch [3/200]:  69%|█████████████████████████████████████████████████████████████████████████████████████████████████████▊                                             | 9/13 [00:36<00:16,  4.04s/it, loss=0.0591]
+
+Epoch [3/200]:  77%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████                                  | 10/13 [00:40<00:12,  4.03s/it, loss=0.065]
+
+Epoch [3/200]:  85%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▌                      | 11/13 [00:44<00:08,  4.12s/it, loss=0.0644]
+
+Epoch [3/200]:  92%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▊           | 12/13 [00:48<00:04,  4.11s/it, loss=0.0662]
+
+torch.Size([128, 256])
+torch.Size([124, 256])
+lr 0.000970299
+Epoch 3
+ Current loss 0.0651054425924707
+compute roc mode:  testing
+torch.Size([64, 256])
+Traceback (most recent call last):
+  File "/home/adriansegura/Desktop/RUG/CattleNet/convnext/setup.py", line 331, in <module>
+    model,avg_auc_validation_testing,avg_auc_validation_training = train(d_loader=data_loader,dataset_validation=dataset_validation,dataset_validation_training=dataset_validation_training)
+  File "/home/adriansegura/Desktop/RUG/CattleNet/convnext/setup.py", line 146, in train
+    validation_results,avg_best_calculated_threshold,loss_testing_validation = test_thresholds(dataset_validation,thresholds=thresholds_to_test,model=model,epoch=epoch,mode='testing',criterion=criterion)
+  File "/home/adriansegura/Desktop/RUG/CattleNet/convnext/model_test_original.py", line 99, in test_thresholds
+    for data in data_loader:
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 530, in __next__
+    data = self._next_data()
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 570, in _next_data
+    data = self._dataset_fetcher.fetch(index)  # may raise StopIteration
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/utils/data/_utils/fetch.py", line 49, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/home/adriansegura/.local/lib/python3.9/site-packages/torch/utils/data/_utils/fetch.py", line 49, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/home/adriansegura/Desktop/RUG/CattleNet/convnext/custom_dataset_bce.py", line 60, in __getitem__
+    if self.img_labels.iloc[i,2] == self.img_labels.iloc[idx, 2]:
+  File "/home/adriansegura/anaconda3/lib/python3.9/site-packages/pandas/core/indexing.py", line 960, in __getitem__
+    return self.obj._get_value(*key, takeable=self._takeable)
+  File "/home/adriansegura/anaconda3/lib/python3.9/site-packages/pandas/core/frame.py", line 3612, in _get_value
+    series = self._ixs(col, axis=1)
+  File "/home/adriansegura/anaconda3/lib/python3.9/site-packages/pandas/core/frame.py", line 3445, in _ixs
+    result._set_as_cached(label, self)
+KeyboardInterrupt

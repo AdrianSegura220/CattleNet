@@ -2,8 +2,6 @@ from __future__ import print_function
 from __future__ import division
 import sys
 
-from pygame import K_f
-
 
 sys.path.insert(0,'..')
 from turtle import forward
@@ -55,9 +53,9 @@ path_to_results = '../../BachelorsProject/Trainings/'
 #hyperparams
 lrDecay = 1
 step_lr = 1
-lr=15e-4
+lr=1e-3
 in_channel = 3
-batch_size = 128
+batch_size = 256
 num_epochs = 200
 n_shot = 15
 k_folds = 8
@@ -256,8 +254,12 @@ def train(d_loader,dataset_validation,dataset_validation_training):
             
             #save model state up to this epoch
         if save_models and (validation_results > max_auc or one_shot > max_one_shot):
-            max_one_shot = one_shot
-            max_auc = validation_results
+            if one_shot > max_one_shot:
+                max_one_shot = one_shot
+            
+            if validation_results > max_auc:
+                max_auc = validation_results
+
             torch.save(model.state_dict(), os.path.join(final_path,"epoch{}_AUC{}_oneshot{}.pt".format(epoch,validation_results,one_shot)))
     
     # return model and the best values for balanced accuracy and also for f-score
