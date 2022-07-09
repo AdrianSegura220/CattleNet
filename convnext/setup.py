@@ -2,8 +2,6 @@ from __future__ import print_function
 from __future__ import division
 import sys
 
-from pygame import K_f
-
 
 sys.path.insert(0,'..')
 from turtle import forward
@@ -41,7 +39,7 @@ save_models = True
 save_figs = False
 
 # wandb setup (logging progress to online platform)
-use_wandb = True
+use_wandb = False
 
 # load and test a model version (no training)
 loadtest = False
@@ -106,7 +104,7 @@ def train(d_loader,dataset_validation,dataset_validation_training):
     # create directory for current training results
     if save_models or save_figs:
         final_path = os.path.join(path_to_results,'FINALAUC_Contrastive{}_datetime{}-{}H{}M{}S{}'.format(lr,datetime.datetime.today().day,datetime.datetime.today().month,datetime.datetime.today().hour,datetime.datetime.today().minute,datetime.datetime.today().second))
-        os.mkdir(final_path)
+        # os.mkdir(final_path)
 
     for epoch in range(1,num_epochs):
         loop = tqdm(d_loader,leave=False,total=len(d_loader))
@@ -317,10 +315,10 @@ else:
         optimizer = optim.Adam(params,lr=lr)
         scheduler = StepLR(optimizer, step_size=step_lr, gamma=0.99)
 
-        dataset_training = CustomImageDatasetBCE(img_dir='../../dataset/Preprocessed/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225])]),annotations_csv='./training_testing_folds/training_annotations_fold{}.csv'.format(i))
-        dataset_validation = CustomImageDatasetBCE(img_dir='../../dataset/Preprocessed/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225])]),annotations_csv='./training_testing_folds/validation_annotations_fold{}.csv'.format(i))
-        dataset_validation_training = CustomImageDatasetBCE(img_dir='../../dataset/Preprocessed/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225])]),annotations_csv='./training_testing_folds/training_validation_annotations_fold{}.csv'.format(i))
-        dataset_one_shot = OneShotImageDataset(img_dir='../../dataset/Preprocessed/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225])]),annotations_csv='./training_testing_folds/validation_annotations_fold{}.csv'.format(i))
+        dataset_training = CustomImageDatasetBCE(img_dir='../../dataset/CORF3D_combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225])]),annotations_csv='./training_testing_folds_corf3d/training_annotations_fold{}.csv'.format(i),isCorf3d=True)
+        dataset_validation = CustomImageDatasetBCE(img_dir='../../dataset/CORF3D_combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225])]),annotations_csv='./training_testing_folds_corf3d/validation_annotations_fold{}.csv'.format(i),isCorf3d=True)
+        dataset_validation_training = CustomImageDatasetBCE(img_dir='../../dataset/CORF3D_combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225])]),annotations_csv='./training_testing_folds_corf3d/training_validation_annotations_fold{}.csv'.format(i),isCorf3d=True)
+        dataset_one_shot = OneShotImageDataset(img_dir='../../dataset/CORF3D_combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225])]),annotations_csv='./training_testing_folds_corf3d/validation_annotations_fold{}.csv'.format(i),isCorf3d=True)
         data_loader = DataLoader(dataset_training, batch_size=batch_size, shuffle=True)
 
 

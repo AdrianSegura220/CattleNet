@@ -20,9 +20,12 @@ def checkSimilarities():
         res = tr_set.intersection(vl_set)
         print('INTERSECTION FOR FOLD {}:\n'.format(i),res)
 
-def generate_folds(directory:str, k: int):
+def generate_folds(directory:str, k: int,isCorf3d: int):
     try: # case directory does not exist
-        os.mkdir('./training_testing_folds')
+        if isCorf3d:
+            os.mkdir('./training_testing_folds_corf3d')
+        else:
+            os.mkdir('./training_testing_folds')
     except FileExistsError:
         pass # else do nothing and just overwrite files
 
@@ -65,7 +68,10 @@ def generate_folds(directory:str, k: int):
         labels_validation_current = list(filter(lambda x: x not in labelsToFilter,labels_validation_current))
 
         df = pd.DataFrame({'Path': validation_current,'Label': labels_validation_current}) # generate data frame having as columns the path to an image and labels for each of such images
-        df.to_csv('./training_testing_folds/validation_annotations_fold{}.csv'.format(i))
+        if isCorf3d:
+            df.to_csv('./training_testing_folds_corf3d/validation_annotations_fold{}.csv'.format(i))
+        else:
+            df.to_csv('./training_testing_folds/validation_annotations_fold{}.csv'.format(i))
         # df = pd.DataFrame({'Path': training_current,'Label': labels_training_current}) # generate data frame having as columns the path to an image and labels for each of such images
         #df.to_csv('./training_testing_folds/training_annotations_fold{}.csv'.format(i))
 
@@ -89,11 +95,18 @@ def generate_folds(directory:str, k: int):
             else:
                 break # this would mean that we reached at least the size of the testing validation set, so we leave the rest of the training set as is and use the composed training validation set for the current fold with the added images
 
-        df = pd.DataFrame({'Path': train_splits[i]['train'],'Label': train_splits[i]['labels']}) # generate data frame having as columns the path to an image and labels for each of such images
-        df.to_csv('./training_testing_folds/training_annotations_fold{}.csv'.format(i))
+        if isCorf3d:
+            df = pd.DataFrame({'Path': train_splits[i]['train'],'Label': train_splits[i]['labels']}) # generate data frame having as columns the path to an image and labels for each of such images
+            df.to_csv('./training_testing_folds_corf3d/training_annotations_fold{}.csv'.format(i))
 
-        df = pd.DataFrame({'Path': train_validation,'Label': labels_train_validation}) # generate data frame having as columns the path to an image and labels for each of such images
-        df.to_csv('./training_testing_folds/training_validation_annotations_fold{}.csv'.format(i))
+            df = pd.DataFrame({'Path': train_validation,'Label': labels_train_validation}) # generate data frame having as columns the path to an image and labels for each of such images
+            df.to_csv('./training_testing_folds_corf3d/training_validation_annotations_fold{}.csv'.format(i))
+        else:
+            df = pd.DataFrame({'Path': train_splits[i]['train'],'Label': train_splits[i]['labels']}) # generate data frame having as columns the path to an image and labels for each of such images
+            df.to_csv('./training_testing_folds/training_annotations_fold{}.csv'.format(i))
+
+            df = pd.DataFrame({'Path': train_validation,'Label': labels_train_validation}) # generate data frame having as columns the path to an image and labels for each of such images
+            df.to_csv('./training_testing_folds/training_validation_annotations_fold{}.csv'.format(i))
 
 def generate_annotations_direct(directory: str,name_output: str):
     files = os.listdir(directory)
