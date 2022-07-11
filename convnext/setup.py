@@ -39,7 +39,7 @@ save_models = True
 save_figs = False
 
 # wandb setup (logging progress to online platform)
-use_wandb = False
+use_wandb = True
 
 # load and test a model version (no training)
 loadtest = False
@@ -56,7 +56,7 @@ step_lr = 1
 lr=15e-4
 in_channel = 3
 batch_size = 128
-num_epochs = 200
+num_epochs = 150
 n_shot = 15
 k_folds = 8
 thresholds_to_test = [0.1,0.25,0.4,0.5,0.6]
@@ -104,7 +104,7 @@ def train(d_loader,dataset_validation,dataset_validation_training):
     # create directory for current training results
     if save_models or save_figs:
         final_path = os.path.join(path_to_results,'FINALAUC_Contrastive{}_datetime{}-{}H{}M{}S{}'.format(lr,datetime.datetime.today().day,datetime.datetime.today().month,datetime.datetime.today().hour,datetime.datetime.today().minute,datetime.datetime.today().second))
-        # os.mkdir(final_path)
+        os.mkdir(final_path)
 
     for epoch in range(1,num_epochs):
         loop = tqdm(d_loader,leave=False,total=len(d_loader))

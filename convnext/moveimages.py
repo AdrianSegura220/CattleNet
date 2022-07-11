@@ -4,7 +4,7 @@ import shutil
 # dirnames = os.listdir('../../dataset/Raw/RGB (320 x 240)/')
 dirnames = os.listdir('../../dataset/CORF3D')
 dirnames.sort() # order by filename
-dirnames = dirnames[1:]
+#dirnames = dirnames[1:]
 indices = []
 labels = []
 total = 0
