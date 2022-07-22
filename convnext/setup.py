@@ -51,10 +51,10 @@ path_to_results = '../../BachelorsProject/Trainings/'
 #hyperparams
 lrDecay = 1
 step_lr = 1
-lr=45e-5
+lr=1e-3
 in_channel = 3
 batch_size = 128
-num_epochs = 200
+num_epochs = 150
 n_shot = 15
 k_folds = 8
 thresholds_to_test = [0.1,0.25,0.4,0.5,0.6]
@@ -331,7 +331,7 @@ else:
     # balanced_acc = [0.0 for i in range(0,len(thresholds_to_test))]
     # f_score = [0.0 for i in range(0,len(thresholds_to_test))]
 
-    for i in range(0,k_folds):
+    for i in range(1,k_folds):
         # instantiate SNN model
         model = CattleNet(freezeLayers=True)
         model.to(device)
@@ -354,14 +354,10 @@ else:
         optimizer = optim.Adam(params,lr=lr)
         scheduler = StepLR(optimizer, step_size=step_lr, gamma=0.99)
 
-        #dataset_training = CustomImageDatasetBCE(img_dir='../../dataset/Preprocessed/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225])]),annotations_csv='./training_testing_folds/training_annotations_fold{}.csv'.format(i))
-        #dataset_validation = CustomImageDatasetBCE(img_dir='../../dataset/Preprocessed/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225])]),annotations_csv='./training_testing_folds/validation_annotations_fold{}.csv'.format(i))
-        #dataset_validation_training = CustomImageDatasetBCE(img_dir='../../dataset/Preprocessed/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225])]),annotations_csv='./training_testing_folds/training_validation_annotations_fold{}.csv'.format(i))
-        #dataset_one_shot = OneShotImageDataset(img_dir='../../dataset/Preprocessed/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225])]),annotations_csv='./training_testing_folds/validation_annotations_fold{}.csv'.format(i))
-        dataset_training = CustomImageDatasetBCE(img_dir='../../dataset/CORF3D_combined/',transform=transforms.Compose([]),annotations_csv='./training_testing_folds_corf3d/training_annotations_fold{}.csv'.format(i),isCorf3d=True)
-        dataset_validation = CustomImageDatasetBCE(img_dir='../../dataset/CORF3D_combined/',transform=transforms.Compose([]),annotations_csv='./training_testing_folds_corf3d/validation_annotations_fold{}.csv'.format(i),isCorf3d=True)
-        dataset_validation_training = CustomImageDatasetBCE(img_dir='../../dataset/CORF3D_combined/',transform=transforms.Compose([]),annotations_csv='./training_testing_folds_corf3d/training_validation_annotations_fold{}.csv'.format(i),isCorf3d=True)
-        dataset_one_shot = OneShotImageDataset(img_dir='../../dataset/CORF3D_combined/',transform=transforms.Compose([]),annotations_csv='./training_testing_folds_corf3d/validation_annotations_fold{}.csv'.format(i),isCorf3d=True)
+        dataset_training = CustomImageDatasetBCE(img_dir='../../dataset/Preprocessed/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225])]),annotations_csv='./training_testing_folds/training_annotations_fold{}.csv'.format(i))
+        dataset_validation = CustomImageDatasetBCE(img_dir='../../dataset/Preprocessed/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225])]),annotations_csv='./training_testing_folds/validation_annotations_fold{}.csv'.format(i))
+        dataset_validation_training = CustomImageDatasetBCE(img_dir='../../dataset/Preprocessed/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225])]),annotations_csv='./training_testing_folds/training_validation_annotations_fold{}.csv'.format(i))
+        dataset_one_shot = OneShotImageDataset(img_dir='../../dataset/Preprocessed/Combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225])]),annotations_csv='./training_testing_folds/validation_annotations_fold{}.csv'.format(i))
         data_loader = DataLoader(dataset_training, batch_size=batch_size, shuffle=True)
 
 

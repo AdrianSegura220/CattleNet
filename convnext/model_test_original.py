@@ -48,10 +48,10 @@ def compute_roc_auc(out1,out2,labels,batch,epoch,mode,fold):
 
     if mode == 'testing':
         if roc_auc > 0.85:
-            plt.savefig('../../roc_figures/roc_batch{}__EPOCHnr{}.png'.format(batch,epoch))
+            plt.savefig('../roc_figures/fold_{}roc_batch{}__EPOCHnr{}.png'.format(fold,batch,epoch))
     else:
         if roc_auc > 0.85:
-            plt.savefig('../../roc_figures_training_validation/t_roc_batch{}__EPOCHnr{}.png'.format(batch,epoch))
+            plt.savefig('../roc_figures_training_validation/fold_{}t_roc_batch{}__EPOCHnr{}.png'.format(fold,batch,epoch))
 
     bestThreshold = thresholds[np.argmax(tpr-fpr)]
 
