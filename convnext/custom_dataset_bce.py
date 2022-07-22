@@ -9,6 +9,7 @@ import random
 from torchvision import datasets
 from torchvision.transforms import ToTensor
 import matplotlib.pyplot as plt
+import numpy as np
 from preprocess import generate_annotations,generate_annotations_direct
 
 """
@@ -19,13 +20,14 @@ from preprocess import generate_annotations,generate_annotations_direct
     target_transform: a transformation to apply to label of each image when extracting using __getitem__()
 """
 class CustomImageDatasetBCE(Dataset):
-    def __init__(self, img_dir, transform=None, target_transform=None,annotations_csv = 'training_annotations.csv') -> None:
+    def __init__(self, img_dir, transform=None, target_transform=None,annotations_csv = 'training_annotations.csv',isCorf3d=False) -> None:
         # super().__init__() no superconstructor
         # generate_annotations_direct(img_dir,'training_annotations')
         # self.train_size = train_size
-        self.img_labels = pd.read_csv(annotations_csv)
+        self.img_labels = pd.read_csv(annotations_csv) # simply read annotations file
         self.img_dir = img_dir
         self.transform = transform
+        self.isCorf3d = isCorf3d
         self.counts = {}
         self.countPerSample()
         self.target_transform = target_transform
@@ -67,7 +69,14 @@ class CustomImageDatasetBCE(Dataset):
                         # print('Forced different image for image label: ',self.img_labels.iloc[idx, 2])
                         break
                         # selectedImage = 0
-                    image2 = (read_image(os.path.join(self.img_dir, self.img_labels.iloc[i+selectedImage, 1])).float())/255.0 # selected image should be of same cow but different image
+                    if self.isCorf3d:
+                        npy_arr = np.load(os.path.join(self.img_dir, self.img_labels.iloc[i+selectedImage, 1]))
+                        npy_arr = np.float32(npy_arr)
+                        image2 = torch.from_numpy(npy_arr)
+                        image2 = torch.permute(image2,(2,0,1))
+                    else:
+                        image2 = (read_image(os.path.join(self.img_dir, self.img_labels.iloc[i+selectedImage, 1])).float())/255.0 # selected image should be of same cow but different image
+
                     label2 = self.img_labels.iloc[i+selectedImage, 2] # same label as anchor
                     img2_file_name = self.img_labels.iloc[i+selectedImage, 1]
                     break
@@ -75,11 +84,24 @@ class CustomImageDatasetBCE(Dataset):
         if not same_class or force_different:
             # total_to_use = self.__len__() if self.train_size == -1 else self.train_size # set max num used for training purposes
             rand_idx = random.randint(0,self.__len__()-1)
-            image2 = (read_image(os.path.join(self.img_dir, self.img_labels.iloc[rand_idx, 1])).float())/255.0 # choose a random image
+            if self.isCorf3d:
+                npy_arr = np.load(os.path.join(self.img_dir, self.img_labels.iloc[rand_idx, 1]))
+                npy_arr = np.float32(npy_arr)
+                image2 = torch.from_numpy(npy_arr)
+                image2 = torch.permute(image2,(2,0,1))
+            else:
+                image2 = (read_image(os.path.join(self.img_dir, self.img_labels.iloc[rand_idx, 1])).float())/255.0 # choose a random image
             label2 = self.img_labels.iloc[rand_idx, 2]
             img2_file_name = self.img_labels.iloc[rand_idx, 1]
         # read the RGB image (i.e. load it to a 3x240x320 tensor)
-        image = (read_image(img_path).float())/255.0
+
+        if self.isCorf3d:
+            npy_arr = np.load(img_path)
+            npy_arr = np.float32(npy_arr)
+            image = torch.from_numpy(npy_arr)
+            image = torch.permute(image,(2,0,1))
+        else:
+            image = (read_image(img_path).float())/255.0
 
         # read label of the image (i.e. which cow it is)
         label = self.img_labels.iloc[idx, 2]
@@ -208,10 +230,11 @@ class CustomImageDataset_Validation(Dataset):
 
 
 class OneShotImageDataset(Dataset):
-    def __init__(self,img_dir, transform=None, target_transform=None,annotations_csv = 'validation_annotations.csv'):
+    def __init__(self,img_dir, transform=None, target_transform=None,annotations_csv = 'validation_annotations.csv',isCorf3d=False):
         self.img_labels = pd.read_csv(annotations_csv)
         self.img_dir = img_dir
         self.transform = transform
+        self.isCorf3d = isCorf3d
         self.counts = {}
         self.countPerSample()
         self.target_transform = target_transform
@@ -237,7 +260,13 @@ class OneShotImageDataset(Dataset):
         an array. This dataset object is just meant to feed a normal stream of pictures and their respective labels.
     """
     def __getitem__(self, idx):
-        img = (read_image(os.path.join(self.img_dir, self.img_labels.iloc[idx, 1])).float())/255.0
+        if self.isCorf3d:
+            npy_arr = np.load(os.path.join(self.img_dir, self.img_labels.iloc[idx, 1]))
+            npy_arr = np.float32(npy_arr)
+            img = torch.from_numpy(npy_arr)
+            img = torch.permute(img,(2,0,1))
+        else:
+            img = (read_image(os.path.join(self.img_dir, self.img_labels.iloc[idx, 1])).float())/255.0
         label = self.img_labels.iloc[idx, 2]
 
         if self.transform:
