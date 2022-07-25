@@ -1,0 +1,3597 @@
+
+Starting training
+
+
+
+
+
+
+
+
+
+
+
+Epoch [1/200]:  89%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▊                | 8/9 [00:23<00:02,  2.78s/it, loss=22.1]
+lr 0.0004455
+Epoch 1
+
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+I
+I
+C
+I
+I
+I
+I
+C
+I
+I
+I
+I
+I
+I
+I
+I
+C
+I
+I
+C
+C
+Epoch avg. auc value: 0.6992673992673993
+Epoch one-shot accuracy: 0.23809523809523808
+Best threshold running-average value: 0.9970766305923462
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [2/200]:  89%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▊                | 8/9 [00:24<00:02,  2.85s/it, loss=8.47]
+lr 0.000441045
+Epoch 2
+ Current loss 11.853276676952074
+compute roc mode:  testing
+
+compute roc mode:  testing
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+I
+I
+I
+I
+I
+I
+I
+C
+I
+I
+I
+I
+I
+C
+C
+C
+I
+I
+I
+I
+C
+Epoch avg. auc value: 0.6644158629523654
+Epoch one-shot accuracy: 0.23809523809523808
+Best threshold running-average value: 0.9976450502872467
+
+
+
+
+
+
+
+
+
+
+
+Epoch [3/200]:  89%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▊                | 8/9 [00:21<00:02,  2.76s/it, loss=4.24]
+lr 0.00043663455
+Epoch 3
+
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  testing
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+C
+C
+C
+I
+C
+C
+I
+C
+I
+C
+I
+I
+I
+C
+I
+C
+I
+I
+I
+I
+I
+Epoch avg. auc value: 0.6754420056216931
+Epoch one-shot accuracy: 0.42857142857142855
+Best threshold running-average value: 0.9980523453818427
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [4/200]:  89%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▋                | 8/9 [00:24<00:02,  2.93s/it, loss=3.4]
+lr 0.0004322682045
+Epoch 4
+ Current loss 4.097777457201344
+compute roc mode:  testing
+
+compute roc mode:  testing
+compute roc mode:  training
+compute roc mode:  training
+compute roc mode:  training
+C
+I
+I
+I
+I
+I
+I
+I
+I
+C
+C
+I
+I
+I
+C
+I
+I
+I
+I
+I
+I
+Epoch avg. auc value: 0.663134282600356
+Epoch one-shot accuracy: 0.19047619047619047
+Best threshold running-average value: 0.998307819167773
+I
+
+
+
+
+
+
+
+
+
+
+
+Epoch [5/200]:  89%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▊                | 8/9 [00:23<00:02,  2.84s/it, loss=2.88]
+compute roc mode:  testing
+compute roc mode:  testing
+
+
+I
+Epoch avg. auc value: 0.6227833984884302
+Epoch avg. auc value: 0.6227833984884302
+
+
+
+
+
+
+
+
+
+
+
+Epoch [6/200]:  89%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▋                | 8/9 [00:22<00:02,  2.68s/it, loss=1.5]
+
+
+Epoch avg. auc value: 0.6227833984884302
+Epoch avg. auc value: 0.6227833984884302
+Cpoch avg. auc value: 0.6227833984884302
+Cpoch avg. auc value: 0.6227833984884302
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testing27833984884302
+
+
+compute roc mode:  testing27833984884302
+Best threshold running-average value: 0.9987837956065223
+Best threshold running-average value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+
+Best threshold running-average value: 0.9987837956065223
+Best threshold running-average value: 0.9987837956065223
+Cest threshold running-average value: 0.9987837956065223
+Cest threshold running-average value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+Epoch [9/200]:  89%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▊                | 8/9 [00:22<00:02,  2.81s/it, loss=1.24]
+
+compute roc mode:  testingrage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+Epoch [10/200]:  89%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▉                | 8/9 [00:22<00:02,  2.92s/it, loss=1.16]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+Epoch [11/200]:  89%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                | 8/9 [00:22<00:02,  2.82s/it, loss=0.824]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+Epoch [12/200]:  89%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▉                | 8/9 [00:22<00:02,  2.84s/it, loss=1.88]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+Iompute roc mode:  testinggage value: 0.9987837956065223
+Iompute roc mode:  testinggage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+Epoch [14/200]:  89%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                | 8/9 [00:21<00:02,  2.74s/it, loss=0.495]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+Epoch [15/200]:  89%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                | 8/9 [00:23<00:02,  2.72s/it, loss=0.592]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+Iompute roc mode:  testinggage value: 0.9987837956065223
+Iompute roc mode:  testinggage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+Epoch [17/200]:  89%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                | 8/9 [00:21<00:02,  2.74s/it, loss=0.342]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+Epoch [18/200]:  89%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                | 8/9 [00:23<00:02,  2.81s/it, loss=0.421]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+Iompute roc mode:  testinggage value: 0.9987837956065223
+Iompute roc mode:  testinggage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+Epoch [19/200]:  89%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▉                | 8/9 [00:22<00:02,  2.81s/it, loss=0.42]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+Epoch [20/200]:  89%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                | 8/9 [00:23<00:02,  2.74s/it, loss=0.344]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+Epoch [21/200]:  89%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                | 8/9 [00:22<00:02,  2.83s/it, loss=0.231]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+Epoch [22/200]:  89%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                | 8/9 [00:23<00:02,  2.72s/it, loss=0.252]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+Epoch [24/200]:  89%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                | 8/9 [00:22<00:02,  2.70s/it, loss=0.181]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+Epoch [25/200]:  89%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                | 8/9 [00:22<00:02,  2.81s/it, loss=0.235]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+Epoch [26/200]:  89%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                | 8/9 [00:23<00:02,  2.77s/it, loss=0.205]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+Epoch [27/200]:  89%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                | 8/9 [00:23<00:02,  2.78s/it, loss=0.206]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [28/200]:  89%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                | 8/9 [00:24<00:02,  2.88s/it, loss=0.281]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+Iompute roc mode:  testinggage value: 0.9987837956065223
+Iompute roc mode:  testinggage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [32/200]:  89%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                | 8/9 [00:23<00:02,  2.78s/it, loss=0.306]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+Iompute roc mode:  testinggage value: 0.9987837956065223
+Iompute roc mode:  testinggage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+Epoch [34/200]:  89%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                | 8/9 [00:22<00:02,  2.78s/it, loss=0.159]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+Epoch [35/200]:  89%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                | 8/9 [00:22<00:02,  2.76s/it, loss=0.165]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [36/200]:  89%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                | 8/9 [00:25<00:02,  2.97s/it, loss=0.185]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+Epoch [37/200]:  89%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▉                | 8/9 [00:22<00:02,  2.81s/it, loss=0.16]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+Epoch [38/200]:  89%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                | 8/9 [00:23<00:02,  2.74s/it, loss=0.167]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [39/200]:  89%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                | 8/9 [00:23<00:02,  2.91s/it, loss=0.127]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+Epoch [40/200]:  89%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                | 8/9 [00:22<00:02,  2.76s/it, loss=0.136]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+Epoch [41/200]:  89%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                | 8/9 [00:22<00:02,  2.86s/it, loss=0.129]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+lr 0.00028917522093812323ngage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+Epoch [45/200]:  89%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                | 8/9 [00:22<00:02,  2.80s/it, loss=0.123]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+Epoch [46/200]:  89%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                | 8/9 [00:22<00:02,  2.79s/it, loss=0.133]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+Epoch [47/200]:  89%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                | 8/9 [00:23<00:02,  2.84s/it, loss=0.147]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [48/200]:  89%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                | 8/9 [00:23<00:02,  2.74s/it, loss=0.131]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [49/200]:  89%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                | 8/9 [00:24<00:02,  2.83s/it, loss=0.163]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+Iompute roc mode:  testinggage value: 0.9987837956065223
+Iompute roc mode:  testinggage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+Iompute roc mode:  testinggage value: 0.9987837956065223
+Iompute roc mode:  testinggage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+Epoch [56/200]:  89%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                | 8/9 [00:22<00:02,  2.69s/it, loss=0.143]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+Epoch [57/200]:  89%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                | 8/9 [00:23<00:02,  2.71s/it, loss=0.121]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [58/200]:  89%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                | 8/9 [00:23<00:02,  2.86s/it, loss=0.124]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+Compute roc mode:  testinggage value: 0.9987837956065223
+Compute roc mode:  testinggage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+Epoch [60/200]:  89%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                | 8/9 [00:23<00:02,  2.72s/it, loss=0.109]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+Iompute roc mode:  testinggage value: 0.9987837956065223
+Iompute roc mode:  testinggage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+Epoch [62/200]:  89%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                | 8/9 [00:21<00:02,  2.71s/it, loss=0.114]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+Epoch [63/200]:  89%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                | 8/9 [00:23<00:02,  2.67s/it, loss=0.122]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [64/200]:  89%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                | 8/9 [00:23<00:02,  2.90s/it, loss=0.179]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+Epoch [65/200]:  89%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                | 8/9 [00:23<00:02,  2.71s/it, loss=0.119]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+Iompute roc mode:  testinggage value: 0.9987837956065223
+Iompute roc mode:  testinggage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+Epoch [75/200]:  89%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                | 8/9 [00:23<00:02,  2.76s/it, loss=0.117]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [76/200]:  89%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                | 8/9 [00:23<00:02,  2.70s/it, loss=0.115]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [78/200]:  89%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                | 8/9 [00:24<00:02,  2.85s/it, loss=0.127]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+  0%|                                                                                                                                                                                    | 0/9 [00:00<?, ?it/s]
+
+
+
+
+
+
+
+
+
+
+
+Epoch 83roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+lr 0.00018212938770524573ngage value: 0.9987837956065223
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [91/200]:  89%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                | 8/9 [00:23<00:02,  2.84s/it, loss=0.0998]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+Epoch [92/200]:  89%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                | 8/9 [00:23<00:02,  2.70s/it, loss=0.0915]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+Compute roc mode:  testinggage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+Compute roc mode:  testinggage value: 0.9987837956065223
+Compute roc mode:  testinggage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+Compute roc mode:  testinggage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+Epoch [98/200]:  89%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                | 8/9 [00:22<00:02,  2.76s/it, loss=0.106]
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+Epoch [101/200]:  89%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏               | 8/9 [00:22<00:02,  2.73s/it, loss=0.0948]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+Epoch [102/200]:  89%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏               | 8/9 [00:22<00:02,  2.77s/it, loss=0.0807]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+Iompute roc mode:  testinggage value: 0.9987837956065223
+Iompute roc mode:  testinggage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+Epoch [104/200]:  89%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                | 8/9 [00:21<00:02,  2.63s/it, loss=0.076]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+Epoch [105/200]:  89%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                | 8/9 [00:21<00:02,  2.75s/it, loss=0.104]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+Epoch [106/200]:  89%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏               | 8/9 [00:22<00:02,  2.72s/it, loss=0.0932]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+
+
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+Epoch [108/200]:  89%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                | 8/9 [00:23<00:02,  2.75s/it, loss=0.11]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+Iompute roc mode:  testinggage value: 0.9987837956065223
+Iompute roc mode:  testinggage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+Iompute roc mode:  testinggage value: 0.9987837956065223
+Iompute roc mode:  testinggage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+Epoch [111/200]:  89%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏               | 8/9 [00:22<00:02,  2.85s/it, loss=0.0963]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+Epoch [112/200]:  89%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                | 8/9 [00:22<00:02,  2.78s/it, loss=0.103]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+Epoch [113/200]:  89%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏               | 8/9 [00:22<00:02,  2.80s/it, loss=0.0904]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+Epoch [114/200]:  89%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏               | 8/9 [00:21<00:02,  2.78s/it, loss=0.0771]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+
+
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [116/200]:  89%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                | 8/9 [00:24<00:02,  2.80s/it, loss=0.086]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+Iompute roc mode:  testinggage value: 0.9987837956065223
+Iompute roc mode:  testinggage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+Epoch [117/200]:  89%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                | 8/9 [00:22<00:02,  2.79s/it, loss=0.097]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+Epoch [118/200]:  89%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏               | 8/9 [00:23<00:02,  2.74s/it, loss=0.0891]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+
+
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [120/200]:  89%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏               | 8/9 [00:24<00:02,  2.80s/it, loss=0.0955]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [121/200]:  89%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                | 8/9 [00:22<00:02,  2.79s/it, loss=0.131]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+Epoch [122/200]:  89%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏               | 8/9 [00:22<00:02,  2.85s/it, loss=0.0991]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+Epoch [123/200]:  89%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏               | 8/9 [00:22<00:02,  2.80s/it, loss=0.0866]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+Epoch [124/200]:  89%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏               | 8/9 [00:22<00:02,  2.78s/it, loss=0.0873]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+Compute roc mode:  testinggage value: 0.9987837956065223
+Compute roc mode:  testinggage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+Compute roc mode:  testinggage value: 0.9987837956065223
+Compute roc mode:  testinggage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+Compute roc mode:  testinggage value: 0.9987837956065223
+Compute roc mode:  testinggage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+Iompute roc mode:  testinggage value: 0.9987837956065223
+Iompute roc mode:  testinggage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+Epoch [130/200]:  89%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏               | 8/9 [00:22<00:02,  2.81s/it, loss=0.0886]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+  0%|                                                                                                                                                                                    | 0/9 [00:00<?, ?it/s]
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+
+
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [134/200]:  89%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                | 8/9 [00:24<00:02,  2.77s/it, loss=0.109]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [135/200]:  89%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏               | 8/9 [00:24<00:02,  2.71s/it, loss=0.0887]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Compute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [136/200]:  89%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏               | 8/9 [00:24<00:02,  2.77s/it, loss=0.0766]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+Epoch [137/200]:  89%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏               | 8/9 [00:23<00:02,  2.78s/it, loss=0.0959]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+Epoch [138/200]:  89%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏               | 8/9 [00:22<00:02,  2.84s/it, loss=0.0851]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+Epoch [139/200]:  89%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏               | 8/9 [00:23<00:02,  2.75s/it, loss=0.0835]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [140/200]:  89%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏               | 8/9 [00:24<00:02,  2.87s/it, loss=0.0951]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+Epoch [141/200]:  89%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏               | 8/9 [00:23<00:02,  2.83s/it, loss=0.0939]
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+Compute roc mode:  testinggage value: 0.9987837956065223
+Compute roc mode:  testinggage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+Compute roc mode:  testinggage value: 0.9987837956065223
+Compute roc mode:  testinggage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+Compute roc mode:  testinggage value: 0.9987837956065223
+Compute roc mode:  testinggage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+Iompute roc mode:  testinggage value: 0.9987837956065223
+Iompute roc mode:  testinggage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  testinggage value: 0.9987837956065223
+compute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+Iompute roc mode:  trainingage value: 0.9987837956065223
+Best threshold running-average value: 0.9998040873717832
+
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  trainingage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+Compute roc mode:  trainingage value: 0.9998040873717832
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [149/200]:  89%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                | 8/9 [00:23<00:02,  2.76s/it, loss=0.092]
+
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+Compute roc mode:  trainingage value: 0.9998040873717832
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+Iompute roc mode:  trainingage value: 0.9998040873717832
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+Compute roc mode:  trainingage value: 0.9998040873717832
+Compute roc mode:  trainingage value: 0.9998040873717832
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [152/200]:  89%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏               | 8/9 [00:24<00:02,  2.86s/it, loss=0.0918]
+
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+Iompute roc mode:  trainingage value: 0.9998040873717832
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+Iompute roc mode:  trainingage value: 0.9998040873717832
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+Compute roc mode:  trainingage value: 0.9998040873717832
+Compute roc mode:  trainingage value: 0.9998040873717832
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+Compute roc mode:  trainingage value: 0.9998040873717832
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [156/200]:  89%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏               | 8/9 [00:24<00:02,  2.94s/it, loss=0.0946]
+
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+Compute roc mode:  trainingage value: 0.9998040873717832
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [157/200]:  89%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏               | 8/9 [00:23<00:02,  2.82s/it, loss=0.0873]
+
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+Iompute roc mode:  trainingage value: 0.9998040873717832
+
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+Iompute roc mode:  trainingage value: 0.9998040873717832
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [159/200]:  89%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏               | 8/9 [00:24<00:02,  2.88s/it, loss=0.0805]
+
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+Iompute roc mode:  trainingage value: 0.9998040873717832
+
+
+
+
+
+
+
+
+
+
+
+Epoch [160/200]:  89%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏               | 8/9 [00:23<00:02,  2.85s/it, loss=0.0842]
+
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+Iompute roc mode:  trainingage value: 0.9998040873717832
+Iompute roc mode:  trainingage value: 0.9998040873717832
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+Iompute roc mode:  trainingage value: 0.9998040873717832
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+Compute roc mode:  trainingage value: 0.9998040873717832
+Compute roc mode:  trainingage value: 0.9998040873717832
+
+
+
+
+
+
+
+
+
+
+
+Epoch [163/200]:  89%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏               | 8/9 [00:23<00:02,  2.69s/it, loss=0.0719]
+
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+Compute roc mode:  trainingage value: 0.9998040873717832
+
+
+
+
+
+
+
+
+
+
+
+
+Epoch [164/200]:  89%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏               | 8/9 [00:23<00:02,  2.69s/it, loss=0.0855]
+
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+Iompute roc mode:  trainingage value: 0.9998040873717832
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  testinggage value: 0.9998040873717832
+Compute roc mode:  testinggage value: 0.9998040873717832
+
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+Iompute roc mode:  trainingage value: 0.9998040873717832
+Iompute roc mode:  trainingage value: 0.9998040873717832
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  testinggage value: 0.9998040873717832
+Iompute roc mode:  testinggage value: 0.9998040873717832
+
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+Iompute roc mode:  trainingage value: 0.9998040873717832
+
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+Compute roc mode:  trainingage value: 0.9998040873717832
+Compute roc mode:  trainingage value: 0.9998040873717832
+
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+Iompute roc mode:  trainingage value: 0.9998040873717832
+
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+Iompute roc mode:  trainingage value: 0.9998040873717832
+
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+Iompute roc mode:  trainingage value: 0.9998040873717832
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+Compute roc mode:  trainingage value: 0.9998040873717832
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+Compute roc mode:  trainingage value: 0.9998040873717832
+
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+Compute roc mode:  trainingage value: 0.9998040873717832
+
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+Compute roc mode:  trainingage value: 0.9998040873717832
+Compute roc mode:  trainingage value: 0.9998040873717832
+
+
+
+
+
+
+
+
+
+
+
+Epoch [177/200]:  89%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏               | 8/9 [00:22<00:02,  2.92s/it, loss=0.0832]
+
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+Iompute roc mode:  trainingage value: 0.9998040873717832
+
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  testinggage value: 0.9998040873717832
+Compute roc mode:  testinggage value: 0.9998040873717832
+Compute roc mode:  testinggage value: 0.9998040873717832
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9998040873717832
+
+
+compute roc mode:  trainingage value: 0.9998040873717832
+Iompute roc mode:  trainingage value: 0.9998040873717832
+Iompute roc mode:  trainingage value: 0.9998040873717832
+
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+Iompute roc mode:  trainingage value: 0.9998040873717832
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+Iompute roc mode:  trainingage value: 0.9998040873717832
+Iompute roc mode:  trainingage value: 0.9998040873717832
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  testinggage value: 0.9998040873717832
+Iompute roc mode:  testinggage value: 0.9998040873717832
+
+
+
+
+
+
+
+
+
+
+
+Epoch [183/200]:  78%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████▍                               | 7/9 [00:21<00:05,  2.76s/it, loss=0.0941]
+
+compute roc mode:  testinggage value: 0.9998040873717832
+
+
+compute roc mode:  trainingage value: 0.9998040873717832
+Iompute roc mode:  trainingage value: 0.9998040873717832
+Iompute roc mode:  trainingage value: 0.9998040873717832
+  0%|                                                                                                                                                                                    | 0/9 [00:00<?, ?it/s]
+
+
+
+
+
+
+
+
+
+
+
+Epoch 184oc mode:  trainingage value: 0.9998040873717832
+
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+Iompute roc mode:  trainingage value: 0.9998040873717832
+
+
+
+
+
+
+
+
+
+
+
+Epoch [185/200]:  89%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏               | 8/9 [00:23<00:02,  2.73s/it, loss=0.0784]
+
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+Compute roc mode:  trainingage value: 0.9998040873717832
+Compute roc mode:  trainingage value: 0.9998040873717832
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9998040873717832
+
+
+compute roc mode:  trainingage value: 0.9998040873717832
+Iompute roc mode:  trainingage value: 0.9998040873717832
+Iompute roc mode:  trainingage value: 0.9998040873717832
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9998040873717832
+
+
+compute roc mode:  testinggage value: 0.9998040873717832
+Iompute roc mode:  testinggage value: 0.9998040873717832
+Iompute roc mode:  testinggage value: 0.9998040873717832
+
+
+
+
+
+
+
+
+
+
+
+Epoch [188/200]:  89%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏               | 8/9 [00:22<00:02,  2.76s/it, loss=0.0822]
+
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+Compute roc mode:  trainingage value: 0.9998040873717832
+Compute roc mode:  trainingage value: 0.9998040873717832
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  testinggage value: 0.9998040873717832
+Iompute roc mode:  testinggage value: 0.9998040873717832
+Iompute roc mode:  testinggage value: 0.9998040873717832
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9998040873717832
+
+
+compute roc mode:  testinggage value: 0.9998040873717832
+Iompute roc mode:  testinggage value: 0.9998040873717832
+Iompute roc mode:  testinggage value: 0.9998040873717832
+
+
+
+
+
+
+
+
+
+
+
+Epoch [191/200]:  89%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏               | 8/9 [00:21<00:02,  2.72s/it, loss=0.0777]
+
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+Iompute roc mode:  trainingage value: 0.9998040873717832
+Iompute roc mode:  trainingage value: 0.9998040873717832
+
+
+
+
+
+
+
+
+
+
+
+Epoch [192/200]:  89%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏               | 8/9 [00:22<00:02,  2.71s/it, loss=0.0736]
+
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+Iompute roc mode:  trainingage value: 0.9998040873717832
+Iompute roc mode:  trainingage value: 0.9998040873717832
+
+
+
+
+
+
+
+
+
+
+
+Epoch [193/200]:  89%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏               | 8/9 [00:21<00:02,  2.75s/it, loss=0.0768]
+
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+Compute roc mode:  trainingage value: 0.9998040873717832
+Compute roc mode:  trainingage value: 0.9998040873717832
+
+
+
+
+
+
+
+
+
+
+
+Epoch [194/200]:  89%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏               | 8/9 [00:23<00:02,  2.73s/it, loss=0.0876]
+
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+Iompute roc mode:  trainingage value: 0.9998040873717832
+Iompute roc mode:  trainingage value: 0.9998040873717832
+
+
+
+
+
+
+
+
+
+
+
+Epoch [195/200]:  89%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                | 8/9 [00:22<00:02,  2.90s/it, loss=0.078]
+
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+Iompute roc mode:  trainingage value: 0.9998040873717832
+Iompute roc mode:  trainingage value: 0.9998040873717832
+
+
+
+
+
+
+
+
+
+
+
+Epoch [196/200]:  89%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏               | 8/9 [00:22<00:02,  2.75s/it, loss=0.0808]
+
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+Compute roc mode:  trainingage value: 0.9998040873717832
+Compute roc mode:  trainingage value: 0.9998040873717832
+
+
+
+
+
+
+
+
+
+
+
+
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  testinggage value: 0.9998040873717832
+Iompute roc mode:  testinggage value: 0.9998040873717832
+Iompute roc mode:  testinggage value: 0.9998040873717832
+
+
+
+
+
+
+
+
+
+
+
+Epoch [198/200]:  89%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏               | 8/9 [00:23<00:02,  2.76s/it, loss=0.0822]
+
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+Iompute roc mode:  trainingage value: 0.9998040873717832
+Iompute roc mode:  trainingage value: 0.9998040873717832
+
+
+
+
+
+
+
+
+
+
+
+Epoch [199/200]:  89%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏               | 8/9 [00:22<00:02,  2.86s/it, loss=0.0681]
+
+compute roc mode:  testinggage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+compute roc mode:  trainingage value: 0.9998040873717832
+Iompute roc mode:  trainingage value: 0.9998040873717832
+Iompute roc mode:  trainingage value: 0.9998040873717832
