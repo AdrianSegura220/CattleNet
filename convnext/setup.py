@@ -315,10 +315,14 @@ else:
         optimizer = optim.Adam(params,lr=lr)
         scheduler = StepLR(optimizer, step_size=step_lr, gamma=0.99)
 
-        dataset_training = CustomImageDatasetBCE(img_dir='../../dataset/CORF3D_combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225])]),annotations_csv='./training_testing_folds_corf3d/training_annotations_fold{}.csv'.format(i),isCorf3d=True)
-        dataset_validation = CustomImageDatasetBCE(img_dir='../../dataset/CORF3D_combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225])]),annotations_csv='./training_testing_folds_corf3d/validation_annotations_fold{}.csv'.format(i),isCorf3d=True)
-        dataset_validation_training = CustomImageDatasetBCE(img_dir='../../dataset/CORF3D_combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225])]),annotations_csv='./training_testing_folds_corf3d/training_validation_annotations_fold{}.csv'.format(i),isCorf3d=True)
-        dataset_one_shot = OneShotImageDataset(img_dir='../../dataset/CORF3D_combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225])]),annotations_csv='./training_testing_folds_corf3d/validation_annotations_fold{}.csv'.format(i),isCorf3d=True)
+        # dataset_training = CustomImageDatasetBCE(img_dir='../../dataset/CORF3D_combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225])]),annotations_csv='./training_testing_folds_corf3d/training_annotations_fold{}.csv'.format(i),isCorf3d=True)
+        # dataset_validation = CustomImageDatasetBCE(img_dir='../../dataset/CORF3D_combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225])]),annotations_csv='./training_testing_folds_corf3d/validation_annotations_fold{}.csv'.format(i),isCorf3d=True)
+        # dataset_validation_training = CustomImageDatasetBCE(img_dir='../../dataset/CORF3D_combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225])]),annotations_csv='./training_testing_folds_corf3d/training_validation_annotations_fold{}.csv'.format(i),isCorf3d=True)
+        # dataset_one_shot = OneShotImageDataset(img_dir='../../dataset/CORF3D_combined/',transform=transforms.Compose([transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225])]),annotations_csv='./training_testing_folds_corf3d/validation_annotations_fold{}.csv'.format(i),isCorf3d=True)
+        dataset_training = CustomImageDatasetBCE(img_dir='../../dataset/CORF3D_combined/',transform=transforms.Compose([]),annotations_csv='./training_testing_folds_corf3d/training_annotations_fold{}.csv'.format(i),isCorf3d=True)
+        dataset_validation = CustomImageDatasetBCE(img_dir='../../dataset/CORF3D_combined/',transform=transforms.Compose([]),annotations_csv='./training_testing_folds_corf3d/validation_annotations_fold{}.csv'.format(i),isCorf3d=True)
+        dataset_validation_training = CustomImageDatasetBCE(img_dir='../../dataset/CORF3D_combined/',transform=transforms.Compose([]),annotations_csv='./training_testing_folds_corf3d/training_validation_annotations_fold{}.csv'.format(i),isCorf3d=True)
+        dataset_one_shot = OneShotImageDataset(img_dir='../../dataset/CORF3D_combined/',transform=transforms.Compose([]),annotations_csv='./training_testing_folds_corf3d/validation_annotations_fold{}.csv'.format(i),isCorf3d=True)
         data_loader = DataLoader(dataset_training, batch_size=batch_size, shuffle=True)
 
 
